@@ -14,6 +14,11 @@ globs:
 
 # AlphaGBM Greeks
 
+## Prerequisites
+
+- **API Key**: Set env `ALPHAGBM_API_KEY` (format `agbm_xxxx...`).
+- **Base URL**: Default `https://alphagbm.com`. Override with env `ALPHAGBM_BASE_URL`.
+
 ## What This Skill Does
 
 Provides a comprehensive **Greeks dashboard** for any single option contract or multi-leg position. Calculates first-order and second-order sensitivities, and generates scenario heatmaps showing how Greeks change as price and IV move.
@@ -22,14 +27,14 @@ Provides a comprehensive **Greeks dashboard** for any single option contract or 
 
 | Greek | Order | What It Measures |
 |-------|-------|-----------------|
-| **Delta** | 1st | Price sensitivity — how much does the option move per $1 in the underlying? |
-| **Gamma** | 1st | Delta sensitivity — how fast does delta change? (acceleration) |
-| **Theta** | 1st | Time decay — how much value does the option lose per day? |
-| **Vega** | 1st | IV sensitivity — how much does the option move per 1% change in IV? |
-| **Rho** | 1st | Interest rate sensitivity — how much does the option move per 1% rate change? |
-| **Charm** | 2nd | Delta decay — how does delta change as time passes? (delta-theta cross) |
-| **Vanna** | 2nd | Delta-vol cross — how does delta change as IV moves? |
-| **Volga** | 2nd | Vega convexity — how does vega change as IV moves? |
+| **Delta** | 1st | Price sensitivity -- how much does the option move per $1 in the underlying? |
+| **Gamma** | 1st | Delta sensitivity -- how fast does delta change? (acceleration) |
+| **Theta** | 1st | Time decay -- how much value does the option lose per day? |
+| **Vega** | 1st | IV sensitivity -- how much does the option move per 1% change in IV? |
+| **Rho** | 1st | Interest rate sensitivity -- how much does the option move per 1% rate change? |
+| **Charm** | 2nd | Delta decay -- how does delta change as time passes? (delta-theta cross) |
+| **Vanna** | 2nd | Delta-vol cross -- how does delta change as IV moves? |
+| **Volga** | 2nd | Vega convexity -- how does vega change as IV moves? |
 
 ### Position-Level Analysis
 
@@ -37,6 +42,56 @@ For multi-leg positions, the skill aggregates Greeks across all legs and shows:
 - **Net Greeks**: Total delta, gamma, theta, vega for the combined position
 - **Greeks per unit of capital**: Normalized by margin requirement or net debit
 - **Risk concentration**: Which leg contributes most to each Greek
+
+## API Endpoints
+
+### Greeks Calculator
+
+Calculate Greeks for a single option from basic parameters:
+
+```
+POST /api/options/tools/greeks
+Content-Type: application/json
+
+{
+  "spot": 150,
+  "strike": 155,
+  "expiry_days": 30,
+  "iv": 0.25,
+  "option_type": "call"
+}
+```
+
+Parameters:
+- **spot** (required): Current underlying price
+- **strike** (required): Option strike price
+- **expiry_days** (required): Days to expiration
+- **iv** (required): Implied volatility as decimal (e.g., 0.25 for 25%)
+- **option_type** (required): `"call"` or `"put"`
+
+### Implied Volatility Calculator
+
+Reverse-solve for IV given market price:
+
+```
+POST /api/options/tools/implied-volatility
+Content-Type: application/json
+
+{
+  "market_price": 4.50,
+  "spot": 150,
+  "strike": 155,
+  "expiry_days": 30,
+  "option_type": "call"
+}
+```
+
+Parameters:
+- **market_price** (required): Current market price of the option
+- **spot** (required): Current underlying price
+- **strike** (required): Option strike price
+- **expiry_days** (required): Days to expiration
+- **option_type** (required): `"call"` or `"put"`
 
 ## How to Use
 
@@ -86,7 +141,7 @@ For multi-leg positions, the skill aggregates Greeks across all legs and shows:
     "pnl_grid": "..."
   },
   "insights": [
-    "Position is net long delta (0.52) — profits if stock rises",
+    "Position is net long delta (0.52) -- profits if stock rises",
     "Theta of -0.18 means $18/day time decay per contract",
     "Gamma of 0.035 means delta shifts ~3.5 for a $1 move"
   ]
@@ -102,33 +157,18 @@ For multi-leg positions, the skill aggregates Greeks across all legs and shows:
 | "Theta decay analysis NVDA" | Theta over time chart showing acceleration near expiry |
 | "Gamma exposure NVDA" | Gamma across strikes, highlighting gamma risk zones |
 | "Delta of my iron condor" | Net delta for all 4 legs with per-leg breakdown |
-| "How does vega change if IV spikes?" | Volga analysis — second-order vega sensitivity |
+| "How does vega change if IV spikes?" | Volga analysis -- second-order vega sensitivity |
 
 ### Mock Data
 
 Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Greeks calculated from realistic option chain snapshots in `mock-data/`.
 
-### API Endpoint
-
-```
-POST https://api.alphagbm.com/api/options/greeks
-Authorization: Bearer <api_key>
-Content-Type: application/json
-
-{
-  "ticker": "AAPL",
-  "legs": [
-    {"strike": 220, "expiry": "2026-04-18", "type": "call", "quantity": 1}
-  ]
-}
-```
-
 ### Related Skills
-- **alphagbm-options-score** — Greeks balance is a scoring factor for contract quality
-- **alphagbm-pnl-simulator** — Visualize how Greeks translate into actual P&L outcomes
-- **alphagbm-options-strategy** — See net Greeks for recommended strategies
-- **alphagbm-vol-surface** — Understand the IV inputs driving vega and vanna
+- **alphagbm-options-score** -- Greeks balance is a scoring factor for contract quality
+- **alphagbm-pnl-simulator** -- Visualize how Greeks translate into actual P&L outcomes
+- **alphagbm-options-strategy** -- See net Greeks for recommended strategies
+- **alphagbm-vol-surface** -- Understand the IV inputs driving vega and vanna
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence for traders and AI agents. 100K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) -- Real-data options intelligence for traders and AI agents. 100K+ users.*

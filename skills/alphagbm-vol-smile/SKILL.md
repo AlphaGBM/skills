@@ -14,29 +14,47 @@ globs:
 
 # AlphaGBM Volatility Smile
 
+## Prerequisites
+
+- **API Key**: Set env `ALPHAGBM_API_KEY` (format `agbm_xxxx...`).
+- **Base URL**: Default `https://alphagbm.com`. Override with env `ALPHAGBM_BASE_URL`.
+
 ## What This Skill Does
 
-Analyzes the **volatility smile** (or skew) for a single expiration — the curve of implied volatility plotted against strike prices. Reveals how the market prices tail risk, directional fear, and supply/demand imbalances across the options chain.
+Analyzes the **volatility smile** (or skew) for a single expiration -- the curve of implied volatility plotted against strike prices. Reveals how the market prices tail risk, directional fear, and supply/demand imbalances across the options chain.
 
 ### Key Outputs
 
 | Output | What It Shows |
 |--------|--------------|
-| **Smile Curve** | IV at each strike for the selected expiry — the raw smile data |
-| **25-Delta Skew** | IV(25d put) - IV(25d call) — the standard measure of directional skew |
-| **Risk Reversal** | Price of 25d call minus 25d put — a tradeable expression of skew |
+| **Smile Curve** | IV at each strike for the selected expiry -- the raw smile data |
+| **25-Delta Skew** | IV(25d put) - IV(25d call) -- the standard measure of directional skew |
+| **Risk Reversal** | Price of 25d call minus 25d put -- a tradeable expression of skew |
 | **Smile Shape** | Classification: normal, flat, reverse, winged, or smirk |
-| **Skew Percentile** | Current skew vs. 252-day history — is skew unusually steep or flat? |
+| **Skew Percentile** | Current skew vs. 252-day history -- is skew unusually steep or flat? |
 
 ### What Smile Shape Means for Trading
 
 | Shape | Description | Market Implication | Trade Ideas |
 |-------|-------------|-------------------|-------------|
-| **Normal** | OTM puts have higher IV than OTM calls | Standard hedging demand — puts are expensive | Sell put spreads, buy call spreads |
+| **Normal** | OTM puts have higher IV than OTM calls | Standard hedging demand -- puts are expensive | Sell put spreads, buy call spreads |
 | **Flat** | IV roughly equal across strikes | Low fear, balanced positioning | Neutral strategies (iron condors) |
 | **Reverse** | OTM calls have higher IV than OTM puts | Upside speculation or short squeeze risk | Sell call spreads if overpriced |
 | **Winged** | Both OTM puts and calls elevated | Expecting a large move, direction unknown | Sell straddles/strangles if IV is high |
-| **Smirk** | Asymmetric — one side significantly steeper | Directional fear concentrated on one side | Trade the steep side if skew is extreme |
+| **Smirk** | Asymmetric -- one side significantly steeper | Directional fear concentrated on one side | Trade the steep side if skew is extreme |
+
+## API Endpoint
+
+### Volatility Smile
+
+```
+GET /api/options/tools/vol-smile/<SYMBOL>?expiry=2026-04-17
+```
+
+Query parameters:
+- **expiry** (optional): Expiration date in `YYYY-MM-DD` format. Defaults to nearest monthly expiry if omitted.
+
+Returns the smile curve (strikes, IVs, deltas), skew metrics, shape classification, and skew percentile for the specified expiration.
 
 ## How to Use
 
@@ -65,7 +83,7 @@ Analyzes the **volatility smile** (or skew) for a single expiration — the curv
   },
   "shape": "normal",
   "skew_percentile": 72,
-  "interpretation": "Put skew is moderately steep (72nd percentile). OTM puts are pricing ~8 vol points above equidistant calls — standard hedging demand with slight elevation."
+  "interpretation": "Put skew is moderately steep (72nd percentile). OTM puts are pricing ~8 vol points above equidistant calls -- standard hedging demand with slight elevation."
 }
 ```
 
@@ -83,19 +101,12 @@ Analyzes the **volatility smile** (or skew) for a single expiration — the curv
 
 Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Smile data uses realistic IV snapshots from `mock-data/`.
 
-### API Endpoint
-
-```
-GET https://api.alphagbm.com/api/options/volatility/smile/{symbol}/{expiry}
-Authorization: Bearer <api_key>
-```
-
 ### Related Skills
-- **alphagbm-vol-surface** — See the full 3D surface across all expirations
-- **alphagbm-iv-rank** — Is overall IV high or low vs. history?
-- **alphagbm-options-strategy** — Steep skew suggests certain spread strategies
-- **alphagbm-options-score** — Use skew insights to find better-scored contracts
+- **alphagbm-vol-surface** -- See the full 3D surface across all expirations
+- **alphagbm-iv-rank** -- Is overall IV high or low vs. history?
+- **alphagbm-options-strategy** -- Steep skew suggests certain spread strategies
+- **alphagbm-options-score** -- Use skew insights to find better-scored contracts
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence for traders and AI agents. 100K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) -- Real-data options intelligence for traders and AI agents. 100K+ users.*

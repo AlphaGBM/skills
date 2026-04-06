@@ -15,19 +15,33 @@ globs:
 
 # AlphaGBM P&L Simulator
 
+## Prerequisites
+
+- **API Key**: Set env `ALPHAGBM_API_KEY` (format `agbm_xxxx...`).
+- **Base URL**: Default `https://alphagbm.com`. Override with env `ALPHAGBM_BASE_URL`.
+
 ## What This Skill Does
 
-Simulates **profit and loss** for any option position across multiple dimensions — underlying price, implied volatility, and time to expiration. Produces P&L diagrams, breakeven analysis, and probability-weighted outcome distributions.
+Simulates **profit and loss** for any option position across multiple dimensions -- underlying price, implied volatility, and time to expiration. Produces P&L diagrams, breakeven analysis, and probability-weighted outcome distributions.
+
+### Four Core Strategies for Context
+
+| Strategy | Ideal Trend | Max Profit | Max Loss |
+|----------|------------|------------|----------|
+| **Sell Put** | Neutral / Bullish | Premium received | Strike - Premium |
+| **Sell Call** | Neutral / Bearish | Premium received | Unlimited (uncovered) |
+| **Buy Call** | Bullish | Unlimited | Premium paid |
+| **Buy Put** | Bearish | Strike - Premium | Premium paid |
 
 ### Simulation Capabilities
 
 | Capability | Description |
 |-----------|-------------|
-| **P&L at Expiry** | Classic payoff diagram — profit/loss vs. underlying price at expiration |
+| **P&L at Expiry** | Classic payoff diagram -- profit/loss vs. underlying price at expiration |
 | **P&L Over Time** | How the position's value evolves from now to expiry (time-series curves) |
-| **What-If: Price** | Vary underlying price by fixed amount or percentage — see impact on P&L |
-| **What-If: IV** | Vary implied volatility — see how IV crush or spike affects the position |
-| **What-If: Time** | Fast-forward to a specific date — see theta decay impact |
+| **What-If: Price** | Vary underlying price by fixed amount or percentage -- see impact on P&L |
+| **What-If: IV** | Vary implied volatility -- see how IV crush or spike affects the position |
+| **What-If: Time** | Fast-forward to a specific date -- see theta decay impact |
 | **Probability Distribution** | Monte Carlo simulation of outcomes with probability of profit |
 | **Breakeven Analysis** | Exact breakeven points with time-varying breakevens before expiry |
 
@@ -37,6 +51,34 @@ Simulates **profit and loss** for any option position across multiple dimensions
 - Three-leg combinations (butterflies, ratio spreads)
 - Four-leg combinations (iron condors, iron butterflies, double diagonals)
 - Arbitrary multi-leg custom positions
+
+## API Endpoint
+
+### P&L Simulator
+
+```
+POST /api/options/tools/simulate
+Content-Type: application/json
+
+{
+  "symbol": "AAPL",
+  "spot": 150.0,
+  "legs": [
+    {"action": "buy", "option_type": "call", "strike": 145, "expiry_days": 30, "iv": 0.26},
+    {"action": "sell", "option_type": "call", "strike": 150, "expiry_days": 30, "iv": 0.25}
+  ]
+}
+```
+
+Parameters:
+- **symbol** (required): Ticker symbol
+- **spot** (required): Current underlying price
+- **legs** (required): Array of option legs, each with:
+  - **action**: `"buy"` or `"sell"`
+  - **option_type**: `"call"` or `"put"`
+  - **strike**: Strike price
+  - **expiry_days**: Days to expiration
+  - **iv**: Implied volatility as decimal (e.g., 0.26 for 26%)
 
 ## How to Use
 
@@ -101,29 +143,12 @@ Simulates **profit and loss** for any option position across multiple dimensions
 
 Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Simulations use realistic pricing models calibrated to `mock-data/` snapshots.
 
-### API Endpoint
-
-```
-POST https://api.alphagbm.com/api/options/simulate
-Authorization: Bearer <api_key>
-Content-Type: application/json
-
-{
-  "ticker": "AAPL",
-  "legs": [
-    {"strike": 215, "expiry": "2026-04-18", "type": "call", "action": "buy", "qty": 1, "price": 7.20},
-    {"strike": 225, "expiry": "2026-04-18", "type": "call", "action": "sell", "qty": 1, "price": 3.40}
-  ],
-  "scenarios": {"price_range": [-10, 10], "iv_shift": [-50, 50]}
-}
-```
-
 ### Related Skills
-- **alphagbm-options-strategy** — Get strategy recommendations, then simulate them here
-- **alphagbm-greeks** — Understand the Greeks driving the P&L changes
-- **alphagbm-iv-rank** — Context for whether IV scenarios are realistic
-- **alphagbm-vol-surface** — Full IV landscape for calibrating simulations
+- **alphagbm-options-strategy** -- Get strategy recommendations, then simulate them here
+- **alphagbm-greeks** -- Understand the Greeks driving the P&L changes
+- **alphagbm-iv-rank** -- Context for whether IV scenarios are realistic
+- **alphagbm-vol-surface** -- Full IV landscape for calibrating simulations
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence for traders and AI agents. 100K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) -- Real-data options intelligence for traders and AI agents. 100K+ users.*

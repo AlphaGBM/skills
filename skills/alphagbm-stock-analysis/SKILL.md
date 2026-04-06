@@ -13,80 +13,173 @@ globs:
 
 # AlphaGBM Stock Analysis
 
-## What This Skill Does
+Analyze stocks via the AlphaGBM API — a G = B + M (Gain = Basics + Momentum) model combining fundamental analysis, market sentiment, EV expectation, ATR stop-loss, sector rotation, and AI reports.
 
-Performs comprehensive stock analysis using the **GBM Five Pillars** framework — a systematic scoring methodology tested on 100,000+ users and 3 months of live trading data.
+## When to use
 
-### The Five Pillars
+- User asks to analyze a stock ticker (US / HK / A-share)
+- User asks for a stock quote, target price, risk score, or EV recommendation
+- User mentions AlphaGBM or wants a comprehensive stock analysis
 
-| Pillar | What It Measures | Key Metrics |
-|--------|-----------------|-------------|
-| **Fundamental** | Business quality & growth | PE, PEG, revenue growth, margins, ROE |
-| **Technical** | Price action & momentum | SMA crossovers, RSI, MACD, support/resistance |
-| **Sentiment** | Market positioning | Put/Call ratio, IV rank, short interest |
-| **Flow** | Smart money signals | Institutional accumulation, unusual volume, dark pool |
-| **Valuation** | Price vs. fair value | DCF, peer comparison, distance from 52w range |
+## Prerequisites
 
-### Scoring
+- **API Key**: stored in env `ALPHAGBM_API_KEY` (format `agbm_xxxx…`).
+- **Base URL**: default `https://alphagbm.com`. Override with env `ALPHAGBM_BASE_URL`.
+- If the user has neither, tell them to register at <https://alphagbm.com> and create a key at `/api-keys`.
 
-- Each pillar scores **1-10**
-- Overall score = weighted average (configurable weights)
-- **8-10**: Strong signal → actionable
-- **6-8**: Moderate → monitor
-- **4-6**: Neutral → no edge
-- **1-4**: Weak/bearish → caution
+## API Endpoints
 
-## How to Use
+All endpoints require `Authorization: Bearer $ALPHAGBM_API_KEY`.
 
-### Input
-- **Required**: Stock ticker (e.g., "AAPL", "NVDA", "0700.HK", "600519.SS")
-- **Optional**: Analysis depth ("quick" for L0 data-only, "full" for L2-L3 with AI narrative)
+### 1. Quick Quote (instant, no quota cost)
 
-### Output Structure
-
-```json
-{
-  "ticker": "AAPL",
-  "overall_score": 7.8,
-  "signal": "moderately_bullish",
-  "pillars": {
-    "fundamental": {"score": 8.0, "summary": "..."},
-    "technical": {"score": 7.5, "summary": "..."},
-    "sentiment": {"score": 7.2, "summary": "..."},
-    "flow": {"score": 8.0, "summary": "..."},
-    "valuation": {"score": 8.2, "summary": "..."}
-  },
-  "risk_level": 4,
-  "risk_factors": ["..."],
-  "target_price": {"bull": 245, "base": 232, "bear": 195},
-  "recommendation": "..."
-}
+```
+GET /api/stock/quick-quote/<TICKER>
 ```
 
-### Example Queries
+Returns: price, change%, PE, forward PE, 52-week range, sector, market cap.
 
-| User Says | What Happens |
-|-----------|-------------|
-| "Analyze AAPL" | Full Five Pillars analysis with score & recommendation |
-| "Is NVDA overvalued?" | Focuses on Valuation pillar, compares to peers |
-| "TSLA risk level?" | Returns risk_level (1-10) with risk_factors |
-| "Compare AAPL vs MSFT" | Side-by-side Five Pillars comparison (uses alphagbm-compare skill) |
+**Example:**
+```bash
+curl -H "Authorization: Bearer $ALPHAGBM_API_KEY" \
+  https://alphagbm.com/api/stock/quick-quote/AAPL
+```
 
-### Mock Data
+### 2. Full Stock Analysis — Synchronous (blocks 10-30s)
+
+```
+POST /api/stock/analyze-sync
+Content-Type: application/json
+
+{"ticker": "AAPL", "style": "balanced"}
+```
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `ticker` | string | yes | Stock ticker (e.g. `AAPL`, `0700.HK`, `600519.SS`) |
+| `style` | string | no | `quality` (default), `value`, `growth`, `momentum`, `balanced` |
+
+Add `?compact=true` for a condensed agent-friendly response (~500 tokens).
+
+**Response contains:**
+- `data` — price, PE, PEG, growth, margin, target_price, stop_loss_price, market_sentiment (0-10), ev_model, sector_analysis, capital_analysis
+- `risk` — score (0-10), level, suggested_position%, risk flags
+- `report` — AI-generated narrative report (markdown, ~2000 chars)
+
+### 3. Full Stock Analysis — Async (for web frontend)
+
+```
+POST /api/stock/analyze-async
+Content-Type: application/json
+
+{"ticker": "TSLA", "style": "growth"}
+```
+
+Returns `{"task_id": "uuid"}`. Poll task:
+
+```
+GET /api/tasks/<task_id>
+```
+
+### 4. Stock Search (no auth required)
+
+```
+GET /api/stock/search?q=AAPL&limit=8
+```
+
+Fuzzy search — supports US (`AAPL`), HK (`700`, `0700.HK`), A-share (`600519`).
+
+### 5. Analysis History
+
+```
+GET /api/stock/history?page=1&per_page=10&ticker=AAPL
+```
+
+### 6. Stock Summary (for options page linkage)
+
+```
+GET /api/stock/summary/<TICKER>
+```
+
+Returns condensed analysis. First-time analysis per ticker is free.
+
+## Analysis Model Summary
+
+### G = B + M
+
+| Dimension | Components | Weight |
+|-----------|-----------|--------|
+| **B (Basics)** | PE/PEG, growth rate, profit margin, ROE, FCF | Fundamental valuation |
+| **M (Momentum)** | VIX, technical indicators, fund flow, macro | Market sentiment 0-10 |
+
+### Risk Score (0-10, additive)
+
+| Factor | Trigger | Points |
+|--------|---------|--------|
+| Valuation | PE > 60 | +2.0 |
+| Growth | Growth < -10% | +2.0 |
+| Liquidity | Volume below threshold | +2.0 |
+| Market | VIX > 30 | +1.5 |
+| Technical | Price < MA200 | +1.0 |
+
+Risk 0-2 → Max position 20% · Risk 8-10 → Don't buy.
+
+### EV Expectation Model
+
+```
+EV = (upside_prob x upside_range) + (downside_prob x downside_range)
+Weighted = 50% x 1-week + 30% x 1-month + 20% x 3-month
+```
+
+| EV | Recommendation |
+|----|---------------|
+| > +8% | STRONG_BUY |
+| +3% ~ +8% | BUY |
+| -3% ~ +3% | HOLD |
+| < -8% | STRONG_AVOID |
+
+### Target Price — 5 methods, industry-weighted
+
+PE valuation · PEG valuation · Growth discount · DCF · Technical analysis.
+Risk adjustment: high risk → -15%, medium risk → -8%.
+
+### ATR Stop-Loss
+
+```
+stop = price - ATR(14) x multiplier(1.5-4.0)
+```
+Multiplier adjusts for Beta and VIX. Hard floor: -15%.
+
+## Typical Workflow
+
+```
+1. Quick check → GET /api/stock/quick-quote/NVDA
+2. If interesting → POST /api/stock/analyze-sync {"ticker":"NVDA","style":"growth"}
+3. Present: recommendation, target price, risk score, EV, AI report
+```
+
+## Quota
+
+- Free users: 2 stock analyses/day
+- Plus: 1000/month · Pro: 5000/month
+- Quick quote costs nothing
+
+## Output Formatting Tips
+
+When presenting results to the user, highlight:
+1. **Recommendation** (STRONG_BUY / BUY / HOLD / AVOID / STRONG_AVOID) + confidence
+2. **Target price** vs current price → upside %
+3. **Risk score** + level + top risk flags
+4. **Stop-loss price** + method
+5. **EV score** + weighted EV%
+6. **Key excerpt** from AI report (first 2-3 paragraphs)
+
+## Mock Data
 
 When no API key is configured, this skill uses built-in market data snapshots from `mock-data/`. Supported demo tickers: AAPL, NVDA, SPY, TSLA, META.
 
-### API Endpoint
+## Related Skills
 
-```
-POST https://api.alphagbm.com/api/stock/analyze
-Authorization: Bearer <api_key>
-Content-Type: application/json
-
-{"ticker": "AAPL", "mode": "full"}
-```
-
-### Related Skills
 - **alphagbm-options-score** — After stock analysis, evaluate options opportunities
 - **alphagbm-compare** — Compare multiple stocks side-by-side
 - **alphagbm-market-sentiment** — Broader market context for the analysis
