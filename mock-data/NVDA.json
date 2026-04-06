@@ -1,0 +1,239 @@
+{
+  "ticker": "NVDA",
+  "name": "NVIDIA Corporation",
+  "market": "US",
+  "snapshot_date": "2026-04-04",
+
+  "stock": {
+    "price": 892.30,
+    "change_pct": 2.8,
+    "volume": 42150000,
+    "avg_volume_20d": 38900000,
+    "market_cap_b": 2195,
+    "pe_ratio": 45.2,
+    "forward_pe": 32.8,
+    "peg_ratio": 1.2,
+    "dividend_yield": 0.03,
+    "beta": 1.68,
+    "52w_high": 975.00,
+    "52w_low": 552.80,
+    "rsi_14": 63.8,
+    "macd_signal": "bullish",
+    "sma_50": 855.40,
+    "sma_200": 768.20,
+    "sector": "Technology",
+    "industry": "Semiconductors"
+  },
+
+  "options": {
+    "iv_30d": 48.5,
+    "iv_60d": 44.2,
+    "iv_90d": 41.8,
+    "hv_20d": 42.3,
+    "hv_60d": 38.5,
+    "vrp": 6.2,
+    "iv_rank": 78,
+    "iv_percentile": 72,
+    "put_call_ratio": 0.72,
+    "total_call_oi": 6820000,
+    "total_put_oi": 4910000,
+    "total_call_volume": 1450000,
+    "total_put_volume": 1044000,
+    "skew_25d": -4.8,
+    "next_earnings": "2026-05-28",
+    "days_to_earnings": 54,
+
+    "term_structure": [
+      {"expiry": "2026-04-11", "dte": 7, "atm_iv": 55.2},
+      {"expiry": "2026-04-18", "dte": 14, "atm_iv": 52.1},
+      {"expiry": "2026-04-25", "dte": 21, "atm_iv": 50.3},
+      {"expiry": "2026-05-02", "dte": 28, "atm_iv": 49.0},
+      {"expiry": "2026-05-16", "dte": 42, "atm_iv": 47.2},
+      {"expiry": "2026-06-20", "dte": 77, "atm_iv": 44.5},
+      {"expiry": "2026-09-18", "dte": 167, "atm_iv": 42.1}
+    ],
+
+    "vol_surface": [
+      {
+        "expiry": "2026-04-18",
+        "strikes": [
+          {"strike": 820, "moneyness": 0.919, "call_iv": 60.5, "put_iv": 62.1},
+          {"strike": 850, "moneyness": 0.953, "call_iv": 55.8, "put_iv": 57.0},
+          {"strike": 880, "moneyness": 0.986, "call_iv": 52.5, "put_iv": 53.2},
+          {"strike": 890, "moneyness": 0.997, "call_iv": 52.1, "put_iv": 52.5},
+          {"strike": 900, "moneyness": 1.009, "call_iv": 51.8, "put_iv": 52.2},
+          {"strike": 920, "moneyness": 1.031, "call_iv": 52.5, "put_iv": 53.4},
+          {"strike": 950, "moneyness": 1.065, "call_iv": 54.8, "put_iv": 55.9}
+        ]
+      },
+      {
+        "expiry": "2026-05-16",
+        "strikes": [
+          {"strike": 820, "moneyness": 0.919, "call_iv": 53.2, "put_iv": 54.8},
+          {"strike": 850, "moneyness": 0.953, "call_iv": 49.5, "put_iv": 50.8},
+          {"strike": 880, "moneyness": 0.986, "call_iv": 47.5, "put_iv": 48.2},
+          {"strike": 890, "moneyness": 0.997, "call_iv": 47.2, "put_iv": 47.6},
+          {"strike": 900, "moneyness": 1.009, "call_iv": 46.8, "put_iv": 47.3},
+          {"strike": 920, "moneyness": 1.031, "call_iv": 47.8, "put_iv": 48.5},
+          {"strike": 950, "moneyness": 1.065, "call_iv": 49.5, "put_iv": 50.4}
+        ]
+      }
+    ],
+
+    "chain_sample": [
+      {
+        "expiry": "2026-04-18",
+        "type": "call",
+        "strike": 900,
+        "bid": 32.50,
+        "ask": 33.80,
+        "last": 33.10,
+        "volume": 28450,
+        "open_interest": 65200,
+        "iv": 51.8,
+        "delta": 0.48,
+        "gamma": 0.0045,
+        "theta": -0.95,
+        "vega": 1.28,
+        "rho": 0.35,
+        "score": 8.8,
+        "score_breakdown": {
+          "liquidity": 9.5,
+          "iv_attractiveness": 8,
+          "greeks_balance": 8.5,
+          "risk_reward": 9.0
+        }
+      },
+      {
+        "expiry": "2026-04-18",
+        "type": "put",
+        "strike": 860,
+        "bid": 18.20,
+        "ask": 19.10,
+        "last": 18.65,
+        "volume": 19800,
+        "open_interest": 52300,
+        "iv": 55.0,
+        "delta": -0.35,
+        "gamma": 0.0038,
+        "theta": -0.82,
+        "vega": 1.15,
+        "rho": -0.28,
+        "score": 7.5,
+        "score_breakdown": {
+          "liquidity": 8.5,
+          "iv_attractiveness": 7,
+          "greeks_balance": 7.0,
+          "risk_reward": 7.5
+        }
+      },
+      {
+        "expiry": "2026-05-16",
+        "type": "call",
+        "strike": 950,
+        "bid": 28.80,
+        "ask": 30.20,
+        "last": 29.50,
+        "volume": 22100,
+        "open_interest": 48500,
+        "iv": 49.5,
+        "delta": 0.38,
+        "gamma": 0.0032,
+        "theta": -0.58,
+        "vega": 1.85,
+        "rho": 0.52,
+        "score": 8.0,
+        "score_breakdown": {
+          "liquidity": 8.5,
+          "iv_attractiveness": 7.5,
+          "greeks_balance": 8.0,
+          "risk_reward": 8.0
+        }
+      }
+    ],
+
+    "strategies": [
+      {
+        "name": "Bull Call Spread",
+        "legs": [
+          {"type": "call", "strike": 900, "action": "buy", "price": 33.10},
+          {"type": "call", "strike": 950, "action": "sell", "price": 18.20}
+        ],
+        "max_profit": 3510,
+        "max_loss": 1490,
+        "breakeven": 914.90,
+        "pop": 44.5,
+        "risk_reward_ratio": 2.36,
+        "recommendation_score": 8.2
+      },
+      {
+        "name": "Iron Condor",
+        "legs": [
+          {"type": "put", "strike": 820, "action": "buy", "price": 8.50},
+          {"type": "put", "strike": 850, "action": "sell", "price": 15.80},
+          {"type": "call", "strike": 950, "action": "sell", "price": 18.20},
+          {"type": "call", "strike": 980, "action": "buy", "price": 11.50}
+        ],
+        "max_profit": 1400,
+        "max_loss": 1600,
+        "breakeven_lower": 836.00,
+        "breakeven_upper": 964.00,
+        "pop": 52.8,
+        "risk_reward_ratio": 0.88,
+        "recommendation_score": 6.8
+      },
+      {
+        "name": "Cash-Secured Put",
+        "legs": [
+          {"type": "put", "strike": 850, "action": "sell", "price": 15.80}
+        ],
+        "max_profit": 1580,
+        "max_loss": 83420,
+        "breakeven": 834.20,
+        "pop": 68.2,
+        "risk_reward_ratio": 0.019,
+        "recommendation_score": 7.8
+      }
+    ]
+  },
+
+  "earnings_history": [
+    {"date": "2026-02-26", "iv_before": 62.8, "iv_after": 40.5, "crush_pct": 35.5, "move_pct": 8.5, "implied_move": 7.2},
+    {"date": "2025-11-19", "iv_before": 58.5, "iv_after": 38.2, "crush_pct": 34.7, "move_pct": -4.2, "implied_move": 6.8},
+    {"date": "2025-08-27", "iv_before": 55.2, "iv_after": 36.8, "crush_pct": 33.3, "move_pct": 12.1, "implied_move": 6.5},
+    {"date": "2025-05-28", "iv_before": 52.8, "iv_after": 35.5, "crush_pct": 32.8, "move_pct": -2.8, "implied_move": 6.2}
+  ],
+
+  "unusual_activity": [
+    {"date": "2026-04-04", "type": "call", "strike": 950, "expiry": "2026-05-16", "volume": 68000, "oi": 15200, "vol_oi_ratio": 4.47, "premium": 12800000, "sentiment": "bullish"},
+    {"date": "2026-04-04", "type": "call", "strike": 1000, "expiry": "2026-06-20", "volume": 42000, "oi": 8800, "vol_oi_ratio": 4.77, "premium": 8400000, "sentiment": "bullish"},
+    {"date": "2026-04-03", "type": "put", "strike": 820, "expiry": "2026-04-18", "volume": 35000, "oi": 9200, "vol_oi_ratio": 3.80, "premium": 2975000, "sentiment": "bearish_hedge"},
+    {"date": "2026-04-02", "type": "call", "strike": 920, "expiry": "2026-05-16", "volume": 52000, "oi": 18500, "vol_oi_ratio": 2.81, "premium": 15600000, "sentiment": "bullish"}
+  ],
+
+  "gbm_analysis": {
+    "overall_score": 8.5,
+    "signal": "bullish",
+    "pillars": {
+      "fundamental": {"score": 9.0, "summary": "AI/datacenter revenue accelerating, forward PE 32.8x justified by 55% YoY growth"},
+      "technical": {"score": 8.5, "summary": "Strong uptrend, above 50 & 200 SMA by wide margin, RSI approaching overbought"},
+      "sentiment": {"score": 8.0, "summary": "Put/Call ratio 0.72 bullish, IV rank elevated at 78 showing high demand"},
+      "flow": {"score": 9.2, "summary": "Heavy institutional call buying, sweep orders dominating, smart money accumulation"},
+      "valuation": {"score": 7.8, "summary": "PEG 1.2 attractive for growth rate, 8.5% below 52w high"}
+    },
+    "risk_level": 6,
+    "risk_factors": ["High absolute IV makes options expensive", "Earnings in 54 days", "AI sector rotation risk", "Geopolitical chip export restrictions"],
+    "target_price": {"bull": 1050, "base": 950, "bear": 750},
+    "recommendation": "Strong momentum play. Buy calls on pullbacks to $855 support. Consider bull call spreads to reduce IV cost."
+  },
+
+  "market_sentiment": {
+    "vix": 18.5,
+    "vix_percentile": 45,
+    "fear_greed_index": 52,
+    "fear_greed_label": "neutral",
+    "spy_put_call": 0.92,
+    "sector_rotation": "mid_cycle",
+    "market_breadth": {"advance_decline": 1.35, "new_highs_lows": 2.8}
+  }
+}
