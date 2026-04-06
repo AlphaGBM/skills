@@ -38,9 +38,10 @@ These 15 skills bring AlphaGBM's capabilities into your AI workflow: Claude Code
 | Data Source | LLM-generated | Delayed/basic | **Real-time options data** |
 | Verifiable | "85% confidence" | Partial | **Every number has a source** |
 | Options Depth | None | Basic chain | **IV/HV/VRP/Greeks/Skew/Surface** |
-| Scoring | Subjective | None | **Quantitative 1-10 scoring** |
+| Scoring | Subjective | None | **Quantitative scoring (0-100 options, 1-10 stocks)** |
+| Analysis Model | None | None | **G = B + M (Gain = Basics + Momentum)** |
 | Battle-tested | No | Varies | **100K users, 3mo live trading** |
-| Coverage | US only | Varies | **US + HK + CN markets** |
+| Coverage | US only | Varies | **US + HK + CN + Commodities** |
 
 ## Quick Start
 
@@ -74,9 +75,18 @@ All skills include built-in demo data for AAPL, NVDA, SPY, TSLA, and META. Just 
 ```bash
 # Set your API key for real-time data
 export ALPHAGBM_API_KEY=agbm_xxxxxxxxxxxxxxxx
+export ALPHAGBM_BASE_URL=https://alphagbm.com  # optional, this is the default
 
-# Get your key at https://alphagbm.com/api-keys
+# Get your free key at https://alphagbm.com/api-keys
 ```
+
+### Quota
+
+| Plan | Stock Analysis | Options Analysis | Quick Quote / Snapshot |
+|------|---------------|-----------------|----------------------|
+| Free | 2/day | 1/day | Unlimited |
+| Plus | 1,000/month | 1,000/month | Unlimited |
+| Pro | 5,000/month | 5,000/month | Unlimited |
 
 ## Skills Overview
 
@@ -84,12 +94,12 @@ export ALPHAGBM_API_KEY=agbm_xxxxxxxxxxxxxxxx
 
 | Skill | What It Does | Example Query |
 |-------|-------------|---------------|
-| [**Stock Analysis**](skills/alphagbm-stock-analysis/) | GBM Five Pillars scoring (1-10) for any stock | "Analyze AAPL" |
-| [**Options Score**](skills/alphagbm-options-score/) | Rank every option contract by quality | "Best NVDA call to buy" |
-| [**Options Strategy**](skills/alphagbm-options-strategy/) | Recommend optimal multi-leg strategies | "Bullish play on TSLA" |
+| [**Stock Analysis**](skills/alphagbm-stock-analysis/) | G=B+M model: fundamentals, momentum, EV, risk score, AI report | "Analyze AAPL" |
+| [**Options Score**](skills/alphagbm-options-score/) | Score 0-100 across 4 strategies (Sell Put/Call, Buy Put/Call) | "Best NVDA call to buy" |
+| [**Options Strategy**](skills/alphagbm-options-strategy/) | Strategy builder + scanner with 15+ templates | "Bullish play on TSLA" |
 | [**Vol Surface**](skills/alphagbm-vol-surface/) | 3D implied volatility across strikes & expiries | "Is AAPL IV expensive?" |
 | [**Vol Smile**](skills/alphagbm-vol-smile/) | Skew analysis for a single expiration | "NVDA put skew" |
-| [**Greeks**](skills/alphagbm-greeks/) | Full Greeks dashboard with scenarios | "Greeks for AAPL 220C" |
+| [**Greeks**](skills/alphagbm-greeks/) | Greeks calculator + implied volatility solver | "Greeks for AAPL 220C" |
 | [**P&L Simulator**](skills/alphagbm-pnl-simulator/) | What-if analysis for any position | "Simulate my iron condor" |
 
 ### Data Intelligence (4 skills)
@@ -161,10 +171,15 @@ Polymarket --> Market Sentiment --> Options Strategy
 
 Every number in AlphaGBM is **verifiable**:
 
-- **IV 28.5%** -- calculated from actual option prices using Black-Scholes
-- **IV Rank 62** -- current IV vs. 252 trading days of historical data
-- **VRP +4.4%** -- IV minus realized HV, measures option overpricing
-- **Score 8.2** -- weighted composite of liquidity, IV, Greeks, risk/reward
+| Metric | Value | How It's Computed |
+|--------|-------|-------------------|
+| **IV** | 28.5% | Black-Scholes on actual bid/ask prices |
+| **IV Rank** | 62 | Current IV vs. 252 trading days of history |
+| **VRP** | +4.4% | `Implied Vol - Historical Vol` — measures option overpricing |
+| **Option Score** | 82/100 | Weighted: premium yield + support/resistance + safety margin + trend + PoP + liquidity + time decay |
+| **Stock Score** | 7.8/10 | `G = B + M` — Basics (PE, PEG, growth, margins) + Momentum (VIX, technicals, flow) |
+| **Risk** | 4/10 | Additive: valuation +2, growth +2, liquidity +2, market +1.5, technical +1 |
+| **EV** | +5.2% | `50% × 1w + 30% × 1m + 20% × 3m` expected value |
 
 This is not *"based on my training data"* or *"I estimate with 85% confidence."*
 
@@ -176,17 +191,30 @@ This is math on market data.
 
 The agent chains skills automatically:
 
-1. **Stock Analysis** → GBM score 7.8/10, moderately bullish, strong fundamentals
-2. **Options Score** → ATM Apr 220 Call scores 8.2/10 (high liquidity + favorable Greeks)
-3. **Options Strategy** → Recommends Bull Call Spread 220/230, max profit $685, max loss $315
-4. **P&L Simulator** → Shows breakeven at $223.15, 48% probability of profit
+```
+1. GET  /api/stock/quick-quote/AAPL          → $218.45 (+1.2%)
+2. POST /api/stock/analyze-sync              → G=B+M score 7.8/10, EV +5.2%, STRONG_BUY
+   {"ticker": "AAPL", "style": "balanced"}     Risk 4/10, target $232, stop-loss $198
+
+3. GET  /api/options/snapshot/AAPL           → IV 28.5%, IV Rank 62, VRP +4.4%
+4. POST /api/options/chain-sync              → Sell Put scores: 85, 82, 79...
+   {"symbol": "AAPL", "expiry_date": "..."}    Buy Call scores: 78, 75, 72...
+
+5. POST /api/options/tools/strategy/build    → Bull Call Spread 220/230
+   {"template_id": "bull_call_spread"}         Max profit $685, max loss $315
+
+6. POST /api/options/tools/simulate          → Breakeven $223.15, PoP 48%
+   {"symbol": "AAPL", "legs": [...]}
+```
 
 > **You**: "Is that IV expensive?"
 
-5. **IV Rank** → IV Rank 62/100 — mid-high range, options slightly overpriced
-6. **Vol Surface** → ATM IV in contango, short-term elevated due to earnings in 26 days
+```
+7. GET  /api/options/snapshot/AAPL           → IV Rank 62 (mid-high)
+8. GET  /api/options/tools/vol-surface/AAPL  → ATM IV in contango, earnings in 26d
+```
 
-All from real data. All verifiable.
+All from real API calls. All verifiable.
 
 ## Roadmap
 
