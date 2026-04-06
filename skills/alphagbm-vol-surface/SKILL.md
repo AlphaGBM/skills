@@ -14,27 +14,66 @@ globs:
 
 # AlphaGBM Volatility Surface
 
+## Prerequisites
+
+- **API Key**: Set env `ALPHAGBM_API_KEY` (format `agbm_xxxx...`).
+- **Base URL**: Default `https://alphagbm.com`. Override with env `ALPHAGBM_BASE_URL`.
+
 ## What This Skill Does
 
-Builds a **3D volatility surface** for any optionable ticker, mapping implied volatility across two dimensions — strike price (moneyness) and time to expiration. Identifies where options are cheap, expensive, or anomalous relative to the surface.
+Builds a **3D volatility surface** for any optionable ticker, mapping implied volatility across two dimensions -- strike price (moneyness) and time to expiration. Identifies where options are cheap, expensive, or anomalous relative to the surface.
 
 ### Key Outputs
 
 | Output | What It Shows |
 |--------|--------------|
-| **Surface Grid** | IV at each (strike, expiry) coordinate — the full 3D map |
+| **Surface Grid** | IV at each (strike, expiry) coordinate -- the full 3D map |
 | **ATM Term Structure** | How at-the-money IV changes across expirations (front-month vs. back-month) |
-| **Skew by Expiry** | Put-call IV differential at each expiration — measures fear/complacency |
-| **Surface Anomalies** | Points where IV deviates significantly from the fitted surface — potential mispricings |
+| **Skew by Expiry** | Put-call IV differential at each expiration -- measures fear/complacency |
+| **Surface Anomalies** | Points where IV deviates significantly from the fitted surface -- potential mispricings |
 | **Surface Shape** | Classification: contango, backwardation, flat, inverted, event-driven |
 
 ### What the Surface Tells You
 
 - **Contango** (front IV < back IV): Normal market, no near-term fear
 - **Backwardation** (front IV > back IV): Near-term event expected (earnings, FDA, etc.)
-- **Steep skew**: Market pricing tail risk in puts — hedging demand is high
-- **Flat skew**: Balanced sentiment — no strong directional fear
-- **Anomaly detected**: A specific contract is mispriced vs. neighbors — potential opportunity
+- **Steep skew**: Market pricing tail risk in puts -- hedging demand is high
+- **Flat skew**: Balanced sentiment -- no strong directional fear
+- **Anomaly detected**: A specific contract is mispriced vs. neighbors -- potential opportunity
+
+### Volatility Risk Premium (VRP)
+
+```
+VRP = Implied Vol - Historical Vol
+```
+
+| VRP Level | Seller | Buyer |
+|-----------|--------|-------|
+| very_high (>=15%) | Very favorable | Unfavorable |
+| high (5-15%) | Favorable | Slightly unfavorable |
+| normal (+/-5%) | Neutral | Neutral |
+| low (-15% to -5%) | Unfavorable | Favorable |
+| very_low (<-15%) | Very unfavorable | Very favorable |
+
+## API Endpoints
+
+### Volatility Surface (3D)
+
+```
+GET /api/options/tools/vol-surface/<SYMBOL>
+```
+
+Returns the full 3D volatility surface with moneyness axis, expiry axis, and IV grid.
+
+### IV Snapshot (quick check, no quota cost)
+
+For a fast ATM IV / IV Rank / HV / VRP check without pulling the full surface:
+
+```
+GET /api/options/snapshot/<SYMBOL>
+```
+
+Returns: ATM IV, IV Rank, HV 30d, VRP, VRP level.
 
 ## How to Use
 
@@ -95,19 +134,12 @@ Builds a **3D volatility surface** for any optionable ticker, mapping implied vo
 
 Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Surface data uses realistic IV snapshots from `mock-data/`.
 
-### API Endpoint
-
-```
-GET https://api.alphagbm.com/api/options/volatility/surface/{symbol}
-Authorization: Bearer <api_key>
-```
-
 ### Related Skills
-- **alphagbm-vol-smile** — Zoom into a single expiration's smile/skew curve
-- **alphagbm-iv-rank** — Is IV high or low vs. its own history?
-- **alphagbm-options-score** — Use surface insights to find the best-scored contracts
-- **alphagbm-options-strategy** — High IV surface suggests selling premium; low IV suggests buying
+- **alphagbm-vol-smile** -- Zoom into a single expiration's smile/skew curve
+- **alphagbm-iv-rank** -- Is IV high or low vs. its own history?
+- **alphagbm-options-score** -- Use surface insights to find the best-scored contracts
+- **alphagbm-options-strategy** -- High IV surface suggests selling premium; low IV suggests buying
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence for traders and AI agents. 100K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) -- Real-data options intelligence for traders and AI agents. 100K+ users.*
