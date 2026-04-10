@@ -55,4 +55,4 @@ alphagbm stock analyze AAPL --json | jq '.risk'
 Config stored at `~/.alphagbm/config.json`. Env vars override file:
 
 - `ALPHAGBM_API_KEY` — API key
-- `ALPHAGBM_BASE_URL` — Base URL (default: `https://alphagbm.zebabur.app`)
+- `ALPHAGBM_BASE_URL` — Base URL (default: `https://alphagbm.zeabur.app`)

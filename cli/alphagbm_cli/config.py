@@ -9,7 +9,7 @@ CONFIG_FILE = CONFIG_DIR / "config.json"
 
 DEFAULTS = {
     "api_key": "",
-    "base_url": "https://alphagbm.zebabur.app",
+    "base_url": "https://alphagbm.zeabur.app",
 }
 
 

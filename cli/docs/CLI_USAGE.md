@@ -36,7 +36,7 @@ API Key 以 `agbm_` 开头，可在 AlphaGBM 网站的个人设置中生成。
 
 ```bash
 # 使用线上服务（默认）
-alphagbm config set-url https://alphagbm.zebabur.app
+alphagbm config set-url https://alphagbm.zeabur.app
 
 # 使用本地开发服务
 alphagbm config set-url http://localhost:5000
@@ -52,14 +52,14 @@ alphagbm config show
 ```
 Config file: /Users/lewis/.alphagbm/config.json
 API Key:     agbm_a1b…f4e2
-Base URL:    https://alphagbm.zebabur.app
+Base URL:    https://alphagbm.zeabur.app
 ```
 
 ### 配置优先级
 
 1. 环境变量 `ALPHAGBM_API_KEY` / `ALPHAGBM_BASE_URL`（最高）
 2. 配置文件 `~/.alphagbm/config.json`
-3. 默认值（base_url = https://alphagbm.zebabur.app）
+3. 默认值（base_url = https://alphagbm.zeabur.app）
 
 ---
 
@@ -387,7 +387,7 @@ alphagbm options score --help
 ```json
 {
   "api_key": "agbm_a1b2c3d4e5f6...",
-  "base_url": "https://alphagbm.zebabur.app"
+  "base_url": "https://alphagbm.zeabur.app"
 }
 ```
 

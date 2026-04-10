@@ -24,7 +24,7 @@ Analyze stocks via the AlphaGBM API — a G = B + M (Gain = Basics + Momentum) m
 ## Prerequisites
 
 - **API Key**: stored in env `ALPHAGBM_API_KEY` (format `agbm_xxxx…`).
-- **Base URL**: default `https://alphagbm.zebabur.app`. Override with env `ALPHAGBM_BASE_URL`.
+- **Base URL**: default `https://alphagbm.zeabur.app`. Override with env `ALPHAGBM_BASE_URL`.
 - If the user has neither, tell them to register at <https://alphagbm.com> and create a key at `/api-keys`.
 
 ## API Endpoints
@@ -42,7 +42,7 @@ Returns: price, change%, PE, forward PE, 52-week range, sector, market cap.
 **Example:**
 ```bash
 curl -H "Authorization: Bearer $ALPHAGBM_API_KEY" \
-  https://alphagbm.zebabur.app/api/stock/quick-quote/AAPL
+  https://alphagbm.zeabur.app/api/stock/quick-quote/AAPL
 ```
 
 ### 2. Full Stock Analysis — Synchronous (blocks 10-30s)

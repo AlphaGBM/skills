@@ -93,7 +93,7 @@ All skills include built-in demo data for AAPL, NVDA, SPY, TSLA, and META. Just 
 ```bash
 # Set your API key for real-time data
 export ALPHAGBM_API_KEY=agbm_xxxxxxxxxxxxxxxx
-export ALPHAGBM_BASE_URL=https://alphagbm.zebabur.app  # optional, this is the default
+export ALPHAGBM_BASE_URL=https://alphagbm.zeabur.app  # optional, this is the default
 
 # Get your free key at https://alphagbm.com/api-keys
 ```
@@ -153,7 +153,7 @@ You / Your AI Agent
                +----------+----------+
                v                     v
          Mock Data              AlphaGBM API
-      (built-in, free)      (alphagbm.zebabur.app)
+      (built-in, free)      (alphagbm.zeabur.app)
                              Real-time market data
                              IV/HV/VRP/Greeks/Skew
 ```
