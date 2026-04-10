@@ -16,7 +16,7 @@ globs:
 ## Prerequisites
 
 - **API Key**: Set env `ALPHAGBM_API_KEY` (format `agbm_xxxx...`).
-- **Base URL**: Default `https://alphagbm.com`. Override with env `ALPHAGBM_BASE_URL`.
+- **Base URL**: Default `https://alphagbm.zebabur.app`. Override with env `ALPHAGBM_BASE_URL`.
 
 ## What This Skill Does
 
