@@ -98,6 +98,14 @@ export ALPHAGBM_BASE_URL=https://alphagbm.zeabur.app  # optional, this is the de
 # Get your free key at https://alphagbm.com/api-keys
 ```
 
+### Check API Health
+
+```bash
+curl https://alphagbm.zeabur.app/api/health
+```
+
+Returns API status, available data fields, data source health, and market coverage — no auth needed. Useful for AI agents to verify what's available before making calls.
+
 ### Quota
 
 | Plan | Stock Analysis | Options Analysis | Quick Quote / Snapshot |
