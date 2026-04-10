@@ -191,11 +191,11 @@ Every number in AlphaGBM is **verifiable**:
 
 | Metric | Value | How It's Computed |
 |--------|-------|-------------------|
-| **IV** | 28.5% | Black-Scholes on actual bid/ask prices |
-| **IV Rank** | 62 | Current IV vs. 252 trading days of history |
-| **VRP** | +4.4% | `Implied Vol - Historical Vol` — measures option overpricing |
-| **Option Score** | 82/100 | Weighted: premium yield + support/resistance + safety margin + trend + PoP + liquidity + time decay |
-| **Stock Score** | 7.8/10 | `G = B + M` — Basics (PE, PEG, growth, margins) + Momentum (VIX, technicals, flow) |
+| **IV** | 32.5% | Black-Scholes on actual bid/ask prices |
+| **IV Rank** | 58 | Current IV vs. 252 trading days of history |
+| **VRP** | +4.0% | `Implied Vol - Historical Vol` — measures option overpricing |
+| **Option Score** | 80/100 | Weighted: premium yield + support/resistance + safety margin + trend + PoP + liquidity + time decay |
+| **Stock Score** | 7.0/10 | `G = B + M` — Basics (PE, PEG, growth, margins) + Momentum (VIX, technicals, flow) |
 | **Risk** | 4/10 | Additive: valuation +2, growth +2, liquidity +2, market +1.5, technical +1 |
 | **EV** | +5.2% | `50% × 1w + 30% × 1m + 20% × 3m` expected value |
 
@@ -210,25 +210,25 @@ This is math on market data.
 The agent chains skills automatically:
 
 ```
-1. GET  /api/stock/quick-quote/AAPL          → $218.45 (+1.2%)
-2. POST /api/stock/analyze-sync              → G=B+M score 7.8/10, EV +5.2%, STRONG_BUY
-   {"ticker": "AAPL", "style": "balanced"}     Risk 4/10, target $232, stop-loss $198
+1. GET  /api/stock/quick-quote/AAPL          → $261.40 (-0.8%)
+2. POST /api/stock/analyze-sync              → G=B+M score 7.0/10, EV +5.2%, BUY
+   {"ticker": "AAPL", "style": "balanced"}     Risk 4/10, target $275, stop-loss $239
 
-3. GET  /api/options/snapshot/AAPL           → IV 28.5%, IV Rank 62, VRP +4.4%
-4. POST /api/options/chain-sync              → Sell Put scores: 85, 82, 79...
-   {"symbol": "AAPL", "expiry_date": "..."}    Buy Call scores: 78, 75, 72...
+3. GET  /api/options/snapshot/AAPL           → IV 32.5%, IV Rank 58, VRP +4.0%
+4. POST /api/options/chain-sync              → Sell Put scores: 80, 78, 75...
+   {"symbol": "AAPL", "expiry_date": "..."}    Buy Call scores: 76, 74, 72...
 
-5. POST /api/options/tools/strategy/build    → Bull Call Spread 220/230
-   {"template_id": "bull_call_spread"}         Max profit $685, max loss $315
+5. POST /api/options/tools/strategy/build    → Bull Call Spread 265/280
+   {"template_id": "bull_call_spread"}         Max profit $1085, max loss $415
 
-6. POST /api/options/tools/simulate          → Breakeven $223.15, PoP 48%
+6. POST /api/options/tools/simulate          → Breakeven $269.15, PoP 44.5%
    {"symbol": "AAPL", "legs": [...]}
 ```
 
 > **You**: "Is that IV expensive?"
 
 ```
-7. GET  /api/options/snapshot/AAPL           → IV Rank 62 (mid-high)
+7. GET  /api/options/snapshot/AAPL           → IV Rank 58 (moderate)
 8. GET  /api/options/tools/vol-surface/AAPL  → ATM IV in contango, earnings in 26d
 ```
 
