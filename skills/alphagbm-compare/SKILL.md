@@ -73,4 +73,4 @@ Response fields: `tickers[]`, `comparison_table`, `category_winners`, `overall_r
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 100K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 10K+ users.*

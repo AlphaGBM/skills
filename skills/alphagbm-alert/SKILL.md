@@ -83,4 +83,4 @@ Response fields: `alert_id`, `status`, `condition_summary`, `triggered_alerts[]`
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 100K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 10K+ users.*

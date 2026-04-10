@@ -72,4 +72,4 @@ Response fields: `crush_history[]`, `avg_crush_pct`, `implied_vs_actual[]`, `str
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 100K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 10K+ users.*
