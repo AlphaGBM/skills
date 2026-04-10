@@ -220,7 +220,6 @@ All from real API calls. All verifiable.
 
 - [x] 15 Skills with mock data
 - [x] Claude Code & Cursor support
-- [ ] MCP Server (plug into Claude Desktop, Windsurf, any MCP client)
 - [ ] CLI tool (`pip install alphagbm`)
 - [ ] Real-time WebSocket feeds
 - [ ] Community strategy sharing
