@@ -74,4 +74,4 @@ Response fields: `trades[]`, `net_premium_flow`, `sentiment_summary`, `smart_mon
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 100K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 10K+ users.*

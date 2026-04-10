@@ -4,9 +4,9 @@
 
 **See what options are pricing in — with real data, not guesswork.**
 
-*15 AI skills for options intelligence · Built on real market data · Trusted by 100,000+ traders*
+*15 AI skills for options intelligence · Built on real market data · Trusted by 10,000+ traders*
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-15-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-100K%2B-orange.svg)](https://alphagbm.com)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-15-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
 
 [Website](https://alphagbm.com) · [Documentation](#skills-overview) · [Quick Start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
@@ -40,7 +40,7 @@ These 15 skills bring AlphaGBM's capabilities into your AI workflow: Claude Code
 | Options Depth | None | Basic chain | **IV/HV/VRP/Greeks/Skew/Surface** |
 | Scoring | Subjective | None | **Quantitative scoring (0-100 options, 1-10 stocks)** |
 | Analysis Model | None | None | **G = B + M (Gain = Basics + Momentum)** |
-| Battle-tested | No | Varies | **100K users, 3mo live trading** |
+| Battle-tested | No | Varies | **10K users, 3mo live trading** |
 | Coverage | US only | Varies | **US + HK + CN + Commodities** |
 
 ## Quick Start
@@ -249,7 +249,7 @@ MIT -- see [LICENSE](LICENSE).
 
 <div align="center">
 
-**Built by the [AlphaGBM](https://alphagbm.com) team. Trusted by 100,000+ traders worldwide.**
+**Built by the [AlphaGBM](https://alphagbm.com) team. Trusted by 10,000+ traders worldwide.**
 
 *Real data. Real signals. Real edge.*
 

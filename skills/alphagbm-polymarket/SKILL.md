@@ -73,4 +73,4 @@ Response fields: `events[]`, `polymarket_prob`, `options_implied_prob`, `spread`
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 100K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 10K+ users.*

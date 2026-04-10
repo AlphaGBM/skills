@@ -127,4 +127,4 @@ Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. IV history 
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) -- Real-data options intelligence for traders and AI agents. 100K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) -- Real-data options intelligence for traders and AI agents. 10K+ users.*
