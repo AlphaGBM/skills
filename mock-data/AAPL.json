@@ -2,129 +2,128 @@
   "ticker": "AAPL",
   "name": "Apple Inc.",
   "market": "US",
-  "snapshot_date": "2026-04-04",
+  "snapshot_date": "2026-04-09",
 
   "stock": {
-    "price": 218.45,
-    "change_pct": 1.2,
-    "volume": 58234000,
-    "avg_volume_20d": 62100000,
-    "market_cap_b": 3340,
-    "pe_ratio": 28.5,
-    "forward_pe": 25.2,
-    "peg_ratio": 1.8,
-    "dividend_yield": 0.55,
-    "beta": 1.21,
-    "52w_high": 245.60,
-    "52w_low": 168.20,
-    "rsi_14": 55.3,
-    "macd_signal": "bullish",
-    "sma_50": 212.30,
-    "sma_200": 198.75,
+    "price": 261.40,
+    "change_pct": -0.8,
+    "volume": 48500000,
+    "avg_volume_20d": 52000000,
+    "market_cap_b": 3920,
+    "pe_ratio": 32.5,
+    "forward_pe": 28.8,
+    "peg_ratio": 2.1,
+    "dividend_yield": 0.42,
+    "beta": 1.18,
+    "52w_high": 282.50,
+    "52w_low": 186.40,
+    "rsi_14": 48.2,
+    "macd_signal": "bearish",
+    "sma_50": 272.80,
+    "sma_200": 238.50,
     "sector": "Technology",
     "industry": "Consumer Electronics"
   },
 
   "options": {
-    "iv_30d": 28.5,
-    "iv_60d": 26.8,
-    "iv_90d": 25.2,
-    "hv_20d": 24.1,
-    "hv_60d": 22.8,
-    "vrp": 4.4,
-    "iv_rank": 62,
-    "iv_percentile": 58,
-    "put_call_ratio": 0.85,
-    "total_call_oi": 4523000,
-    "total_put_oi": 3845000,
-    "total_call_volume": 892000,
-    "total_put_volume": 756000,
-    "skew_25d": -3.2,
-    "next_earnings": "2026-04-30",
-    "days_to_earnings": 26,
+    "iv_30d": 32.5,
+    "iv_60d": 30.2,
+    "iv_90d": 28.8,
+    "hv_20d": 28.5,
+    "hv_60d": 25.8,
+    "vrp": 4.0,
+    "iv_rank": 58,
+    "iv_percentile": 52,
+    "put_call_ratio": 0.82,
+    "total_call_oi": 5100000,
+    "total_put_oi": 4182000,
+    "total_call_volume": 920000,
+    "total_put_volume": 754000,
+    "skew_25d": -3.5,
+    "next_earnings": "2026-05-01",
+    "days_to_earnings": 22,
 
     "term_structure": [
-      {"expiry": "2026-04-11", "dte": 7, "atm_iv": 32.1},
-      {"expiry": "2026-04-18", "dte": 14, "atm_iv": 30.5},
-      {"expiry": "2026-04-25", "dte": 21, "atm_iv": 29.8},
-      {"expiry": "2026-05-02", "dte": 28, "atm_iv": 29.2},
-      {"expiry": "2026-05-16", "dte": 42, "atm_iv": 28.1},
-      {"expiry": "2026-06-20", "dte": 77, "atm_iv": 26.5},
-      {"expiry": "2026-09-18", "dte": 167, "atm_iv": 25.8}
+      {"expiry": "2026-04-17", "dte": 8, "atm_iv": 36.8},
+      {"expiry": "2026-04-25", "dte": 16, "atm_iv": 35.2},
+      {"expiry": "2026-05-02", "dte": 23, "atm_iv": 38.5},
+      {"expiry": "2026-05-16", "dte": 37, "atm_iv": 32.0},
+      {"expiry": "2026-06-20", "dte": 72, "atm_iv": 29.8},
+      {"expiry": "2026-09-18", "dte": 162, "atm_iv": 28.2}
     ],
 
     "vol_surface": [
       {
-        "expiry": "2026-04-18",
+        "expiry": "2026-04-25",
         "strikes": [
-          {"strike": 200, "moneyness": 0.916, "call_iv": 35.2, "put_iv": 36.1},
-          {"strike": 210, "moneyness": 0.961, "call_iv": 31.8, "put_iv": 32.5},
-          {"strike": 215, "moneyness": 0.984, "call_iv": 30.8, "put_iv": 31.2},
-          {"strike": 220, "moneyness": 1.007, "call_iv": 30.5, "put_iv": 30.8},
-          {"strike": 225, "moneyness": 1.030, "call_iv": 31.0, "put_iv": 31.5},
-          {"strike": 230, "moneyness": 1.053, "call_iv": 31.8, "put_iv": 32.4},
-          {"strike": 240, "moneyness": 1.099, "call_iv": 33.5, "put_iv": 34.2}
+          {"strike": 240, "moneyness": 0.918, "call_iv": 40.5, "put_iv": 41.8},
+          {"strike": 250, "moneyness": 0.956, "call_iv": 37.2, "put_iv": 38.2},
+          {"strike": 255, "moneyness": 0.976, "call_iv": 35.8, "put_iv": 36.5},
+          {"strike": 260, "moneyness": 0.995, "call_iv": 35.2, "put_iv": 35.6},
+          {"strike": 265, "moneyness": 1.014, "call_iv": 35.5, "put_iv": 36.0},
+          {"strike": 270, "moneyness": 1.033, "call_iv": 36.2, "put_iv": 36.8},
+          {"strike": 280, "moneyness": 1.071, "call_iv": 38.0, "put_iv": 38.8}
         ]
       },
       {
         "expiry": "2026-05-16",
         "strikes": [
-          {"strike": 200, "moneyness": 0.916, "call_iv": 32.1, "put_iv": 33.0},
-          {"strike": 210, "moneyness": 0.961, "call_iv": 29.5, "put_iv": 30.2},
-          {"strike": 215, "moneyness": 0.984, "call_iv": 28.5, "put_iv": 29.0},
-          {"strike": 220, "moneyness": 1.007, "call_iv": 28.1, "put_iv": 28.5},
-          {"strike": 225, "moneyness": 1.030, "call_iv": 28.8, "put_iv": 29.2},
-          {"strike": 230, "moneyness": 1.053, "call_iv": 29.5, "put_iv": 30.1},
-          {"strike": 240, "moneyness": 1.099, "call_iv": 31.2, "put_iv": 31.8}
+          {"strike": 240, "moneyness": 0.918, "call_iv": 35.8, "put_iv": 37.0},
+          {"strike": 250, "moneyness": 0.956, "call_iv": 33.2, "put_iv": 34.0},
+          {"strike": 255, "moneyness": 0.976, "call_iv": 32.2, "put_iv": 32.8},
+          {"strike": 260, "moneyness": 0.995, "call_iv": 32.0, "put_iv": 32.4},
+          {"strike": 265, "moneyness": 1.014, "call_iv": 32.2, "put_iv": 32.8},
+          {"strike": 270, "moneyness": 1.033, "call_iv": 32.8, "put_iv": 33.5},
+          {"strike": 280, "moneyness": 1.071, "call_iv": 34.2, "put_iv": 35.0}
         ]
       }
     ],
 
     "chain_sample": [
       {
-        "expiry": "2026-04-18",
+        "expiry": "2026-04-25",
         "type": "call",
-        "strike": 220,
-        "bid": 5.80,
-        "ask": 6.10,
-        "last": 5.95,
-        "volume": 15234,
-        "open_interest": 42350,
-        "iv": 30.5,
-        "delta": 0.52,
-        "gamma": 0.035,
-        "theta": -0.18,
-        "vega": 0.32,
+        "strike": 265,
+        "bid": 7.20,
+        "ask": 7.50,
+        "last": 7.35,
+        "volume": 18500,
+        "open_interest": 52000,
+        "iv": 35.5,
+        "delta": 0.46,
+        "gamma": 0.022,
+        "theta": -0.22,
+        "vega": 0.28,
         "rho": 0.08,
-        "score": 8.2,
+        "score": 8.0,
         "score_breakdown": {
-          "liquidity": 9,
-          "iv_attractiveness": 7,
-          "greeks_balance": 8,
-          "risk_reward": 8.5
+          "liquidity": 9.0,
+          "iv_attractiveness": 7.0,
+          "greeks_balance": 8.0,
+          "risk_reward": 8.0
         }
       },
       {
-        "expiry": "2026-04-18",
+        "expiry": "2026-04-25",
         "type": "put",
-        "strike": 215,
-        "bid": 4.20,
-        "ask": 4.50,
-        "last": 4.35,
-        "volume": 12100,
-        "open_interest": 38900,
-        "iv": 31.2,
-        "delta": -0.42,
-        "gamma": 0.033,
-        "theta": -0.16,
-        "vega": 0.30,
+        "strike": 255,
+        "bid": 5.80,
+        "ask": 6.10,
+        "last": 5.95,
+        "volume": 14200,
+        "open_interest": 45000,
+        "iv": 36.5,
+        "delta": -0.38,
+        "gamma": 0.020,
+        "theta": -0.20,
+        "vega": 0.26,
         "rho": -0.07,
-        "score": 7.8,
+        "score": 7.5,
         "score_breakdown": {
           "liquidity": 8.5,
-          "iv_attractiveness": 7.5,
+          "iv_attractiveness": 7.0,
           "greeks_balance": 7.5,
-          "risk_reward": 7.8
+          "risk_reward": 7.0
         }
       }
     ],
@@ -133,66 +132,66 @@
       {
         "name": "Bull Call Spread",
         "legs": [
-          {"type": "call", "strike": 220, "action": "buy", "price": 5.95},
-          {"type": "call", "strike": 230, "action": "sell", "price": 2.80}
+          {"type": "call", "strike": 265, "action": "buy", "price": 7.35},
+          {"type": "call", "strike": 280, "action": "sell", "price": 3.20}
         ],
-        "max_profit": 685,
-        "max_loss": 315,
-        "breakeven": 223.15,
-        "pop": 48.2,
-        "risk_reward_ratio": 2.17,
+        "max_profit": 1085,
+        "max_loss": 415,
+        "breakeven": 269.15,
+        "pop": 44.5,
+        "risk_reward_ratio": 2.61,
         "recommendation_score": 7.5
       },
       {
         "name": "Cash-Secured Put",
         "legs": [
-          {"type": "put", "strike": 210, "action": "sell", "price": 3.20}
+          {"type": "put", "strike": 250, "action": "sell", "price": 4.50}
         ],
-        "max_profit": 320,
-        "max_loss": 20680,
-        "breakeven": 206.80,
-        "pop": 65.8,
-        "risk_reward_ratio": 0.015,
-        "recommendation_score": 8.1
+        "max_profit": 450,
+        "max_loss": 24550,
+        "breakeven": 245.50,
+        "pop": 68.2,
+        "risk_reward_ratio": 0.018,
+        "recommendation_score": 8.0
       }
     ]
   },
 
   "earnings_history": [
-    {"date": "2026-01-30", "iv_before": 42.5, "iv_after": 28.1, "crush_pct": 33.9, "move_pct": -3.2, "implied_move": 4.5},
+    {"date": "2026-01-30", "iv_before": 42.5, "iv_after": 28.2, "crush_pct": 33.6, "move_pct": -3.2, "implied_move": 4.5},
     {"date": "2025-10-30", "iv_before": 38.2, "iv_after": 26.5, "crush_pct": 30.6, "move_pct": 2.1, "implied_move": 3.8},
     {"date": "2025-07-31", "iv_before": 35.8, "iv_after": 25.2, "crush_pct": 29.6, "move_pct": -1.5, "implied_move": 3.5},
     {"date": "2025-04-24", "iv_before": 40.1, "iv_after": 27.8, "crush_pct": 30.7, "move_pct": 5.2, "implied_move": 4.0}
   ],
 
   "unusual_activity": [
-    {"date": "2026-04-03", "type": "call", "strike": 230, "expiry": "2026-05-16", "volume": 45000, "oi": 12000, "vol_oi_ratio": 3.75, "premium": 2450000, "sentiment": "bullish"},
-    {"date": "2026-04-02", "type": "put", "strike": 200, "expiry": "2026-04-18", "volume": 28000, "oi": 8500, "vol_oi_ratio": 3.29, "premium": 840000, "sentiment": "bearish_hedge"}
+    {"date": "2026-04-09", "type": "call", "strike": 280, "expiry": "2026-05-16", "volume": 42000, "oi": 12500, "vol_oi_ratio": 3.36, "premium": 3360000, "sentiment": "bullish"},
+    {"date": "2026-04-08", "type": "put", "strike": 245, "expiry": "2026-04-25", "volume": 32000, "oi": 9800, "vol_oi_ratio": 3.27, "premium": 960000, "sentiment": "bearish_hedge"}
   ],
 
   "gbm_analysis": {
-    "overall_score": 7.8,
+    "overall_score": 7.0,
     "signal": "moderately_bullish",
     "pillars": {
-      "fundamental": {"score": 8.0, "summary": "Strong earnings growth, reasonable valuation at forward PE 25.2x"},
-      "technical": {"score": 7.5, "summary": "Above both 50 & 200 SMA, MACD bullish crossover, RSI neutral"},
-      "sentiment": {"score": 7.2, "summary": "Put/Call ratio 0.85 slightly bullish, IV rank moderate at 62"},
-      "flow": {"score": 8.0, "summary": "Institutional accumulation pattern, smart money call buying"},
-      "valuation": {"score": 8.2, "summary": "Trading 11% below 52w high, PEG 1.8 reasonable for mega-cap tech"}
+      "fundamental": {"score": 7.8, "summary": "Services revenue growing 15% YoY, iPhone stable, forward PE 28.8x fair for quality"},
+      "technical": {"score": 5.5, "summary": "Below 50 SMA ($273), above 200 SMA ($239), MACD bearish, RSI 48 neutral"},
+      "sentiment": {"score": 6.8, "summary": "Put/Call ratio 0.82 mildly bullish, IV rank 58 moderate ahead of earnings"},
+      "flow": {"score": 7.5, "summary": "Institutional call buying in May expiry, smart money accumulating"},
+      "valuation": {"score": 7.5, "summary": "7.5% below 52w high, PEG 2.1 rich but justified by capital return program"}
     },
     "risk_level": 4,
-    "risk_factors": ["Earnings in 26 days may increase volatility", "Trade policy uncertainty"],
-    "target_price": {"bull": 245, "base": 232, "bear": 195},
-    "recommendation": "Accumulate on dips. Consider selling puts at $210 support level."
+    "risk_factors": ["Earnings in 22 days may increase volatility", "Trade policy uncertainty — tariff exposure", "Below 50-day SMA"],
+    "target_price": {"bull": 290, "base": 275, "bear": 235},
+    "recommendation": "Quality compounder on pullback. Sell puts at $250 support for income. Pre-earnings IV buildup makes naked calls expensive — use spreads."
   },
 
   "market_sentiment": {
-    "vix": 18.5,
-    "vix_percentile": 45,
-    "fear_greed_index": 52,
-    "fear_greed_label": "neutral",
-    "spy_put_call": 0.92,
-    "sector_rotation": "mid_cycle",
-    "market_breadth": {"advance_decline": 1.35, "new_highs_lows": 2.8}
+    "vix": 22.8,
+    "vix_percentile": 62,
+    "fear_greed_index": 38,
+    "fear_greed_label": "fear",
+    "spy_put_call": 1.05,
+    "sector_rotation": "late_cycle",
+    "market_breadth": {"advance_decline": 0.85, "new_highs_lows": 0.6}
   }
 }
