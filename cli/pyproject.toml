@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alphagbm-cli"
+version = "0.1.0"
+description = "CLI tool for AlphaGBM stock & options analysis API"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "lewis", email = "sudolewis@gmail.com"}]
+keywords = ["stocks", "options", "trading", "finance", "analysis"]
+
+dependencies = [
+    "click>=8.1",
+    "httpx>=0.24",
+    "rich>=13.0",
+]
+
+[project.scripts]
+alphagbm = "alphagbm_cli.main:cli"
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["alphagbm_cli*"]

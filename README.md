@@ -61,6 +61,24 @@ git submodule add https://github.com/AlphaGBM/skills.git .claude/skills/alphagbm
 git clone https://github.com/AlphaGBM/skills.git .cursor/skills/alphagbm
 ```
 
+### Install CLI
+
+```bash
+# Clone and install
+git clone https://github.com/AlphaGBM/skills.git
+cd skills/cli
+pip install -e .
+
+# Set your API key
+alphagbm config set-key agbm_xxxxxxxxxxxxxxxx
+
+# Start analyzing
+alphagbm stock analyze AAPL
+alphagbm options score NVDA
+```
+
+See [cli/README.md](cli/README.md) for full CLI documentation.
+
 ### Try It (No API Key Needed)
 
 All skills include built-in demo data for AAPL, NVDA, SPY, TSLA, and META. Just ask your AI:
@@ -220,7 +238,7 @@ All from real API calls. All verifiable.
 
 - [x] 15 Skills with mock data
 - [x] Claude Code & Cursor support
-- [ ] CLI tool (`pip install alphagbm`)
+- [x] CLI tool (`pip install -e ./cli`)
 - [ ] Real-time WebSocket feeds
 - [ ] Community strategy sharing
 - [ ] More markets (EU, JP, KR options)
