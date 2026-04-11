@@ -146,6 +146,10 @@ Returns API status, available data fields, data source health, and market covera
 | [**Alert**](skills/alphagbm-alert/) | Set IV, price, or activity alerts | "Alert if TSLA IV > 80" |
 | [**Polymarket**](skills/alphagbm-polymarket/) | Prediction market vs. options pricing | "Rate cut odds vs options" |
 
+### See Also
+
+- **[Investment Masters](https://github.com/AlphaGBM/investment-masters)** -- 10 masters' methodologies (Buffett, Dalio, Soros, Marks...) + 13F tracking
+
 ## Architecture
 
 ```
