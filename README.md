@@ -4,9 +4,9 @@
 
 **See what options are pricing in — with real data, not guesswork.**
 
-*15 AI skills for options intelligence · Built on real market data · Trusted by 10,000+ traders*
+*20 AI skills for options & research intelligence · Built on real market data · Trusted by 10,000+ traders*
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-15-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-20-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
 
 [Website](https://alphagbm.com) · [Documentation](#skills-overview) · [Quick Start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
@@ -29,7 +29,7 @@ Then ask your AI: *"Analyze AAPL options using AlphaGBM"* — works instantly wi
 
 AlphaGBM is a **real-data options intelligence layer** for traders and AI agents. Every number comes from real market data -- IV, Greeks, VRP, skew, flow -- not LLM hallucination.
 
-These 15 skills bring AlphaGBM's capabilities into your AI workflow: Claude Code, Cursor, Windsurf, or any agent that supports skills.
+These 20 skills bring AlphaGBM's capabilities into your AI workflow: Claude Code, Cursor, Windsurf, or any agent that supports skills.
 
 ### Why AlphaGBM?
 
@@ -146,6 +146,18 @@ Returns API status, available data fields, data source health, and market covera
 | [**Alert**](skills/alphagbm-alert/) | Set IV, price, or activity alerts | "Alert if TSLA IV > 80" |
 | [**Polymarket**](skills/alphagbm-polymarket/) | Prediction market vs. options pricing | "Rate cut odds vs options" |
 
+### Knowledge Base — Research Brain (5 skills)
+
+Build a personal, monitored research workspace. Profiles auto-refresh, theses get checked against triggers, the system audits itself weekly.
+
+| Skill | What It Does | Example Query |
+|-------|-------------|---------------|
+| [**Company Profile**](skills/alphagbm-company-profile/) | Auto-built research files: fundamentals, PE/PB band, red flags, event radar | "Add NVDA to my knowledge base" |
+| [**Investment Thesis**](skills/alphagbm-investment-thesis/) | Buy reasons + structured sell triggers, monitored automatically | "Why did I buy AAPL?" |
+| [**Macro View**](skills/alphagbm-macro-view/) | Track VIX / US10Y / DXY / gold with portfolio-aware impact analysis | "Track VIX and US10Y" |
+| [**Theme Research**](skills/alphagbm-theme-research/) | Group tickers into themes (AI infra, HK dividend) + news keyword watching | "Create an AI infra theme" |
+| [**Health Check**](skills/alphagbm-health-check/) | Weekly audit: stale profiles, thesis drift, orphan pages → 0-100 score | "Audit my research brain" |
+
 ### See Also
 
 - **[Investment Masters](https://github.com/AlphaGBM/investment-masters)** -- 10 masters' methodologies (Buffett, Dalio, Soros, Marks...) + 13F tracking
@@ -248,7 +260,7 @@ All from real API calls. All verifiable.
 
 ## Roadmap
 
-- [x] 15 Skills with mock data
+- [x] 20 Skills with mock data
 - [x] Claude Code & Cursor support
 - [x] CLI tool (`pip install -e ./cli`)
 - [ ] Real-time WebSocket feeds
