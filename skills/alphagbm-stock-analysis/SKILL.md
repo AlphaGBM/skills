@@ -186,4 +186,4 @@ When no API key is configured, this skill uses built-in market data snapshots fr
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence for traders and AI agents. 10K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options & research intelligence for traders and AI agents. 10K+ users.*

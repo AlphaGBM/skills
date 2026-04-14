@@ -94,4 +94,4 @@ This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.
 
 ---
 
-Thank you for helping make options intelligence accessible to everyone.
+Thank you for helping make options & research intelligence accessible to everyone.
