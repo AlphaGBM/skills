@@ -75,4 +75,4 @@ Response fields: `watchlist[]`, `alerts[]`, `daily_summary`, `hot_options[]`
 
 ---
 
-*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options intelligence. 10K+ users.*
+*Powered by [AlphaGBM](https://alphagbm.com) — Real-data options & research intelligence. 10K+ users.*

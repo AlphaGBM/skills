@@ -27,7 +27,7 @@ Then ask your AI: *"Analyze AAPL options using AlphaGBM"* — works instantly wi
 
 ## What is AlphaGBM?
 
-AlphaGBM is a **real-data options intelligence layer** for traders and AI agents. Every number comes from real market data -- IV, Greeks, VRP, skew, flow -- not LLM hallucination.
+AlphaGBM is a **real-data options & research intelligence layer** for traders and AI agents. Every number comes from real market data -- IV, Greeks, VRP, skew, flow, plus a tracked research workspace -- not LLM hallucination.
 
 These 20 skills bring AlphaGBM's capabilities into your AI workflow: Claude Code, Cursor, Windsurf, or any agent that supports skills.
 
