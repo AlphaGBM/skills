@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "ticker": "AAPL",
+  "current_price": 180.0,
+  "cost_basis": 140.0,
+  "unrealized_pnl_pct": 28.57,
+  "recent_drawdown_pct": 3.1,
+  "purpose": "long_term",
+  "scenario": {
+    "scenario": "gain_protection",
+    "label_zh": "浮盈怕坐电梯",
+    "label_en": "Gain Protection",
+    "reason_zh": "已浮盈 28.6%，需要保护已实现收益。",
+    "reason_en": "Up 28.6% on cost — protect unrealized gains.",
+    "unrealized_pnl_pct": 28.57
+  },
+  "recommendations": [
+    {
+      "type": "collar",
+      "priority": 1,
+      "title_zh": "Collar 95/110 锁定收益",
+      "title_en": "Collar 95/110 lock-in",
+      "rationale_zh": "买 95 Put + 卖 110 Call ≈ 零成本或极低成本。跌破 95 有 Put 兜底，涨过 110 被 Call 封顶。",
+      "rationale_en": "Buy 95 Put + sell 110 Call ≈ zero or near-zero cost. Put floors below 95; Call caps above 110.",
+      "resolved": {
+        "long_put_strike": 170.0,
+        "short_call_strike": 200.0,
+        "put_cost": 2.15,
+        "call_credit": 2.45,
+        "net_cost_per_share": -0.30,
+        "net_cost_per_contract": -30,
+        "is_credit": true,
+        "dte": 62
+      }
+    }
+  ],
+  "position_rules": [
+    {"rule_zh": "单票仓位 ≤ 20%", "rule_en": "Single ticker ≤20%", "why_zh": "避免单一标的踩雷拖垮组合", "why_en": "Caps single-name blow-up risk"},
+    {"rule_zh": "现金机动 10-15%", "rule_en": "10-15% cash reserve", "why_zh": "极端恐慌时有弹药加仓", "why_en": "Dry powder for fear-driven adds"}
+  ]
+}

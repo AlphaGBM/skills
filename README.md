@@ -4,9 +4,9 @@
 
 **See what options are pricing in — with real data, not guesswork.**
 
-*20 AI skills for options & research intelligence · Built on real market data · Trusted by 10,000+ traders*
+*26 AI skills for options & research intelligence · Built on real market data · Trusted by 10,000+ traders*
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-20-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-26-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
 
 [Website](https://alphagbm.com) · [Documentation](#skills-overview) · [Quick Start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
@@ -29,7 +29,7 @@ Then ask your AI: *"Analyze AAPL options using AlphaGBM"* — works instantly wi
 
 AlphaGBM is a **real-data options & research intelligence layer** for traders and AI agents. Every number comes from real market data -- IV, Greeks, VRP, skew, flow, plus a tracked research workspace -- not LLM hallucination.
 
-These 20 skills bring AlphaGBM's capabilities into your AI workflow: Claude Code, Cursor, Windsurf, or any agent that supports skills.
+These 26 skills bring AlphaGBM's capabilities into your AI workflow: Claude Code, Cursor, Windsurf, or any agent that supports skills.
 
 ### Why AlphaGBM?
 
@@ -128,14 +128,16 @@ Returns API status, available data fields, data source health, and market covera
 | [**Greeks**](skills/alphagbm-greeks/) | Greeks calculator + implied volatility solver | "Greeks for AAPL 220C" |
 | [**P&L Simulator**](skills/alphagbm-pnl-simulator/) | What-if analysis for any position | "Simulate my iron condor" |
 
-### Data Intelligence (4 skills)
+### Data Intelligence (6 skills)
 
 | Skill | What It Does | Example Query |
 |-------|-------------|---------------|
 | [**IV Rank**](skills/alphagbm-iv-rank/) | IV percentile vs. 252-day history | "Is TSLA IV high?" |
-| [**Earnings Crush**](skills/alphagbm-earnings-crush/) | IV crush patterns around earnings | "NVDA earnings crush history" |
+| [**Earnings IV Panel**](skills/alphagbm-earnings-crush/) | Crush history + implied move + IV Rank tag + priced Iron Condor | "Iron Condor for META earnings" |
 | [**Unusual Activity**](skills/alphagbm-unusual-activity/) | Smart money / large block detection | "Unusual options flow today" |
 | [**Market Sentiment**](skills/alphagbm-market-sentiment/) | VIX, Put/Call, Fear & Greed dashboard | "Market sentiment now" |
+| [**VIX Status**](skills/alphagbm-vix-status/) ✨ | 5-tier fear thermometer: calm / normal / seller sweet spot / caution / extreme fear | "Is this a good time for BPS?" |
+| [**FearScore**](skills/alphagbm-fear-score/) ✨ | Per-ticker 6-indicator panic composite; ≥60 is BPS entry signal | "Fear score QQQ", "is NVDA oversold" |
 
 ### Workflow Tools (4 skills)
 
@@ -145,6 +147,17 @@ Returns API status, available data fields, data source health, and market covera
 | [**Watchlist**](skills/alphagbm-watchlist/) | Monitor tickers for key changes | "Add NVDA to watchlist" |
 | [**Alert**](skills/alphagbm-alert/) | Set IV, price, or activity alerts | "Alert if TSLA IV > 80" |
 | [**Polymarket**](skills/alphagbm-polymarket/) | Prediction market vs. options pricing | "Rate cut odds vs options" |
+
+### Risk & Portfolio Discipline (4 skills) ✨
+
+Exit, hedge, and sizing decisions quantified from real data — not opinion.
+
+| Skill | What It Does | Example Query |
+|-------|-------------|---------------|
+| [**Hedge Advisor**](skills/alphagbm-hedge-advisor/) ✨ | Scenario-driven hedge for an existing position (Falling Knife / Bottom Fishing / Gain Protection); returns priced Long Put / Collar / Tier-down specs | "Hedge my AAPL at cost 140, now 180" |
+| [**BPS Backtest**](skills/alphagbm-bps-backtest/) ✨ | Walk-forward backtest of Bull Put Spread with signal vs no-signal control in one call | "Backtest BPS on QQQ — does FearScore work?" |
+| [**Take-Profit Lab**](skills/alphagbm-take-profit/) ✨ | Any-ticker 15-strategy exit backtest; auto-classifies whether it's holdable or needs tiered exit via a novel "rollercoaster rate" metric | "Should I hold TQQQ long-term?" |
+| [**Duan-Yongping Analysis**](skills/alphagbm-duan-analysis/) ✨ | Three-panel seller playbook (Sell Put at willing-buy price / Covered Call yield / VIX-tier panic-buy context) | "Duan-style analysis on AAPL" |
 
 ### Knowledge Base — Research Brain (5 skills)
 
@@ -260,7 +273,7 @@ All from real API calls. All verifiable.
 
 ## Roadmap
 
-- [x] 20 Skills with mock data
+- [x] 26 Skills with mock data
 - [x] Claude Code & Cursor support
 - [x] CLI tool (`pip install -e ./cli`)
 - [ ] Real-time WebSocket feeds

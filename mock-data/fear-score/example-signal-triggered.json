@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "ticker": "QQQ",
+  "fear_score": 68.2,
+  "signal": true,
+  "threshold": 60,
+  "confidence": 1.0,
+  "components": {
+    "vix": {"value": 28.4, "score": 82, "weight": 0.20, "fallback": false},
+    "iv_rank": {"value": 78, "score": 78, "weight": 0.25, "fallback": false},
+    "rsi": {"value": 24.1, "score": 88, "weight": 0.15, "fallback": false},
+    "volume_anomaly": {"value": 2.3, "score": 72, "weight": 0.15, "fallback": false},
+    "pc_ratio": {"value": 1.6, "score": 80, "weight": 0.15, "fallback": false},
+    "consecutive_down": {"value": 3, "score": 60, "weight": 0.10, "fallback": false}
+  },
+  "timestamp": "2026-04-24T08:00:00"
+}
