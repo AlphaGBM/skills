@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "ticker": "TQQQ",
+  "color": "red",
+  "special_flag": "no_hold",
+  "rollercoaster_rate": 97,
+  "max_drawdown": -82,
+  "hold_cagr": 37.0,
+  "strategy_results": {
+    "A_50": {"cagr": 6.0, "rc": 21, "mdd": -32},
+    "A_100": {"cagr": 11.5, "rc": 44, "mdd": -50},
+    "A_200": {"cagr": 17.6, "rc": 64, "mdd": -62},
+    "B_30_60_100": {"cagr": 9.3, "rc": 23, "mdd": -30},
+    "B_50_100_200": {"cagr": 12.0, "rc": 36, "mdd": -42},
+    "B2_20_40_80": {"cagr": 6.0, "rc": 0, "mdd": -22},
+    "B3_40_80_150": {"cagr": 13.6, "rc": 28, "mdd": -38},
+    "B5_back": {"cagr": 14.7, "rc": 41, "mdd": -55},
+    "B6_front": {"cagr": 11.0, "rc": 29, "mdd": -37},
+    "C_10x": {"cagr": 32.1, "rc": 95, "mdd": -78},
+    "D_20": {"cagr": 4.0, "rc": 6, "mdd": -38},
+    "D_30": {"cagr": 5.0, "rc": 7, "mdd": -45},
+    "E_hold": {"cagr": 37.0, "rc": 97, "mdd": -82},
+    "F_pullback": {"cagr": 9.1, "rc": 32, "mdd": -45},
+    "G_hv": {"cagr": 11.7, "rc": 44, "mdd": -45}
+  },
+  "sample_size": 120,
+  "period": {"start": "2014-04-20", "end": "2026-04-20"},
+  "computed_at": "2026-04-24T08:00:00"
+}

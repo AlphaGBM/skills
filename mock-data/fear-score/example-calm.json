@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "ticker": "SPY",
+  "fear_score": 32.5,
+  "signal": false,
+  "threshold": 60,
+  "confidence": 0.83,
+  "components": {
+    "vix": {"value": 16.2, "score": 42, "weight": 0.20, "fallback": false},
+    "iv_rank": {"value": 28, "score": 28, "weight": 0.25, "fallback": false},
+    "rsi": {"value": 56, "score": 18, "weight": 0.15, "fallback": false},
+    "volume_anomaly": {"value": 1.1, "score": 33, "weight": 0.15, "fallback": false},
+    "pc_ratio": {"value": 0.8, "score": 30, "weight": 0.15, "fallback": true},
+    "consecutive_down": {"value": 0, "score": 0, "weight": 0.10, "fallback": false}
+  },
+  "timestamp": "2026-04-24T08:00:00"
+}

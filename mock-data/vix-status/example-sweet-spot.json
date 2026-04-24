@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "vix": 22.5,
+  "mean_1y": 18.3,
+  "percentile_1y": 68.5,
+  "level": "sweet_spot",
+  "color": "yellow",
+  "label": {"zh": "卖方甜蜜区", "en": "Seller Sweet Spot"},
+  "strategy_hint": {
+    "zh": "BPS 权利金变肥，积极开仓",
+    "en": "BPS premiums get juicy — actively open positions"
+  },
+  "distribution_1y_pct": {
+    "calm": 12.5,
+    "normal": 45.2,
+    "sweet_spot": 28.7,
+    "caution": 11.3,
+    "extreme_fear": 2.3
+  },
+  "timestamp": "2026-04-24T08:00:00"
+}
