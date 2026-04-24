@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "ticker": "SPY",
+  "vix": 42.0,
+  "fear_score": 85,
+  "vix_pass": true,
+  "fear_pass": true,
+  "quality_pass": true,
+  "signal": true,
+  "level": "armed",
+  "recommended_etfs": ["SPY", "QQQ", "DIA"],
+  "advice_zh": "信号激活 — VIX 42.0、FearScore 85。按 Tepper 2009/2020 规则,分批买入大盘质量 ETF (SPY, QQQ, DIA)。不要买概念股或小盘股。",
+  "advice_en": "Signal armed — VIX 42.0, FearScore 85. Per Tepper 2009/2020, scale into quality large-cap ETFs (SPY, QQQ, DIA). No memes, no small caps.",
+  "timestamp": "2026-04-24T08:00:00"
+}

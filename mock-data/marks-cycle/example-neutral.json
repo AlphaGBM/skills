@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "cycle_score": 47,
+  "posture": "NEUTRAL",
+  "posture_zh": "中性 — 维持既定仓位,观察情绪变化",
+  "posture_en": "Neutral — maintain positions, watch sentiment",
+  "components": {
+    "vix": {"value": 22.5, "cycle_component": 48},
+    "iv_rank": {"value": 55, "cycle_component": 45}
+  },
+  "timestamp": "2026-04-24T08:00:00"
+}
