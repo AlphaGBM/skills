@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "vix": 38.4,
+  "mean_1y": 18.3,
+  "percentile_1y": 98.1,
+  "level": "extreme_fear",
+  "color": "red",
+  "label": {"zh": "极端恐慌", "en": "Extreme Fear"},
+  "strategy_hint": {
+    "zh": "散户卖方最易被埋，只做正股抄底",
+    "en": "Retail sellers most likely to get buried — only buy the dip in stock"
+  },
+  "distribution_1y_pct": {
+    "calm": 12.5,
+    "normal": 45.2,
+    "sweet_spot": 28.7,
+    "caution": 11.3,
+    "extreme_fear": 2.3
+  },
+  "timestamp": "2026-04-24T08:00:00"
+}
