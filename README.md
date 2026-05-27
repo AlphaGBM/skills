@@ -4,9 +4,9 @@
 
 **See what options are pricing in — with real data, not guesswork.**
 
-*26 AI skills for options & research intelligence · Built on real market data · Trusted by 10,000+ traders*
+*29 AI skills for options & research intelligence · Built on real market data · Trusted by 10,000+ traders*
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-26-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-29-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
 
 [Website](https://alphagbm.com) · [Documentation](#skills-overview) · [Quick Start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
@@ -148,7 +148,7 @@ Returns API status, available data fields, data source health, and market covera
 | [**Alert**](skills/alphagbm-alert/) | Set IV, price, or activity alerts | "Alert if TSLA IV > 80" |
 | [**Polymarket**](skills/alphagbm-polymarket/) | Prediction market vs. options pricing | "Rate cut odds vs options" |
 
-### Risk & Portfolio Discipline (4 skills) ✨
+### Risk & Portfolio Discipline (3 skills) ✨
 
 Exit, hedge, and sizing decisions quantified from real data — not opinion.
 
@@ -157,7 +157,17 @@ Exit, hedge, and sizing decisions quantified from real data — not opinion.
 | [**Hedge Advisor**](skills/alphagbm-hedge-advisor/) ✨ | Scenario-driven hedge for an existing position (Falling Knife / Bottom Fishing / Gain Protection); returns priced Long Put / Collar / Tier-down specs | "Hedge my AAPL at cost 140, now 180" |
 | [**BPS Backtest**](skills/alphagbm-bps-backtest/) ✨ | Walk-forward backtest of Bull Put Spread with signal vs no-signal control in one call | "Backtest BPS on QQQ — does FearScore work?" |
 | [**Take-Profit Lab**](skills/alphagbm-take-profit/) ✨ | Any-ticker 15-strategy exit backtest; auto-classifies whether it's holdable or needs tiered exit via a novel "rollercoaster rate" metric | "Should I hold TQQQ long-term?" |
-| [**Duan-Yongping Analysis**](skills/alphagbm-duan-analysis/) ✨ | Three-panel seller playbook (Sell Put at willing-buy price / Covered Call yield / VIX-tier panic-buy context) | "Duan-style analysis on AAPL" |
+
+### Investor Masters (4 skills) 🎓
+
+Mechanical translations of specific investors' philosophies into one-call tools.
+
+| Skill | What It Does | Example Query |
+|-------|-------------|---------------|
+| [**Duan-Yongping Analysis**](skills/alphagbm-duan-analysis/) | Three-panel seller playbook (Sell Put at willing-buy price / Covered Call yield / VIX-tier panic-buy context) | "Duan-style analysis on AAPL" |
+| [**Buffett Analysis**](skills/alphagbm-buffett-analysis/) ✨ | 4-lens scorecard (business / moat / management / valuation) → weighted HOLDABLE / WATCHABLE / AVOID verdict for any ticker | "Buffett analysis on KO" |
+| [**Marks Cycle**](skills/alphagbm-marks-cycle/) ✨ | Howard Marks-style cycle position 0-100 blending VIX + IV Rank + P/C + valuation; maps to offense/defense posture. Free, no auth | "Where are we in the cycle?" |
+| [**Tepper Signal**](skills/alphagbm-tepper-signal/) ✨ | Quantified Tepper 2009/2020 panic-buy detector: VIX ≥ 35 + FearScore ≥ 80 + quality filter → armed/watch/near/cold | "Is this a Tepper buy signal?" |
 
 ### Knowledge Base — Research Brain (5 skills)
 
@@ -173,7 +183,7 @@ Build a personal, monitored research workspace. Profiles auto-refresh, theses ge
 
 ### See Also
 
-- **[Investment Masters](https://github.com/AlphaGBM/investment-masters)** -- 10 masters' methodologies (Buffett, Dalio, Soros, Marks...) + 13F tracking
+- **[Investment Masters](https://github.com/AlphaGBM/investment-masters)** -- 12 masters' methodologies (Buffett, Dalio, Soros, Marks, Liang Wenfeng, Raschke...) + 13F tracking
 
 ## Architecture
 
@@ -273,7 +283,7 @@ All from real API calls. All verifiable.
 
 ## Roadmap
 
-- [x] 26 Skills with mock data
+- [x] 29 Skills with mock data
 - [x] Claude Code & Cursor support
 - [x] CLI tool (`pip install -e ./cli`)
 - [ ] Real-time WebSocket feeds

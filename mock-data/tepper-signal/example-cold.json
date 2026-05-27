@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "ticker": "SPY",
+  "vix": 17.2,
+  "fear_score": 35,
+  "vix_pass": false,
+  "fear_pass": false,
+  "quality_pass": true,
+  "signal": false,
+  "level": "cold",
+  "recommended_etfs": ["SPY", "QQQ", "DIA"],
+  "advice_zh": "平静 — VIX 17.2、FearScore 35。Tepper 风格 = 平时耐心等,现在是等待期。",
+  "advice_en": "Calm — VIX 17.2, FearScore 35. Tepper's core skill is patience — this is the waiting period.",
+  "timestamp": "2026-04-24T08:00:00"
+}
