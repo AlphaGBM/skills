@@ -6,8 +6,6 @@ description: |
   Triggers: "polymarket signals", "prediction market vs options", "event probability",
   "rate cut odds", "election odds vs options", "polymarket arbitrage",
   "implied probability mismatch", "prediction market data", "event-driven options"
-globs:
-  - "mock-data/polymarket/**"
 ---
 
 # AlphaGBM Polymarket Integration
@@ -45,7 +43,7 @@ Bridges prediction markets and options markets -- when Polymarket says 70% chanc
 
 ## Mock Data
 
-Mock data files are located in `mock-data/polymarket/` and include:
+Mock data files are located in `../../mock-data/polymarket/` and include:
 - `rate-cut-comparison.json` — Fed rate cut probabilities: Polymarket vs options-implied
 - `event-scan.json` — Top mispricing signals across active prediction markets
 - `historical-accuracy.json` — Past event forecasting accuracy by market type

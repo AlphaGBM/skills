@@ -9,8 +9,6 @@ description: |
   Triggers: "where is the market in the cycle", "Howard Marks style cycle read",
   "am I supposed to be offensive or defensive", "is this a buying cycle", "cycle
   position right now", "Marks cycle score", "sentiment read for SPY"
-globs:
-  - "mock-data/marks-cycle/**"
 ---
 
 # AlphaGBM Howard Marks Cycle
@@ -69,7 +67,7 @@ sentiment dashboard. This skill is the one-call **Marks-specific** read:
 
 ## Mock Data
 
-Mock data in `mock-data/marks-cycle/` — sample showing NEUTRAL position.
+Mock data in `../../mock-data/marks-cycle/` — sample showing NEUTRAL position.
 
 ## API Endpoint
 

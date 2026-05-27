@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Unusual Activity"
+  short_description: "Detect unusual options activity"
+  default_prompt: "Use $alphagbm-unusual-activity to analyze AAPL with AlphaGBM."

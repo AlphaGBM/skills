@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Duan Analysis"
+  short_description: "Run Duan-style seller playbooks"
+  default_prompt: "Use $alphagbm-duan-analysis to analyze AAPL with AlphaGBM."

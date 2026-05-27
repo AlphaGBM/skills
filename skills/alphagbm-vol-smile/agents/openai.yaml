@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Vol Smile"
+  short_description: "Analyze option skew for one expiration"
+  default_prompt: "Use $alphagbm-vol-smile to analyze AAPL with AlphaGBM."

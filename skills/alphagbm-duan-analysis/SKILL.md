@@ -10,8 +10,6 @@ description: |
   Triggers: "Duan Yongping style AAPL", "sell put NVDA willing to buy at 120",
   "covered call yield TSLA", "should I sell AAPL put here", "seller strategy MSFT",
   "Duan-style analysis", "premium collection setup", "nationalist seller playbook"
-globs:
-  - "mock-data/duan-analysis/**"
 ---
 
 # AlphaGBM Duan Yongping Analysis
@@ -64,7 +62,7 @@ Plus meta: `ticker, stock_price, expiry_date, dte, timestamp`.
 
 ## Mock Data
 
-Mock data in `mock-data/duan-analysis/` — sample for AAPL with a 180 buy price.
+Mock data in `../../mock-data/duan-analysis/` — sample for AAPL with a 180 buy price.
 
 ## API Endpoint
 

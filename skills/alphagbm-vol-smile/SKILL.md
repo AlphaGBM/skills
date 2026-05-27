@@ -8,8 +8,6 @@ description: >
   fear in options pricing, finding skew trades.
   Triggers on: "vol smile AAPL", "skew analysis NVDA", "put skew for TSLA", "is the
   smile steep for SPY", "volatility skew META", "smile shape for GOOGL".
-globs:
-  - "mock-data/*.json"
 ---
 
 # AlphaGBM Volatility Smile
@@ -99,7 +97,7 @@ Returns the smile curve (strikes, IVs, deltas), skew metrics, shape classificati
 
 ### Mock Data
 
-Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Smile data uses realistic IV snapshots from `mock-data/`.
+Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Smile data uses realistic IV snapshots from `../../mock-data/`.
 
 ### Related Skills
 - **alphagbm-vol-surface** -- See the full 3D surface across all expirations

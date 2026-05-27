@@ -7,8 +7,6 @@ description: |
   Triggers: "alert me when AAPL IV rank above 80", "notify if NVDA drops below 850",
   "earnings alert for TSLA", "VRP alert", "set price alert",
   "alert when IV spikes", "notify on unusual activity", "my alerts", "delete alert"
-globs:
-  - "mock-data/alert/**"
 ---
 
 # AlphaGBM Alerts
@@ -46,7 +44,7 @@ Set intelligent alerts based on price, IV rank, unusual activity, earnings timin
 
 ## Mock Data
 
-Mock data files are located in `mock-data/alert/` and include:
+Mock data files are located in `../../mock-data/alert/` and include:
 - `active-alerts.json` — Sample list of configured alerts
 - `triggered-alerts.json` — Recently triggered alerts with context
 - `alert-config-response.json` — Example alert creation confirmation

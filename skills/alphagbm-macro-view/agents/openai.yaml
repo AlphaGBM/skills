@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Macro View"
+  short_description: "Track macro indicators and portfolio impact"
+  default_prompt: "Use $alphagbm-macro-view to analyze AAPL with AlphaGBM."

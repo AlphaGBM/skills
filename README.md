@@ -55,6 +55,18 @@ git clone https://github.com/AlphaGBM/skills.git .claude/skills/alphagbm
 git submodule add https://github.com/AlphaGBM/skills.git .claude/skills/alphagbm
 ```
 
+### Install as Codex Skills
+
+```bash
+# macOS / Linux
+git clone https://github.com/AlphaGBM/skills.git ~/.codex/skills/alphagbm
+
+# Windows PowerShell
+git clone https://github.com/AlphaGBM/skills.git "$env:USERPROFILE\.codex\skills\alphagbm"
+```
+
+The individual `skills/alphagbm-*` folders include Codex-compatible skill metadata and are discovered from the cloned repository.
+
 ### Install for Cursor
 
 ```bash

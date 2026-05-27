@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Take Profit"
+  short_description: "Backtest exit and take-profit plans"
+  default_prompt: "Use $alphagbm-take-profit to analyze AAPL with AlphaGBM."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Polymarket"
+  short_description: "Compare prediction markets with options pricing"
+  default_prompt: "Use $alphagbm-polymarket to analyze AAPL with AlphaGBM."

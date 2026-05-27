@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Buffett Analysis"
+  short_description: "Score stocks with Buffett-style lenses"
+  default_prompt: "Use $alphagbm-buffett-analysis to analyze AAPL with AlphaGBM."

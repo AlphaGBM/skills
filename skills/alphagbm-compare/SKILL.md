@@ -6,8 +6,6 @@ description: |
   Triggers: "compare AAPL vs MSFT", "NVDA or AMD", "which is cheaper TSLA or META options",
   "tech stock comparison", "side by side", "versus", "which is better",
   "compare options", "cheapest IV", "best value stock"
-globs:
-  - "mock-data/compare/**"
 ---
 
 # AlphaGBM Compare
@@ -45,7 +43,7 @@ Side-by-side comparison of 2-5 stocks or options across every AlphaGBM dimension
 
 ## Mock Data
 
-Mock data files are located in `mock-data/compare/` and include:
+Mock data files are located in `../../mock-data/compare/` and include:
 - `aapl-vs-msft.json` — Full comparison output for AAPL vs MSFT
 - `tech-five-way.json` — Five-way comparison of mega-cap tech
 - `options-cost-compare.json` — Options-specific metrics comparison

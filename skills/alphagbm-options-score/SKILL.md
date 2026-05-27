@@ -7,8 +7,6 @@ description: >
   which option to trade, finding the best strike/expiry, ranking options by quality.
   Triggers on: "score AAPL options", "best options for NVDA", "which TSLA call
   should I buy", "option chain for SPY", "rank META puts".
-globs:
-  - "mock-data/*.json"
 ---
 
 # AlphaGBM Options Score
@@ -210,7 +208,7 @@ GET /api/options/recommendations?count=5
 
 ### Mock Data
 
-Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Uses realistic option chain snapshots from `mock-data/`.
+Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Uses realistic option chain snapshots from `../../mock-data/`.
 
 ### Related Skills
 - **alphagbm-stock-analysis** -- Analyze the underlying stock first

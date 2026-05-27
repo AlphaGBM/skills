@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Options Strategy"
+  short_description: "Build and rank multi-leg option strategies"
+  default_prompt: "Use $alphagbm-options-strategy to analyze AAPL with AlphaGBM."

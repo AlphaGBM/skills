@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Watchlist"
+  short_description: "Monitor tickers for AlphaGBM changes"
+  default_prompt: "Use $alphagbm-watchlist to analyze AAPL with AlphaGBM."

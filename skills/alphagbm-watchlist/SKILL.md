@@ -6,8 +6,6 @@ description: |
   Triggers: "add AAPL to watchlist", "my watchlist", "watch NVDA TSLA META",
   "watchlist alerts", "remove SPY from watchlist", "hot options",
   "what's on my watchlist", "watchlist summary", "daily watchlist"
-globs:
-  - "mock-data/watchlist/**"
 ---
 
 # AlphaGBM Watchlist
@@ -46,7 +44,7 @@ Monitor your favorite tickers for meaningful changes -- price moves, IV shifts, 
 
 ## Mock Data
 
-Mock data files are located in `mock-data/watchlist/` and include:
+Mock data files are located in `../../mock-data/watchlist/` and include:
 - `user-watchlist.json` — Sample user watchlist with 10 tickers
 - `watchlist-alerts.json` — Triggered alerts for watchlist tickers
 - `hot-options.json` — Curated hot options list

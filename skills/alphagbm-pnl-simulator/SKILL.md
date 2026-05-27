@@ -9,8 +9,6 @@ description: >
   Triggers on: "simulate PnL for AAPL bull call spread", "what if NVDA drops 10%",
   "P&L diagram", "test my iron condor", "breakeven analysis", "stress test my position",
   "what happens at expiry".
-globs:
-  - "mock-data/*.json"
 ---
 
 # AlphaGBM P&L Simulator
@@ -141,7 +139,7 @@ Parameters:
 
 ### Mock Data
 
-Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Simulations use realistic pricing models calibrated to `mock-data/` snapshots.
+Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Simulations use realistic pricing models calibrated to `../../mock-data/` snapshots.
 
 ### Related Skills
 - **alphagbm-options-strategy** -- Get strategy recommendations, then simulate them here

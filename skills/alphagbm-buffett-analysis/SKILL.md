@@ -11,8 +11,6 @@ description: |
   Triggers: "Buffett analysis AAPL", "score KO with Buffett lens", "would Buffett
   buy MSFT", "JNJ Buffett scorecard", "AAPL moat analysis", "fair price vs bonds",
   "Buffett-style verdict on NVDA", "long-term hold analysis"
-globs:
-  - "mock-data/buffett-analysis/**"
 ---
 
 # AlphaGBM Buffett Analysis
@@ -67,7 +65,7 @@ codifies *Buffett's* rules, not AlphaGBM's house rules.
 
 ## Mock Data
 
-Mock data in `mock-data/buffett-analysis/` — sample for KO (HOLDABLE).
+Mock data in `../../mock-data/buffett-analysis/` — sample for KO (HOLDABLE).
 
 ## API Endpoint
 

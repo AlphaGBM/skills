@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Vol Surface"
+  short_description: "Inspect implied volatility surfaces"
+  default_prompt: "Use $alphagbm-vol-surface to analyze AAPL with AlphaGBM."

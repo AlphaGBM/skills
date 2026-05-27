@@ -8,8 +8,6 @@ description: |
   Triggers: "what's VIX", "VIX level", "is market calm", "market fear gauge",
   "should I sell premium now", "VIX tier", "VIX strategy", "volatility environment",
   "fear index", "should I buy protection", "is this a good time for BPS".
-globs:
-  - "mock-data/vix-status/**"
 ---
 
 # AlphaGBM VIX Status
@@ -57,7 +55,7 @@ Also returns:
 
 ## Mock Data
 
-Mock data in `mock-data/vix-status/` — sample responses across the 5 tiers.
+Mock data in `../../mock-data/vix-status/` — sample responses across the 5 tiers.
 
 ## API Endpoint
 

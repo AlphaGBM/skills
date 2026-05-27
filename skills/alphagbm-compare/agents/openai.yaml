@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Compare"
+  short_description: "Compare tickers across stock and options data"
+  default_prompt: "Use $alphagbm-compare to analyze AAPL with AlphaGBM."

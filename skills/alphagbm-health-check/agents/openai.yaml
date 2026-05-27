@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Health Check"
+  short_description: "Audit AlphaGBM research workspace health"
+  default_prompt: "Use $alphagbm-health-check to analyze AAPL with AlphaGBM."

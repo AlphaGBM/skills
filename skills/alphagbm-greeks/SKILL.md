@@ -8,8 +8,6 @@ description: >
   decay, analyzing gamma exposure, hedging a portfolio.
   Triggers on: "Greeks for AAPL 220 call", "position Greeks", "theta decay analysis",
   "gamma exposure NVDA", "delta of my position", "vega risk SPY straddle".
-globs:
-  - "mock-data/*.json"
 ---
 
 # AlphaGBM Greeks
@@ -161,7 +159,7 @@ Parameters:
 
 ### Mock Data
 
-Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Greeks calculated from realistic option chain snapshots in `mock-data/`.
+Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Greeks calculated from realistic option chain snapshots in `../../mock-data/`.
 
 ### Related Skills
 - **alphagbm-options-score** -- Greeks balance is a scoring factor for contract quality

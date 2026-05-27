@@ -6,8 +6,6 @@ description: |
   crush AAPL", "NVDA IV before earnings", "implied move MSFT", "iron condor for META",
   "IV rank AAPL earnings", "earnings play TSLA", "should I short premium before AMZN
   earnings", "post-earnings IV drop", "straddle before earnings", "pre-earnings strategy"
-globs:
-  - "mock-data/earnings-crush/**"
 ---
 
 # AlphaGBM Earnings IV Panel
@@ -51,7 +49,7 @@ move — in a single API call.
 
 ## Mock Data
 
-Mock data files are in `mock-data/earnings-crush/`:
+Mock data files are in `../../mock-data/earnings-crush/`:
 - `aapl-crush-history.json` — 8 quarters of AAPL crush + implied move + IC
 - `nvda-crush-history.json` — Same for NVDA
 - `crush-summary.json` — Aggregated crush statistics across tickers

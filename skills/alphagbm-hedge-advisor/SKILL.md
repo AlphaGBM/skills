@@ -9,8 +9,6 @@ description: |
   Triggers: "hedge my AAPL", "protect my NVDA gains", "collar strategy MSFT",
   "long put for TSLA", "how to hedge falling knife COIN", "reduce risk BABA",
   "lock in gains META", "downside protection", "portfolio hedge", "insurance for position"
-globs:
-  - "mock-data/hedge-advisor/**"
 ---
 
 # AlphaGBM Hedge Advisor
@@ -67,7 +65,7 @@ reserve 10-15%, etc.) for the normal-hold case.
 
 ## Mock Data
 
-Mock responses in `mock-data/hedge-advisor/` — sample across all four scenarios.
+Mock responses in `../../mock-data/hedge-advisor/` — sample across all four scenarios.
 
 ## API Endpoint
 

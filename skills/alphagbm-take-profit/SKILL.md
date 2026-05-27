@@ -3,7 +3,7 @@ name: alphagbm-take-profit
 description: |
   Quantifies whether a stock is suitable for long-term holding or requires tiered
   profit-taking — using a novel "rollercoaster rate" metric (probability that an
-  entry's paper profit reaches +50% then falls back >50% from peak before exit).
+  entry's paper profit reaches +50% then falls back more than 50% from peak before exit).
   Runs 15 exit strategies over ~10 years of daily history per ticker and returns
   medians for each. First query for a new ticker takes ~30s and gets cached
   globally; subsequent queries are instant.
@@ -11,8 +11,6 @@ description: |
   "is AAPL holdable", "rollercoaster rate for TSLA", "sell strategy COIN",
   "when to sell NVDA", "profit-taking plan for QQQ", "exit strategy for my stock",
   "leveraged ETF hold analysis"
-globs:
-  - "mock-data/take-profit/**"
 ---
 
 # AlphaGBM Take-Profit Strategy Lab
@@ -79,7 +77,7 @@ The caller is expected to:
 
 ## Mock Data
 
-Mock data in `mock-data/take-profit/` — sample responses for TQQQ (no_hold), AAPL
+Mock data in `../../mock-data/take-profit/` — sample responses for TQQQ (no_hold), AAPL
 (hold-optimal), and PYPL (reverse_alpha).
 
 ## API Endpoint

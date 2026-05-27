@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Fear Score"
+  short_description: "Measure per-ticker panic and entry signals"
+  default_prompt: "Use $alphagbm-fear-score to analyze AAPL with AlphaGBM."

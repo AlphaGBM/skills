@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Alert"
+  short_description: "Set AlphaGBM price, IV, and flow alerts"
+  default_prompt: "Use $alphagbm-alert to analyze AAPL with AlphaGBM."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Marks Cycle"
+  short_description: "Estimate market cycle offense or defense posture"
+  default_prompt: "Use $alphagbm-marks-cycle to analyze AAPL with AlphaGBM."
