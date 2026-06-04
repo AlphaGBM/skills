@@ -303,6 +303,143 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. We welcome:
 
 MIT -- see [LICENSE](LICENSE).
 
+## FAQ
+
+### What is AlphaGBM?
+
+AlphaGBM is a **real-data options & research intelligence layer** for traders and AI agents. Every number comes from real market data -- IV, Greeks, VRP, skew, flow, plus a tracked research workspace -- not LLM hallucination. It provides **29 AI skills** for options & research intelligence.
+
+### Why use AlphaGBM?
+
+| Feature | LLM Roleplay Tools | Generic Finance APIs | AlphaGBM |
+|---------|--------------------|--------------------|----------|
+| Data Source | LLM-generated | Delayed/basic | **Real-time options data** |
+| Verifiable | "85% confidence" | Partial | **Every number has a source** |
+| Options Depth | None | Basic chain | **IV/HV/VRP/Greeks/Skew/Surface** |
+| Scoring | Subjective | None | **Quantitative scoring (0-100 options, 1-10 stocks)** |
+| Analysis Model | None | None | **G = B + M (Gain = Basics + Momentum)** |
+| Battle-tested | No | Varies | **10K users, 3mo live trading** |
+| Coverage | US only | Varies | **US + HK + CN + Commodities** |
+
+### How to get started?
+
+**Claude Code / Cursor Installation:**
+
+```bash
+# Claude Code
+git clone https://github.com/AlphaGBM/skills.git .claude/skills/alphagbm
+
+# Cursor
+git clone https://github.com/AlphaGBM/skills.git .cursor/skills/alphagbm
+```
+
+**CLI Installation:**
+
+```bash
+git clone https://github.com/AlphaGBM/skills.git
+cd skills/cli
+pip install -e .
+alphagbm config set-key agbm_xxxxxxxxxxxxxxxx
+```
+
+Then ask your AI: *"Analyze AAPL options using AlphaGBM"* — works instantly with built-in demo data.
+
+### What markets does AlphaGBM cover?
+
+| Market | Stocks | Options | Data Points |
+|--------|--------|---------|-------------|
+| US | 200+ | Full chains | IV/HV/VRP/Greeks/Skew/Surface |
+| HK | 35+ | Full chains | IV/HV/VRP/Greeks |
+| CN | 20+ ETFs | Full chains | IV/HV/VRP/Greeks |
+| Commodities | Au/Ag/Cu/Al | Futures options | IV/Greeks/Delivery risk |
+
+### What is the pricing and quota?
+
+| Plan | Stock Analysis | Options Analysis | Quick Quote / Snapshot |
+|------|---------------|-----------------|----------------------|
+| Free | 2/day | 1/day | Unlimited |
+| Plus | 1,000/month | 1,000/month | Unlimited |
+| Pro | 5,000/month | 5,000/month | Unlimited |
+
+Get your free API key at [alphagbm.com/api-keys](https://alphagbm.com/api-keys).
+
+### What data does AlphaGBM use?
+
+AlphaGBM uses **real market data** -- not LLM-generated estimates. Every metric is computed from actual market prices:
+
+| Metric | How It's Computed |
+|--------|-------------------|
+| IV | Black-Scholes on actual bid/ask prices |
+| IV Rank | Current IV vs. 252 trading days of history |
+| VRP | Implied Vol - Historical Vol (option overpricing measure) |
+| Option Score | Weighted: premium yield + support/resistance + safety margin + trend + PoP + liquidity + time decay |
+| Stock Score | G = B + M -- Basics (PE, PEG, growth, margins) + Momentum (VIX, technicals, flow) |
+| Risk | Additive: valuation +2, growth +2, liquidity +2, market +1.5, technical +1 |
+
+### How to get an API key?
+
+1. Visit [alphagbm.com/api-keys](https://alphagbm.com/api-keys)
+2. Sign up for a free account
+3. Generate your API key: `agbm_xxxxxxxxxxxxxxxx`
+4. Set environment variable:
+
+```bash
+export ALPHAGBM_API_KEY=agbm_xxxxxxxxxxxxxxxx
+export ALPHAGBM_BASE_URL=https://alphagbm.zeabur.app  # optional, default
+```
+
+### How to check API health?
+
+```bash
+curl https://alphagbm.zeabur.app/api/health
+```
+
+Returns API status, available data fields, data source health, and market coverage -- no auth needed.
+
+### How do AlphaGBM skills connect?
+
+Skills aren't isolated -- they reference each other to form a complete workflow:
+
+```
+Stock Analysis --> Options Score --> Options Strategy --> P&L Simulator
+       |                |                    |
+       v                v                    v
+   Compare          Vol Surface           Greeks
+                    Vol Smile
+                    IV Rank --> Earnings Crush
+
+Market Sentiment --> Unusual Activity --> Alert
+                                          Watchlist
+
+Polymarket --> Market Sentiment --> Options Strategy
+```
+
+### How to contribute?
+
+We welcome contributions:
+
+- Bug reports & feature requests
+- Skill improvements & new skill proposals
+- Translations (currently EN + CN)
+- Mock data for additional tickers
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+### What license does AlphaGBM use?
+
+MIT License -- see [LICENSE](LICENSE). Free to use, modify, and distribute.
+
+### How to get help?
+
+| Channel | Link |
+|---------|------|
+| Website | [alphagbm.com](https://alphagbm.com) |
+| API Docs | [alphagbm.com/docs](https://alphagbm.com/docs) |
+| Discord | [discord.gg/alphagbm](https://discord.gg/alphagbm) |
+| Twitter/X | [x.com/alphagbm](https://x.com/alphagbm) |
+
+---
+
 ## Links
 
 - [alphagbm.com](https://alphagbm.com) -- Full platform with live data
