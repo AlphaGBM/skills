@@ -4,9 +4,9 @@
 
 **See what options are pricing in — with real data, not guesswork.**
 
-*29 AI skills for options & research intelligence · Built on real market data · Trusted by 10,000+ traders*
+*30 AI skills for options & research intelligence · Built on real market data · Trusted by 10,000+ traders*
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-29-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-30-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
 
 [Website](https://alphagbm.com) · [Documentation](#skills-overview) · [Quick Start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
@@ -158,7 +158,7 @@ Exit, hedge, and sizing decisions quantified from real data — not opinion.
 | [**BPS Backtest**](skills/alphagbm-bps-backtest/) ✨ | Walk-forward backtest of Bull Put Spread with signal vs no-signal control in one call | "Backtest BPS on QQQ — does FearScore work?" |
 | [**Take-Profit Lab**](skills/alphagbm-take-profit/) ✨ | Any-ticker 15-strategy exit backtest; auto-classifies whether it's holdable or needs tiered exit via a novel "rollercoaster rate" metric | "Should I hold TQQQ long-term?" |
 
-### Investor Masters (4 skills) 🎓
+### Investor Masters (5 skills) 🎓
 
 Mechanical translations of specific investors' philosophies into one-call tools.
 
@@ -168,6 +168,7 @@ Mechanical translations of specific investors' philosophies into one-call tools.
 | [**Buffett Analysis**](skills/alphagbm-buffett-analysis/) ✨ | 4-lens scorecard (business / moat / management / valuation) → weighted HOLDABLE / WATCHABLE / AVOID verdict for any ticker | "Buffett analysis on KO" |
 | [**Marks Cycle**](skills/alphagbm-marks-cycle/) ✨ | Howard Marks-style cycle position 0-100 blending VIX + IV Rank + P/C + valuation; maps to offense/defense posture. Free, no auth | "Where are we in the cycle?" |
 | [**Tepper Signal**](skills/alphagbm-tepper-signal/) ✨ | Quantified Tepper 2009/2020 panic-buy detector: VIX ≥ 35 + FearScore ≥ 80 + quality filter → armed/watch/near/cold | "Is this a Tepper buy signal?" |
+| [**Chokepoint**](skills/alphagbm-chokepoint/) 🆕 | AI-supply-chain "瓶颈 / 卡点" playbook (popularized by Serenity, read through AlphaGBM tools): 5-factor test → find the supply-narrow, market-ignored link | "Is AXTI a chokepoint?", "瓶颈投资法" |
 
 ### Knowledge Base — Research Brain (5 skills)
 
