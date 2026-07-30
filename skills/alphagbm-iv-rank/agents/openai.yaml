@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM IV Rank"
+  short_description: "Rank implied volatility against history"
+  default_prompt: "Use $alphagbm-iv-rank to analyze AAPL with AlphaGBM."

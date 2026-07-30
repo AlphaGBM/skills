@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Stock Analysis"
+  short_description: "Analyze stocks with AlphaGBM real-data signals"
+  default_prompt: "Use $alphagbm-stock-analysis to analyze AAPL with AlphaGBM."

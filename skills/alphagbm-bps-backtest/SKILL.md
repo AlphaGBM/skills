@@ -10,8 +10,6 @@ description: |
   Triggers: "backtest BPS on QQQ", "bull put spread backtest", "does FearScore
   work on SPY", "what DTE for BPS", "optimal bull put spread delta", "BPS strategy
   backtest", "credit spread backtest", "backtest short put spread"
-globs:
-  - "mock-data/bps-backtest/**"
 ---
 
 # AlphaGBM BPS Backtest
@@ -77,7 +75,7 @@ Plus:
 
 ## Mock Data
 
-Mock data in `mock-data/bps-backtest/` — examples for QQQ with signal ON and OFF.
+Mock data in `../../mock-data/bps-backtest/` — examples for QQQ with signal ON and OFF.
 
 ## API Endpoint
 

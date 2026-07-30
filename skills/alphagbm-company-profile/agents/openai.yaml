@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Company Profile"
+  short_description: "Build ticker research profiles"
+  default_prompt: "Use $alphagbm-company-profile to analyze AAPL with AlphaGBM."

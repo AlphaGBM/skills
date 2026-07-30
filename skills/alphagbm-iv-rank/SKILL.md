@@ -8,8 +8,6 @@ description: >
   screening for IV extremes.
   Triggers on: "IV rank AAPL", "is NVDA IV high", "IV percentile SPY", "historical
   IV TSLA", "is volatility cheap for META", "IV rank scan", "should I sell premium".
-globs:
-  - "mock-data/*.json"
 ---
 
 # AlphaGBM IV Rank
@@ -117,7 +115,7 @@ VRP measures the gap between what the market *expects* (IV) and what actually *h
 
 ### Mock Data
 
-Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. IV history uses realistic 252-day data from `mock-data/`.
+Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. IV history uses realistic 252-day data from `../../mock-data/`.
 
 ### Related Skills
 - **alphagbm-vol-surface** -- Full 3D IV landscape across strikes and expirations

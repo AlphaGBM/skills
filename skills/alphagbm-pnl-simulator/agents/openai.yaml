@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM P&L Simulator"
+  short_description: "Simulate option position profit and loss"
+  default_prompt: "Use $alphagbm-pnl-simulator to analyze AAPL with AlphaGBM."

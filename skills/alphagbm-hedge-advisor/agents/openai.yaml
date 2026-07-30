@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Hedge Advisor"
+  short_description: "Design scenario-based equity hedges"
+  default_prompt: "Use $alphagbm-hedge-advisor to analyze AAPL with AlphaGBM."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Options Score"
+  short_description: "Score option contracts across strategies"
+  default_prompt: "Use $alphagbm-options-score to analyze AAPL with AlphaGBM."

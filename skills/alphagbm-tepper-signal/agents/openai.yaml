@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Tepper Signal"
+  short_description: "Detect Tepper-style panic buy conditions"
+  default_prompt: "Use $alphagbm-tepper-signal to analyze AAPL with AlphaGBM."

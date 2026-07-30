@@ -7,8 +7,6 @@ description: >
   evaluating buy/sell decisions, comparing stock fundamentals, assessing risk levels.
   Triggers on: "analyze AAPL", "what do you think about NVDA", "should I buy TSLA",
   "stock analysis for META", "is SPY overvalued", "risk assessment for GOOGL".
-globs:
-  - "mock-data/*.json"
 ---
 
 # AlphaGBM Stock Analysis
@@ -176,7 +174,7 @@ When presenting results to the user, highlight:
 
 ## Mock Data
 
-When no API key is configured, this skill uses built-in market data snapshots from `mock-data/`. Supported demo tickers: AAPL, NVDA, SPY, TSLA, META.
+When no API key is configured, this skill uses built-in market data snapshots from `../../mock-data/`. Supported demo tickers: AAPL, NVDA, SPY, TSLA, META.
 
 ## Related Skills
 

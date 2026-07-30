@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM BPS Backtest"
+  short_description: "Backtest bull put spreads with signals"
+  default_prompt: "Use $alphagbm-bps-backtest to analyze AAPL with AlphaGBM."

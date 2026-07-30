@@ -6,8 +6,6 @@ description: |
   Triggers: "unusual options activity", "smart money AAPL", "large trades NVDA",
   "who's buying TSLA puts", "options flow", "block trades", "sweep orders",
   "unusual volume", "dark pool activity", "whale trades"
-globs:
-  - "mock-data/unusual-activity/**"
 ---
 
 # AlphaGBM Unusual Options Activity
@@ -45,7 +43,7 @@ Detects unusual options activity and classifies smart money signals to help you 
 
 ## Mock Data
 
-Mock data files are located in `mock-data/unusual-activity/` and include:
+Mock data files are located in `../../mock-data/unusual-activity/` and include:
 - `aapl-unusual-trades.json` — Recent unusual trades for AAPL
 - `market-wide-scan.json` — Top 20 unusual activity signals across all tickers
 - `flow-summary.json` — Aggregated premium flow by sector

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Market Sentiment"
+  short_description: "Summarize broad market sentiment gauges"
+  default_prompt: "Use $alphagbm-market-sentiment to analyze AAPL with AlphaGBM."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Greeks"
+  short_description: "Calculate option Greeks and implied volatility"
+  default_prompt: "Use $alphagbm-greeks to analyze AAPL with AlphaGBM."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Earnings Crush"
+  short_description: "Analyze earnings IV crush and condors"
+  default_prompt: "Use $alphagbm-earnings-crush to analyze AAPL with AlphaGBM."

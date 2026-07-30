@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Investment Thesis"
+  short_description: "Create and monitor investment theses"
+  default_prompt: "Use $alphagbm-investment-thesis to analyze AAPL with AlphaGBM."

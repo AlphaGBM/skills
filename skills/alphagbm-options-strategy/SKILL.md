@@ -9,8 +9,6 @@ description: >
   Triggers on: "options strategy for AAPL", "bullish strategy NVDA", "what's the
   best play on TSLA earnings", "iron condor SPY", "bear put spread META",
   "income strategy for GOOGL", "neutral play on QQQ".
-globs:
-  - "mock-data/*.json"
 ---
 
 # AlphaGBM Options Strategy
@@ -157,7 +155,7 @@ Content-Type: application/json
 
 ### Mock Data
 
-Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Strategy recommendations use realistic chain data from `mock-data/`.
+Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Strategy recommendations use realistic chain data from `../../mock-data/`.
 
 ### Related Skills
 - **alphagbm-options-score** -- Scores the individual contracts used in each leg

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM VIX Status"
+  short_description: "Classify VIX regimes for premium selling"
+  default_prompt: "Use $alphagbm-vix-status to analyze AAPL with AlphaGBM."

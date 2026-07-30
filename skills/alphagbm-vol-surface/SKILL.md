@@ -8,8 +8,6 @@ description: >
   finding mispriced options, understanding volatility dynamics.
   Triggers on: "vol surface AAPL", "is NVDA IV expensive", "volatility term structure
   SPY", "surface analysis TSLA", "IV surface META", "show me the vol surface".
-globs:
-  - "mock-data/*.json"
 ---
 
 # AlphaGBM Volatility Surface
@@ -132,7 +130,7 @@ Returns: ATM IV, IV Rank, HV 30d, VRP, VRP level.
 
 ### Mock Data
 
-Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Surface data uses realistic IV snapshots from `mock-data/`.
+Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Surface data uses realistic IV snapshots from `../../mock-data/`.
 
 ### Related Skills
 - **alphagbm-vol-smile** -- Zoom into a single expiration's smile/skew curve

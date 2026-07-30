@@ -1,0 +1,4 @@
+interface:
+  display_name: "AlphaGBM Theme Research"
+  short_description: "Track ticker themes and research catalysts"
+  default_prompt: "Use $alphagbm-theme-research to analyze AAPL with AlphaGBM."

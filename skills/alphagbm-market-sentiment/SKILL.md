@@ -6,8 +6,6 @@ description: |
   Triggers: "market sentiment", "is the market fearful", "VIX analysis", "put call ratio",
   "market breadth", "fear and greed", "risk on or risk off", "advance decline",
   "new highs new lows", "sector rotation", "market regime"
-globs:
-  - "mock-data/market-sentiment/**"
 ---
 
 # AlphaGBM Market Sentiment Dashboard
@@ -46,7 +44,7 @@ Aggregates market-wide sentiment indicators into a single dashboard, classifying
 
 ## Mock Data
 
-Mock data files are located in `mock-data/market-sentiment/` and include:
+Mock data files are located in `../../mock-data/market-sentiment/` and include:
 - `sentiment-dashboard.json` — Full dashboard snapshot with all indicators
 - `vix-history.json` — VIX time series with percentile ranks
 - `sector-rotation.json` — Sector performance and cycle classification

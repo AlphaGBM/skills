@@ -8,8 +8,6 @@ description: |
   Triggers: "fear score QQQ", "is NVDA oversold", "panic index SPY", "BPS signal
   TSLA", "is it fear time", "BPS entry timing", "when to sell put", "is AAPL panic",
   "contrarian entry signal", "oversold reading", "VIX plus RSI"
-globs:
-  - "mock-data/fear-score/**"
 ---
 
 # AlphaGBM FearScore
@@ -70,7 +68,7 @@ on any premium-selling strategy.
 
 ## Mock Data
 
-Mock data in `mock-data/fear-score/` — example responses at neutral / elevated /
+Mock data in `../../mock-data/fear-score/` — example responses at neutral / elevated /
 signal-triggered readings.
 
 ## API Endpoint

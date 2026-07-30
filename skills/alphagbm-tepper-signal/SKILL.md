@@ -11,8 +11,6 @@ description: |
   Triggers: "is this a Tepper buy signal", "panic-buy detector SPY", "should I
   buy the panic", "Tepper style entry check", "are we at a panic bottom", "is
   VIX 35+ and fear 80+", "historical bottom signal today"
-globs:
-  - "mock-data/tepper-signal/**"
 ---
 
 # AlphaGBM Tepper Panic-Buy Signal
@@ -78,7 +76,7 @@ the VIX tier. This skill combines them with Tepper's specific criteria
 
 ## Mock Data
 
-Mock data in `mock-data/tepper-signal/` — samples for `armed` (VIX 42, Fear 85) and `cold` (VIX 17, Fear 35).
+Mock data in `../../mock-data/tepper-signal/` — samples for `armed` (VIX 42, Fear 85) and `cold` (VIX 17, Fear 35).
 
 ## API Endpoint
 
