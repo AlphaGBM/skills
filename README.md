@@ -2,11 +2,11 @@
 
 # AlphaGBM Skills
 
-**See what options are pricing in — with real data, not guesswork.**
+**Bring AlphaGBM into your own AI workspace.**
 
-*29 AI skills for options & research intelligence · Built on real market data · Trusted by 10,000+ traders*
+*30 open skills for real-time market data, opportunity scoring, research and verification · Built for AI agents*
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-29-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-30-green.svg)](#skills-overview) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills?style=flat)](https://github.com/AlphaGBM/skills)
 
 [Website](https://alphagbm.com) · [Documentation](#skills-overview) · [Quick Start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
@@ -27,21 +27,21 @@ Then ask your AI: *"Analyze AAPL options using AlphaGBM"* — works instantly wi
 
 ## What is AlphaGBM?
 
-AlphaGBM is a **real-data options & research intelligence layer** for traders and AI agents. Every number comes from real market data -- IV, Greeks, VRP, skew, flow, plus a tracked research workspace -- not LLM hallucination.
+AlphaGBM is a **real-data market intelligence layer** for traders and AI agents. It connects live market data, quantitative scoring, research workflows and ongoing verification to the tools people already use.
 
-These 26 skills bring AlphaGBM's capabilities into your AI workflow: Claude Code, Cursor, Windsurf, or any agent that supports skills.
+These 30 skills bring AlphaGBM's capabilities into Claude Code, Cursor, Windsurf, Codex, WorkBuddy or any agent that supports skills.
 
 ### Why AlphaGBM?
 
 | | LLM Roleplay Tools | Generic Finance APIs | **AlphaGBM** |
 |--|-------------------|---------------------|-------------|
-| Data Source | LLM-generated | Delayed/basic | **Real-time options data** |
+| Data Source | LLM-generated | Delayed/basic | **Real-time, source-backed data** |
 | Verifiable | "85% confidence" | Partial | **Every number has a source** |
-| Options Depth | None | Basic chain | **IV/HV/VRP/Greeks/Skew/Surface** |
-| Scoring | Subjective | None | **Quantitative scoring (0-100 options, 1-10 stocks)** |
-| Analysis Model | None | None | **G = B + M (Gain = Basics + Momentum)** |
-| Battle-tested | No | Varies | **10K users, 3mo live trading** |
-| Coverage | US only | Varies | **US + HK + CN + Commodities** |
+| Market Depth | None | Delayed/basic | **Stocks, ETFs, options, commodities and compute signals** |
+| Scoring | Subjective | None | **Quantitative opportunity scores and factor breakdowns** |
+| Research Loop | One-off answer | Limited | **Evidence, source traceability and follow-up verification** |
+| Analysis Model | None | None | **Gain = Basics + Momentum** |
+| Coverage | US only | Varies | **US + HK + CN + ETFs + commodities** |
 
 ## Quick Start
 
@@ -116,7 +116,7 @@ Returns API status, available data fields, data source health, and market covera
 
 ## Skills Overview
 
-### Core Analysis (7 skills)
+### Opportunity & Research (8 skills)
 
 | Skill | What It Does | Example Query |
 |-------|-------------|---------------|
@@ -127,6 +127,7 @@ Returns API status, available data fields, data source health, and market covera
 | [**Vol Smile**](skills/alphagbm-vol-smile/) | Skew analysis for a single expiration | "NVDA put skew" |
 | [**Greeks**](skills/alphagbm-greeks/) | Greeks calculator + implied volatility solver | "Greeks for AAPL 220C" |
 | [**P&L Simulator**](skills/alphagbm-pnl-simulator/) | What-if analysis for any position | "Simulate my iron condor" |
+| [**Chokepoint Analysis**](skills/alphagbm-chokepoint/) | Map supply-chain bottlenecks and test concentration, irreplaceability and demand tension | "Find AI supply-chain chokepoints" |
 
 ### Data Intelligence (6 skills)
 
@@ -283,7 +284,7 @@ All from real API calls. All verifiable.
 
 ## Roadmap
 
-- [x] 29 Skills with mock data
+- [x] 30 Skills with mock data
 - [x] Claude Code & Cursor support
 - [x] CLI tool (`pip install -e ./cli`)
 - [ ] Real-time WebSocket feeds
