@@ -46,6 +46,10 @@ These areas still require a staging contract test before they should be advertis
 - market coverage and symbol normalization for US, HK, CN, ETF and commodity inputs;
 - source timestamp and evidence fields where the output is presented as verifiable.
 
+### Confirmed Documentation Gap
+
+The `alphagbm-options-score` Skill documents the chain/enhanced/reverse-score building blocks, but it does not document the product's primary scoring endpoint: `POST /api/v1/options/score`. The CLI already calls this route. The Skill should expose this as the canonical path and keep the lower-level routes as implementation-specific alternatives only when an agent needs them.
+
 ## Upgrade Order
 
 ### V2.1 — Contract correctness
@@ -78,4 +82,3 @@ A new Skill is publishable only when all of the following are true:
 - At least one real-data or explicitly labelled demo response is available.
 - The Skill does not present an inference as a sourced fact.
 - The README category, count and example are updated in the same change.
-
