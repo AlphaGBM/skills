@@ -4,7 +4,8 @@ description: |
   Howard Marks-style market cycle position 0-100, with 0 = panic bottom (hard
   offense) and 100 = euphoric top (hard defense). Blends VIX (40%) + SPY IV Rank
   (25%) + Put/Call ratio (20%) + valuation percentile (15%) into a single number
-  and maps to an offense-vs-defense posture. Free endpoint, no auth, 5-min cache
+  and maps to an offense-vs-defense posture. Authenticated signal, no analysis-credit
+  deduction, 5-min cache
   — the goal is to make "where are we in the cycle" a one-call lookup.
   Triggers: "where is the market in the cycle", "Howard Marks style cycle read",
   "am I supposed to be offensive or defensive", "is this a buying cycle", "cycle
@@ -77,7 +78,7 @@ Mock data in `mock-data/marks-cycle/` — sample showing NEUTRAL position.
 GET /api/masters/marks-cycle
 ```
 
-No body, no auth required.
+No body. Requires an authenticated request (API key or supported user token).
 
 Response shape:
 
@@ -96,7 +97,7 @@ Response shape:
 }
 ```
 
-Pricing: **free — no auth, no credit deduction**. 5-min cache.
+Pricing: **no analysis-credit deduction; authentication is still required**. 5-min cache.
 
 ## Related Skills
 

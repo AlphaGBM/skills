@@ -216,6 +216,57 @@ def display_options_recommend(result: dict):
         console.print(f"\n  Market: VIX={summary.get('vix', '?')}  Outlook={summary.get('outlook', '?')}")
 
 
+def _research_text(value, fallback="—"):
+    return value if isinstance(value, str) and value else fallback
+
+
+def display_research_error(error, lang="en"):
+    if lang == "zh":
+        message = "请求失败，请检查网络和 API 地址后重试。" if error.status_code == 0 else f"资讯读取失败（HTTP {error.status_code}），请检查文章是否可用或稍后重试。"
+        err_console.print(Text(message, style="red"))
+    else:
+        err_console.print(Text(f"Error: {error.detail}", style="red"))
+
+
+def display_research_insights(result: dict, lang="en"):
+    """Display published research insight metadata."""
+    articles = result.get("articles", [])
+    if not articles:
+        console.print(Text("暂无符合条件的已发布资讯。" if lang == "zh" else "No published insights found.", style="dim"))
+        return
+
+    heading = f"AlphaGBM 研究资讯（本页 {len(articles)} 篇）" if lang == "zh" else f"AlphaGBM Research Insights ({len(articles)} shown)"
+    console.print(Text(f"\n{heading}\n", style="bold"))
+    for article in articles:
+        market = _research_text(article.get("market")).upper()
+        published_at = _research_text(article.get("published_at"))
+        console.print(Text(f"{_research_text(article.get('title'))}  {market}  {published_at}", style="bold"))
+        console.print(Text(f"  {_research_text(article.get('description'), '')}"))
+        console.print(Text(f"  slug: {_research_text(article.get('slug'))}", style="dim"))
+        console.print(Text(f"  {_research_text(article.get('url'))}\n", style="dim"))
+    console.print(Text(f"页码：{result.get('page', 1)} / {result.get('total_pages', '—')}" if lang == "zh" else f"Page: {result.get('page', 1)} / {result.get('total_pages', '—')}"))
+
+
+def display_research_insight(result: dict, lang="en"):
+    """Display one published research insight."""
+    labels = ("市场", "发布时间", "文章链接", "上游来源", "实际语言") if lang == "zh" else ("Market", "Published", "Article", "Original source", "Content language")
+    console.print(Text(f"\n{_research_text(result.get('title'))}", style="bold"))
+    console.print(Text(f"{labels[0]}: {_research_text(result.get('market')).upper()}  {labels[1]}: {_research_text(result.get('published_at'))}"))
+    console.print(Text(f"{labels[4]}: {_research_text(result.get('lang'))}"))
+    console.print(Text(f"{labels[2]}: {_research_text(result.get('url'))}"))
+    tags = result.get("tags")
+    if isinstance(tags, list):
+        tag_text = ", ".join(tag for tag in tags if isinstance(tag, str))
+        console.print(Text(f"{'标签' if lang == 'zh' else 'Tags'}: {tag_text}"))
+    sources = result.get("sources")
+    if isinstance(sources, list):
+        for source in sources:
+            if isinstance(source, dict):
+                console.print(Text(f"{labels[3]}: {_research_text(source.get('name'))} — {_research_text(source.get('url'))}"))
+    console.print(Text(f"\n{_research_text(result.get('description'), '')}"))
+    console.print(Text(f"\n{_research_text(result.get('content'), '')}"))
+
+
 # ── Utility ────────────────────────────────────────────────────────────────
 
 def display_error(msg: str):

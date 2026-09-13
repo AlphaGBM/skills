@@ -65,7 +65,7 @@ Mock data in `mock-data/vix-status/` — sample responses across the 5 tiers.
 GET /api/options/vix-status
 ```
 
-No parameters. Returns:
+No parameters. Requires `Authorization: Bearer $ALPHAGBM_API_KEY`. Returns:
 
 ```json
 {
@@ -82,7 +82,7 @@ No parameters. Returns:
 }
 ```
 
-Pricing: free (no quota deduction). 5-minute server-side cache.
+Pricing: no analysis-credit deduction; authentication is still required. 5-minute server-side cache.
 
 ## Related Skills
 

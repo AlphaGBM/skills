@@ -2,13 +2,15 @@
 
 # AlphaGBM Skills
 
-**See what options are pricing in — with real data, not guesswork.**
+**Bring AlphaGBM into your own AI workspace.**
 
-*29 AI skills for options & research intelligence · Built on real market data · Trusted by 10,000+ traders*
+*31 open skills for real-time market data, opportunity scoring, research and verification · Built for AI agents*
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-29-green.svg)](#skills-overview) [![Users](https://img.shields.io/badge/users-10K%2B-orange.svg)](https://alphagbm.com)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-31-green.svg)](#skills-overview) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills?style=flat)](https://github.com/AlphaGBM/skills)
 
 [Website](https://alphagbm.com) · [Documentation](#skills-overview) · [Quick Start](#quick-start) · [Contributing](CONTRIBUTING.md)
+
+See the [Skills v2 audit](docs/SKILLS_V2_AUDIT.md) for the current capability map and release gates.
 
 ---
 
@@ -21,27 +23,31 @@
 git clone https://github.com/AlphaGBM/skills.git .claude/skills/alphagbm
 ```
 
-Then ask your AI: *"Analyze AAPL options using AlphaGBM"* — works instantly with built-in data, no API key needed.
+Then ask your AI: *"Show an AlphaGBM options demo using bundled sample data."*
+Demo output is not live data. Use the API connection below for current results.
 
 </div>
 
 ## What is AlphaGBM?
 
-AlphaGBM is a **real-data options & research intelligence layer** for traders and AI agents. Every number comes from real market data -- IV, Greeks, VRP, skew, flow, plus a tracked research workspace -- not LLM hallucination.
+AlphaGBM is a **real-data market intelligence layer** for traders and AI agents. It connects live market data, quantitative scoring, research workflows and ongoing verification to the tools people already use.
 
-These 26 skills bring AlphaGBM's capabilities into your AI workflow: Claude Code, Cursor, Windsurf, or any agent that supports skills.
+These 31 skills bring AlphaGBM's capabilities into Claude Code, Cursor, Windsurf, Codex, WorkBuddy or any agent that supports skills.
 
 ### Why AlphaGBM?
 
-| | LLM Roleplay Tools | Generic Finance APIs | **AlphaGBM** |
-|--|-------------------|---------------------|-------------|
-| Data Source | LLM-generated | Delayed/basic | **Real-time options data** |
-| Verifiable | "85% confidence" | Partial | **Every number has a source** |
-| Options Depth | None | Basic chain | **IV/HV/VRP/Greeks/Skew/Surface** |
-| Scoring | Subjective | None | **Quantitative scoring (0-100 options, 1-10 stocks)** |
-| Analysis Model | None | None | **G = B + M (Gain = Basics + Momentum)** |
-| Battle-tested | No | Varies | **10K users, 3mo live trading** |
-| Coverage | US only | Varies | **US + HK + CN + Commodities** |
+| Capability | What the Skills provide |
+|------------|-------------------------|
+| Data access | Call AlphaGBM APIs from your AI workspace; distinguish live responses from bundled demos |
+| Options intelligence | Scoring, volatility, Greeks and strategy workflows with endpoint-specific contracts |
+| Stock research | Fundamental, sentiment and risk analysis; risk scores are not return probabilities |
+| Published research | Read public abstracts and preserve source links, publication times and evidence when provided; full research access may be tier-gated |
+| Shared account | Authenticated calls use the account behind your API key, not a separate Skills allowance |
+| Investor frameworks | Optional research lenses, distinct from validated scoring models |
+
+Market coverage, data freshness and API-key access vary by endpoint. Private
+Research Brain and newer multi-asset workflows remain under contract review;
+their presence in the product is not a blanket API-access guarantee.
 
 ## Quick Start
 
@@ -81,7 +87,9 @@ See [cli/README.md](cli/README.md) for full CLI documentation.
 
 ### Try It (No API Key Needed)
 
-All skills include built-in demo data for AAPL, NVDA, SPY, TSLA, and META. Just ask your AI:
+Selected market tools include bundled samples for AAPL, NVDA, SPY, TSLA and META.
+Explicitly request demo mode to use them; never present a stored sample as a
+current quote. Research Insights uses published articles, not bundled samples.
 
 > "Analyze AAPL stock using AlphaGBM"
 > "Score NVDA options"
@@ -108,15 +116,16 @@ Returns API status, available data fields, data source health, and market covera
 
 ### Quota
 
-| Plan | Stock Analysis | Options Analysis | Quick Quote / Snapshot |
-|------|---------------|-----------------|----------------------|
-| Free | 2/day | 1/day | Unlimited |
-| Plus | 1,000/month | 1,000/month | Unlimited |
-| Pro | 5,000/month | 5,000/month | Unlimited |
+Authenticated calls use the account associated with your API key; installing
+a Skill does not create a separate allowance. Access, quota and cache behavior
+depend on the endpoint and deployed environment. Consult your account for
+current limits rather than assuming a cached call is free. The current public
+Research Insights reader exposes published summaries; the product may gate full
+reports, deeper interpretation and ongoing verification behind account access.
 
 ## Skills Overview
 
-### Core Analysis (7 skills)
+### Opportunity & Research (8 skills)
 
 | Skill | What It Does | Example Query |
 |-------|-------------|---------------|
@@ -127,6 +136,7 @@ Returns API status, available data fields, data source health, and market covera
 | [**Vol Smile**](skills/alphagbm-vol-smile/) | Skew analysis for a single expiration | "NVDA put skew" |
 | [**Greeks**](skills/alphagbm-greeks/) | Greeks calculator + implied volatility solver | "Greeks for AAPL 220C" |
 | [**P&L Simulator**](skills/alphagbm-pnl-simulator/) | What-if analysis for any position | "Simulate my iron condor" |
+| [**Chokepoint Analysis**](skills/alphagbm-chokepoint/) | Map supply-chain bottlenecks and test concentration, irreplaceability and demand tension | "Find AI supply-chain chokepoints" |
 
 ### Data Intelligence (6 skills)
 
@@ -166,10 +176,10 @@ Mechanical translations of specific investors' philosophies into one-call tools.
 |-------|-------------|---------------|
 | [**Duan-Yongping Analysis**](skills/alphagbm-duan-analysis/) | Three-panel seller playbook (Sell Put at willing-buy price / Covered Call yield / VIX-tier panic-buy context) | "Duan-style analysis on AAPL" |
 | [**Buffett Analysis**](skills/alphagbm-buffett-analysis/) ✨ | 4-lens scorecard (business / moat / management / valuation) → weighted HOLDABLE / WATCHABLE / AVOID verdict for any ticker | "Buffett analysis on KO" |
-| [**Marks Cycle**](skills/alphagbm-marks-cycle/) ✨ | Howard Marks-style cycle position 0-100 blending VIX + IV Rank + P/C + valuation; maps to offense/defense posture. Free, no auth | "Where are we in the cycle?" |
+| [**Marks Cycle**](skills/alphagbm-marks-cycle/) ✨ | Howard Marks-style cycle position 0-100 blending VIX + IV Rank + P/C + valuation; maps to offense/defense posture. Authenticated signal, no analysis-credit deduction | "Where are we in the cycle?" |
 | [**Tepper Signal**](skills/alphagbm-tepper-signal/) ✨ | Quantified Tepper 2009/2020 panic-buy detector: VIX ≥ 35 + FearScore ≥ 80 + quality filter → armed/watch/near/cold | "Is this a Tepper buy signal?" |
 
-### Knowledge Base — Research Brain (5 skills)
+### Research & Knowledge (6 skills)
 
 Build a personal, monitored research workspace. Profiles auto-refresh, theses get checked against triggers, the system audits itself weekly.
 
@@ -180,6 +190,7 @@ Build a personal, monitored research workspace. Profiles auto-refresh, theses ge
 | [**Macro View**](skills/alphagbm-macro-view/) | Track VIX / US10Y / DXY / gold with portfolio-aware impact analysis | "Track VIX and US10Y" |
 | [**Theme Research**](skills/alphagbm-theme-research/) | Group tickers into themes (AI infra, HK dividend) + news keyword watching | "Create an AI infra theme" |
 | [**Health Check**](skills/alphagbm-health-check/) | Weekly audit: stale profiles, thesis drift, orphan pages → 0-100 score | "Audit my research brain" |
+| [**Research Insights**](skills/alphagbm-research-insights/) | Retrieve published AlphaGBM research with market, tag, date and source metadata | "Show the latest semiconductor research" |
 
 ### See Also
 
@@ -234,7 +245,8 @@ Polymarket --> Market Sentiment --> Options Strategy
 
 ## Real Data, Not Guesswork
 
-Every number in AlphaGBM is **verifiable**:
+Illustrative metrics below are not current quotes. Preserve actual source,
+timestamp and missing-data fields when interpreting API responses:
 
 | Metric | Value | How It's Computed |
 |--------|-------|-------------------|
@@ -242,7 +254,7 @@ Every number in AlphaGBM is **verifiable**:
 | **IV Rank** | 58 | Current IV vs. 252 trading days of history |
 | **VRP** | +4.0% | `Implied Vol - Historical Vol` — measures option overpricing |
 | **Option Score** | 80/100 | Weighted: premium yield + support/resistance + safety margin + trend + PoP + liquidity + time decay |
-| **Stock Score** | 7.0/10 | `G = B + M` — Basics (PE, PEG, growth, margins) + Momentum (VIX, technicals, flow) |
+| **Stock Risk** | API value | `risk.score` describes risk, not an opportunity score or probability of profit |
 | **Risk** | 4/10 | Additive: valuation +2, growth +2, liquidity +2, market +1.5, technical +1 |
 | **EV** | +5.2% | `50% × 1w + 30% × 1m + 20% × 3m` expected value |
 
@@ -283,7 +295,7 @@ All from real API calls. All verifiable.
 
 ## Roadmap
 
-- [x] 29 Skills with mock data
+- [x] 31 Skill definitions; selected market tools include demo data
 - [x] Claude Code & Cursor support
 - [x] CLI tool (`pip install -e ./cli`)
 - [ ] Real-time WebSocket feeds
@@ -314,7 +326,7 @@ MIT -- see [LICENSE](LICENSE).
 
 <div align="center">
 
-**Built by the [AlphaGBM](https://alphagbm.com) team. Trusted by 10,000+ traders worldwide.**
+**Built by the [AlphaGBM](https://alphagbm.com) team.**
 
 *Real data. Real signals. Real edge.*
 

@@ -40,6 +40,25 @@ def get(path: str, params: dict | None = None, timeout: float = 15) -> dict:
     return resp.json()
 
 
+def get_public(path: str, params: dict | None = None, timeout: float = 15) -> dict:
+    """GET a public endpoint without requiring an API key."""
+    try:
+        resp = httpx.get(_url(path), params=params, timeout=timeout, follow_redirects=False)
+    except httpx.TimeoutException:
+        raise AlphaGBMError(0, "Public API request timed out.") from None
+    except httpx.RequestError:
+        raise AlphaGBMError(0, "Could not connect to the public API.") from None
+    if not 200 <= resp.status_code < 300:
+        raise AlphaGBMError(resp.status_code, f"Public API returned HTTP {resp.status_code}.")
+    try:
+        result = resp.json()
+    except ValueError:
+        raise AlphaGBMError(resp.status_code, "Public API did not return valid JSON.") from None
+    if not isinstance(result, dict) or result.get("success") is False or result.get("error"):
+        raise AlphaGBMError(resp.status_code, "Public API returned an invalid response.")
+    return result
+
+
 def post(path: str, json_body: dict, timeout: float = 60) -> dict:
     """POST request."""
     resp = httpx.post(_url(path), headers=_headers(), json=json_body, timeout=timeout)
