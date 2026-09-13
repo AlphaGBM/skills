@@ -1,9 +1,9 @@
 ---
 name: alphagbm-stock-analysis
 description: >
-  AI-powered stock analysis using AlphaGBM's Five Pillars framework (Fundamental,
-  Technical, Sentiment, Flow, Valuation) with real market data. Returns a 1-10
-  composite score with actionable signals. Use when: analyzing any stock ticker,
+  AI-powered stock analysis using AlphaGBM's fundamentals, valuation, market
+  sentiment and risk analysis with real market data. Returns an evidence-backed
+  analysis and risk score. Use when: analyzing any stock ticker,
   evaluating buy/sell decisions, comparing stock fundamentals, assessing risk levels.
   Triggers on: "analyze AAPL", "what do you think about NVDA", "should I buy TSLA",
   "stock analysis for META", "is SPY overvalued", "risk assessment for GOOGL".
@@ -14,6 +14,10 @@ globs:
 # AlphaGBM Stock Analysis
 
 Analyze stocks via the AlphaGBM API — a G = B + M (Gain = Basics + Momentum) model combining fundamental analysis, market sentiment, EV expectation, ATR stop-loss, sector rotation, and AI reports.
+
+The current API exposes a **0-10 risk score**, not a standalone 1-10 stock
+opportunity score. Do not present `risk.score` as a probability of return or as
+an automatic buy recommendation.
 
 ## When to use
 
@@ -122,7 +126,9 @@ Returns condensed analysis. First-time analysis per ticker is free.
 | Market | VIX > 30 | +1.5 |
 | Technical | Price < MA200 | +1.0 |
 
-Risk 0-2 → Max position 20% · Risk 8-10 → Don't buy.
+Risk `>= 6` → very high risk / generally avoid · `4-<6` → high risk ·
+`2-<4` → medium risk · `< 2` → lower risk. Position sizing remains subject to
+the returned analysis and the user's own risk policy.
 
 ### EV Expectation Model
 
