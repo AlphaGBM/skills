@@ -28,6 +28,20 @@ These are product-level gaps, not claims that new API endpoints already exist:
 4. **Research and Verification** — structured summaries of external research with source, date, license context, evidence and follow-up checkpoints.
 5. **CLI parity** — the CLI currently exposes stock and options commands, but not the newer multi-asset and research workflows.
 
+### Source-Level Findings
+
+- The current backend exposes `GET /api/options/commodity/contracts/<product>`
+  for commodity option contract discovery. That is not yet a commodity price,
+  curve, or compute-market monitoring contract, so a public commodity Skill
+  should not imply those capabilities are already available through Skills.
+- No ETF-specific backend route or ETF Skill is present in the reviewed source
+  tree. ETF support should therefore be added only after the score inputs and
+  response contract are defined, rather than by aliasing stock analysis.
+- Public research articles are available through the insights API, but there is
+  no public Skill that defines how an agent should retrieve, summarize, cite and
+  follow up on those articles. This is a documentation and workflow gap, not a
+  reason to expose the editorial write endpoints.
+
 ## API Contract Audit Boundary
 
 The following routes are present in the current product backend source and already have corresponding Skill documentation or CLI usage:
