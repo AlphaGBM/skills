@@ -40,6 +40,14 @@ def get(path: str, params: dict | None = None, timeout: float = 15) -> dict:
     return resp.json()
 
 
+def get_public(path: str, params: dict | None = None, timeout: float = 15) -> dict:
+    """GET a public endpoint without requiring an API key."""
+    resp = httpx.get(_url(path), params=params, timeout=timeout)
+    if resp.status_code >= 400:
+        raise AlphaGBMError(resp.status_code, resp.text[:500])
+    return resp.json()
+
+
 def post(path: str, json_body: dict, timeout: float = 60) -> dict:
     """POST request."""
     resp = httpx.post(_url(path), headers=_headers(), json=json_body, timeout=timeout)
