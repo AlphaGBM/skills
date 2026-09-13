@@ -183,10 +183,11 @@ Content-Type: application/json
 
 Max 3 symbols x 2 expiries per request.
 
-### IV Snapshot (instant, no quota cost)
+### IV Snapshot (instant, no analysis-credit cost)
 
 ```
 GET /api/options/snapshot/<SYMBOL>
+Authorization: Bearer $ALPHAGBM_API_KEY
 ```
 
 Returns: ATM IV, IV Rank, HV 30d, VRP, VRP level.
@@ -200,7 +201,7 @@ GET /api/options/recommendations?count=5
 ## Typical Workflow
 
 1. **Score directly**: `POST /api/v1/options/score` with ticker + strategy
-2. **Quick IV check**: `GET /api/options/snapshot/AAPL` (free, no quota)
+2. **Quick IV check**: `GET /api/options/snapshot/AAPL` (authenticated, no analysis-credit deduction)
 3. **Inspect expirations**: `GET /api/options/expirations/AAPL` when the user specifies a date
 4. **Drill into a specific contract**: `POST /api/options/enhanced-sync` with option_identifier
 5. **Compare across tickers**: `POST /api/options/chain/batch` for multi-symbol analysis
@@ -210,10 +211,10 @@ enhanced analysis. Do not substitute them for the canonical score endpoint.
 
 ## Quota
 
-- **Free**: 1 options analysis/day
+- **Free account**: uses the current account-level daily free allowance; do not assume a per-Skill allowance
 - **Plus**: 1,000/month
 - **Pro**: 5,000/month
-- Snapshot and recommendations endpoints cost nothing.
+- Snapshot does not consume analysis credits but still requires authentication. Recommendations are a public summary endpoint.
 
 ## Output Formatting Tips
 
@@ -233,7 +234,7 @@ enhanced analysis. Do not substitute them for the canonical score endpoint.
 
 ### Mock Data
 
-Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. Uses realistic option chain snapshots from `mock-data/`.
+Offline demo tickers are available without an API key: AAPL, NVDA, SPY, TSLA, META. They use bundled sample data from `mock-data/`; they are not live API access.
 
 ### Related Skills
 - **alphagbm-stock-analysis** -- Analyze the underlying stock first

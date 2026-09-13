@@ -27,7 +27,7 @@ an automatic buy recommendation.
 
 ## Prerequisites
 
-- **API Key**: stored in env `ALPHAGBM_API_KEY` (format `agbm_xxxx…`).
+- **Account authentication**: store an API key in env `ALPHAGBM_API_KEY` (format `agbm_xxxx…`).
 - **Base URL**: default `https://alphagbm.zeabur.app`. Override with env `ALPHAGBM_BASE_URL`.
 - If the user has neither, tell them to register at <https://alphagbm.com> and create a key at `/api-keys`.
 
@@ -166,9 +166,10 @@ Multiplier adjusts for Beta and VIX. Hard floor: -15%.
 
 ## Quota
 
-- Free users: 2 stock analyses/day
-- Plus: 1000/month · Pro: 5000/month
-- Quick quote costs nothing
+- Live analysis requires authentication and is subject to the account's current
+  free allowance or subscription credits. Do not hardcode plan limits here.
+- Quick quote does not consume analysis credits, but live access still follows the
+  endpoint's authentication policy.
 
 ## Output Formatting Tips
 
@@ -182,7 +183,7 @@ When presenting results to the user, highlight:
 
 ## Mock Data
 
-When no API key is configured, this skill uses built-in market data snapshots from `mock-data/`. Supported demo tickers: AAPL, NVDA, SPY, TSLA, META.
+When no API key is configured, this skill uses built-in market data snapshots from `mock-data/`. Supported offline demo tickers: AAPL, NVDA, SPY, TSLA, META. This is not live API access.
 
 ## Related Skills
 

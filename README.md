@@ -41,7 +41,7 @@ These 31 skills bring AlphaGBM's capabilities into Claude Code, Cursor, Windsurf
 | Data access | Call AlphaGBM APIs from your AI workspace; distinguish live responses from bundled demos |
 | Options intelligence | Scoring, volatility, Greeks and strategy workflows with endpoint-specific contracts |
 | Stock research | Fundamental, sentiment and risk analysis; risk scores are not return probabilities |
-| Published research | Read articles and preserve source links, publication times and evidence when provided |
+| Published research | Read public abstracts and preserve source links, publication times and evidence when provided; full research access may be tier-gated |
 | Shared account | Authenticated calls use the account behind your API key, not a separate Skills allowance |
 | Investor frameworks | Optional research lenses, distinct from validated scoring models |
 
@@ -119,8 +119,9 @@ Returns API status, available data fields, data source health, and market covera
 Authenticated calls use the account associated with your API key; installing
 a Skill does not create a separate allowance. Access, quota and cache behavior
 depend on the endpoint and deployed environment. Consult your account for
-current limits rather than assuming a cached call is free. Public Research
-Insights reads do not require a key or start a paid analysis.
+current limits rather than assuming a cached call is free. The current public
+Research Insights reader exposes published summaries; the product may gate full
+reports, deeper interpretation and ongoing verification behind account access.
 
 ## Skills Overview
 
@@ -175,7 +176,7 @@ Mechanical translations of specific investors' philosophies into one-call tools.
 |-------|-------------|---------------|
 | [**Duan-Yongping Analysis**](skills/alphagbm-duan-analysis/) | Three-panel seller playbook (Sell Put at willing-buy price / Covered Call yield / VIX-tier panic-buy context) | "Duan-style analysis on AAPL" |
 | [**Buffett Analysis**](skills/alphagbm-buffett-analysis/) ✨ | 4-lens scorecard (business / moat / management / valuation) → weighted HOLDABLE / WATCHABLE / AVOID verdict for any ticker | "Buffett analysis on KO" |
-| [**Marks Cycle**](skills/alphagbm-marks-cycle/) ✨ | Howard Marks-style cycle position 0-100 blending VIX + IV Rank + P/C + valuation; maps to offense/defense posture. Free, no auth | "Where are we in the cycle?" |
+| [**Marks Cycle**](skills/alphagbm-marks-cycle/) ✨ | Howard Marks-style cycle position 0-100 blending VIX + IV Rank + P/C + valuation; maps to offense/defense posture. Authenticated signal, no analysis-credit deduction | "Where are we in the cycle?" |
 | [**Tepper Signal**](skills/alphagbm-tepper-signal/) ✨ | Quantified Tepper 2009/2020 panic-buy detector: VIX ≥ 35 + FearScore ≥ 80 + quality filter → armed/watch/near/cold | "Is this a Tepper buy signal?" |
 
 ### Research & Knowledge (6 skills)
