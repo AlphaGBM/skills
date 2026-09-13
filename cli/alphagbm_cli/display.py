@@ -216,6 +216,44 @@ def display_options_recommend(result: dict):
         console.print(f"\n  Market: VIX={summary.get('vix', '?')}  Outlook={summary.get('outlook', '?')}")
 
 
+def display_research_insights(result: dict):
+    """Display published research insight metadata."""
+    articles = result.get("articles", [])
+    if not articles:
+        console.print("[dim]No published insights found.[/dim]")
+        return
+
+    console.print(f"\n[bold]AlphaGBM Research Insights[/bold]  ({len(articles)} shown)\n")
+    for article in articles:
+        market = article.get("market", "?").upper()
+        published_at = article.get("published_at", "unknown date")
+        console.print(
+            f"[bold]{article.get('title', 'Untitled')}[/bold]  "
+            f"[cyan]{market}[/cyan]  [dim]{published_at}[/dim]"
+        )
+        description = article.get("description")
+        if description:
+            console.print(f"  {description}")
+        console.print(f"  [dim]{article.get('url', '')}[/dim]\n")
+
+
+def display_research_insight(result: dict):
+    """Display one published research insight."""
+    console.print(f"\n[bold]{result.get('title', 'Untitled')}[/bold]")
+    console.print(
+        f"Market: {result.get('market', '?').upper()}  "
+        f"Published: {result.get('published_at', 'unknown date')}"
+    )
+    if result.get("tags"):
+        console.print(f"Tags: {', '.join(result['tags'])}")
+    if result.get("url"):
+        console.print(f"Source: {result['url']}")
+    if result.get("description"):
+        console.print(f"\n{result['description']}")
+    if result.get("content"):
+        console.print(f"\n{result['content']}")
+
+
 # ── Utility ────────────────────────────────────────────────────────────────
 
 def display_error(msg: str):

@@ -25,7 +25,11 @@ alphagbm options score TSLA --strategy all --expiry 2026-04-17
 alphagbm options snapshot AAPL
 alphagbm options recommend
 
-# 4. JSON output (pipe to jq, etc.)
+# 4. Published research insights (no API key required)
+alphagbm research insights --market us --lang en
+alphagbm research read semiconductor-supply-chain --lang zh
+
+# 5. JSON output (pipe to jq, etc.)
 alphagbm stock analyze AAPL --json | jq '.risk'
 ```
 
@@ -38,6 +42,8 @@ alphagbm stock analyze AAPL --json | jq '.risk'
 | `alphagbm options score TICKER` | Score options, return top picks |
 | `alphagbm options snapshot TICKER` | IV/VRP snapshot (free) |
 | `alphagbm options recommend` | Daily recommendations |
+| `alphagbm research insights` | List published research and market insights |
+| `alphagbm research read SLUG` | Read one published insight |
 | `alphagbm config set-key KEY` | Save API key |
 | `alphagbm config set-url URL` | Set API base URL |
 | `alphagbm config show` | Show current config |

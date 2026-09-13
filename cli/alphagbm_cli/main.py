@@ -6,6 +6,8 @@ Usage:
     alphagbm stock quote TICKER [--json]
     alphagbm options score TICKER [--strategy sell-put] [--expiry 2026-04-17] [--json]
     alphagbm options recommend [--count 5] [--json]
+    alphagbm research insights [--market us] [--tag semiconductor]
+    alphagbm research read SLUG [--lang en]
     alphagbm config set-key YOUR_API_KEY
     alphagbm config set-url http://localhost:5000
     alphagbm config show
@@ -93,6 +95,62 @@ def stock_quote(ticker: str, as_json: bool):
 def options():
     """Options analysis commands."""
     pass
+
+
+# ── Research commands ─────────────────────────────────────────────────────
+
+@cli.group()
+def research():
+    """Published research and insight commands."""
+    pass
+
+
+@research.command("insights")
+@click.option("--market", type=click.Choice(["us", "hk", "a", "commodity"]), default=None)
+@click.option("--tag", default=None, help="Filter by article tag")
+@click.option("--lang", type=click.Choice(["zh", "en"]), default="en")
+@click.option("--page", default=1, type=click.IntRange(min=1))
+@click.option("--limit", default=10, type=click.IntRange(min=1, max=50))
+@click.option("--json", "as_json", is_flag=True, help="Output raw JSON")
+def research_insights(market: str | None, tag: str | None, lang: str, page: int, limit: int, as_json: bool):
+    """List published AlphaGBM research insights."""
+    from .client import get_public, AlphaGBMError
+    from .display import display_research_insights, display_error
+
+    params = {"lang": lang, "page": page, "limit": limit}
+    if market:
+        params["market"] = market
+    if tag:
+        params["tag"] = tag
+    try:
+        result = get_public("/api/insights", params=params)
+    except AlphaGBMError as e:
+        display_error(e.detail)
+        sys.exit(1)
+    if as_json:
+        click.echo(json_mod.dumps(result, indent=2, ensure_ascii=False))
+    else:
+        display_research_insights(result)
+
+
+@research.command("read")
+@click.argument("slug")
+@click.option("--lang", type=click.Choice(["zh", "en"]), default="en")
+@click.option("--json", "as_json", is_flag=True, help="Output raw JSON")
+def research_read(slug: str, lang: str, as_json: bool):
+    """Read one published research insight by SLUG."""
+    from .client import get_public, AlphaGBMError
+    from .display import display_research_insight, display_error
+
+    try:
+        result = get_public(f"/api/insights/{slug}", params={"lang": lang})
+    except AlphaGBMError as e:
+        display_error(e.detail)
+        sys.exit(1)
+    if as_json:
+        click.echo(json_mod.dumps(result, indent=2, ensure_ascii=False))
+    else:
+        display_research_insight(result)
 
 
 @options.command("score")
