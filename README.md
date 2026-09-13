@@ -4,9 +4,9 @@
 
 **Bring AlphaGBM into your own AI workspace.**
 
-*30 open skills for real-time market data, opportunity scoring, research and verification · Built for AI agents*
+*31 open skills for real-time market data, opportunity scoring, research and verification · Built for AI agents*
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-30-green.svg)](#skills-overview) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills?style=flat)](https://github.com/AlphaGBM/skills)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-31-green.svg)](#skills-overview) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills?style=flat)](https://github.com/AlphaGBM/skills)
 
 [Website](https://alphagbm.com) · [Documentation](#skills-overview) · [Quick Start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
@@ -31,7 +31,7 @@ Then ask your AI: *"Analyze AAPL options using AlphaGBM"* — works instantly wi
 
 AlphaGBM is a **real-data market intelligence layer** for traders and AI agents. It connects live market data, quantitative scoring, research workflows and ongoing verification to the tools people already use.
 
-These 30 skills bring AlphaGBM's capabilities into Claude Code, Cursor, Windsurf, Codex, WorkBuddy or any agent that supports skills.
+These 31 skills bring AlphaGBM's capabilities into Claude Code, Cursor, Windsurf, Codex, WorkBuddy or any agent that supports skills.
 
 ### Why AlphaGBM?
 
@@ -172,7 +172,7 @@ Mechanical translations of specific investors' philosophies into one-call tools.
 | [**Marks Cycle**](skills/alphagbm-marks-cycle/) ✨ | Howard Marks-style cycle position 0-100 blending VIX + IV Rank + P/C + valuation; maps to offense/defense posture. Free, no auth | "Where are we in the cycle?" |
 | [**Tepper Signal**](skills/alphagbm-tepper-signal/) ✨ | Quantified Tepper 2009/2020 panic-buy detector: VIX ≥ 35 + FearScore ≥ 80 + quality filter → armed/watch/near/cold | "Is this a Tepper buy signal?" |
 
-### Knowledge Base — Research Brain (5 skills)
+### Research & Knowledge (6 skills)
 
 Build a personal, monitored research workspace. Profiles auto-refresh, theses get checked against triggers, the system audits itself weekly.
 
@@ -183,6 +183,7 @@ Build a personal, monitored research workspace. Profiles auto-refresh, theses ge
 | [**Macro View**](skills/alphagbm-macro-view/) | Track VIX / US10Y / DXY / gold with portfolio-aware impact analysis | "Track VIX and US10Y" |
 | [**Theme Research**](skills/alphagbm-theme-research/) | Group tickers into themes (AI infra, HK dividend) + news keyword watching | "Create an AI infra theme" |
 | [**Health Check**](skills/alphagbm-health-check/) | Weekly audit: stale profiles, thesis drift, orphan pages → 0-100 score | "Audit my research brain" |
+| [**Research Insights**](skills/alphagbm-research-insights/) | Retrieve published AlphaGBM research with market, tag, date and source metadata | "Show the latest semiconductor research" |
 
 ### See Also
 
@@ -286,7 +287,7 @@ All from real API calls. All verifiable.
 
 ## Roadmap
 
-- [x] 30 Skills with mock data
+- [x] 31 Skills with mock data
 - [x] Claude Code & Cursor support
 - [x] CLI tool (`pip install -e ./cli`)
 - [ ] Real-time WebSocket feeds
