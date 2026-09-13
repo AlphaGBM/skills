@@ -10,7 +10,7 @@
 
 [Website](https://alphagbm.com) · [Documentation](#skills-overview) · [Quick Start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
-See the [Skills v2 audit](docs/SKILLS_V2_AUDIT.md) for the current capability map and release gates.
+See the [Skills v2 audit](docs/SKILLS_V2_AUDIT.md) for the current capability map and release gates. See the [external access matrix](docs/EXTERNAL_ACCESS_MATRIX.md) for authentication, quota and research-access boundaries.
 
 ---
 

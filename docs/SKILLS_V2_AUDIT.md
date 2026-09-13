@@ -56,6 +56,8 @@ Research Insights Skill reads published articles and has no bundled demo data.
 
 ## API Contract Audit Boundary
 
+The maintained external access matrix is in [`EXTERNAL_ACCESS_MATRIX.md`](EXTERNAL_ACCESS_MATRIX.md). It is the concise reference for public, authenticated no-credit, account-free-allowance and subscription/credit-gated calls.
+
 The following routes are present in the current product backend source and already have corresponding Skill documentation or CLI usage:
 
 - Stock: quick quote, search, sync/async analysis, history, summary and take-profit analysis.
