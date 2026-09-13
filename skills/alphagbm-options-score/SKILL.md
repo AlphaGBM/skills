@@ -88,6 +88,26 @@ Scores every option contract in a chain using a **multi-factor model** across 4 
 
 ## API Endpoints
 
+### Canonical Options Score
+
+Use this endpoint for the normal "score options" request. It selects an expiry
+when one is not supplied, applies the requested strategy, and returns ranked
+recommendations with the trend context and score breakdown.
+
+```
+POST /api/v1/options/score
+Authorization: Bearer $ALPHAGBM_API_KEY
+Content-Type: application/json
+
+{"ticker": "AAPL", "strategy": "sell_put", "expiry_date": "2026-04-17", "top_n": 5}
+```
+
+`strategy` accepts `sell_put`, `sell_call`, `buy_call`, `buy_put`, or `all`.
+`expiry_date` and `top_n` are optional; `top_n` is capped at 10. A successful
+response contains `ticker`, `strategy`, `current_price`, `expiry_date`,
+`trend`, and either `recommendations` or a `strategies` object when `strategy`
+is `all`.
+
 ### Get Option Expirations
 
 ```
@@ -179,11 +199,14 @@ GET /api/options/recommendations?count=5
 
 ## Typical Workflow
 
-1. **Get expirations**: `GET /api/options/expirations/AAPL`
+1. **Score directly**: `POST /api/v1/options/score` with ticker + strategy
 2. **Quick IV check**: `GET /api/options/snapshot/AAPL` (free, no quota)
-3. **Run chain analysis**: `POST /api/options/chain-sync` with symbol + expiry
+3. **Inspect expirations**: `GET /api/options/expirations/AAPL` when the user specifies a date
 4. **Drill into a specific contract**: `POST /api/options/enhanced-sync` with option_identifier
 5. **Compare across tickers**: `POST /api/options/chain/batch` for multi-symbol analysis
+
+Use the lower-level chain endpoints only when the user asks for raw chain or
+enhanced analysis. Do not substitute them for the canonical score endpoint.
 
 ## Quota
 
