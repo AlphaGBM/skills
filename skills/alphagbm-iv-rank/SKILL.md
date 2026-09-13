@@ -16,7 +16,8 @@ globs:
 
 ## Prerequisites
 
-- **API Key**: Set env `ALPHAGBM_API_KEY` (format `agbm_xxxx...`).
+- **Account authentication**: Set env `ALPHAGBM_API_KEY` (format `agbm_xxxx...`).
+  The live snapshot requires authentication even though it does not consume analysis credits.
 - **Base URL**: Default `https://alphagbm.zeabur.app`. Override with env `ALPHAGBM_BASE_URL`.
 
 ## What This Skill Does
@@ -52,7 +53,7 @@ Calculates **IV Rank** and **IV Percentile** for any ticker, placing current imp
 GET /api/options/snapshot/<SYMBOL>
 ```
 
-Returns: ATM IV, IV Rank, HV 30d, VRP, VRP level. This endpoint is free and does not count against your analysis quota.
+Returns: ATM IV, IV Rank, HV 30d, VRP, VRP level. This endpoint does not consume analysis credits, but it still requires authentication.
 
 ### Volatility Risk Premium (VRP)
 
@@ -117,7 +118,7 @@ VRP measures the gap between what the market *expects* (IV) and what actually *h
 
 ### Mock Data
 
-Demo tickers available without API key: AAPL, NVDA, SPY, TSLA, META. IV history uses realistic 252-day data from `mock-data/`.
+Offline demo tickers are available without an API key: AAPL, NVDA, SPY, TSLA, META. They use bundled sample data from `mock-data/`; they are not live API access.
 
 ### Related Skills
 - **alphagbm-vol-surface** -- Full 3D IV landscape across strikes and expirations

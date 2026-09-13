@@ -11,6 +11,12 @@ description: >
 
 # AlphaGBM Research Insights
 
+This skill reads AlphaGBM's published research layer, not the original third-party
+report archive. The current public reader is intended for published summaries and
+source metadata. Full reports, deeper interpretation, private research workspaces
+and ongoing verification may require an authenticated account and the applicable
+subscription or quota.
+
 Retrieve published AlphaGBM research and market insight articles. This Skill
 is a reading and interpretation workflow: it does not expose editorial draft,
 update or delete operations.
