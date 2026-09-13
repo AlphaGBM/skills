@@ -23,7 +23,8 @@ See the [Skills v2 audit](docs/SKILLS_V2_AUDIT.md) for the current capability ma
 git clone https://github.com/AlphaGBM/skills.git .claude/skills/alphagbm
 ```
 
-Then ask your AI: *"Analyze AAPL options using AlphaGBM"* — works instantly with built-in data, no API key needed.
+Then ask your AI: *"Show an AlphaGBM options demo using bundled sample data."*
+Demo output is not live data. Use the API connection below for current results.
 
 </div>
 
@@ -35,15 +36,18 @@ These 31 skills bring AlphaGBM's capabilities into Claude Code, Cursor, Windsurf
 
 ### Why AlphaGBM?
 
-| | LLM Roleplay Tools | Generic Finance APIs | **AlphaGBM** |
-|--|-------------------|---------------------|-------------|
-| Data Source | LLM-generated | Delayed/basic | **Real-time, source-backed data** |
-| Verifiable | "85% confidence" | Partial | **Every number has a source** |
-| Market Depth | None | Delayed/basic | **Stocks, ETFs, options, commodities and compute signals** |
-| Scoring | Subjective | None | **Quantitative opportunity scores and factor breakdowns** |
-| Research Loop | One-off answer | Limited | **Evidence, source traceability and follow-up verification** |
-| Analysis Model | None | None | **Gain = Basics + Momentum** |
-| Coverage | US only | Varies | **US + HK + CN + ETFs + commodities** |
+| Capability | What the Skills provide |
+|------------|-------------------------|
+| Data access | Call AlphaGBM APIs from your AI workspace; distinguish live responses from bundled demos |
+| Options intelligence | Scoring, volatility, Greeks and strategy workflows with endpoint-specific contracts |
+| Stock research | Fundamental, sentiment and risk analysis; risk scores are not return probabilities |
+| Published research | Read articles and preserve source links, publication times and evidence when provided |
+| Shared account | Authenticated calls use the account behind your API key, not a separate Skills allowance |
+| Investor frameworks | Optional research lenses, distinct from validated scoring models |
+
+Market coverage, data freshness and API-key access vary by endpoint. Private
+Research Brain and newer multi-asset workflows remain under contract review;
+their presence in the product is not a blanket API-access guarantee.
 
 ## Quick Start
 
@@ -83,7 +87,9 @@ See [cli/README.md](cli/README.md) for full CLI documentation.
 
 ### Try It (No API Key Needed)
 
-All skills include built-in demo data for AAPL, NVDA, SPY, TSLA, and META. Just ask your AI:
+Selected market tools include bundled samples for AAPL, NVDA, SPY, TSLA and META.
+Explicitly request demo mode to use them; never present a stored sample as a
+current quote. Research Insights uses published articles, not bundled samples.
 
 > "Analyze AAPL stock using AlphaGBM"
 > "Score NVDA options"
@@ -110,11 +116,11 @@ Returns API status, available data fields, data source health, and market covera
 
 ### Quota
 
-| Plan | Stock Analysis | Options Analysis | Quick Quote / Snapshot |
-|------|---------------|-----------------|----------------------|
-| Free | 2/day | 1/day | Unlimited |
-| Plus | 1,000/month | 1,000/month | Unlimited |
-| Pro | 5,000/month | 5,000/month | Unlimited |
+Authenticated calls use the account associated with your API key; installing
+a Skill does not create a separate allowance. Access, quota and cache behavior
+depend on the endpoint and deployed environment. Consult your account for
+current limits rather than assuming a cached call is free. Public Research
+Insights reads do not require a key or start a paid analysis.
 
 ## Skills Overview
 
@@ -238,7 +244,8 @@ Polymarket --> Market Sentiment --> Options Strategy
 
 ## Real Data, Not Guesswork
 
-Every number in AlphaGBM is **verifiable**:
+Illustrative metrics below are not current quotes. Preserve actual source,
+timestamp and missing-data fields when interpreting API responses:
 
 | Metric | Value | How It's Computed |
 |--------|-------|-------------------|
@@ -246,7 +253,7 @@ Every number in AlphaGBM is **verifiable**:
 | **IV Rank** | 58 | Current IV vs. 252 trading days of history |
 | **VRP** | +4.0% | `Implied Vol - Historical Vol` — measures option overpricing |
 | **Option Score** | 80/100 | Weighted: premium yield + support/resistance + safety margin + trend + PoP + liquidity + time decay |
-| **Stock Score** | 7.0/10 | `G = B + M` — Basics (PE, PEG, growth, margins) + Momentum (VIX, technicals, flow) |
+| **Stock Risk** | API value | `risk.score` describes risk, not an opportunity score or probability of profit |
 | **Risk** | 4/10 | Additive: valuation +2, growth +2, liquidity +2, market +1.5, technical +1 |
 | **EV** | +5.2% | `50% × 1w + 30% × 1m + 20% × 3m` expected value |
 
@@ -287,7 +294,7 @@ All from real API calls. All verifiable.
 
 ## Roadmap
 
-- [x] 31 Skills with mock data
+- [x] 31 Skill definitions; selected market tools include demo data
 - [x] Claude Code & Cursor support
 - [x] CLI tool (`pip install -e ./cli`)
 - [ ] Real-time WebSocket feeds
@@ -318,7 +325,7 @@ MIT -- see [LICENSE](LICENSE).
 
 <div align="center">
 
-**Built by the [AlphaGBM](https://alphagbm.com) team. Trusted by 10,000+ traders worldwide.**
+**Built by the [AlphaGBM](https://alphagbm.com) team.**
 
 *Real data. Real signals. Real edge.*
 
