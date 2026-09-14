@@ -4,7 +4,7 @@
 
 **Bring AlphaGBM into your own AI workspace.**
 
-*31 open skills for real-time market data, opportunity scoring, research and verification · Built for AI agents*
+*29 open skills for real-time market data, opportunity scoring, research and verification · Built for AI agents*
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-31-green.svg)](#skills-overview) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills?style=flat)](https://github.com/AlphaGBM/skills)
 
