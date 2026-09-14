@@ -6,7 +6,7 @@
 
 *29 open skills for real-time market data, opportunity scoring, research and verification · Built for AI agents*
 
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-31-green.svg)](#skills-overview) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills?style=flat)](https://github.com/AlphaGBM/skills)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Skills](https://img.shields.io/badge/skills-29-green.svg)](#skills-overview) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills?style=flat)](https://github.com/AlphaGBM/skills)
 
 [Website](https://alphagbm.com) · [Documentation](#skills-overview) · [Quick Start](#quick-start) · [Contributing](CONTRIBUTING.md)
 
@@ -14,8 +14,7 @@ See the [Skills v2 audit](docs/SKILLS_V2_AUDIT.md) for the current capability ma
 
 ---
 
-<!-- TODO: Replace with actual screenshot of CLI/agent output -->
-<img src="assets/demo-screenshot.png" alt="AlphaGBM options analysis output" width="720">
+<img src="assets/demo-screenshot.png" alt="AlphaGBM CLI stock analysis workflow" width="720">
 
 ### 30-Second Demo
 
@@ -32,7 +31,7 @@ Demo output is not live data. Use the API connection below for current results.
 
 AlphaGBM is a **real-data market intelligence layer** for traders and AI agents. It connects live market data, quantitative scoring, research workflows and ongoing verification to the tools people already use.
 
-These 31 skills bring AlphaGBM's capabilities into Claude Code, Cursor, Windsurf, Codex, WorkBuddy or any agent that supports skills.
+These 29 skills bring AlphaGBM's capabilities into Claude Code, Cursor, Windsurf, Codex, WorkBuddy or any agent that supports skills.
 
 ### Why AlphaGBM?
 
@@ -295,7 +294,7 @@ All from real API calls. All verifiable.
 
 ## Roadmap
 
-- [x] 31 Skill definitions; selected market tools include demo data
+- [x] 29 Skill definitions; selected market tools include demo data
 - [x] Claude Code & Cursor support
 - [x] CLI tool (`pip install -e ./cli`)
 - [ ] Real-time WebSocket feeds
