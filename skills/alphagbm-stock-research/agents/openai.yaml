@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research a Stock"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-stock-research. Use AlphaGBM to research NVDA: supporting evidence, counterevidence and what to verify next."
