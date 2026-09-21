@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stock Analysis"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-stock-analysis for stock analysis with dated evidence."

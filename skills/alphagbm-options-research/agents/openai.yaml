@@ -1,0 +1,4 @@
+interface:
+  display_name: "Compare Options"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-options-research. Use AlphaGBM to compare NVDA option candidates, quote timing, score evidence and key risks."

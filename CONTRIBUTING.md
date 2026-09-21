@@ -26,7 +26,7 @@ We'll discuss feasibility and design before you start coding.
 
 ### Add Mock Data
 
-Every skill ships with built-in demo data so users can try it without an API key. To add mock data for a new ticker:
+Samples are optional and must be explicitly requested and labelled. Workflow runners never replace a failed or unauthenticated request with sample data. To propose a dated sample for a ticker:
 
 1. Pick a ticker not already covered (current: AAPL, NVDA, SPY, TSLA, META)
 2. Add realistic JSON data to `mock-data/<TICKER>/`
@@ -72,15 +72,12 @@ To improve a skill:
 git clone https://github.com/AlphaGBM/skills.git
 cd skills
 
-# No build step needed -- skills are plain Markdown + JSON
-# Just point your AI agent at the skills directory
-
-# For Claude Code
-cp -r skills/ /path/to/your/project/.claude/skills/alphagbm/
-
-# For Cursor
-cp -r skills/ /path/to/your/project/.cursor/skills/alphagbm/
+python3 scripts/build_catalog.py
+python3 scripts/build_catalog.py --check
+npx skills add . --list
 ```
+
+The catalogue and shared runner are the editable sources. Generated workflow documents, scripts and directory pages must match them. Reference-only packages must not claim live API access; adding an interface requires an access contract and failure/usage checks. Install a selected local package into an isolated test project before testing the client; never overwrite a contributor's global AI configuration.
 
 ## Code of Conduct
 
