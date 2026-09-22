@@ -1,0 +1,33 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "report-breakdown.v1",
+  "status": "partial",
+  "report": {
+    "institution": "Illustrative research desk",
+    "title": "Semiconductor demand and capital spending",
+    "publishedAt": "2026-09-17",
+    "sourceStatus": "illustrative"
+  },
+  "institutionView": "The fixture illustrates how a published view is separated from AlphaGBM's follow-up questions.",
+  "originalRatings": [
+    {"label": "rating", "value": "Buy (illustrative)"},
+    {"label": "targetPrice", "value": "Not a live target"}
+  ],
+  "keyAssumptions": [
+    "Demand remains above the prior planning case",
+    "Supply constraints ease on the stated schedule"
+  ],
+  "risks": [
+    "The original assumptions may be dated",
+    "A rating is not a probability or a promise"
+  ],
+  "nextCheckpoints": [
+    "Read the source revision and date",
+    "Compare assumptions with new disclosures",
+    "Ask Agent to test the impact path"
+  ]
+}

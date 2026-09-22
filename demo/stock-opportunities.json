@@ -1,0 +1,34 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "stock-opportunities.v1",
+  "instrument": {
+    "type": "stock",
+    "symbol": "NVDA",
+    "market": "US"
+  },
+  "status": "partial",
+  "opportunity": {
+    "score": 74,
+    "method": "stock-opportunity-composite-v2",
+    "availability": "illustrative"
+  },
+  "conclusion": "The fixture shows a research candidate, not a buy instruction.",
+  "evidence": {
+    "supporting": [
+      "Illustrative fundamental trend remains constructive",
+      "Illustrative momentum signal is positive"
+    ],
+    "opposing": [
+      "Valuation and event sensitivity require a fresh check"
+    ]
+  },
+  "nextCheckpoints": [
+    "Confirm the latest financial guidance",
+    "Recheck price, sentiment and event data",
+    "Compare the score with the prior snapshot"
+  ]
+}

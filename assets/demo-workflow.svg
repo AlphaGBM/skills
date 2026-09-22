@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
+  <title id="title">AlphaGBM illustrative stock opportunity workflow</title>
+  <desc id="desc">A synthetic, offline fixture showing a conclusion, evidence, score and next checkpoints.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071010"/>
+      <stop offset="1" stop-color="#0d1919"/>
+    </linearGradient>
+    <style>
+      .sans{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+      .mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+    </style>
+  </defs>
+  <rect width="1440" height="760" rx="28" fill="url(#bg)"/>
+  <rect x="32" y="32" width="1376" height="696" rx="20" fill="none" stroke="#244343"/>
+  <text x="72" y="92" fill="#18b6b0" font-size="18" class="mono">ALPHAGBM / STOCK OPPORTUNITIES</text>
+  <text x="72" y="142" fill="#eef7f6" font-size="36" font-weight="700" class="sans">A structured result for the next decision</text>
+  <text x="72" y="178" fill="#9bb0ae" font-size="17" class="sans">Illustrative offline fixture · 2026-09-18 · not a live quote or recommendation</text>
+  <rect x="72" y="220" width="820" height="420" rx="16" fill="#101d1d" stroke="#305150"/>
+  <text x="108" y="266" fill="#8ca7a4" font-size="15" class="mono">STOCK OPPORTUNITIES / NVDA / US</text>
+  <text x="108" y="324" fill="#eef7f6" font-size="29" font-weight="700" class="sans">Research candidate</text>
+  <text x="108" y="362" fill="#c0d1cf" font-size="18" class="sans">Connect fundamentals, sentiment and risk before acting.</text>
+  <line x1="108" y1="396" x2="856" y2="396" stroke="#274342"/>
+  <text x="108" y="438" fill="#8ca7a4" font-size="15" class="sans">OPPORTUNITY SCORE</text>
+  <text x="108" y="500" fill="#18c2ba" font-size="64" font-weight="700" class="sans">74</text>
+  <text x="220" y="493" fill="#d7e4e2" font-size="18" class="sans">/ 100</text>
+  <text x="220" y="522" fill="#8ca7a4" font-size="14" class="mono">stock-opportunity-composite-v2</text>
+  <text x="108" y="570" fill="#c0d1cf" font-size="16" class="sans">Status: partial · verify fresh data before use</text>
+  <rect x="932" y="220" width="436" height="196" rx="16" fill="#102222" stroke="#305150"/>
+  <text x="968" y="265" fill="#18b6b0" font-size="15" class="mono">EVIDENCE</text>
+  <text x="968" y="310" fill="#eef7f6" font-size="19" class="sans">Supporting</text>
+  <text x="968" y="343" fill="#b9cecb" font-size="15" class="sans">• illustrative fundamentals</text>
+  <text x="968" y="371" fill="#b9cecb" font-size="15" class="sans">• illustrative momentum</text>
+  <text x="1160" y="310" fill="#eef7f6" font-size="19" class="sans">Opposing</text>
+  <text x="1160" y="343" fill="#b9cecb" font-size="15" class="sans">• valuation</text>
+  <text x="1160" y="371" fill="#b9cecb" font-size="15" class="sans">• event sensitivity</text>
+  <rect x="932" y="444" width="436" height="196" rx="16" fill="#102222" stroke="#305150"/>
+  <text x="968" y="489" fill="#18b6b0" font-size="15" class="mono">NEXT CHECKPOINTS</text>
+  <text x="968" y="535" fill="#eef7f6" font-size="16" class="sans">01  Confirm the latest guidance</text>
+  <text x="968" y="570" fill="#eef7f6" font-size="16" class="sans">02  Recheck sentiment and events</text>
+  <text x="968" y="605" fill="#eef7f6" font-size="16" class="sans">03  Compare the prior snapshot</text>
+  <text x="72" y="690" fill="#18b6b0" font-size="15" class="mono">one command · structured output · evidence first</text>
+</svg>
