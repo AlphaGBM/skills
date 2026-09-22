@@ -134,6 +134,56 @@ def dividend(args):
     return result
 
 
+def strategy(args, name, body):
+    """Run one versioned strategy workflow after a key-free contract check."""
+    query = {'strategy': name}
+    if getattr(args, 'ticker', None):
+        query['ticker'] = args.ticker
+    contract = fetch_json(
+        'GET', '/api/v1/strategies/workflow-contract?' + urlencode(query)
+    )
+    if (contract.get('contractVersion') != 'strategy-workflows.v1'
+            or contract.get('strategy') != name
+            or contract.get('endpoint') != '/api/v1/strategies/run'):
+        raise WorkflowError(
+            'WORKFLOW_UNAVAILABLE',
+            'The selected server does not support this strategy workflow. No analysis request was sent.',
+        )
+    if getattr(args, 'ticker', None):
+        if contract.get('ticker') != args.ticker:
+            raise WorkflowError('WORKFLOW_UNAVAILABLE', 'The server returned a different strategy instrument. No analysis request was sent.')
+        body['ticker'] = args.ticker
+    body['strategy'] = name
+    result = fetch_json(
+        'POST', '/api/v1/strategies/run?lang=' + args.lang,
+        authenticated=True,
+        body=body,
+        timeout=90,
+    )
+    data = result.get('data')
+    if (result.get('success') is not True or not isinstance(data, dict)
+            or data.get('contractVersion') != 'strategy-workflows.v1'
+            or data.get('strategy') != name
+            or data.get('status') not in ('ready', 'partial')
+            or not REVISION.fullmatch(str(data.get('resultId', '')))
+            or not isinstance(data.get('missingData'), list)):
+        raise WorkflowError(
+            'INVALID_WORKFLOW_RESPONSE',
+            'The server did not return the requested strategy workflow. Do not automatically retry a charged request.',
+        )
+    return result
+
+
+def read_transactions(path):
+    try:
+        payload = json.loads(Path(path).read_text())
+    except (OSError, UnicodeError, ValueError) as error:
+        raise WorkflowError('INVALID_TRANSACTIONS_FILE', f'Could not read disclosed transactions: {error}') from None
+    if not isinstance(payload, list) or not payload:
+        raise WorkflowError('INVALID_TRANSACTIONS_FILE', 'The transactions file must contain a non-empty JSON array.')
+    return payload
+
+
 def radar(args):
     payload = fetch_json("GET", "/api/homepage/opportunities").get("data")
     if not isinstance(payload, dict) or not isinstance(payload.get("items"), list):
@@ -381,6 +431,37 @@ def parser():
     dividend_parser.add_argument('ticker', type=symbol)
     dividend_parser.add_argument('--confirm-usage', action='store_true')
     dividend_parser.add_argument('--lang', choices=['zh', 'en'], default='en')
+    momentum_parser = commands.add_parser('momentum')
+    momentum_parser.add_argument('ticker', type=symbol)
+    momentum_parser.add_argument('--confirm-usage', action='store_true')
+    momentum_parser.add_argument('--lang', choices=['zh', 'en'], default='en')
+    etf_parser = commands.add_parser('etf')
+    etf_parser.add_argument('ticker', type=symbol)
+    etf_parser.add_argument('--confirm-usage', action='store_true')
+    etf_parser.add_argument('--lang', choices=['zh', 'en'], default='en')
+    grid_parser = commands.add_parser('grid')
+    grid_parser.add_argument('--ticker', type=symbol)
+    grid_parser.add_argument('--lower-price', type=float, required=True)
+    grid_parser.add_argument('--upper-price', type=float, required=True)
+    grid_parser.add_argument('--current-price', type=float, required=True)
+    grid_parser.add_argument('--capital', type=float, required=True)
+    grid_parser.add_argument('--grid-count', type=int, default=10)
+    grid_parser.add_argument('--confirm-usage', action='store_true')
+    grid_parser.add_argument('--lang', choices=['zh', 'en'], default='en')
+    dca_parser = commands.add_parser('dca')
+    dca_parser.add_argument('--ticker', type=symbol)
+    dca_parser.add_argument('--contribution', type=float, required=True)
+    dca_parser.add_argument('--periods', type=int, default=12)
+    dca_parser.add_argument('--frequency', choices=['weekly', 'biweekly', 'monthly'], default='monthly')
+    dca_parser.add_argument('--budget', type=float)
+    dca_parser.add_argument('--price-path', help='Optional comma-separated observed prices for each period.')
+    dca_parser.add_argument('--confirm-usage', action='store_true')
+    dca_parser.add_argument('--lang', choices=['zh', 'en'], default='en')
+    smart_parser = commands.add_parser('smart-money')
+    smart_parser.add_argument('--ticker', type=symbol)
+    smart_parser.add_argument('--transactions-file', required=True)
+    smart_parser.add_argument('--confirm-usage', action='store_true')
+    smart_parser.add_argument('--lang', choices=['zh', 'en'], default='en')
     snapshot = commands.add_parser("snapshot")
     snapshot.add_argument("ticker", type=symbol)
     validation = commands.add_parser("verify")
@@ -412,6 +493,35 @@ def execute(args):
     paid(args)
     if args.command == 'dividend':
         return dividend(args)
+    if args.command == 'momentum':
+        return strategy(args, 'momentum', {})
+    if args.command == 'etf':
+        return strategy(args, 'etf', {})
+    if args.command == 'grid':
+        return strategy(args, 'grid', {
+            'lowerPrice': args.lower_price,
+            'upperPrice': args.upper_price,
+            'currentPrice': args.current_price,
+            'capital': args.capital,
+            'gridCount': args.grid_count,
+        })
+    if args.command == 'dca':
+        body = {
+            'contribution': args.contribution,
+            'periods': args.periods,
+            'frequency': args.frequency,
+        }
+        if args.budget is not None:
+            body['budget'] = args.budget
+        if args.price_path:
+            try:
+                body['pricePath'] = [float(value.strip()) for value in args.price_path.split(',') if value.strip()]
+            except ValueError:
+                raise WorkflowError('INVALID_PRICE_PATH', 'Use comma-separated numeric prices, one per period.') from None
+        return strategy(args, 'dca', body)
+    if args.command == 'smart-money':
+        body = {'transactions': read_transactions(args.transactions_file)}
+        return strategy(args, 'smart_money', body)
     if args.command == "stock":
         path = '/api/stock/analyze-sync'
         if args.workflow:

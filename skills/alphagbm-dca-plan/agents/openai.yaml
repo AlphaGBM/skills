@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dollar-Cost Averaging"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-dca-plan. Use AlphaGBM to build a 12-period monthly $500 QQQ contribution plan and explain total capital and limits."
