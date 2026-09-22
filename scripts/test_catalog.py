@@ -17,9 +17,9 @@ class CatalogTests(unittest.TestCase):
 
     def test_approved_names_and_order(self):
         self.assertEqual([item['name']['zh'] for item in self.catalog['workflows']],
-                         ['股票机会', '期权策略', '新闻影响', '研报拆解', '投资复盘'])
+                         ['股票机会', '期权策略', '新闻影响', '研报拆解', '投资复盘', '趋势跟踪', 'ETF策略', '网格计划', '定投计划', 'Smart Money跟踪'])
         self.assertEqual([item['command'] for item in self.catalog['workflows']],
-                         ['stock', 'options', 'news', 'report', 'review'])
+                         ['stock', 'options', 'news', 'report', 'review', 'momentum', 'etf', 'grid', 'dca', 'smart-money'])
         builder.validate(self.catalog)
 
     def test_legacy_packages_keep_runners_and_instructions(self):

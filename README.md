@@ -8,7 +8,7 @@ Stock opportunities. Options strategies. News impact. Report breakdowns. Investm
 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills)](https://github.com/AlphaGBM/skills)
 
-**5 research workflows · 35 focused tools and reference packages.** The count includes reference packages; it is not a claim of 34 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
+**10 research workflows · 35 focused tools and reference packages.** The count includes reference packages; it is not a claim of 34 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
 
 [Website](https://www.alphagbm.com/skills) · [中文指南](docs/README.zh.md) · [Start here](#start-with-a-result) · [Demo outputs](demo/README.md) · [Access & usage](docs/ACCESS.md) · [What's new](docs/CHANGELOG.md)
 
@@ -47,6 +47,11 @@ The installer lets you choose your AI tool. Each workflow includes a Python 3.9+
 | News Impact | `alphagbm-news-impact` | Reported claims, affected assets, impact inferences and checkpoints |
 | Research Report Breakdown | `alphagbm-report-breakdown` | Published views, original ratings, assumptions and risks |
 | Investment Review | `alphagbm-investment-review` | Local comparison of supplied records, not cloud-history access |
+| Momentum Following | `alphagbm-momentum-following` | Observed trend, confirmation, risk and participation factors |
+| ETF Strategy | `alphagbm-etf-strategy` | ETF opportunity factors with explicit provider-data gaps |
+| Grid Plan | `alphagbm-grid-plan` | Explicit price levels and capital allocation from your assumptions |
+| Dollar-Cost Averaging | `alphagbm-dca-plan` | Contribution schedule and supplied-path cost basis |
+| Smart Money Tracking | `alphagbm-smart-money` | Disclosed-flow aggregation without automatic trade copying |
 
 The previous `alphagbm-opportunity-radar`, `alphagbm-research-reader` and `alphagbm-thesis-check` packages remain in the focused catalogue with their existing install names and commands.
 

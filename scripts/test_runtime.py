@@ -3,6 +3,7 @@ import io
 import json
 import os
 from pathlib import Path
+import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
@@ -153,6 +154,70 @@ class RunnerChecks(unittest.TestCase):
         self.assertEqual(request.call_args_list[1].args[1], '/api/v1/dividend/score?lang=zh')
         self.assertEqual(request.call_args_list[1].kwargs['body'], {'ticker': '0700.HK'})
         self.assertEqual(result['data']['status'], 'partial')
+
+    def test_strategy_contract_preflight_then_single_paid_request(self):
+        contract = {
+            'contractVersion': 'strategy-workflows.v1',
+            'strategy': 'momentum',
+            'ticker': 'NVDA',
+            'endpoint': '/api/v1/strategies/run',
+        }
+        payload = {
+            'success': True,
+            'data': {
+                **contract,
+                'status': 'ready',
+                'resultId': 'sha256:' + 'b' * 64,
+                'missingData': [],
+            },
+        }
+        with patch.object(workflow, 'fetch_json', side_effect=[contract, payload]) as request:
+            result = workflow.execute(workflow.parser().parse_args(['momentum', 'NVDA', '--confirm-usage', '--lang', 'zh']))
+        self.assertEqual(request.call_count, 2)
+        self.assertEqual(request.call_args_list[0].args[0], 'GET')
+        self.assertEqual(request.call_args_list[1].args[1], '/api/v1/strategies/run?lang=zh')
+        self.assertEqual(request.call_args_list[1].kwargs['body'], {'strategy': 'momentum', 'ticker': 'NVDA'})
+        self.assertEqual(result['data']['resultId'], 'sha256:' + 'b' * 64)
+
+    def test_strategy_parameter_payload_is_normalized(self):
+        contract = {
+            'contractVersion': 'strategy-workflows.v1',
+            'strategy': 'grid',
+            'ticker': 'NVDA',
+            'endpoint': '/api/v1/strategies/run',
+        }
+        payload = {'success': True, 'data': {
+            **contract, 'status': 'ready', 'resultId': 'sha256:' + 'c' * 64, 'missingData': [],
+        }}
+        with patch.object(workflow, 'fetch_json', side_effect=[contract, payload]) as request:
+            workflow.execute(workflow.parser().parse_args([
+                'grid', '--ticker', 'NVDA', '--lower-price', '100', '--upper-price', '140',
+                '--current-price', '120', '--capital', '1000', '--grid-count', '8', '--confirm-usage',
+            ]))
+        self.assertEqual(request.call_args_list[1].kwargs['body'], {
+            'strategy': 'grid', 'ticker': 'NVDA', 'lowerPrice': 100.0, 'upperPrice': 140.0,
+            'currentPrice': 120.0, 'capital': 1000.0, 'gridCount': 8,
+        })
+
+    def test_smart_money_reads_only_json_array(self):
+        contract = {
+            'contractVersion': 'strategy-workflows.v1',
+            'strategy': 'smart_money',
+            'ticker': 'NVDA',
+            'endpoint': '/api/v1/strategies/run',
+        }
+        payload = {'success': True, 'data': {
+            **contract, 'status': 'ready', 'resultId': 'sha256:' + 'd' * 64, 'missingData': [],
+        }}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'transactions.json'
+            transactions = [{'date': '2026-09-01', 'side': 'buy', 'value': 100, 'source': '13F'}]
+            path.write_text(json.dumps(transactions))
+            with patch.object(workflow, 'fetch_json', side_effect=[contract, payload]) as request:
+                workflow.execute(workflow.parser().parse_args([
+                    'smart-money', '--ticker', 'NVDA', '--transactions-file', str(path), '--confirm-usage',
+                ]))
+        self.assertEqual(request.call_args_list[1].kwargs['body']['transactions'], transactions)
 
     def test_snapshot_authenticated(self):
         with patch.object(workflow, 'fetch_json', return_value={'iv_rank':None}) as request:
