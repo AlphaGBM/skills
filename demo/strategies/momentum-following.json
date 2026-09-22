@@ -1,0 +1,21 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "strategy-workflows.v1",
+  "strategy": "momentum",
+  "strategyId": "alphagbm-momentum-following",
+  "instrument": {"type": "stock", "symbol": "NVDA", "market": "US"},
+  "status": "partial",
+  "resultId": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "opportunityScore": {"score": 72, "method": "illustrative_momentum_composite", "availability": "illustrative"},
+  "trendState": "constructive but extended",
+  "evidence": {
+    "supporting": ["Illustrative price trend remains above its reference averages", "Participation is positive in the fixture"],
+    "opposing": ["Extension increases reversal risk", "The fixture does not verify current breadth or event exposure"]
+  },
+  "missingData": ["live_price_confirmation", "current_breadth", "event_calendar"],
+  "nextChecks": ["Compare the next snapshot with this result", "Check whether momentum is broadening or narrowing", "Reassess after the next material event"]
+}

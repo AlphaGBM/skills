@@ -46,6 +46,28 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('without network access', content)
         self.assertNotIn('This command reads published data', content)
 
+    def test_every_strategy_has_an_explicit_demo_fixture(self):
+        expected = {
+            'options': 'options-strategy.json',
+            'momentum': 'momentum-following.json',
+            'etf': 'etf-strategy.json',
+            'grid': 'grid-plan.json',
+            'dca': 'dca-plan.json',
+            'smart_money': 'smart-money.json',
+            'dividend': 'dividend-strategy.json',
+        }
+        for strategy, filename in expected.items():
+            path = ROOT / 'demo' / 'strategies' / filename
+            self.assertTrue(path.is_file(), filename)
+            payload = json.loads(path.read_text())
+            self.assertEqual(payload['demo']['status'], 'illustrative_fixture')
+            self.assertTrue(payload['demo']['notForTrading'])
+            self.assertEqual(payload['strategy'], strategy)
+            self.assertIn(payload['status'], ('ready', 'partial'))
+            self.assertRegex(payload['resultId'], r'^sha256:[0-9a-f]{64}$')
+            self.assertIsInstance(payload['missingData'], list)
+            self.assertIsInstance(payload['nextChecks'], list)
+
 
 if __name__ == '__main__':
     unittest.main()
