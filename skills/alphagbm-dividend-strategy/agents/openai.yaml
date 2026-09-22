@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dividend Strategy"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-dividend-strategy. Use AlphaGBM to evaluate a dividend opportunity for 0700.HK, showing factor scores, missing data and next checks."
