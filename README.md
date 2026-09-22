@@ -8,7 +8,7 @@ Stock opportunities. Options strategies. News impact. Report breakdowns. Investm
 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills)](https://github.com/AlphaGBM/skills)
 
-**10 research workflows · 35 focused tools and reference packages.** The count includes reference packages; it is not a claim of 34 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
+**10 research workflows · 31 focused tools and reference packages.** The count includes reference packages; it is not a claim of 41 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
 
 [Website](https://www.alphagbm.com/skills) · [中文指南](docs/README.zh.md) · [Start here](#start-with-a-result) · [Workflow and strategy demos](demo/README.md) · [Access & usage](docs/ACCESS.md) · [What's new](docs/CHANGELOG.md)
 
@@ -74,15 +74,13 @@ Installation is free. Account-backed research uses **the same account allowance 
 - **Data plus research:** use AlphaGBM's published candidates, market-analysis endpoints and research catalogue—not an instruction to guess from model memory.
 - **Evidence you can revisit:** preserve source dates, score types and returned evidence revisions. A stock risk score is not an opportunity score or a probability of profit.
 - **One account, two places to work:** use the website or your AI workspace without a separate Skills allowance.
-- **Small functions when you need them:** keep individual stock, option, volatility and research tools; treat methods and unpublished interfaces as references, not working APIs.
+- **Small functions when you need them:** keep individual stock, option, volatility and research tools; treat unpublished interfaces as references, not working APIs.
 
 Data may be live, delayed or a dated snapshot depending on the endpoint. Coverage is not universal. The thesis workflow is on demand; it does **not** schedule monitoring, trade, or save records to your account automatically.
 
 ## Focused tools, without the wall of names
 
-The [full catalogue](docs/CATALOG.md) groups individual packages into stocks, options, markets, risk, research and investor frameworks. It states which interfaces are supported by the access review and which are reference-only.
-
-Investor frameworks are optional research lenses, not the primary product, endorsements by those investors, or validated promises of returns.
+The [full catalogue](docs/CATALOG.md) groups individual packages into stocks, options, markets, risk and research. Investor-method packages are maintained separately in [`AlphaGBM/investment-masters`](https://github.com/AlphaGBM/investment-masters), so this repository stays focused on data-backed workflows and tools.
 
 ## See the output
 

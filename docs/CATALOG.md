@@ -1,6 +1,6 @@
 # AlphaGBM Skills catalogue
 
-Version 3.0.0: 10 workflows and 35 focused tools/reference packages.
+Version 3.0.0: 10 workflows and 31 focused tools/reference packages.
 
 Package counts are not a count of independently verified APIs. The workflow runners are self-contained. Account actions require explicit permission to use quota; installation itself is free.
 
@@ -53,10 +53,6 @@ Package counts are not a count of independently verified APIs. The workflow runn
 | [Theme Research](../skills/alphagbm-theme-research/) | 主题研究 | research | reference |
 | [Research Health Check](../skills/alphagbm-health-check/) | 研究档案检查 | research | reference |
 | [Published Research](../skills/alphagbm-research-insights/) | 已发布研究阅读 | research | api |
-| [Duan Yongping Framework](../skills/alphagbm-duan-analysis/) | 段永平框架 | methods | reference |
-| [Buffett Framework](../skills/alphagbm-buffett-analysis/) | 巴菲特框架 | methods | reference |
-| [Marks Cycle Framework](../skills/alphagbm-marks-cycle/) | 马克斯周期框架 | methods | reference |
-| [Tepper Framework](../skills/alphagbm-tepper-signal/) | 泰珀框架 | methods | reference |
 | [Find Opportunities](../skills/alphagbm-opportunity-radar/) | 发现机会 | stocks | api |
 | [Read Research & News](../skills/alphagbm-research-reader/) | 读研报与新闻 | research | api |
 | [Verify a Thesis](../skills/alphagbm-thesis-check/) | 验证与复查判断 | risk | api |
