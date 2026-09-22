@@ -26,7 +26,7 @@ The list is scoped to the runner interfaces reviewed in this release. Website ac
 
 - Route/access source review: backend revision `6959458b8fdb0e908c1f7d68d618d324e27bba8d`, including published CLI-route allowlist tests and canonical validation contracts.
 - Local catalogue, generated-file integrity, runner failure cases and installer discovery are validated separately from real model execution.
-- Release-candidate checks: `skills@1.7.0` installs the research reader into an isolated Codex project and the thesis checker into an isolated Claude Code project, including their bundled runners. Public catalogue and candidate reads were executed without credentials. No authenticated model session or real paid analysis is claimed by these checks.
+- Historical release-candidate checks: `skills@1.7.0` installed the research reader into an isolated Codex project and the now-retired standalone thesis checker into an isolated Claude Code project. Those checks apply to the earlier layout. The current nested catalogue is separately tested for discovery and isolated runner startup; these checks do not claim authenticated model execution or real paid analysis.
 - Paid requests and full authenticated sessions in every advertised AI tool are not implied by these checks. The release checklist must record which actual client/version was tested before advertising that claim.
 - The website's older `alphagbm-public-capabilities.v1` manifest describes the canonical validation protocol, not all packages in this repository. The catalogue is `alphagbm-skills-catalog.v1`; do not conflate the counts.
 

@@ -54,7 +54,7 @@ class ReviewWorkflowChecks(unittest.TestCase):
         self.assertEqual(len(list(Path(self.directory.name).iterdir())), 2)
 
     def test_actual_packaged_command_from_unrelated_directory(self):
-        command = [sys.executable, str(ROOT / 'skills/alphagbm-stock-research/scripts/run.py'),
+        command = [sys.executable, str(ROOT / 'skills/core/alphagbm-stock-research/scripts/run.py'),
                    'review', '--baseline', str(self.before_path), '--current', str(self.after_path), '--lang', 'en']
         result = subprocess.run(command, cwd=self.directory.name, env={'PATH': os.environ.get('PATH', '')}, capture_output=True, text=True, timeout=10)
         self.assertEqual(result.returncode, 0, result.stderr)
@@ -64,7 +64,7 @@ class ReviewWorkflowChecks(unittest.TestCase):
 
     def test_packaged_engine_matches_runtime(self):
         source = (ROOT / 'runtime/review_engine.py').read_bytes()
-        for directory in (ROOT / 'skills').glob('*/scripts/review_engine.py'):
+        for directory in (ROOT / 'skills').rglob('scripts/review_engine.py'):
             self.assertEqual(directory.read_bytes(), source)
 
     def test_missing_input_is_not_history_lookup(self):
