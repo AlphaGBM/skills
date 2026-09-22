@@ -1,0 +1,4 @@
+interface:
+  display_name: "Grid Plan"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-grid-plan. Use AlphaGBM to build an 8-level NVDA grid from 100 to 140 at 120 with $1,000, and explain the risks."

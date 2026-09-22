@@ -1,0 +1,4 @@
+interface:
+  display_name: "Smart Money Tracking"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-smart-money. Use AlphaGBM to summarize these disclosed transactions by asset and source, showing direction, net flow and limits."

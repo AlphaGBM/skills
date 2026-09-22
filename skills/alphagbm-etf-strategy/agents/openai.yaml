@@ -1,0 +1,4 @@
+interface:
+  display_name: "ETF Strategy"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-etf-strategy. Use AlphaGBM to evaluate an ETF strategy opportunity for SPY, showing factor evidence, missing data and next checks."
