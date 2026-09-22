@@ -1,11 +1,13 @@
 ---
 name: alphagbm-stock-research
-description: "Connect fundamentals, sentiment and risk to supporting and opposing evidence. Use when the user asks to research a stock with AlphaGBM. Use the bundled Python runner; never silently replace real results with demos."
+description: "Connect fundamentals, sentiment and risk to supporting and opposing evidence. Use when the user asks to stock opportunities with AlphaGBM. Use the bundled Python runner; never silently replace real results with demos."
 ---
 
-# Research a Stock
+# Stock Opportunities
 
 Connect fundamentals, sentiment and risk to supporting and opposing evidence.
+
+Release preview: the matching backend has not been verified in production. Do not claim this structured workflow is live; unsupported servers must fail closed. Legacy packages remain available.
 
 ## Before running
 
@@ -16,7 +18,7 @@ Identify the ticker and market suffix, and agree the research style. One explici
 ## Run
 
 ```bash
-python3 "<skill-dir>/scripts/run.py" stock NVDA --style quality --confirm-usage
+python3 "<skill-dir>/scripts/run.py" stock NVDA --style quality --confirm-usage --workflow --lang en
 ```
 
 This example contains --confirm-usage. Use that flag only after the user has approved allowance consumption. Require ALPHAGBM_API_KEY in the environment, never in a prompt.

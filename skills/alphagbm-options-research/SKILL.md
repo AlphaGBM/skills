@@ -1,11 +1,13 @@
 ---
 name: alphagbm-options-research
-description: "Compare option candidates and score components, with funding, expiry and assignment risks. Use when the user asks to compare options with AlphaGBM. Use the bundled Python runner; never silently replace real results with demos."
+description: "Compare option candidates and score components, with funding, expiry and assignment risks. Use when the user asks to options strategies with AlphaGBM. Use the bundled Python runner; never silently replace real results with demos."
 ---
 
-# Compare Options
+# Options Strategies
 
 Compare option candidates and score components, with funding, expiry and assignment risks.
+
+Release preview: the matching backend has not been verified in production. Do not claim this structured workflow is live; unsupported servers must fail closed. Legacy packages remain available.
 
 ## Before running
 
@@ -16,7 +18,7 @@ Ask for ticker, strategy preference and expiry if relevant. Use an explicit expi
 ## Run
 
 ```bash
-python3 "<skill-dir>/scripts/run.py" options NVDA --strategy all --limit 3 --confirm-usage
+python3 "<skill-dir>/scripts/run.py" options NVDA --strategy all --limit 3 --confirm-usage --workflow --lang en
 ```
 
 This example contains --confirm-usage. Use that flag only after the user has approved allowance consumption. Require ALPHAGBM_API_KEY in the environment, never in a prompt.

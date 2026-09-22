@@ -35,6 +35,9 @@ def workflow_document(item):
         "options": "Ask for ticker, strategy preference and expiry if relevant. Use an explicit expiry when requested. Compare only returned candidates; a missing cash requirement or multiplier is unknown, not zero. Explain assignment, downside and event risk. Never infer a live executable fill or a complete multi-leg strategy from a single-leg candidate list. For the option-strategies.v1 rollout, add --workflow --lang zh (or en). A public, key-free preflight checks server support before the allowance-consuming request. Preserve resultId, scorerSourceRevision, partial status, missingData and riskFlags. Group candidates by strategy, never rank different strategy scores together or call them profit probabilities. Show reference capital, expiry breakeven and downside from economics when available; missing economics is unknown. The multiplier is a market-configuration assumption, not a verified deliverable. The USD $1-per-side fee is an illustrative assumption, not a broker quote or an all-in cost; fees and slippage are not included in the score. Short calls do not assume the user owns shares, and uncovered loss is unlimited. Do not present unknown quote times as live or replace them with generatedAt. Present data limitations in the user's language. This opt-in format requires the matching backend deployment; the default legacy command remains available.",
         "research": "Start with a public catalogue list. `--collection research` lists original research; `--collection news --view research` selects institutional views; `--collection news --view news` selects news. Use `--query` for a title/ticker keyword and `--lang zh` for Chinese. Read a selected public article with `--slug <returned-slug>`. Attribute ratings and targets to the institution; a missing original rating stays missing. For news impact, read references/news-impact.md and run `news --slug <returned-news-slug> --revision <published-revision> --lang zh` (or en). This staged, key-free command reads existing public news only; it requires the news-impact.v1 backend and never starts paid analysis. On an unsupported server report unavailable rather than inventing a result.",
         "verify": "Ask for one US-stock claim, or an exact OCC option identifier supplied by the user. Choose a unique idempotency key and keep it unchanged only for retries of identical input. Retain taskId/resultRevision/evidenceRevision/usageReceipt. Resume with `verify --resume <task-id>`. This is an on-demand check, not a scheduled monitor or an automatic account archive. If given an earlier result, compare the evidence dates and disclose what cannot be compared.",
+        "news": "Read references/news-impact.md. First list published news with `research --collection news --view news --lang en --limit 5` (or zh), then select the returned slug and revision. Replace the angle-bracket placeholders before running; never execute them literally. Separate reported claims, editorial inferences and verification gaps. This is not independent verification of an arbitrary web claim. The news-impact.v1 backend must be deployed; report unavailable without inventing an answer when unsupported.",
+        "report": "Read references/report-breakdown.md. Discover original reports with `research --collection research --lang en --limit 5` or institutional summaries with `research --collection news --view research --lang en --limit 5` (or zh). Select a returned slug and revision and replace the placeholders. Preserve institution, original rating, dates, currency, assumptions and limitations. Original research may include the full published reader; institutional reports return only the published summary, not private PDFs. The report-breakdown.v1 backend must be deployed; an unavailable response is not permission to fabricate a report.",
+        "review": "Read references/investment-review.md. Ask the user for two authorized local JSON results and replace the file placeholders with quoted absolute paths. Compare matching identities, versions, observation dates and units only. This runs locally without a key, API calls, account-history access or a new allowance charge. Do not interpret an unverified file hash as proof of provenance, a changed price as a correct thesis, or the comparison as a trading-performance backtest. Obtaining new stock/options evidence separately still needs permission and account allowance.",
     }[item["command"]]
     return f"""---
 name: {item['id']}
@@ -44,6 +47,8 @@ description: {json.dumps(description)}
 # {name}
 
 {item['description']['en']}
+
+{'Release preview: the matching backend has not been verified in production. Do not claim this structured workflow is live; unsupported servers must fail closed. Legacy packages remain available.' if item.get('status') == 'preview' else ''}
 
 ## Before running
 
@@ -57,7 +62,7 @@ Read [access and evidence rules](references/access.md). Python 3.9+ is the only 
 python3 "<skill-dir>/scripts/run.py" {item['example']}
 ```
 
-{"This example contains --confirm-usage. Use that flag only after the user has approved allowance consumption. Require ALPHAGBM_API_KEY in the environment, never in a prompt." if item['access'] == 'account' else "This command reads published data without a key or analysis-credit charge. No paid research is triggered."}
+{"This example contains --confirm-usage. Use that flag only after the user has approved allowance consumption. Require ALPHAGBM_API_KEY in the environment, never in a prompt." if item['access'] == 'account' else "This command compares authorized local files without network access, a key or analysis-credit charge." if item['access'] == 'local' else "This command reads published data without a key or analysis-credit charge. No paid research is triggered."}
 
 ## Deliver the result
 
@@ -104,7 +109,11 @@ def outputs(catalog):
         result[f"{directory}/scripts/run.py"] = runner
         result[f"{directory}/scripts/review_engine.py"] = (ROOT / 'runtime/review_engine.py').read_text()
         result[f"{directory}/references/access.md"] = GUIDE
-        if item.get('command') in ('stock', 'research'):
+        if item.get('command') == 'news':
+            result[f"{directory}/references/news-impact.md"] = (ROOT / 'docs/NEWS_IMPACT.md').read_text()
+        if item.get('command') == 'report':
+            result[f"{directory}/references/report-breakdown.md"] = (ROOT / 'docs/REPORT_BREAKDOWN.md').read_text()
+        if item.get('command') in ('stock', 'research', 'review'):
             result[f"{directory}/references/investment-review.md"] = (ROOT / 'docs/INVESTMENT_REVIEW.md').read_text()
             result[f"{directory}/SKILL.md"] += '\n## Investment review\n\nTo compare two previous workflow results, read [investment review](references/investment-review.md). Use `review --baseline <authorized-file> --current <authorized-file> --lang en` (or zh). This is local comparison, not account-history access, automatic monitoring or a new paid query.\n'
         if item.get('command') == 'research':
@@ -154,15 +163,16 @@ This is a focused **reference package**, not a live API integration. It does not
     return result
 
 
-def validate(catalog):
+def validate(catalog, allow_new=False):
     entries = catalog["workflows"] + catalog["tools"]
     identities = [entry["id"] for entry in entries]
     assert len(identities) == len(set(identities)), "Duplicate catalogue IDs"
-    assert set(identities) == {path.parent.name for path in (ROOT / "skills").glob("*/SKILL.md")}, "Catalogue/package mismatch"
+    existing = {path.parent.name for path in (ROOT / "skills").glob("*/SKILL.md")}
+    assert existing <= set(identities) if allow_new else existing == set(identities), "Catalogue/package mismatch"
     for entry in entries:
         assert re.fullmatch(r"alphagbm-[a-z0-9-]+", entry["id"])
         assert all(entry["name"].get(language) for language in ("en", "zh"))
-        assert entry["access"] in {"public", "account", "reference"}
+        assert entry["access"] in {"public", "account", "reference", "local"}
         for dependency in entry.get("tools", []):
             assert dependency in identities, f"Unknown related tool {dependency}"
 
@@ -172,7 +182,7 @@ def main():
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     catalog = json.loads(CATALOG.read_text())
-    validate(catalog)
+    validate(catalog, allow_new=not args.check)
     stale = []
     for name, content in outputs(catalog).items():
         path = ROOT / name

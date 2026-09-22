@@ -2,6 +2,10 @@
 
 ## 3.0.0 — workflow-first catalogue
 
+- Final core names: Stock Opportunities, Options Strategies, News Impact, Research Report Breakdown, Investment Review. The last three now have standalone installable packages.
+- The former radar, reader and thesis-check packages remain compatible focused tools: five workflows plus 34 focused tools/reference packages, not 39 live APIs.
+- Investment Review is local-only. The four structured server workflows retain preview status until the matching deployment is verified; this draft is not a production release.
+
 - Five self-contained workflows layered over the existing focused tool/reference packages.
 - One bilingual JSON catalogue generates package metadata, bundled Python runners and the readable directory. Website imports are pinned and hash-checked.
 - First use can read published research without a key; account calls retain shared usage and explicit approval.

@@ -7,6 +7,8 @@ description: "Explore covered stocks with opportunity scores, evidence and data 
 
 Explore covered stocks with opportunity scores, evidence and data dates.
 
+
+
 ## Before running
 
 Read [access and evidence rules](references/access.md). Python 3.9+ is the only runtime dependency; no separate CLI or sibling Skill installation is required. Resolve `<skill-dir>` to the directory containing this file.

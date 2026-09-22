@@ -1,8 +1,10 @@
 # 把 AlphaGBM 带进你的 AI 工具
 
-**发现机会、研究股票、比较期权、阅读研报，再核对一次判断。**
+**股票机会、期权策略、新闻影响、研报拆解、投资复盘。**
 
-先选一个任务，不必一次安装全部。目录包含5个完整工作流、31个单项工具与参考包；文件数量不代表同等数量的已验证API。[完整目录与状态](CATALOG.md)
+当前为发布预览：结构化服务端工作流需要配套后端，尚未完成生产验收。投资复盘在本地比较你提供的记录。原有单项入口保留，不代表这个分支已经上线。
+
+先选一个任务，不必一次安装全部。目录包含5个完整工作流、34个单项工具与参考包；文件数量不代表同等数量的已验证API。[完整目录与状态](CATALOG.md)
 
 ## 第一次使用：先读一份研究
 
@@ -20,11 +22,13 @@ npx skills add AlphaGBM/skills --skill alphagbm-research-reader
 
 | 工作流 | 安装名称 | 交付结果 |
 |---|---|---|
-| 发现机会 | `alphagbm-opportunity-radar` | 已覆盖股票的候选、得分、依据与日期 |
-| 研究股票 | `alphagbm-stock-research` | 基本面、情绪、风险与待验证问题 |
-| 比较期权方案 | `alphagbm-options-research` | 期权候选、评分分项、报价时间及资金风险 |
-| 读研报与新闻 | `alphagbm-research-reader` | 摘要、机构、来源、标的与日期 |
-| 验证与复查判断 | `alphagbm-thesis-check` | 正反证据、失效条件及带版本的结果编号 |
+| 股票机会 | `alphagbm-stock-research` | 基本面、情绪、可用机会分与证据缺口 |
+| 期权策略 | `alphagbm-options-research` | 期权评分、参考资金、损益边界与风险 |
+| 新闻影响 | `alphagbm-news-impact` | 新闻事实、涉及标的、影响推断与验证节点 |
+| 研报拆解 | `alphagbm-report-breakdown` | 已发布观点、原始评级、关键假设与风险 |
+| 投资复盘 | `alphagbm-investment-review` | 本地比较你提供的前后记录，不读取云端历史 |
+
+原有 `alphagbm-opportunity-radar`、`alphagbm-research-reader`、`alphagbm-thesis-check` 转入单项目录，安装名称与调用命令保留。
 
 将安装命令中的名称替换成所选任务。工具安装位置的验证，不等于已经验证所有模型都能正确执行付费任务；具体边界见[接入说明](ACCESS.md)。
 

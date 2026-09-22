@@ -2,11 +2,13 @@
 
 **Market research that works inside your AI workspace.**
 
-Find a stock worth researching. Understand the evidence. Compare options. Revisit the judgment when facts change.
+Stock opportunities. Options strategies. News impact. Report breakdowns. Investment reviews.
+
+**Release preview:** structured server workflows require the matching backend release and are not yet verified in production. Investment Review runs locally on records you supply. Existing focused packages remain compatible; this branch is not a production launch.
 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills)](https://github.com/AlphaGBM/skills)
 
-**5 research workflows · 31 focused tools and reference packages.** Counts include reference packages, not 36 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
+**5 research workflows · 34 focused tools and reference packages.** Counts include reference packages, not 39 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
 
 [Website](https://www.alphagbm.com/skills) · [中文指南](docs/README.zh.md) · [Start here](#start-with-a-result) · [Access & usage](docs/ACCESS.md) · [What's new](docs/CHANGELOG.md)
 
@@ -28,11 +30,13 @@ The installer lets you choose your AI tool. Each workflow includes a Python 3.9+
 
 | You want to… | Install this | What you receive |
 |---|---|---|
-| Find opportunities | `alphagbm-opportunity-radar` | Covered-stock candidates, published scores, evidence and dates |
-| Research a company | `alphagbm-stock-research` | Fundamentals, sentiment, risk and questions to verify |
-| Compare options | `alphagbm-options-research` | Candidates, score components, quote timing and funding risks |
-| Read research & news | `alphagbm-research-reader` | Public research, institutional views, sources and related assets |
-| Verify a thesis | `alphagbm-thesis-check` | Supporting/counterevidence, invalidation conditions and a versioned result ID |
+| Stock Opportunities | `alphagbm-stock-research` | Fundamentals, sentiment, available opportunity scores and evidence gaps |
+| Options Strategies | `alphagbm-options-research` | Candidate scores, reference capital, payoff limits and risks |
+| News Impact | `alphagbm-news-impact` | Reported claims, affected assets, impact inferences and checkpoints |
+| Research Report Breakdown | `alphagbm-report-breakdown` | Published views, original ratings, assumptions and risks |
+| Investment Review | `alphagbm-investment-review` | Local comparison of supplied records, not cloud-history access |
+
+The previous `alphagbm-opportunity-radar`, `alphagbm-research-reader` and `alphagbm-thesis-check` packages remain in the focused catalogue with their existing install names and commands.
 
 Replace the skill name in the install command. To see every package:
 
