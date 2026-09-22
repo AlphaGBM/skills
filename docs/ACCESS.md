@@ -4,6 +4,8 @@
 
 The optional `stock --workflow --lang en` format is a staged rollout requiring the matching `stock-opportunities.v1` backend. A public contract/identity check runs first without credentials, so an older server receives no charged analysis call. Existing `stock` commands remain unchanged. The result distinguishes published opportunity scores from risk/model assessments and explicitly reports missing data; partial success is not a reason to retry a paid request. No user history is saved automatically.
 
+The optional `options --workflow --lang en` format similarly requires `option-strategies.v1`. Its key-free preflight is `GET /api/v1/options/workflow-contract?ticker=...`. The result groups existing single-leg scores by strategy and includes capital/payoff references when provider quotes permit them. It remains partial: timestamps, verified deliverables, events and full costs are not assumed. The configured multiplier and USD fee scenario are explicit assumptions; uncovered short-call loss is unlimited. This is not a multi-leg optimizer or an executable trading recommendation. Legacy options calls retain the `strategies` map for `all` and the `recommendations` list for a single strategy.
+
 Installation is free. Published research and public stock candidates require no key. Account analysis uses the same allowance as the website, subject to endpoint and subscription rules. Installation never grants Alpha Agent subscription access. Do not hardcode changing plan allowances into a Skill.
 
 | Workflow/function | Interface | Authentication | Execution rule |

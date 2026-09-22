@@ -217,10 +217,10 @@ def parser():
         sub = commands.add_parser(name)
         sub.add_argument("ticker", type=symbol)
         sub.add_argument("--confirm-usage", action="store_true")
+        sub.add_argument("--workflow", action="store_true")
+        sub.add_argument("--lang", choices=['zh', 'en'], default='en')
         if name == "stock":
             sub.add_argument("--style", choices=["quality", "value", "growth", "momentum", "balanced"], default="quality")
-            sub.add_argument("--workflow", action="store_true")
-            sub.add_argument("--lang", choices=['zh', 'en'], default='en')
         else:
             sub.add_argument("--strategy", choices=["all", "sell_put", "sell_call", "buy_put", "buy_call"], default="all")
             sub.add_argument("--expiry")
@@ -278,8 +278,37 @@ def execute(args):
         except ValueError:
             raise WorkflowError("INVALID_EXPIRY", "Use a valid YYYY-MM-DD expiry.") from None
         body["expiry_date"] = args.expiry
-    result = fetch_json("POST", "/api/v1/options/score", authenticated=True, body=body, timeout=90)
-    if not isinstance(result.get("recommendations"), list):
+    path = '/api/v1/options/score'
+    if args.workflow:
+        contract = fetch_json('GET', '/api/v1/options/workflow-contract?' + urlencode({'ticker': args.ticker}))
+        instrument = contract.get('instrument')
+        if (contract.get('contractVersion') != 'option-strategies.v1'
+                or not isinstance(instrument, dict)
+                or instrument.get('market') not in ('US', 'HK', 'CN')
+                or instrument.get('currency') not in ('USD', 'HKD', 'CNY')
+                or not TICKER.fullmatch(str(instrument.get('symbol', '')))):
+            raise WorkflowError('WORKFLOW_UNAVAILABLE', 'The selected server does not support the options workflow. No analysis request was sent.')
+        path += '?format=workflow&lang=' + args.lang
+    result = fetch_json("POST", path, authenticated=True, body=body, timeout=90)
+    if args.workflow:
+        data = result.get('data')
+        expected = ['sell_put', 'sell_call', 'buy_call', 'buy_put'] if args.strategy == 'all' else [args.strategy]
+        if (result.get('success') is not True or not isinstance(data, dict)
+                or data.get('contractVersion') != 'option-strategies.v1'
+                or data.get('instrument') != instrument
+                or data.get('status') != 'partial'
+                or data.get('requestedStrategy') != args.strategy
+                or (args.expiry and data.get('expiry') != args.expiry)
+                or not REVISION.fullmatch(str(data.get('resultId', '')))
+                or not isinstance(data.get('strategies'), dict)
+                or set(data['strategies']) != set(expected)
+                or any(not isinstance(data['strategies'][name], list) for name in expected)):
+            raise WorkflowError('INVALID_WORKFLOW_RESPONSE', 'The server did not return the requested options workflow. Do not automatically retry a charged request.')
+    elif args.strategy == 'all':
+        groups = result.get('strategies')
+        if not isinstance(groups, dict) or any(not isinstance(groups.get(name), list) for name in ('sell_put', 'sell_call', 'buy_call', 'buy_put')):
+            raise WorkflowError('INVALID_RESPONSE', 'The response has no complete strategy groups.')
+    elif not isinstance(result.get("recommendations"), list):
         raise WorkflowError("INVALID_RESPONSE", "The options response has no candidate list.")
     return result
 
