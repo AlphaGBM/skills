@@ -4,7 +4,7 @@
 
 Stock opportunities. Options strategies. News impact. Report breakdowns. Investment reviews.
 
-**Release candidate:** five result-oriented workflows are staged with the matching AlphaGBM backend contract. News Impact and Research Report Breakdown read published material; Stock Opportunities and Options Strategies use account-backed research; Investment Review compares records you supply locally. Check [access status](docs/ACCESS.md) before treating any interface as production-ready.
+**Release candidate:** ten result-oriented workflows are staged with the matching AlphaGBM backend contract. News Impact and Research Report Breakdown read published material; Stock Opportunities, Options Strategies and ETF Strategy use account-backed research; Investment Review compares records you supply locally. Check [access status](docs/ACCESS.md) before treating any interface as production-ready.
 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills)](https://github.com/AlphaGBM/skills)
 
