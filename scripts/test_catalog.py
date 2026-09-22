@@ -68,6 +68,19 @@ class CatalogTests(unittest.TestCase):
             self.assertIsInstance(payload['missingData'], list)
             self.assertIsInstance(payload['nextChecks'], list)
 
+    def test_every_focused_package_has_a_real_source_case(self):
+        cases = json.loads((ROOT / 'demo/package-cases.json').read_text())
+        package_ids = {item['id'] for item in self.catalog['tools']}
+        self.assertEqual(len(cases['cases']), len(package_ids))
+        self.assertEqual({item['package'] for item in cases['cases']}, package_ids)
+        for case in cases['cases']:
+            self.assertIn(case['kind'], ('api', 'reference'))
+            self.assertTrue(case['subject'])
+            self.assertTrue(case['request'])
+            self.assertTrue(case['sources'])
+            self.assertTrue(case['expected'])
+            self.assertTrue(all(source.startswith('https://') for source in case['sources']))
+
 
 if __name__ == '__main__':
     unittest.main()
