@@ -36,7 +36,7 @@ Samples are optional and must be explicitly requested and labelled. Workflow run
 
 ### Improve Existing Skills
 
-Each skill lives in `skills/<skill-name>/` and contains:
+Each skill lives at its canonical `path` in `catalog/catalog.json`, under `skills/<category>/<skill-name>/`, and contains:
 
 - `SKILL.md` -- the skill definition (what the AI reads)
 - `examples/` -- example queries and expected outputs

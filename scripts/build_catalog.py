@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog/catalog.json"
-COMMANDS = {"alphagbm-stock-analysis": "stock NVDA --confirm-usage", "alphagbm-dividend-strategy": "dividend 0700.HK --confirm-usage", "alphagbm-options-score": "options NVDA --limit 3 --confirm-usage", "alphagbm-iv-rank": "snapshot NVDA", "alphagbm-research-insights": "research --collection research --limit 3"}
+COMMANDS = {"alphagbm-stock-analysis": "stock NVDA --confirm-usage", "alphagbm-dividend-strategy": "dividend 0700.HK --confirm-usage", "alphagbm-options-score": "options NVDA --limit 3 --confirm-usage", "alphagbm-iv-rank": "snapshot NVDA"}
 GUIDE = """# Access, evidence and safe execution
 
 - Installation is free. Account-backed calls share the website's allowance and subscription rules; no separate Skills credits are created. Alpha Agent subscription access is not granted by installing a package.
@@ -54,7 +54,7 @@ description: {json.dumps(description)}
 
 {item['description']['en']}
 
-{'Release preview: the matching backend has not been verified in production. Do not claim this structured workflow is live; unsupported servers must fail closed. Legacy packages remain available.' if item.get('status') == 'preview' else ''}
+{'Release preview: the matching backend has not been verified in production. Do not claim this structured workflow is live; unsupported servers must fail closed. Retained legacy runner commands remain compatible.' if item.get('status') == 'preview' else ''}
 
 ## Before running
 
@@ -109,8 +109,8 @@ Return only the successful API response, with its original asset identity, dates
 def outputs(catalog):
     result = {}
     runner = (ROOT / "runtime/workflow.py").read_text()
-    for item in catalog["workflows"] + [tool for tool in catalog["tools"] if tool["status"] == "api"]:
-        directory = f"skills/{item['id']}"
+    for item in catalog["workflows"] + [tool for tool in catalog["tools"] if tool["status"] != "reference"]:
+        directory = item["path"]
         result[f"{directory}/SKILL.md"] = workflow_document(item) if "command" in item else tool_document(item)
         result[f"{directory}/scripts/run.py"] = runner
         result[f"{directory}/scripts/review_engine.py"] = (ROOT / 'runtime/review_engine.py').read_text()
@@ -133,13 +133,13 @@ def outputs(catalog):
         result[f"{directory}/agents/openai.yaml"] = "interface:\n" + "".join(f"  {key}: {json.dumps(value)}\n" for key, value in {"display_name": display, "short_description": "AlphaGBM research with dated evidence and clear access", "default_prompt": prompt}.items())
     lines = ["# AlphaGBM Skills catalogue", "", f"Version {catalog['version']}: {len(catalog['workflows'])} workflows and {len(catalog['tools'])} focused tools/reference packages.", "", "Package counts are not a count of independently verified APIs. The workflow runners are self-contained. Account actions require explicit permission to use quota; installation itself is free.", "", "## Workflows", "", "| Workflow | 中文 | Access | Output |", "|---|---|---|---|"]
     for item in catalog["workflows"]:
-        lines.append(f"| [{item['name']['en']}](../skills/{item['id']}/) | {item['name']['zh']} | {item['access']} | {', '.join(item['output']['en'])} |")
+        lines.append(f"| [{item['name']['en']}](../{item['path']}/) | {item['name']['zh']} | {item['access']} | {', '.join(item['output']['en'])} |")
     lines += ["", "## Focused tools and reference packages", "", "`api` means the documented route is covered by the current access contract review, not that every model/client has completed a live authenticated test. `reference` means method/legacy contract documentation only; do not call its legacy private endpoints with an API key. Use the website or a supported workflow instead.", "", "| Function | 中文 | Category | Status |", "|---|---|---|---|"]
     for item in catalog["tools"]:
-        lines.append(f"| [{item['name']['en']}](../skills/{item['id']}/) | {item['name']['zh']} | {item['group']} | {item['status']} |")
+        lines.append(f"| [{item['name']['en']}](../{item['path']}/) | {item['name']['zh']} | {item['group']} | {item['status']} |")
     result["docs/CATALOG.md"] = "\n".join(lines) + "\n"
     for item in [tool for tool in catalog["tools"] if tool["status"] == "reference"]:
-        directory = f"skills/{item['id']}"
+        directory = item["path"]
         legacy = ROOT / directory / "references/legacy.md"
         original = legacy.read_text() if legacy.exists() else (ROOT / directory / "SKILL.md").read_text()
         original = re.sub(r"(?m)^\*Powered by .*10K\+ users\..*\n?", "", original)
@@ -161,11 +161,41 @@ This is a focused **reference package**, not a live API integration. It does not
 中文：这是单项研究方法参考，不代表对应的外部接口已开放。需要真实分析时，请使用已支持的工作流或网站功能。
 """
     workflow_count, tool_count = len(catalog["workflows"]), len(catalog["tools"])
+    entries = catalog["workflows"] + catalog["tools"]
+    groups = {"core": ("Core Skills", "核心技能"), "stocks": ("Stocks", "股票"), "options": ("Options", "期权"), "commodities": ("Commodities", "商品"), "digital-assets": ("Digital Assets", "虚拟资产")}
+    index = ["# Skills", "", "The same catalogue powers the website and this repository. Choose a category; investor methods live in the separate investment-masters repository.", ""]
+    for group, labels in groups.items():
+        selected = [item for item in entries if item["group"] == group]
+        index.append(f"- [{labels[0]} / {labels[1]}]({group}/): {len(selected)}")
+        rows = [f"# {labels[0]} / {labels[1]}", "", "| Skill | 中文 | Access | Status |", "|---|---|---|---|"]
+        for item in selected:
+            rows.append(f"| [{item['name']['en']}]({item['id']}/SKILL.md) | {item['name']['zh']} | {item['access']} | {item['status']} |")
+        rows += ["", "Reference packages explain methods; they do not expose a live API. Preview status is retained until production verification. Account calls share website allowance and require permission."]
+        result[f"skills/{group}/README.md"] = "\n".join(rows) + "\n"
+    result["skills/README.md"] = "\n".join(index) + "\n"
     readme = (ROOT / "README.md").read_text()
     readme = re.sub(r"\*\*\d+ research workflows · \d+ focused tools and reference packages\.\*\*", f"**{workflow_count} research workflows · {tool_count} focused tools and reference packages.**", readme)
     result["README.md"] = re.sub(r"not \d+ independently verified APIs", f"not {workflow_count + tool_count} independently verified APIs", readme)
     chinese = (ROOT / "docs/README.zh.md").read_text()
     result["docs/README.zh.md"] = re.sub(r"目录包含\d+个完整工作流、\d+个单项工具与参考包", f"目录包含{workflow_count}个完整工作流、{tool_count}个单项工具与参考包", chinese)
+    for filename, language, prefix in [("README.md", "en", ""), ("docs/README.zh.md", "zh", "../")]:
+        rows = ["<!-- catalog:start -->", f"**{len(entries)} Skills · {workflow_count} {'核心技能' if language == 'zh' else 'core Skills'} + {tool_count} {'单项技能' if language == 'zh' else 'focused Skills'}**", "", "| Category / 分类 | Count / 数量 |", "|---|---|"]
+        for group, labels in groups.items():
+            rows.append(f"| [{labels[1 if language == 'zh' else 0]}]({prefix}skills/{group}/) | {sum(item['group'] == group for item in entries)} |")
+        rows += ["", "<!-- catalog:end -->"]
+        result[filename] = re.sub(r"<!-- catalog:start -->.*?<!-- catalog:end -->", "\n".join(rows), result[filename], flags=re.S)
+    fixtures = {"stock-research": "stock-opportunities.json", "options-research": "options-strategies.json", "news-impact": "news-impact.json", "report-breakdown": "report-breakdown.json", "investment-review": "investment-review.json"}
+    for suffix in ("momentum-following", "etf-strategy", "grid-plan", "dca-plan", "smart-money", "dividend-strategy"):
+        fixtures[suffix] = f"strategies/{suffix}.json"
+    cases = {item["package"] for item in json.loads((ROOT / "demo/package-cases.json").read_text())["cases"]}
+    demos = ["# Demo coverage", "", "Synthetic fixtures illustrate output shape; source-based case prompts are not captured live API responses. Neither proves a production paid call. No demo is a fallback for missing data.", "", "| Skill | Example type | Example |", "|---|---|---|"]
+    for item in entries:
+        fixture = fixtures.get(item["id"].removeprefix("alphagbm-"))
+        assert fixture or item["id"] in cases, f"Missing demo for {item['id']}"
+        target = fixture or "package-cases.json"
+        assert (ROOT / "demo" / target).is_file(), target
+        demos.append(f"| [{item['name']['en']}](../{item['path']}/SKILL.md) | {'Synthetic fixture' if fixture else 'Source-based request'} | [{item['id']}]({target}) |")
+    result["demo/CATALOG.md"] = "\n".join(demos) + "\n"
     return result
 
 
@@ -173,9 +203,16 @@ def validate(catalog, allow_new=False):
     entries = catalog["workflows"] + catalog["tools"]
     identities = [entry["id"] for entry in entries]
     assert len(identities) == len(set(identities)), "Duplicate catalogue IDs"
-    existing = {path.parent.name for path in (ROOT / "skills").glob("*/SKILL.md")}
+    packages = list((ROOT / "skills").rglob("SKILL.md"))
+    existing = {path.parent.name for path in packages}
+    assert len(packages) == len(existing), "Duplicate installed package"
     assert existing <= set(identities) if allow_new else existing == set(identities), "Catalogue/package mismatch"
+    assert all(entry["group"] == "core" for entry in catalog["workflows"])
+    assert all(entry["group"] != "core" for entry in catalog["tools"])
     for entry in entries:
+        assert entry["group"] in {"core", "stocks", "options", "commodities", "digital-assets"}
+        assert entry["path"] == f"skills/{entry['group']}/{entry['id']}", "Invalid canonical path"
+        assert (ROOT / entry["path"] / "SKILL.md").is_file(), "Missing canonical package"
         assert re.fullmatch(r"alphagbm-[a-z0-9-]+", entry["id"])
         assert all(entry["name"].get(language) for language in ("en", "zh"))
         assert entry["access"] in {"public", "account", "reference", "local"}

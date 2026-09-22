@@ -1,4 +1,0 @@
-interface:
-  display_name: "Find Opportunities"
-  short_description: "AlphaGBM research with dated evidence and clear access"
-  default_prompt: "Use $alphagbm-opportunity-radar. Use AlphaGBM to find US stock research candidates and explain their scores and risks."

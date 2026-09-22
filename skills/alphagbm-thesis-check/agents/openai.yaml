@@ -1,4 +1,0 @@
-interface:
-  display_name: "Verify a Thesis"
-  short_description: "AlphaGBM research with dated evidence and clear access"
-  default_prompt: "Use $alphagbm-thesis-check. Use AlphaGBM to verify a growth thesis for NVDA, identify counterevidence and invalidation conditions, and retain the result ID."
