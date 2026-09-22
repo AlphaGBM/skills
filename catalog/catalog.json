@@ -193,6 +193,38 @@
       "status": "api"
     },
     {
+      "id": "alphagbm-dividend-strategy",
+      "command": "dividend",
+      "group": "stocks",
+      "name": {
+        "zh": "高息策略",
+        "en": "Dividend Strategy"
+      },
+      "description": {
+        "zh": "结合股息质量、持续性、现金流、估值与动量，筛选港股和 A 股的高息研究候选。",
+        "en": "Score Hong Kong and China A-share dividend candidates across yield quality, durability, cash flow, valuation and momentum."
+      },
+      "prompt": {
+        "zh": "帮我调用 AlphaGBM 评估 0700.HK 的高息策略机会，列出分项得分、缺失数据和下一步核验点。",
+        "en": "Use AlphaGBM to evaluate a dividend opportunity for 0700.HK, showing factor scores, missing data and next checks."
+      },
+      "output": {
+        "zh": [
+          "机会分与分项依据",
+          "股息、现金流与质量缺口",
+          "下一步核验点"
+        ],
+        "en": [
+          "Opportunity score and factor evidence",
+          "Dividend, cash-flow and quality gaps",
+          "Next verification checks"
+        ]
+      },
+      "example": "dividend 0700.HK --confirm-usage --lang en",
+      "access": "account",
+      "status": "api"
+    },
+    {
       "id": "alphagbm-compare",
       "group": "stocks",
       "name": {
