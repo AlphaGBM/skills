@@ -34,6 +34,10 @@ Use AlphaGBM to find recent semiconductor research and distinguish institutional
 
 中文：帮我调用 AlphaGBM，查找最近的半导体研报，区分机构观点和已披露事实。
 
+## Investment review
+
+To compare two previous workflow results, read [investment review](references/investment-review.md). Use `review --baseline <authorized-file> --current <authorized-file> --lang en` (or zh). This is local comparison, not account-history access, automatic monitoring or a new paid query.
+
 ## Report breakdown
 
 For report theses, original ratings, assumptions, risks and verification points, read [report breakdown](references/report-breakdown.md) and use `report --slug <published-slug> --revision <published-revision> --lang en` (or zh). This is a staged, public-evidence-only workflow, not private-archive access.

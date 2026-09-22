@@ -33,3 +33,7 @@ This example contains --confirm-usage. Use that flag only after the user has app
 Use AlphaGBM to research NVDA: supporting evidence, counterevidence and what to verify next.
 
 中文：帮我调用 AlphaGBM 研究 NVDA，列出支持依据、反方证据，以及下一步要验证什么。
+
+## Investment review
+
+To compare two previous workflow results, read [investment review](references/investment-review.md). Use `review --baseline <authorized-file> --current <authorized-file> --lang en` (or zh). This is local comparison, not account-history access, automatic monitoring or a new paid query.
