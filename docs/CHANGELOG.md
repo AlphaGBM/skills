@@ -1,5 +1,12 @@
 # Release notes
 
+## 2026-09-22 — Workflow catalogue release candidate
+
+- Reframed the public README around five result-oriented workflows instead of a flat tool list.
+- Added explicitly synthetic demo fixtures and refreshed the visual demo so examples cannot be mistaken for live quotes.
+- Clarified staged-backend, shared-account allowance, public-read and local-review boundaries.
+- Kept legacy focused packages and install names compatible.
+
 ## 3.0.0 — workflow-first catalogue
 
 - Final core names: Stock Opportunities, Options Strategies, News Impact, Research Report Breakdown, Investment Review. The last three now have standalone installable packages.

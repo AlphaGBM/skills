@@ -1,0 +1,28 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "news-impact.v1",
+  "status": "partial",
+  "source": {
+    "slug": "illustrative-semiconductor-update",
+    "revision": "demo-r1",
+    "publishedAt": "2026-09-18T08:00:00Z",
+    "sourceStatus": "illustrative"
+  },
+  "reportedFacts": [
+    "The fixture describes a change in semiconductor supply expectations"
+  ],
+  "relatedAssets": ["NVDA", "AMD", "SMH"],
+  "impactInference": {
+    "status": "requires_verification",
+    "summary": "A supply change could affect expectations, but the transmission path is not established by this fixture."
+  },
+  "nextCheckpoints": [
+    "Verify the original source and publication revision",
+    "Check company guidance and order data",
+    "Compare the market reaction with the stated mechanism"
+  ]
+}

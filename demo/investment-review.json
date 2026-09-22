@@ -1,0 +1,31 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "investment-review.v1",
+  "access": {
+    "networkRequests": 0,
+    "readsCloudHistory": false,
+    "writesAccountData": false
+  },
+  "baseline": {
+    "capturedAt": "2026-09-12T20:00:00Z",
+    "thesis": "Demand and execution remain the key variables",
+    "score": 66
+  },
+  "current": {
+    "capturedAt": "2026-09-18T20:00:00Z",
+    "thesis": "Demand is unchanged; execution evidence needs refresh",
+    "score": 61
+  },
+  "changes": [
+    {"field": "score", "delta": -5, "interpretation": "The supplied snapshot weakened"},
+    {"field": "evidence", "delta": 1, "interpretation": "One checkpoint remains unresolved"}
+  ],
+  "judgment": {
+    "status": "requires_review",
+    "next": "Recheck the evidence before treating the change as a thesis break"
+  }
+}

@@ -1,16 +1,28 @@
 # AlphaGBM Skills
 
-**Market research that works inside your AI workspace.**
+**Evidence-first market research inside your AI workspace.**
 
 Stock opportunities. Options strategies. News impact. Report breakdowns. Investment reviews.
 
-**Release preview:** structured server workflows require the matching backend release and are not yet verified in production. Investment Review runs locally on records you supply. Existing focused packages remain compatible; this branch is not a production launch.
+**Release candidate:** five result-oriented workflows are staged with the matching AlphaGBM backend contract. News Impact and Research Report Breakdown read published material; Stock Opportunities and Options Strategies use account-backed research; Investment Review compares records you supply locally. Check [access status](docs/ACCESS.md) before treating any interface as production-ready.
 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills)](https://github.com/AlphaGBM/skills)
 
-**5 research workflows · 34 focused tools and reference packages.** Counts include reference packages, not 39 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
+**5 research workflows · 34 focused tools and reference packages.** The count includes reference packages; it is not a claim of 34 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
 
-[Website](https://www.alphagbm.com/skills) · [中文指南](docs/README.zh.md) · [Start here](#start-with-a-result) · [Access & usage](docs/ACCESS.md) · [What's new](docs/CHANGELOG.md)
+[Website](https://www.alphagbm.com/skills) · [中文指南](docs/README.zh.md) · [Start here](#start-with-a-result) · [Demo outputs](demo/README.md) · [Access & usage](docs/ACCESS.md) · [What's new](docs/CHANGELOG.md)
+
+## What changed in this release candidate
+
+The catalogue is organized around the result a user wants, not around a long list of endpoints:
+
+1. **Find an opportunity** — connect fundamentals, sentiment, risk and evidence.
+2. **Compare an options strategy** — keep quote timing, capital, payoff and risk visible.
+3. **Understand what changed** — separate reported news from impact inference.
+4. **Break down a report** — preserve the institution's view, rating, assumptions and dates.
+5. **Review a decision** — compare two supplied snapshots and identify what changed.
+
+Every workflow is designed to return a conclusion, supporting and opposing evidence, and the next question to verify. The [demo fixtures](demo/README.md) are synthetic and clearly labelled; they never stand in for live quotes or a paid request.
 
 ## Start with a result
 
@@ -24,7 +36,7 @@ Then ask your AI:
 
 > Use AlphaGBM to find recent semiconductor research. Summarize the views and preserve the sources and dates.
 
-The installer lets you choose your AI tool. Each workflow includes a Python 3.9+ runner and its own access instructions. **No separate AlphaGBM CLI installation is required.** Installing a package and testing an authenticated model session are different checks; see [validation status](docs/ACCESS.md#verification-boundary).
+The installer lets you choose your AI tool. Each workflow includes a Python 3.9+ runner and its own access instructions. **No separate AlphaGBM CLI installation is required.** Installing a package, reading a public result and running authenticated research are different checks; see [validation status](docs/ACCESS.md#verification-boundary).
 
 ## Choose a workflow
 
@@ -69,9 +81,9 @@ Investor frameworks are optional research lenses, not the primary product, endor
 
 ## See the output
 
-<img src="assets/demo-screenshot.png" alt="Illustrative AlphaGBM CLI research output; not a live quote" width="720">
+<img src="assets/demo-workflow.svg" alt="Illustrative AlphaGBM stock opportunity workflow output; not a live quote" width="720">
 
-This is an illustrative CLI screenshot, not a current market observation or a claim that a new task has run. Workflow runners return structured JSON for your AI to summarize. They do not silently replace failed requests with sample data.
+This is an illustrative workflow fixture, not a current market observation and not evidence that a paid task has run. The exact JSON is in [`demo/stock-opportunities.json`](demo/stock-opportunities.json). Workflow runners return structured JSON for your AI to summarize; they do not silently replace failed requests with sample data.
 
 ## Developers
 
