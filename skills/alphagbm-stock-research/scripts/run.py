@@ -98,6 +98,42 @@ def paid(args):
         raise WorkflowError("CONFIRM_USAGE", "This action uses your AlphaGBM allowance. Obtain user approval, then pass --confirm-usage.")
 
 
+def dividend(args):
+    contract = fetch_json(
+        'GET', '/api/v1/dividend/workflow-contract?' + urlencode({'ticker': args.ticker})
+    )
+    instrument = contract.get('instrument')
+    if (contract.get('contractVersion') != 'dividend-opportunities.v1'
+            or not isinstance(instrument, dict)
+            or instrument.get('type') != 'stock'
+            or instrument.get('market') not in ('hk', 'a')
+            or not TICKER.fullmatch(str(instrument.get('symbol', '')))):
+        raise WorkflowError(
+            'WORKFLOW_UNAVAILABLE',
+            'The selected server does not support the dividend workflow. No analysis request was sent.',
+        )
+    result = fetch_json(
+        'POST',
+        '/api/v1/dividend/score?lang=' + args.lang,
+        authenticated=True,
+        body={'ticker': args.ticker},
+        timeout=90,
+    )
+    data = result.get('data')
+    if (result.get('success') is not True or not isinstance(data, dict)
+            or data.get('contractVersion') != 'dividend-opportunities.v1'
+            or data.get('instrument') != instrument
+            or data.get('status') not in ('ready', 'partial')
+            or not REVISION.fullmatch(str(data.get('resultId', '')))
+            or not isinstance(data.get('missingData'), list)
+            or not isinstance(data.get('score'), dict)):
+        raise WorkflowError(
+            'INVALID_WORKFLOW_RESPONSE',
+            'The server did not return the requested dividend workflow. Do not automatically retry a charged request.',
+        )
+    return result
+
+
 def radar(args):
     payload = fetch_json("GET", "/api/homepage/opportunities").get("data")
     if not isinstance(payload, dict) or not isinstance(payload.get("items"), list):
@@ -341,6 +377,10 @@ def parser():
             sub.add_argument("--strategy", choices=["all", "sell_put", "sell_call", "buy_put", "buy_call"], default="all")
             sub.add_argument("--expiry")
             sub.add_argument("--limit", type=limit, default=3)
+    dividend_parser = commands.add_parser('dividend')
+    dividend_parser.add_argument('ticker', type=symbol)
+    dividend_parser.add_argument('--confirm-usage', action='store_true')
+    dividend_parser.add_argument('--lang', choices=['zh', 'en'], default='en')
     snapshot = commands.add_parser("snapshot")
     snapshot.add_argument("ticker", type=symbol)
     validation = commands.add_parser("verify")
@@ -370,6 +410,8 @@ def execute(args):
     if args.command == "snapshot":
         return fetch_json("GET", f"/api/options/snapshot/{quote(args.ticker)}", authenticated=True)
     paid(args)
+    if args.command == 'dividend':
+        return dividend(args)
     if args.command == "stock":
         path = '/api/stock/analyze-sync'
         if args.workflow:

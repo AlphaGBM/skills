@@ -26,7 +26,7 @@ class RunnerChecks(unittest.TestCase):
             self.assertEqual((root / 'skills' / entry['id'] / 'scripts/run.py').read_bytes(), source.read_bytes())
 
     def test_paid_confirmation_precedes_request(self):
-        for command in ['stock NVDA', 'options NVDA', 'verify NVDA --prompt claim --idempotency-key example-001']:
+        for command in ['stock NVDA', 'options NVDA', 'dividend 0700.HK', 'verify NVDA --prompt claim --idempotency-key example-001']:
             with self.subTest(command=command), patch.object(workflow, 'fetch_json') as request:
                 with self.assertRaises(workflow.WorkflowError) as error:
                     workflow.execute(workflow.parser().parse_args(command.split()))
@@ -131,6 +131,28 @@ class RunnerChecks(unittest.TestCase):
         with patch.object(workflow, 'fetch_json', return_value={'strategies': {name: [] for name in ('sell_put', 'sell_call', 'buy_call', 'buy_put')}}) as request:
             workflow.execute(workflow.parser().parse_args(['options','NVDA','--limit','2','--expiry','2026-10-02','--confirm-usage']))
             self.assertEqual(request.call_args.kwargs['body'], {'ticker':'NVDA','strategy':'all','top_n':2,'expiry_date':'2026-10-02'})
+
+    def test_dividend_exact_contract(self):
+        contract = {
+            'contractVersion': 'dividend-opportunities.v1',
+            'instrument': {'type': 'stock', 'symbol': '0700.HK', 'market': 'hk'},
+        }
+        payload = {
+            'success': True,
+            'data': {
+                **contract,
+                'status': 'partial',
+                'resultId': 'sha256:' + 'a' * 64,
+                'missingData': ['dividend_years'],
+                'score': {'score': None},
+            },
+        }
+        with patch.object(workflow, 'fetch_json', side_effect=[contract, payload]) as request:
+            result = workflow.execute(workflow.parser().parse_args(['dividend', '0700.HK', '--confirm-usage', '--lang', 'zh']))
+        self.assertEqual(request.call_args_list[0].args[1], '/api/v1/dividend/workflow-contract?ticker=0700.HK')
+        self.assertEqual(request.call_args_list[1].args[1], '/api/v1/dividend/score?lang=zh')
+        self.assertEqual(request.call_args_list[1].kwargs['body'], {'ticker': '0700.HK'})
+        self.assertEqual(result['data']['status'], 'partial')
 
     def test_snapshot_authenticated(self):
         with patch.object(workflow, 'fetch_json', return_value={'iv_rank':None}) as request:
