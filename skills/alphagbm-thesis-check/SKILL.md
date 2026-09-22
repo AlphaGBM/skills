@@ -7,6 +7,8 @@ description: "Check a US stock or exact option thesis and retain versioned evide
 
 Check a US stock or exact option thesis and retain versioned evidence for a later review.
 
+
+
 ## Before running
 
 Read [access and evidence rules](references/access.md). Python 3.9+ is the only runtime dependency; no separate CLI or sibling Skill installation is required. Resolve `<skill-dir>` to the directory containing this file.

@@ -1,6 +1,6 @@
 # AlphaGBM Skills catalogue
 
-Version 3.0.0: 5 workflows and 31 focused tools/reference packages.
+Version 3.0.0: 5 workflows and 34 focused tools/reference packages.
 
 Package counts are not a count of independently verified APIs. The workflow runners are self-contained. Account actions require explicit permission to use quota; installation itself is free.
 
@@ -8,11 +8,11 @@ Package counts are not a count of independently verified APIs. The workflow runn
 
 | Workflow | 中文 | Access | Output |
 |---|---|---|---|
-| [Find Opportunities](../skills/alphagbm-opportunity-radar/) | 发现机会 | public | Candidates and scores, Score evidence, Dates and data gaps |
-| [Research a Stock](../skills/alphagbm-stock-research/) | 研究股票 | account | Research conclusion, Evidence and risks, Questions to verify |
-| [Compare Options](../skills/alphagbm-options-research/) | 比较期权方案 | account | Option candidates, Scores and quote times, Funding and risks |
-| [Read Research & News](../skills/alphagbm-research-reader/) | 读研报与新闻 | public | Core summaries, Institutions and sources, Assets and dates |
-| [Verify a Thesis](../skills/alphagbm-thesis-check/) | 验证与复查判断 | account | Evidence and counterevidence, Invalidation and next checkpoint, Traceable result ID |
+| [Stock Opportunities](../skills/alphagbm-stock-research/) | 股票机会 | account | Research conclusion, Evidence and risks, Questions to verify |
+| [Options Strategies](../skills/alphagbm-options-research/) | 期权策略 | account | Option candidates, Scores and quote times, Funding and risks |
+| [News Impact](../skills/alphagbm-news-impact/) | 新闻影响 | public | Event and related assets, Impact evidence and limits, Next checkpoints |
+| [Research Report Breakdown](../skills/alphagbm-report-breakdown/) | 研报拆解 | public | Views and original ratings, Assumptions and risks, Sources and checkpoints |
+| [Investment Review](../skills/alphagbm-investment-review/) | 投资复盘 | local | Changes since the baseline, Comparability and gaps, Judgments to revisit |
 
 ## Focused tools and reference packages
 
@@ -51,3 +51,6 @@ Package counts are not a count of independently verified APIs. The workflow runn
 | [Buffett Framework](../skills/alphagbm-buffett-analysis/) | 巴菲特框架 | methods | reference |
 | [Marks Cycle Framework](../skills/alphagbm-marks-cycle/) | 马克斯周期框架 | methods | reference |
 | [Tepper Framework](../skills/alphagbm-tepper-signal/) | 泰珀框架 | methods | reference |
+| [Find Opportunities](../skills/alphagbm-opportunity-radar/) | 发现机会 | stocks | api |
+| [Read Research & News](../skills/alphagbm-research-reader/) | 读研报与新闻 | research | api |
+| [Verify a Thesis](../skills/alphagbm-thesis-check/) | 验证与复查判断 | risk | api |
