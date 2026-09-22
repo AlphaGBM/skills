@@ -1,0 +1,4 @@
+interface:
+  display_name: "Momentum Following"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-momentum-following. Use AlphaGBM for momentum following on NVDA. Show the trend state, evidence, risks and next checks."

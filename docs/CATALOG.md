@@ -1,6 +1,6 @@
 # AlphaGBM Skills catalogue
 
-Version 3.0.0: 5 workflows and 35 focused tools/reference packages.
+Version 3.0.0: 10 workflows and 35 focused tools/reference packages.
 
 Package counts are not a count of independently verified APIs. The workflow runners are self-contained. Account actions require explicit permission to use quota; installation itself is free.
 
@@ -13,6 +13,11 @@ Package counts are not a count of independently verified APIs. The workflow runn
 | [News Impact](../skills/alphagbm-news-impact/) | 新闻影响 | public | Event and related assets, Impact evidence and limits, Next checkpoints |
 | [Research Report Breakdown](../skills/alphagbm-report-breakdown/) | 研报拆解 | public | Views and original ratings, Assumptions and risks, Sources and checkpoints |
 | [Investment Review](../skills/alphagbm-investment-review/) | 投资复盘 | local | Changes since the baseline, Comparability and gaps, Judgments to revisit |
+| [Momentum Following](../skills/alphagbm-momentum-following/) | 趋势跟踪 | account | Trend state and score, Trend, confirmation and risk factors, Next checks |
+| [ETF Strategy](../skills/alphagbm-etf-strategy/) | ETF策略 | account | ETF opportunity score and factors, Cost, tracking and risk gaps, Next verification checks |
+| [Grid Plan](../skills/alphagbm-grid-plan/) | 网格计划 | account | Grid levels and step, Capital allocation, Conditions and risks |
+| [Dollar-Cost Averaging](../skills/alphagbm-dca-plan/) | 定投计划 | account | Contribution schedule, Total capital and cost basis, Conditions and limits |
+| [Smart Money Tracking](../skills/alphagbm-smart-money/) | Smart Money跟踪 | account | Disclosed transaction summary, Buys, sells and net flow, Sources, timing and limits |
 
 ## Focused tools and reference packages
 
