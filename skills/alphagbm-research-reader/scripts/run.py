@@ -193,6 +193,41 @@ def news(args):
     return result
 
 
+def report(args):
+    if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', args.slug) or len(args.slug) > 255:
+        raise WorkflowError('INVALID_SLUG', 'Select a slug from the published research catalogue.')
+    params = {'lang': args.lang}
+    if args.revision is not None:
+        if not 1 <= args.revision <= 2147483647:
+            raise WorkflowError('INVALID_REVISION', 'Use a positive published revision number.')
+        params['revision'] = args.revision
+    result = fetch_json('GET', '/api/insights/catalogue/' + quote(args.slug) + '/report-breakdown?' + urlencode(params))
+    data = result.get('data')
+    if not isinstance(data, dict):
+        raise WorkflowError('INVALID_REPORT_WORKFLOW', 'The server does not provide a versioned report breakdown.')
+    document = data.get('report')
+    access = data.get('access')
+    ratings = data.get('originalRatings')
+    verification = data.get('verification')
+    if (result.get('success') is not True or data.get('contractVersion') != 'report-breakdown.v1'
+            or data.get('status') != 'partial' or data.get('language') != args.lang
+            or data.get('kind') not in ('owned_research', 'institutional_summary', 'owned_research_summary')
+            or not REVISION.fullmatch(str(data.get('resultId', '')))
+            or not isinstance(document, dict) or document.get('slug') != args.slug
+            or type(document.get('revision')) is not int or document['revision'] < 1
+            or any(not isinstance(document.get(field), str) or not document[field].strip() for field in ('title', 'summary'))
+            or (args.revision is not None and document['revision'] != args.revision)
+            or not isinstance(ratings, dict) or ratings.get('currentRecommendation') is not False
+            or ratings.get('targetPriceIsForecast') is not True or not isinstance(ratings.get('sectionIds'), list)
+            or not isinstance(verification, dict) or verification.get('independentlyChecked') is not False
+            or verification.get('automaticMonitoring') is not False or not isinstance(verification.get('sectionIds'), list)
+            or not isinstance(access, dict) or access.get('basis') != 'existing_public_research_only'
+            or any(access.get(field) is not False for field in ('analysisCharge', 'privateArchiveIncluded', 'paidAnalysisIncluded'))
+            or any(not isinstance(data.get(field), list) for field in ('sources', 'sections', 'symbols', 'missingData', 'limitations'))):
+        raise WorkflowError('INVALID_REPORT_WORKFLOW', 'Report identity, revision or access boundaries did not match. No paid call was made.')
+    return result
+
+
 def verify(args):
     deadline = time.monotonic() + args.timeout
     if args.resume:
@@ -245,6 +280,10 @@ def parser():
     news_reader.add_argument('--slug', required=True)
     news_reader.add_argument('--lang', choices=['zh', 'en'], default='en')
     news_reader.add_argument('--revision', type=int)
+    report_reader = commands.add_parser('report')
+    report_reader.add_argument('--slug', required=True)
+    report_reader.add_argument('--lang', choices=['zh', 'en'], default='en')
+    report_reader.add_argument('--revision', type=int)
     for name in ("stock", "options"):
         sub = commands.add_parser(name)
         sub.add_argument("ticker", type=symbol)
@@ -277,6 +316,8 @@ def execute(args):
         return research(args)
     if args.command == 'news':
         return news(args)
+    if args.command == 'report':
+        return report(args)
     if args.command == "verify":
         return verify(args)
     if args.command == "snapshot":

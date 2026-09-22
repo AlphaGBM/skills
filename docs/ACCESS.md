@@ -13,6 +13,7 @@ Installation is free. Published research and public stock candidates require no 
 | Stock candidates | GET `/api/homepage/opportunities` | Public, never send key | Published universe; retain date and missing-data state |
 | Research catalogue | GET `/api/insights/catalogue` and `/catalogue/<slug>` | Public, never send key | Original research vs institutional views/news remain separate |
 | News impact evidence | GET `/api/insights/catalogue/<slug>/news-impact` | Public, never send key | Existing public news only; pin revision; no source refetch or paid analysis; requires staged backend |
+| Report breakdown | GET `/api/insights/catalogue/<slug>/report-breakdown` | Public, never send key | Only already-public owned research and summaries; no private archive/PDF or paid analysis; requires staged backend |
 | Stock research | POST `/api/stock/analyze-sync` | API Key | Shared allowance; explicit usage approval; no blind retry |
 | Options comparison | POST `/api/v1/options/score` | API Key | Shared allowance; explicit usage approval; no blind retry |
 | Volatility snapshot | GET `/api/options/snapshot/<ticker>` | API Key | No analysis-credit deduction; nullable coverage remains nullable |

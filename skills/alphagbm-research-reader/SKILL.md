@@ -33,3 +33,7 @@ This command reads published data without a key or analysis-credit charge. No pa
 Use AlphaGBM to find recent semiconductor research and distinguish institutional views from disclosed facts.
 
 中文：帮我调用 AlphaGBM，查找最近的半导体研报，区分机构观点和已披露事实。
+
+## Report breakdown
+
+For report theses, original ratings, assumptions, risks and verification points, read [report breakdown](references/report-breakdown.md) and use `report --slug <published-slug> --revision <published-revision> --lang en` (or zh). This is a staged, public-evidence-only workflow, not private-archive access.
