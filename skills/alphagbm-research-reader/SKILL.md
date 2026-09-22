@@ -11,7 +11,7 @@ Find published research and institutional views with sources, dates and related 
 
 Read [access and evidence rules](references/access.md). Python 3.9+ is the only runtime dependency; no separate CLI or sibling Skill installation is required. Resolve `<skill-dir>` to the directory containing this file.
 
-Start with a public catalogue list. `--collection research` lists original research; `--collection news --view research` selects institutional views; `--collection news --view news` selects news. Use `--query` for a title/ticker keyword and `--lang zh` for Chinese. Read a selected public article with `--slug <returned-slug>`. Attribute ratings and targets to the institution; a missing original rating stays missing.
+Start with a public catalogue list. `--collection research` lists original research; `--collection news --view research` selects institutional views; `--collection news --view news` selects news. Use `--query` for a title/ticker keyword and `--lang zh` for Chinese. Read a selected public article with `--slug <returned-slug>`. Attribute ratings and targets to the institution; a missing original rating stays missing. For news impact, read references/news-impact.md and run `news --slug <returned-news-slug> --revision <published-revision> --lang zh` (or en). This staged, key-free command reads existing public news only; it requires the news-impact.v1 backend and never starts paid analysis. On an unsupported server report unavailable rather than inventing a result.
 
 ## Run
 

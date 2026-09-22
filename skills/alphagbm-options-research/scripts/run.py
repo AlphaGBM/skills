@@ -165,6 +165,34 @@ def checked_task(payload, expected_id=None):
     return task
 
 
+def news(args):
+    if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', args.slug) or len(args.slug) > 255:
+        raise WorkflowError('INVALID_SLUG', 'Select a slug from the published news catalogue.')
+    params = {'lang': args.lang}
+    if args.revision is not None:
+        if not 1 <= args.revision <= 2147483647:
+            raise WorkflowError('INVALID_REVISION', 'Use a positive published revision number.')
+        params['revision'] = args.revision
+    result = fetch_json('GET', '/api/insights/catalogue/' + quote(args.slug) + '/news-impact?' + urlencode(params))
+    data = result.get('data')
+    if not isinstance(data, dict):
+        raise WorkflowError('INVALID_NEWS_WORKFLOW', 'The server does not provide the versioned news evidence workflow.')
+    article = data.get('article')
+    if (result.get('success') is not True or data.get('contractVersion') != 'news-impact.v1'
+            or data.get('status') != 'partial' or data.get('language') != args.lang
+            or not REVISION.fullmatch(str(data.get('resultId', '')))
+            or not isinstance(article, dict) or article.get('slug') != args.slug
+            or type(article.get('revision')) is not int or article['revision'] < 1
+            or article.get('category') not in ('earnings', 'announcement', 'industry-news')
+            or not isinstance(article.get('summary'), str) or not article['summary'].strip()
+            or (args.revision is not None and article['revision'] != args.revision)
+            or data.get('newsVerified') is not False or data.get('impactEstablished') is not False
+            or any(not isinstance(data.get(field), list) for field in ('sources', 'reportedFacts', 'publishedImpactAnalysis',
+                       'publishedUncertainties', 'verificationNodes', 'missingData', 'nextChecks'))):
+        raise WorkflowError('INVALID_NEWS_WORKFLOW', 'News identity, revision or evidence boundaries did not match. No paid call was made.')
+    return result
+
+
 def verify(args):
     deadline = time.monotonic() + args.timeout
     if args.resume:
@@ -213,6 +241,10 @@ def parser():
     reader.add_argument("--query")
     reader.add_argument("--slug")
     reader.add_argument("--limit", type=limit, default=3)
+    news_reader = commands.add_parser('news')
+    news_reader.add_argument('--slug', required=True)
+    news_reader.add_argument('--lang', choices=['zh', 'en'], default='en')
+    news_reader.add_argument('--revision', type=int)
     for name in ("stock", "options"):
         sub = commands.add_parser(name)
         sub.add_argument("ticker", type=symbol)
@@ -243,6 +275,8 @@ def execute(args):
         return radar(args)
     if args.command == "research":
         return research(args)
+    if args.command == 'news':
+        return news(args)
     if args.command == "verify":
         return verify(args)
     if args.command == "snapshot":
