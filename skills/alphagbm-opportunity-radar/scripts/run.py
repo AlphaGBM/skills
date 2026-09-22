@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import math
 import os
+from pathlib import Path
 import re
 import sys
+import stat
 import time
 from datetime import datetime, timezone
 from urllib.error import HTTPError, URLError
@@ -263,6 +266,44 @@ def verify(args):
     return task
 
 
+def review(args):
+    engine_path = Path(__file__).with_name('review_engine.py')
+    specification = importlib.util.spec_from_file_location('alphagbm_local_review', engine_path)
+    engine = importlib.util.module_from_spec(specification)
+    try:
+        specification.loader.exec_module(engine)
+    except (OSError, ImportError):
+        raise WorkflowError('REVIEW_ENGINE_UNAVAILABLE', 'Reinstall the complete Skill package; the bundled review engine is missing.') from None
+
+    def unique_fields(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError('Duplicate JSON field.')
+            result[key] = value
+        return result
+
+    def read_snapshot(path):
+        try:
+            descriptor = os.open(path, os.O_RDONLY | getattr(os, 'O_NONBLOCK', 0))
+            with os.fdopen(descriptor, 'rb') as stream:
+                if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
+                    raise ValueError('Expected a regular file.')
+                raw = stream.read(engine.MAX_BYTES + 1)
+            if len(raw) > engine.MAX_BYTES:
+                raise ValueError('File is too large.')
+            return json.loads(raw, object_pairs_hook=unique_fields,
+                              parse_constant=lambda value: (_ for _ in ()).throw(ValueError('Nonfinite JSON.')))
+        except (OSError, ValueError, UnicodeError, RecursionError):
+            raise WorkflowError('INVALID_REVIEW_FILE', 'Use an authorized local regular JSON file within the 2 MB limit. No file was uploaded.') from None
+
+    try:
+        data = engine.compare_results(read_snapshot(args.baseline), read_snapshot(args.current), language=args.lang)
+    except (ValueError, TypeError, KeyError, OverflowError, RecursionError):
+        raise WorkflowError('INCOMPARABLE_REVIEW', 'Snapshots are unsupported, inconsistent, reversed or do not share a comparable identity. No history was fabricated or uploaded.') from None
+    return {'success': True, 'data': data}
+
+
 def parser():
     root = argparse.ArgumentParser(description="AlphaGBM research workflows. No trades, no implicit retries, no demo fallback.")
     commands = root.add_subparsers(dest="command", required=True)
@@ -284,6 +325,10 @@ def parser():
     report_reader.add_argument('--slug', required=True)
     report_reader.add_argument('--lang', choices=['zh', 'en'], default='en')
     report_reader.add_argument('--revision', type=int)
+    review_parser = commands.add_parser('review')
+    review_parser.add_argument('--baseline', required=True)
+    review_parser.add_argument('--current', required=True)
+    review_parser.add_argument('--lang', choices=['zh', 'en'], default='en')
     for name in ("stock", "options"):
         sub = commands.add_parser(name)
         sub.add_argument("ticker", type=symbol)
@@ -318,6 +363,8 @@ def execute(args):
         return news(args)
     if args.command == 'report':
         return report(args)
+    if args.command == 'review':
+        return review(args)
     if args.command == "verify":
         return verify(args)
     if args.command == "snapshot":

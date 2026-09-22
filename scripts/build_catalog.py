@@ -102,7 +102,11 @@ def outputs(catalog):
         directory = f"skills/{item['id']}"
         result[f"{directory}/SKILL.md"] = workflow_document(item) if "command" in item else tool_document(item)
         result[f"{directory}/scripts/run.py"] = runner
+        result[f"{directory}/scripts/review_engine.py"] = (ROOT / 'runtime/review_engine.py').read_text()
         result[f"{directory}/references/access.md"] = GUIDE
+        if item.get('command') in ('stock', 'research'):
+            result[f"{directory}/references/investment-review.md"] = (ROOT / 'docs/INVESTMENT_REVIEW.md').read_text()
+            result[f"{directory}/SKILL.md"] += '\n## Investment review\n\nTo compare two previous workflow results, read [investment review](references/investment-review.md). Use `review --baseline <authorized-file> --current <authorized-file> --lang en` (or zh). This is local comparison, not account-history access, automatic monitoring or a new paid query.\n'
         if item.get('command') == 'research':
             result[f"{directory}/references/news-impact.md"] = (ROOT / 'docs/NEWS_IMPACT.md').read_text()
             result[f"{directory}/references/report-breakdown.md"] = (ROOT / 'docs/REPORT_BREAKDOWN.md').read_text()
