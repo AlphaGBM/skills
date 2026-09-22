@@ -2,6 +2,8 @@
 
 ## One account, explicit access
 
+The optional `stock --workflow --lang en` format is a staged rollout requiring the matching `stock-opportunities.v1` backend. A public contract/identity check runs first without credentials, so an older server receives no charged analysis call. Existing `stock` commands remain unchanged. The result distinguishes published opportunity scores from risk/model assessments and explicitly reports missing data; partial success is not a reason to retry a paid request. No user history is saved automatically.
+
 Installation is free. Published research and public stock candidates require no key. Account analysis uses the same allowance as the website, subject to endpoint and subscription rules. Installation never grants Alpha Agent subscription access. Do not hardcode changing plan allowances into a Skill.
 
 | Workflow/function | Interface | Authentication | Execution rule |

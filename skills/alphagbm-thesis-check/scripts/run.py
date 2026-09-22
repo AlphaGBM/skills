@@ -105,12 +105,28 @@ def radar(args):
             continue
         if args.market != "ALL" and item.get("market") != args.market:
             continue
-        score = item.get("score")
-        if isinstance(score, bool) or not isinstance(score, (float, int)) or not math.isfinite(score):
+        report = item.get("stockOpportunityScore")
+        if not isinstance(report, dict) or item.get('stockScoreState') != 'complete':
             continue
-        items.append({key: value for key, value in item.items() if key != "points"})
+        score = report.get('score')
+        if (isinstance(score, bool) or not isinstance(score, (float, int)) or not math.isfinite(score)
+                or not 0 <= score <= 100 or report.get('availability') != 'complete'
+                or report.get('symbol') != item.get('symbol') or report.get('market') != item.get('market')
+                or report.get('recommendationEligible') is not True
+                or not isinstance(report.get('method'), str) or not report['method'].startswith('stock-opportunity-')
+                or not re.fullmatch(r'[a-f0-9]{64}', str(report.get('snapshotId', '')))):
+            continue
+        try:
+            observed = datetime.fromisoformat(report['asOf'].replace('Z', '+00:00'))
+            expires = datetime.fromisoformat(report['expiresAt'].replace('Z', '+00:00'))
+            if observed.tzinfo is None or expires.tzinfo is None or not observed <= datetime.now(timezone.utc) < expires:
+                continue
+        except (KeyError, ValueError, TypeError, AttributeError):
+            continue
+        items.append({**{key: value for key, value in item.items() if key not in ('points', 'score')},
+                      'score': score, 'scoreBasis': report['method']})
     items.sort(key=lambda item: (-item["score"], item.get("symbol", "")))
-    return {"state": payload.get("state"), "generatedAt": payload.get("generatedAt"), "partial": payload.get("partial"), "refreshFailed": payload.get("refreshFailed"), "availableCandidates": len(items), "items": items[:args.limit]}
+    return {"state": payload.get("state"), "generatedAt": payload.get("generatedAt"), "partial": payload.get("partial"), "refreshFailed": payload.get("refreshFailed"), "availableCandidates": len(items), "items": items[:args.limit], "scoreBasis": "published_stock_opportunity_score"}
 
 
 def research(args):
@@ -203,6 +219,8 @@ def parser():
         sub.add_argument("--confirm-usage", action="store_true")
         if name == "stock":
             sub.add_argument("--style", choices=["quality", "value", "growth", "momentum", "balanced"], default="quality")
+            sub.add_argument("--workflow", action="store_true")
+            sub.add_argument("--lang", choices=['zh', 'en'], default='en')
         else:
             sub.add_argument("--strategy", choices=["all", "sell_put", "sell_call", "buy_put", "buy_call"], default="all")
             sub.add_argument("--expiry")
@@ -231,9 +249,27 @@ def execute(args):
         return fetch_json("GET", f"/api/options/snapshot/{quote(args.ticker)}", authenticated=True)
     paid(args)
     if args.command == "stock":
-        result = fetch_json("POST", "/api/stock/analyze-sync", authenticated=True, body={"ticker": args.ticker, "style": args.style}, timeout=90)
+        path = '/api/stock/analyze-sync'
+        if args.workflow:
+            contract = fetch_json('GET', '/api/stock/workflow-contract?' + urlencode({'ticker': args.ticker}))
+            if (contract.get('contractVersion') != 'stock-opportunities.v1'
+                    or not isinstance(contract.get('instrument'), dict)
+                    or contract['instrument'].get('type') != 'stock'
+                    or contract['instrument'].get('market') not in ('US', 'HK', 'CN')
+                    or not isinstance(contract['instrument'].get('symbol'), str)
+                    or not TICKER.fullmatch(contract['instrument']['symbol'])):
+                raise WorkflowError('WORKFLOW_UNAVAILABLE', 'The selected server does not support the stock workflow. No analysis request was sent.')
+            path += '?format=workflow&lang=' + args.lang
+        result = fetch_json("POST", path, authenticated=True, body={"ticker": args.ticker, "style": args.style}, timeout=90)
         if not isinstance(result.get("data"), dict) or not result["data"]:
             raise WorkflowError("INVALID_RESPONSE", "The stock analysis has no research data.")
+        if args.workflow:
+            data = result['data']
+            if (result.get('success') is not True or data.get('contractVersion') != 'stock-opportunities.v1'
+                    or data.get('instrument') != contract['instrument']
+                    or not REVISION.fullmatch(str(data.get('resultId', '')))
+                    or data.get('status') not in ('ready', 'partial')):
+                raise WorkflowError('INVALID_WORKFLOW_RESPONSE', 'The server did not return the requested stock workflow. Do not retry a charged request automatically.')
         return result
     body = {"ticker": args.ticker, "strategy": args.strategy, "top_n": args.limit}
     if args.expiry:
