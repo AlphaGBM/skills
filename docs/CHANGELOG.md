@@ -1,5 +1,15 @@
 # Release notes
 
+## 3.1.0 — Website-aligned directory
+
+- One canonical catalogue: 5 core Skills and 22 focused Skills (9 stocks, 11 options, 1 commodity and 1 digital-assets method).
+- Move physical packages into `skills/core`, `stocks`, `options`, `commodities` and `digital-assets`. Retained install IDs stay unchanged; old flat file URLs must be updated.
+- Move Momentum Following, ETF Strategy, Grid Plan, Dollar-Cost Averaging and Smart Money Tracking into focused stock Skills. Consolidate VIX/fear methods into Market Sentiment and keep Research Reports as the research-reading entry.
+- Remove fourteen retired standalone entries from the latest installable directory. Historical versions and shared runtime compatibility commands remain, but do not count as active Skills.
+- Generate bilingual README counts, category indexes and demo coverage from the same catalogue used by website copy instructions. No new data access, pricing or production-verification claims.
+
+Older entries below describe their release-time inventory, not the current catalogue.
+
 ## 2026-09-22 — Workflow catalogue release candidate
 
 - Reframed the public README around five result-oriented workflows instead of a flat tool list.

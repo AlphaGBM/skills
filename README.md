@@ -1,100 +1,98 @@
 # AlphaGBM Skills
 
-**Evidence-first market research inside your AI workspace.**
+**Market research inside your AI workspace.**
 
-Stock opportunities. Options strategies. News impact. Report breakdowns. Investment reviews.
-
-**Release candidate:** ten result-oriented workflows are staged with the matching AlphaGBM backend contract. News Impact and Research Report Breakdown read published material; Stock Opportunities, Options Strategies and ETF Strategy use account-backed research; Investment Review compares records you supply locally. Check [access status](docs/ACCESS.md) before treating any interface as production-ready.
+Find stock opportunities. Compare options strategies. Understand news. Break down research. Review investment decisions.
 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills)](https://github.com/AlphaGBM/skills)
 
-**10 research workflows · 31 focused tools and reference packages.** The count includes reference packages; it is not a claim of 41 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
+[Website](https://www.alphagbm.com/skills) · [中文](docs/README.zh.md) · [Catalogue](docs/CATALOG.md) · [Demos](demo/CATALOG.md) · [Access & usage](docs/ACCESS.md)
 
-[Website](https://www.alphagbm.com/skills) · [中文指南](docs/README.zh.md) · [Start here](#start-with-a-result) · [Workflow and strategy demos](demo/README.md) · [Access & usage](docs/ACCESS.md) · [What's new](docs/CHANGELOG.md)
+<!-- catalog:start -->
+**27 Skills · 5 core Skills + 22 focused Skills**
 
-## What changed in this release candidate
+| Category / 分类 | Count / 数量 |
+|---|---|
+| [Core Skills](skills/core/) | 5 |
+| [Stocks](skills/stocks/) | 9 |
+| [Options](skills/options/) | 11 |
+| [Commodities](skills/commodities/) | 1 |
+| [Digital Assets](skills/digital-assets/) | 1 |
 
-The catalogue is organized around the result a user wants, not around a long list of endpoints:
+<!-- catalog:end -->
 
-1. **Find an opportunity** — connect fundamentals, sentiment, risk and evidence.
-2. **Compare an options strategy** — keep quote timing, capital, payoff and risk visible.
-3. **Understand what changed** — separate reported news from impact inference.
-4. **Break down a report** — preserve the institution's view, rating, assumptions and dates.
-5. **Review a decision** — compare two supplied snapshots and identify what changed.
+Counts include method-reference packages, not just callable APIs. The catalogue preserves each package's access and release status; a preview is not a claim of verified production availability.
 
-Every workflow is designed to return a conclusion, supporting and opposing evidence, and the next question to verify. Each strategy also has a dedicated [synthetic demo fixture](demo/README.md#every-strategy-has-a-demo); these files never stand in for live quotes or a paid request.
+## Start with the result you need
 
-## Start with a result
+| Core Skill | What you receive | Package |
+|---|---|---|
+| Stock Opportunities | Fundamentals, sentiment, risk and available opportunity scores | `alphagbm-stock-research` |
+| Options Strategies | Candidate scores, capital requirements and risk limitations | `alphagbm-options-research` |
+| News Impact | Reported facts, affected assets and impact inferences | `alphagbm-news-impact` |
+| Research Report Breakdown | Institutional views, original ratings, assumptions and sources | `alphagbm-report-breakdown` |
+| Investment Review | Changes between two supplied snapshots, compared locally | `alphagbm-investment-review` |
 
-Install one workflow, not everything. For example, read published research without a key:
+Install one Skill:
 
 ```bash
-npx skills add AlphaGBM/skills --skill alphagbm-research-reader
+npx skills add AlphaGBM/skills --skill alphagbm-stock-research
 ```
 
 Then ask your AI:
 
-> Use AlphaGBM to find recent semiconductor research. Summarize the views and preserve the sources and dates.
+> Use AlphaGBM to research NVDA. Explain supporting evidence, counterevidence and what could change the conclusion. Ask before using my research allowance.
 
-The installer lets you choose your AI tool. Each workflow includes a Python 3.9+ runner and its own access instructions. **No separate AlphaGBM CLI installation is required.** Installing a package, reading a public result and running authenticated research are different checks; see [validation status](docs/ACCESS.md#verification-boundary).
+The installer lets you choose your AI tool. Callable packages contain a self-contained Python 3.9+ runner; no separate AlphaGBM CLI installation is required.
 
-## Choose a workflow
+## Choose a focused tool
 
-| You want to… | Install this | What you receive |
-|---|---|---|
-| Stock Opportunities | `alphagbm-stock-research` | Fundamentals, sentiment, available opportunity scores and evidence gaps |
-| Options Strategies | `alphagbm-options-research` | Candidate scores, reference capital, payoff limits and risks |
-| News Impact | `alphagbm-news-impact` | Reported claims, affected assets, impact inferences and checkpoints |
-| Research Report Breakdown | `alphagbm-report-breakdown` | Published views, original ratings, assumptions and risks |
-| Investment Review | `alphagbm-investment-review` | Local comparison of supplied records, not cloud-history access |
-| Momentum Following | `alphagbm-momentum-following` | Observed trend, confirmation, risk and participation factors |
-| ETF Strategy | `alphagbm-etf-strategy` | ETF opportunity factors with explicit provider-data gaps |
-| Grid Plan | `alphagbm-grid-plan` | Explicit price levels and capital allocation from your assumptions |
-| Dollar-Cost Averaging | `alphagbm-dca-plan` | Contribution schedule and supplied-path cost basis |
-| Smart Money Tracking | `alphagbm-smart-money` | Disclosed-flow aggregation without automatic trade copying |
+**Stocks:** Stock Analysis · Dividend Strategy · Market Sentiment · Research Reports · Momentum Following · ETF Strategy · Grid Plan · Dollar-Cost Averaging · Smart Money Tracking.
 
-The previous `alphagbm-opportunity-radar`, `alphagbm-research-reader` and `alphagbm-thesis-check` packages remain in the focused catalogue with their existing install names and commands.
+**Options:** Scoring, volatility, Greeks, strategy comparisons, payoff analysis and risk methods. See the [options directory](skills/options/) for the exact eleven packages and their access status.
 
-Replace the skill name in the install command. To see every package:
+**Commodities and digital assets:** focused research methods, clearly labelled as references rather than live data integrations.
 
 ```bash
 npx skills add AlphaGBM/skills --list
+npx skills add AlphaGBM/skills --skill alphagbm-etf-strategy
+npx skills add AlphaGBM/skills --skill alphagbm-research-reader
 ```
 
-### Use your account for deeper research
+Market Sentiment includes VIX and fear indicators within one method; these are no longer separate cards. Smart Money Tracking summarizes disclosed records and never copies or places trades.
 
-Create an API key in [your AlphaGBM account](https://www.alphagbm.com/api-keys) and configure `ALPHAGBM_API_KEY` in your tool's local environment. Never paste the key into a conversation or commit it to a repository.
+## Your workspace, your AlphaGBM account
 
-> Use AlphaGBM to research NVDA. Explain supporting evidence, counterevidence and what could change the conclusion. Ask before using my research allowance.
+Create a personal key in [your account](https://www.alphagbm.com/api-keys) and configure `ALPHAGBM_API_KEY` securely in your tool's environment. Never paste a key into a conversation or commit it to a repository.
 
-Installation is free. Account-backed research uses **the same account allowance as the website**. It does not grant a separate quota or a free Alpha Agent subscription. Public catalogue/candidate reads require no key. [Compare current plans](https://www.alphagbm.com/pricing).
+- Installation is free; account-backed research shares the website's allowance and subscription rules. Installation does not unlock Alpha Agent or grant additional quota.
+- Published research reads need no key; this does not grant access to the private research archive. Investment Review compares files you supply locally.
+- Reference packages explain methods; they do not expose a live API. Runners check supported workflow contracts before applicable paid calls and never replace failures with demos.
+- Preserve source dates, missing data and score definitions. Research is not a return guarantee or an order to trade.
 
-## Why AlphaGBM?
+[Account plans](https://www.alphagbm.com/pricing) · [Verification boundary](docs/ACCESS.md#verification-boundary)
 
-- **Data plus research:** use AlphaGBM's published candidates, market-analysis endpoints and research catalogue—not an instruction to guess from model memory.
-- **Evidence you can revisit:** preserve source dates, score types and returned evidence revisions. A stock risk score is not an opportunity score or a probability of profit.
-- **One account, two places to work:** use the website or your AI workspace without a separate Skills allowance.
-- **Small functions when you need them:** keep individual stock, option, volatility and research tools; treat unpublished interfaces as references, not working APIs.
+## Examples you can inspect
 
-Data may be live, delayed or a dated snapshot depending on the endpoint. Coverage is not universal. The thesis workflow is on demand; it does **not** schedule monitoring, trade, or save records to your account automatically.
+Every current package has an entry in the [demo index](demo/CATALOG.md): either an explicitly synthetic output fixture or a source-based example request. Neither is presented as a captured live paid response. [Demo guide](demo/README.md).
 
-## Focused tools, without the wall of names
+## One catalogue, matching website cards
 
-The [full catalogue](docs/CATALOG.md) groups individual packages into stocks, options, markets, risk and research. Investor-method packages are maintained separately in [`AlphaGBM/investment-masters`](https://github.com/AlphaGBM/investment-masters), so this repository stays focused on data-backed workflows and tools.
+[`catalog/catalog.json`](catalog/catalog.json) defines names, categories, stable IDs and exact package paths. The website imports a commit-pinned copy and uses those paths in copied instructions. Core Skills live under `skills/core/`; focused tools live under their asset categories. [Contributing](CONTRIBUTING.md).
 
-## See the output
+Investor-inspired methods are maintained separately in [AlphaGBM/investment-masters](https://github.com/AlphaGBM/investment-masters); they are not counted or duplicated here.
 
-<img src="assets/demo-workflow.svg" alt="Illustrative AlphaGBM stock opportunity workflow output; not a live quote" width="720">
+### Upgrading from the flat directory
 
-This is an illustrative workflow fixture, not a current market observation and not evidence that a paid task has run. The exact JSON is in [`demo/stock-opportunities.json`](demo/stock-opportunities.json). Strategy fixtures are grouped under [`demo/strategies/`](demo/strategies/). Workflow runners return structured JSON for your AI to summarize; they do not silently replace failed requests with sample data.
+Retained package IDs and `--skill` install names are unchanged, but file paths have moved. Reinstall using the commands above; replace old `skills/<id>/` bookmarks with catalogue paths. Research-management cards and retired standalone packages are removed from the latest catalogue, not silently mapped to unrelated functions. Existing pinned versions remain available in Git history. The shared runner's compatibility commands are not new catalogue entries.
 
-## Developers
+## Development
 
-- [Access contract and failure handling](docs/ACCESS.md)
-- [Generated catalogue](docs/CATALOG.md) · [Canonical JSON](catalog/catalog.json)
-- [CLI](cli/README.md) remains available separately; CLI command count is not Skill count.
-- `python3 scripts/build_catalog.py --check` validates package coverage and generated runners/docs.
-- Edit `catalog/catalog.json` and `runtime/workflow.py`, then run `python3 scripts/build_catalog.py`. Do not hand-edit generated workflow files.
-- Website releases import this catalogue from a pinned Git commit and verify its SHA-256. Publish the repository update before promoting the matching website release.
+```bash
+python3 scripts/build_catalog.py
+python3 scripts/build_catalog.py --check
+python3 -m unittest discover -s scripts -p 'test_*.py'
+npx skills add . --list
+```
 
-Research only. No trade execution or performance guarantees. [Contributing](CONTRIBUTING.md) · [License](LICENSE).
+MIT licensed. See [LICENSE](LICENSE).

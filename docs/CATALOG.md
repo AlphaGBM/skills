@@ -1,6 +1,6 @@
 # AlphaGBM Skills catalogue
 
-Version 3.0.0: 10 workflows and 31 focused tools/reference packages.
+Version 3.1.0: 5 workflows and 22 focused tools/reference packages.
 
 Package counts are not a count of independently verified APIs. The workflow runners are self-contained. Account actions require explicit permission to use quota; installation itself is free.
 
@@ -8,16 +8,11 @@ Package counts are not a count of independently verified APIs. The workflow runn
 
 | Workflow | 中文 | Access | Output |
 |---|---|---|---|
-| [Stock Opportunities](../skills/alphagbm-stock-research/) | 股票机会 | account | Research conclusion, Evidence and risks, Questions to verify |
-| [Options Strategies](../skills/alphagbm-options-research/) | 期权策略 | account | Option candidates, Scores and quote times, Funding and risks |
-| [News Impact](../skills/alphagbm-news-impact/) | 新闻影响 | public | Event and related assets, Impact evidence and limits, Next checkpoints |
-| [Research Report Breakdown](../skills/alphagbm-report-breakdown/) | 研报拆解 | public | Views and original ratings, Assumptions and risks, Sources and checkpoints |
-| [Investment Review](../skills/alphagbm-investment-review/) | 投资复盘 | local | Changes since the baseline, Comparability and gaps, Judgments to revisit |
-| [Momentum Following](../skills/alphagbm-momentum-following/) | 趋势跟踪 | account | Trend state and score, Trend, confirmation and risk factors, Next checks |
-| [ETF Strategy](../skills/alphagbm-etf-strategy/) | ETF策略 | account | ETF opportunity score and factors, Cost, tracking and risk gaps, Next verification checks |
-| [Grid Plan](../skills/alphagbm-grid-plan/) | 网格计划 | account | Grid levels and step, Capital allocation, Conditions and risks |
-| [Dollar-Cost Averaging](../skills/alphagbm-dca-plan/) | 定投计划 | account | Contribution schedule, Total capital and cost basis, Conditions and limits |
-| [Smart Money Tracking](../skills/alphagbm-smart-money/) | Smart Money跟踪 | account | Disclosed transaction summary, Buys, sells and net flow, Sources, timing and limits |
+| [Stock Opportunities](../skills/core/alphagbm-stock-research/) | 股票机会 | account | Research conclusion, Evidence and risks, Questions to verify |
+| [Options Strategies](../skills/core/alphagbm-options-research/) | 期权策略 | account | Option candidates, Scores and quote times, Funding and risks |
+| [News Impact](../skills/core/alphagbm-news-impact/) | 新闻影响 | public | Event and related assets, Impact evidence and limits, Next checkpoints |
+| [Research Report Breakdown](../skills/core/alphagbm-report-breakdown/) | 研报拆解 | public | Views and original ratings, Assumptions and risks, Sources and checkpoints |
+| [Investment Review](../skills/core/alphagbm-investment-review/) | 投资复盘 | local | Changes since the baseline, Comparability and gaps, Judgments to revisit |
 
 ## Focused tools and reference packages
 
@@ -25,34 +20,25 @@ Package counts are not a count of independently verified APIs. The workflow runn
 
 | Function | 中文 | Category | Status |
 |---|---|---|---|
-| [Stock Analysis](../skills/alphagbm-stock-analysis/) | 股票分析 | stocks | api |
-| [Dividend Strategy](../skills/alphagbm-dividend-strategy/) | 高息策略 | stocks | api |
-| [Compare Assets](../skills/alphagbm-compare/) | 标的对比 | stocks | reference |
-| [Options Score](../skills/alphagbm-options-score/) | 期权评分 | options | api |
-| [Volatility Snapshot](../skills/alphagbm-iv-rank/) | 波动率快照 | options | api |
-| [Volatility Surface](../skills/alphagbm-vol-surface/) | 波动率曲面 | options | reference |
-| [Volatility Smile](../skills/alphagbm-vol-smile/) | 波动率微笑 | options | reference |
-| [Greeks](../skills/alphagbm-greeks/) | 希腊值 | options | reference |
-| [Strategy Builder](../skills/alphagbm-options-strategy/) | 策略构建 | options | reference |
-| [Payoff Simulation](../skills/alphagbm-pnl-simulator/) | 损益模拟 | options | reference |
-| [Earnings IV Crush](../skills/alphagbm-earnings-crush/) | 财报波动率回落 | options | reference |
-| [Unusual Options Activity](../skills/alphagbm-unusual-activity/) | 期权异动 | market | reference |
-| [Market Sentiment](../skills/alphagbm-market-sentiment/) | 市场情绪 | market | reference |
-| [VIX Status](../skills/alphagbm-vix-status/) | VIX状态 | market | reference |
-| [Fear Score](../skills/alphagbm-fear-score/) | 恐慌指标 | market | reference |
-| [Prediction Markets](../skills/alphagbm-polymarket/) | 预测市场观察 | market | reference |
-| [Supply-chain Bottlenecks](../skills/alphagbm-chokepoint/) | 产业链瓶颈 | market | reference |
-| [Hedging Scenarios](../skills/alphagbm-hedge-advisor/) | 对冲情景 | risk | reference |
-| [Put-spread Backtest](../skills/alphagbm-bps-backtest/) | 价差策略回测 | risk | reference |
-| [Exit Strategy Comparison](../skills/alphagbm-take-profit/) | 退出策略对照 | risk | reference |
-| [Watchlist](../skills/alphagbm-watchlist/) | 关注列表 | research | reference |
-| [Conditional Alerts](../skills/alphagbm-alert/) | 条件提醒 | research | reference |
-| [Company Profile](../skills/alphagbm-company-profile/) | 公司研究档案 | research | reference |
-| [Investment Thesis](../skills/alphagbm-investment-thesis/) | 投资论据 | research | reference |
-| [Macro View](../skills/alphagbm-macro-view/) | 宏观观察 | research | reference |
-| [Theme Research](../skills/alphagbm-theme-research/) | 主题研究 | research | reference |
-| [Research Health Check](../skills/alphagbm-health-check/) | 研究档案检查 | research | reference |
-| [Published Research](../skills/alphagbm-research-insights/) | 已发布研究阅读 | research | api |
-| [Find Opportunities](../skills/alphagbm-opportunity-radar/) | 发现机会 | stocks | api |
-| [Read Research & News](../skills/alphagbm-research-reader/) | 读研报与新闻 | research | api |
-| [Verify a Thesis](../skills/alphagbm-thesis-check/) | 验证与复查判断 | risk | api |
+| [Stock Analysis](../skills/stocks/alphagbm-stock-analysis/) | 股票分析 | stocks | api |
+| [Dividend Strategy](../skills/stocks/alphagbm-dividend-strategy/) | 高息策略 | stocks | api |
+| [Market Sentiment](../skills/stocks/alphagbm-market-sentiment/) | 市场情绪 | stocks | reference |
+| [Research Reports](../skills/stocks/alphagbm-research-reader/) | 研报查阅 | stocks | api |
+| [Momentum Following](../skills/stocks/alphagbm-momentum-following/) | 趋势跟踪 | stocks | preview |
+| [ETF Strategy](../skills/stocks/alphagbm-etf-strategy/) | ETF策略 | stocks | preview |
+| [Grid Plan](../skills/stocks/alphagbm-grid-plan/) | 网格计划 | stocks | preview |
+| [Dollar-Cost Averaging](../skills/stocks/alphagbm-dca-plan/) | 定投计划 | stocks | preview |
+| [Smart Money Tracking](../skills/stocks/alphagbm-smart-money/) | 聪明钱跟踪 | stocks | preview |
+| [Options Score](../skills/options/alphagbm-options-score/) | 期权评分 | options | api |
+| [Volatility Snapshot](../skills/options/alphagbm-iv-rank/) | 波动率快照 | options | api |
+| [Volatility Surface](../skills/options/alphagbm-vol-surface/) | 波动率曲面 | options | reference |
+| [Volatility Smile](../skills/options/alphagbm-vol-smile/) | 波动率微笑 | options | reference |
+| [Greeks](../skills/options/alphagbm-greeks/) | 希腊值 | options | reference |
+| [Strategy Builder](../skills/options/alphagbm-options-strategy/) | 策略构建 | options | reference |
+| [Payoff Simulation](../skills/options/alphagbm-pnl-simulator/) | 损益模拟 | options | reference |
+| [Earnings IV Crush](../skills/options/alphagbm-earnings-crush/) | 财报波动率回落 | options | reference |
+| [Unusual Options Activity](../skills/options/alphagbm-unusual-activity/) | 期权异动 | options | reference |
+| [Hedging Scenarios](../skills/options/alphagbm-hedge-advisor/) | 对冲情景 | options | reference |
+| [Put-spread Backtest](../skills/options/alphagbm-bps-backtest/) | 价差策略回测 | options | reference |
+| [Supply-chain Bottlenecks](../skills/commodities/alphagbm-chokepoint/) | 产业链瓶颈 | commodities | reference |
+| [Prediction Markets](../skills/digital-assets/alphagbm-polymarket/) | 预测市场观察 | digital-assets | reference |
