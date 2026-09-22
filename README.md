@@ -8,7 +8,7 @@ Stock opportunities. Options strategies. News impact. Report breakdowns. Investm
 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills)](https://github.com/AlphaGBM/skills)
 
-**10 research workflows · 35 focused tools and reference packages.** The count includes reference packages; it is not a claim of 34 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
+**10 research workflows · 31 focused tools and reference packages.** The count includes reference packages; it is not a claim that every package is an independently verified API. Investor-method profiles are maintained separately in [`AlphaGBM/investment-masters`](https://github.com/AlphaGBM/investment-masters). See the [generated catalogue and access status](docs/CATALOG.md).
 
 [Website](https://www.alphagbm.com/skills) · [中文指南](docs/README.zh.md) · [Start here](#start-with-a-result) · [Demo outputs](demo/README.md) · [Access & usage](docs/ACCESS.md) · [What's new](docs/CHANGELOG.md)
 
@@ -80,9 +80,9 @@ Data may be live, delayed or a dated snapshot depending on the endpoint. Coverag
 
 ## Focused tools, without the wall of names
 
-The [full catalogue](docs/CATALOG.md) groups individual packages into stocks, options, markets, risk, research and investor frameworks. It states which interfaces are supported by the access review and which are reference-only.
+The [full catalogue](docs/CATALOG.md) groups individual packages into stocks, options, markets, risk and research. Investor-method profiles are intentionally kept out of this repository and maintained in the separate [`investment-masters`](https://github.com/AlphaGBM/investment-masters) repository.
 
-Investor frameworks are optional research lenses, not the primary product, endorsements by those investors, or validated promises of returns.
+Those profiles are optional research lenses, not endorsements by the named investors or promises of returns.
 
 ## See the output
 
