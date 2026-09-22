@@ -1,0 +1,4 @@
+interface:
+  display_name: "Read Research & News"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-research-reader. Use AlphaGBM to find recent semiconductor research and distinguish institutional views from disclosed facts."

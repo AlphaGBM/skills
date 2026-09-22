@@ -1,0 +1,4 @@
+interface:
+  display_name: "News Impact"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-news-impact. Use AlphaGBM to analyze a published news item: related assets, reported claims, impact inferences and questions to verify."

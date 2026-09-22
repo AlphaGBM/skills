@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Report Breakdown"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-report-breakdown. Use AlphaGBM to break down a published report: institutional views, original ratings, key assumptions, risks and checkpoints."

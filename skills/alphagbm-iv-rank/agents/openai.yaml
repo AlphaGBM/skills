@@ -1,0 +1,4 @@
+interface:
+  display_name: "Volatility Snapshot"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-iv-rank for volatility snapshot with dated evidence."

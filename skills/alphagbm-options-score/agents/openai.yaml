@@ -1,0 +1,4 @@
+interface:
+  display_name: "Options Score"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-options-score for options score with dated evidence."

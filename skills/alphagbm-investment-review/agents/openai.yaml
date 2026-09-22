@@ -1,0 +1,4 @@
+interface:
+  display_name: "Investment Review"
+  short_description: "AlphaGBM research with dated evidence and clear access"
+  default_prompt: "Use $alphagbm-investment-review. Use AlphaGBM to compare the two research records I provide. Show comparable changes, data gaps and judgments needing review. Process locally without reading cloud history."
