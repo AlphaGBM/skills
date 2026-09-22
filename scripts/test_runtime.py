@@ -128,7 +128,7 @@ class RunnerChecks(unittest.TestCase):
             self.assertEqual(result['risk']['score'], 3)
 
     def test_options_exact_contract(self):
-        with patch.object(workflow, 'fetch_json', return_value={'recommendations':[]}) as request:
+        with patch.object(workflow, 'fetch_json', return_value={'strategies': {name: [] for name in ('sell_put', 'sell_call', 'buy_call', 'buy_put')}}) as request:
             workflow.execute(workflow.parser().parse_args(['options','NVDA','--limit','2','--expiry','2026-10-02','--confirm-usage']))
             self.assertEqual(request.call_args.kwargs['body'], {'ticker':'NVDA','strategy':'all','top_n':2,'expiry_date':'2026-10-02'})
 
