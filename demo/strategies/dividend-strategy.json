@@ -1,0 +1,18 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "dividend-opportunities.v1",
+  "strategy": "dividend",
+  "strategyId": "alphagbm-dividend-strategy",
+  "instrument": {"type": "stock", "symbol": "0700.HK", "market": "HK"},
+  "status": "partial",
+  "resultId": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+  "score": {"observedOnlyScore": 76, "availability": "illustrative", "method": "dividend-quality-durability-cashflow-valuation-momentum"},
+  "factors": {"yieldQuality": 18, "durability": 15, "cashFlow": 14, "quality": 12, "growth": 9, "valuation": 8},
+  "evidence": ["The fixture does not rank yield alone", "Cash-flow coverage and payout durability are separate checks"],
+  "missingData": ["multi_year_dividend_history", "latest_cash_flow_confirmation", "relative_valuation"],
+  "nextChecks": ["Verify the latest dividend announcement", "Check payout coverage and cash flow", "Compare with the prior score snapshot"]
+}

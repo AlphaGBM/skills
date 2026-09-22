@@ -1,0 +1,18 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "strategy-workflows.v1",
+  "strategy": "dca",
+  "strategyId": "alphagbm-dca-plan",
+  "instrument": {"type": "etf", "symbol": "QQQ", "market": "US"},
+  "status": "partial",
+  "resultId": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+  "inputs": {"contribution": 500, "periods": 12, "frequency": "monthly"},
+  "schedule": {"totalContribution": 6000, "installments": 12, "illustrative": true},
+  "pathAnalysis": {"status": "not_run", "reason": "No historical path was supplied in this offline fixture"},
+  "missingData": ["historical_price_path", "fees_and_tax_treatment", "user_cash_flow_constraints"],
+  "nextChecks": ["Supply the intended historical window", "Compare fixed schedule with alternative paths", "Check contribution affordability and concentration"]
+}

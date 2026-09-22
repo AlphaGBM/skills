@@ -10,7 +10,7 @@ Stock opportunities. Options strategies. News impact. Report breakdowns. Investm
 
 **10 research workflows · 35 focused tools and reference packages.** The count includes reference packages; it is not a claim of 34 independently verified APIs. See the [generated catalogue and access status](docs/CATALOG.md).
 
-[Website](https://www.alphagbm.com/skills) · [中文指南](docs/README.zh.md) · [Start here](#start-with-a-result) · [Demo outputs](demo/README.md) · [Access & usage](docs/ACCESS.md) · [What's new](docs/CHANGELOG.md)
+[Website](https://www.alphagbm.com/skills) · [中文指南](docs/README.zh.md) · [Start here](#start-with-a-result) · [Workflow and strategy demos](demo/README.md) · [Access & usage](docs/ACCESS.md) · [What's new](docs/CHANGELOG.md)
 
 ## What changed in this release candidate
 
@@ -22,7 +22,7 @@ The catalogue is organized around the result a user wants, not around a long lis
 4. **Break down a report** — preserve the institution's view, rating, assumptions and dates.
 5. **Review a decision** — compare two supplied snapshots and identify what changed.
 
-Every workflow is designed to return a conclusion, supporting and opposing evidence, and the next question to verify. The [demo fixtures](demo/README.md) are synthetic and clearly labelled; they never stand in for live quotes or a paid request.
+Every workflow is designed to return a conclusion, supporting and opposing evidence, and the next question to verify. Each strategy also has a dedicated [synthetic demo fixture](demo/README.md#every-strategy-has-a-demo); these files never stand in for live quotes or a paid request.
 
 ## Start with a result
 
@@ -88,7 +88,7 @@ Investor frameworks are optional research lenses, not the primary product, endor
 
 <img src="assets/demo-workflow.svg" alt="Illustrative AlphaGBM stock opportunity workflow output; not a live quote" width="720">
 
-This is an illustrative workflow fixture, not a current market observation and not evidence that a paid task has run. The exact JSON is in [`demo/stock-opportunities.json`](demo/stock-opportunities.json). Workflow runners return structured JSON for your AI to summarize; they do not silently replace failed requests with sample data.
+This is an illustrative workflow fixture, not a current market observation and not evidence that a paid task has run. The exact JSON is in [`demo/stock-opportunities.json`](demo/stock-opportunities.json). Strategy fixtures are grouped under [`demo/strategies/`](demo/strategies/). Workflow runners return structured JSON for your AI to summarize; they do not silently replace failed requests with sample data.
 
 ## Developers
 

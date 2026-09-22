@@ -1,0 +1,36 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "option-strategies.v1",
+  "strategy": "options",
+  "strategyId": "alphagbm-options-research",
+  "instrument": {"type": "stock_options", "symbol": "NVDA", "market": "US"},
+  "status": "partial",
+  "resultId": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+  "quoteContext": {"asOf": "2026-09-18T20:00:00Z", "timing": "illustrative; verify before use"},
+  "candidates": [
+    {
+      "strategy": "defined-risk call spread",
+      "score": 68,
+      "capitalRequirement": "limited debit",
+      "payoff": "capped upside, defined downside",
+      "risks": ["volatility repricing", "event gap", "liquidity"]
+    },
+    {
+      "strategy": "put spread",
+      "score": 61,
+      "capitalRequirement": "defined spread width",
+      "payoff": "defined downside exposure",
+      "risks": ["assignment terms", "gap risk", "quote timing"]
+    }
+  ],
+  "missingData": ["live_bid_ask", "open_interest_confirmation"],
+  "nextChecks": [
+    "Confirm bid/ask, open interest and quote timestamp",
+    "Review implied volatility against the selected expiry",
+    "Stress payoff and assignment outcomes before considering execution"
+  ]
+}

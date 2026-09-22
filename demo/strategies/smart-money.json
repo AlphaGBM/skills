@@ -1,0 +1,18 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "strategy-workflows.v1",
+  "strategy": "smart_money",
+  "strategyId": "alphagbm-smart-money",
+  "instrument": {"type": "stock", "symbol": "NVDA", "market": "US"},
+  "status": "partial",
+  "resultId": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "inputScope": {"records": 3, "source": "user-supplied disclosed transactions", "copyTrades": false},
+  "flowSummary": {"buys": 2, "sells": 1, "netDirection": "illustrative net buy"},
+  "evidence": ["The result groups disclosed records by source and side", "Disclosure dates and reporting lag remain visible"],
+  "missingData": ["complete_position_history", "undisclosed_activity", "current_source_verification"],
+  "nextChecks": ["Verify each disclosure against the original filing", "Separate filing date from transaction date", "Do not infer a trade instruction from disclosed flow"]
+}

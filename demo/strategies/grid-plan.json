@@ -1,0 +1,18 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "strategy-workflows.v1",
+  "strategy": "grid",
+  "strategyId": "alphagbm-grid-plan",
+  "instrument": {"type": "stock", "symbol": "NVDA", "market": "US"},
+  "status": "ready",
+  "resultId": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+  "inputs": {"lowerPrice": 100, "upperPrice": 140, "currentPrice": 120, "capital": 1000, "gridCount": 8},
+  "plan": {"levels": 8, "spacing": "illustrative arithmetic grid", "capitalPerLevel": 125},
+  "riskFlags": ["range break", "gap risk", "fees and slippage", "capital concentration"],
+  "missingData": ["live_price_confirmation", "execution_costs"],
+  "nextChecks": ["Validate that the range is still intentional", "Recalculate after a material price move", "Include fees, slippage and order-size limits"]
+}
