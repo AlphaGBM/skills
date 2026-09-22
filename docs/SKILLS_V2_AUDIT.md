@@ -14,7 +14,7 @@ This PR contains 31 `SKILL.md` packages, including the new public Research Insig
 | Market and options intelligence | 6 | Broad coverage; endpoint and quota audit still required |
 | Workflow tools | 4 | Useful for watch, alerts and comparison |
 | Risk and portfolio discipline | 3 | Strong differentiator; should be surfaced earlier |
-| Investor frameworks | 4 | Keep as optional methodology overlays, not the main product promise |
+| Investor frameworks | separate repository | Maintained in `AlphaGBM/investment-masters`, outside this data-backed Skills catalogue |
 | Research and knowledge | 6 | Includes the new public reader; private Research Brain API-key access still requires review |
 | **Total** | **31** | README inventory matches this PR |
 
@@ -62,7 +62,7 @@ The following routes are present in the current product backend source and alrea
 - Options: expirations, chains, enhanced analysis, reverse score, snapshots, recommendations, volatility tools, unusual activity, fear/VIX signals and backtests.
 - Research Brain: profiles, theses, macro, themes and health checks.
 - Workflow: compare, watchlist and alerts.
-- Investor frameworks: Buffett, Marks and Tepper endpoints.
+- Investor-framework endpoints may exist in the product backend, but the method packages are maintained in `AlphaGBM/investment-masters` and are not part of this repository's external Skills catalogue.
 
 These areas still require a staging contract test before they should be advertised as fully supported:
 
