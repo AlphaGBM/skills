@@ -1,0 +1,23 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "asOf": "2026-09-18",
+    "notForTrading": true
+  },
+  "contractVersion": "strategy-workflows.v1",
+  "strategy": "etf",
+  "strategyId": "alphagbm-etf-strategy",
+  "instrument": {"type": "etf", "symbol": "QQQ", "market": "US"},
+  "status": "partial",
+  "resultId": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "opportunityScore": {"score": 69, "method": "illustrative_etf_value_quality_momentum", "availability": "illustrative"},
+  "factors": {
+    "valuation": {"status": "observed", "signal": "neutral_to_favorable"},
+    "quality": {"status": "observed", "signal": "constructive"},
+    "drawdown": {"status": "observed", "signal": "requires tolerance check"},
+    "momentum": {"status": "observed", "signal": "positive"}
+  },
+  "evidence": ["The fixture separates valuation, quality, drawdown and momentum instead of using a single yield number"],
+  "missingData": ["latest_holdings_snapshot", "provider_percentile_history", "fee_and_tracking_confirmation"],
+  "nextChecks": ["Refresh holdings and factor dates", "Compare the score with the prior snapshot", "Check tracking difference and total cost"]
+}

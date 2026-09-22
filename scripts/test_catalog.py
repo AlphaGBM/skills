@@ -46,6 +46,41 @@ class CatalogTests(unittest.TestCase):
         self.assertIn('without network access', content)
         self.assertNotIn('This command reads published data', content)
 
+    def test_every_strategy_has_an_explicit_demo_fixture(self):
+        expected = {
+            'options': 'options-strategy.json',
+            'momentum': 'momentum-following.json',
+            'etf': 'etf-strategy.json',
+            'grid': 'grid-plan.json',
+            'dca': 'dca-plan.json',
+            'smart_money': 'smart-money.json',
+            'dividend': 'dividend-strategy.json',
+        }
+        for strategy, filename in expected.items():
+            path = ROOT / 'demo' / 'strategies' / filename
+            self.assertTrue(path.is_file(), filename)
+            payload = json.loads(path.read_text())
+            self.assertEqual(payload['demo']['status'], 'illustrative_fixture')
+            self.assertTrue(payload['demo']['notForTrading'])
+            self.assertEqual(payload['strategy'], strategy)
+            self.assertIn(payload['status'], ('ready', 'partial'))
+            self.assertRegex(payload['resultId'], r'^sha256:[0-9a-f]{64}$')
+            self.assertIsInstance(payload['missingData'], list)
+            self.assertIsInstance(payload['nextChecks'], list)
+
+    def test_every_focused_package_has_a_real_source_case(self):
+        cases = json.loads((ROOT / 'demo/package-cases.json').read_text())
+        package_ids = {item['id'] for item in self.catalog['tools']}
+        self.assertEqual(len(cases['cases']), len(package_ids))
+        self.assertEqual({item['package'] for item in cases['cases']}, package_ids)
+        for case in cases['cases']:
+            self.assertIn(case['kind'], ('api', 'reference'))
+            self.assertTrue(case['subject'])
+            self.assertTrue(case['request'])
+            self.assertTrue(case['sources'])
+            self.assertTrue(case['expected'])
+            self.assertTrue(all(source.startswith('https://') for source in case['sources']))
+
 
 if __name__ == '__main__':
     unittest.main()
