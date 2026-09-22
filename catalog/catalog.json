@@ -575,46 +575,6 @@
       "status": "api"
     },
     {
-      "id": "alphagbm-duan-analysis",
-      "group": "methods",
-      "name": {
-        "zh": "段永平框架",
-        "en": "Duan Yongping Framework"
-      },
-      "access": "reference",
-      "status": "reference"
-    },
-    {
-      "id": "alphagbm-buffett-analysis",
-      "group": "methods",
-      "name": {
-        "zh": "巴菲特框架",
-        "en": "Buffett Framework"
-      },
-      "access": "reference",
-      "status": "reference"
-    },
-    {
-      "id": "alphagbm-marks-cycle",
-      "group": "methods",
-      "name": {
-        "zh": "马克斯周期框架",
-        "en": "Marks Cycle Framework"
-      },
-      "access": "reference",
-      "status": "reference"
-    },
-    {
-      "id": "alphagbm-tepper-signal",
-      "group": "methods",
-      "name": {
-        "zh": "泰珀框架",
-        "en": "Tepper Framework"
-      },
-      "access": "reference",
-      "status": "reference"
-    },
-    {
       "id": "alphagbm-opportunity-radar",
       "command": "radar",
       "access": "public",
