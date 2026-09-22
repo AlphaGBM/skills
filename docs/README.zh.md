@@ -1,55 +1,50 @@
-# 把 AlphaGBM 带进你的 AI 工具
+# AlphaGBM Skills
 
-**股票机会、期权策略、新闻影响、研报拆解、投资复盘。**
+**在你自己的 AI 工具中，调用 AlphaGBM 的研究能力。**
 
-当前为发布候选：五个结果导向的工作流已经与配套后端合同对齐。新闻影响和研报拆解读取已发布内容；股票机会和期权策略使用账户型研究；投资复盘只在本地比较你提供的记录。具体权限以[接入状态](ACCESS.md)为准。
+股票机会、期权策略、新闻影响、研报拆解、投资复盘：按需要选择，不必一次安装全部。
 
-先选一个任务，不必一次安装全部。目录包含10个完整工作流、31个单项工具与参考包；文件数量不代表同等数量的已验证 API。可以先看[示例结果](../demo/README.md)，再安装需要的工作流。
+<!-- catalog:start -->
+**27 Skills · 5 核心技能 + 22 单项技能**
 
-## 第一次使用：先读一份研究
+| Category / 分类 | Count / 数量 |
+|---|---|
+| [核心技能](../skills/core/) | 5 |
+| [股票](../skills/stocks/) | 9 |
+| [期权](../skills/options/) | 11 |
+| [商品](../skills/commodities/) | 1 |
+| [虚拟资产](../skills/digital-assets/) | 1 |
+
+<!-- catalog:end -->
+
+数量包含方法参考包，不等于已开放的数据接口数量。每个技能保留实际权限与发布状态；发布预览不代表已完成生产实测。
+
+## 开始使用
 
 ```bash
-npx skills add AlphaGBM/skills --skill alphagbm-research-reader
+npx skills add AlphaGBM/skills --skill alphagbm-stock-research
 ```
 
-按安装提示选择自己的AI工具，然后直接说：
+然后告诉你的 AI：
 
-> 帮我调用 AlphaGBM，查找最近的半导体研报，区分机构观点和已披露事实，保留来源与日期。
+> 用 AlphaGBM 研究 NVDA，给出支持依据、反方证据和下一步验证点。使用我的研究额度前先征得同意。
 
-这个工作流读取公开内容，不需要 API Key，不触发付费研究。每个工作流自带执行脚本，需要 Python 3.9 或更高版本，无需另外安装 AlphaGBM CLI。安装包、读取公开内容和调用账户额度，是三件不同的事。
+可调用的技能自带 Python 3.9+ 运行器，无需另外安装 AlphaGBM CLI。账户型调用与官网共用额度，安装不会赠送额外额度或解锁 Alpha Agent。在账户中创建 API Key 后，安全配置到本地环境；不要粘贴到对话中。
 
-## 选择你的任务
+## 单项技能
 
-| 工作流 | 安装名称 | 交付结果 |
-|---|---|---|
-| 股票机会 | `alphagbm-stock-research` | 基本面、情绪、可用机会分与证据缺口 |
-| 期权策略 | `alphagbm-options-research` | 期权评分、参考资金、损益边界与风险 |
-| 新闻影响 | `alphagbm-news-impact` | 新闻事实、涉及标的、影响推断与验证节点 |
-| 研报拆解 | `alphagbm-report-breakdown` | 已发布观点、原始评级、关键假设与风险 |
-| 投资复盘 | `alphagbm-investment-review` | 本地比较你提供的前后记录，不读取云端历史 |
+**股票九项：**股票分析、高息策略、市场情绪、研报查阅、趋势跟踪、ETF策略、网格计划、定投计划、聪明钱跟踪。
 
-原有 `alphagbm-opportunity-radar`、`alphagbm-research-reader`、`alphagbm-thesis-check` 转入单项目录，安装名称与调用命令保留。
+市场情绪统一涵盖 VIX 和恐慌指标，不再拆成重复卡片。聪明钱跟踪整理已披露记录，不自动跟单或下单。
 
-将安装命令中的名称替换成所选任务。工具安装位置的验证，不等于已经验证所有模型都能正确执行付费任务；具体边界见[接入说明](ACCESS.md)。
+期权、商品与虚拟资产按[完整目录](CATALOG.md)选择。方法参考不会自动获取实时数据；发布预览保留后端可用性检查。公开研报查阅不等于开放内部研报数据库。
 
-## 更深入的研究，共用你的账户额度
+## 示例与目录
 
-在[AlphaGBM账户](https://www.alphagbm.com/api-keys)中创建Key，通过自己工具的本地环境配置`ALPHAGBM_API_KEY`。不要将Key粘贴到对话或提交到Git。
+[每项技能的示例索引](../demo/CATALOG.md)区分合成输出示例与带来源的请求案例，不将二者冒充真实付费调用结果。
 
-> 帮我调用 AlphaGBM 研究 NVDA，先说明需要使用账户额度，再列出支持依据、反方证据和下一步要验证的事。
+官网卡片与 GitHub 共用[唯一清单](../catalog/catalog.json)，名称、分组、技能 ID 和复制路径保持一致。投资大师方法在 [investment-masters](https://github.com/AlphaGBM/investment-masters) 单独维护，不重复计数。
 
-Skills免费安装，不等于所有数据与分析免费。账户型请求与网站共用额度，实际权限按[当前套餐](https://www.alphagbm.com/pricing)执行；安装不会额外赠送额度或解锁Alpha Agent。
+旧版平铺目录已改为 `skills/<类别>/<技能ID>/`；保留的安装名称不变。请重新安装或使用新目录链接。研究管理等已移除项目不再出现在最新版清单，旧的固定版本仍可从 Git 历史读取。
 
-## 你会得到什么
-
-- **股票机会**：结论、支持与反方依据、下一步验证问题。
-- **期权策略**：候选方案、评分与报价时间、资金要求和风险。
-- **新闻影响**：事实、涉及标的、影响推断和后续节点。
-- **研报拆解**：机构观点、原始评级、关键假设、风险和来源。
-- **投资复盘**：比较你提供的两个版本，不读取云端历史，不自动保存。
-
-## 单项工具
-
-需要一个具体功能时，在[目录](CATALOG.md)里选择股票、期权、波动率、研究等单项工具。参考包和未开放的外部接口会明确标注，不以文件存在冒充API可调用。
-
-投资方法包单独维护在 [`AlphaGBM/investment-masters`](https://github.com/AlphaGBM/investment-masters)，不计入本仓库的 Skills 目录。验证工作流是用户发起的一次研究，不会自动交易、写入账户档案或创建定时提醒。行情与研究日期按来源展示，不将历史快照称为实时行情。
+[官网](https://www.alphagbm.com/skills) · [账户权益](https://www.alphagbm.com/pricing) · [权限说明](ACCESS.md) · [English](../README.md)

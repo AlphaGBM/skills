@@ -1,4 +1,0 @@
-interface:
-  display_name: "Published Research"
-  short_description: "AlphaGBM research with dated evidence and clear access"
-  default_prompt: "Use $alphagbm-research-insights for published research with dated evidence."

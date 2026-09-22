@@ -23,8 +23,8 @@ class RunnerChecks(unittest.TestCase):
     def test_catalog_scripts_identical(self):
         root = source.parents[1]
         catalogue = json.loads((root / 'catalog/catalog.json').read_text())
-        for entry in catalogue['workflows'] + [entry for entry in catalogue['tools'] if entry['status'] == 'api']:
-            self.assertEqual((root / 'skills' / entry['id'] / 'scripts/run.py').read_bytes(), source.read_bytes())
+        for entry in catalogue['workflows'] + [entry for entry in catalogue['tools'] if entry['status'] != 'reference']:
+            self.assertEqual((root / entry['path'] / 'scripts/run.py').read_bytes(), source.read_bytes())
 
     def test_paid_confirmation_precedes_request(self):
         for command in ['stock NVDA', 'options NVDA', 'dividend 0700.HK', 'verify NVDA --prompt claim --idempotency-key example-001']:

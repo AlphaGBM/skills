@@ -52,8 +52,8 @@ account-backed research have different access rules; see [`../docs/ACCESS.md`](.
 
 ## Every focused package has a real-source case
 
-The [package case manifest](package-cases.json) covers all 31 focused packages,
-including the API packages and the reference-only research tools. These are not frozen
+The [complete demo index](CATALOG.md) maps every current Skill to its example.
+The [package case manifest](package-cases.json) contains source-based requests for retained focused packages; the strategy fixtures above cover the remaining strategies. These are not frozen
 market quotes: each case names a popular subject, a public source and a real
 request an agent can reproduce. API cases should fetch the source at run time;
 reference cases should explain the method without inventing a live result.
