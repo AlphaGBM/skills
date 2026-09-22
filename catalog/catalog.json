@@ -1,0 +1,603 @@
+{
+  "schemaVersion": "alphagbm-skills-catalog.v1",
+  "version": "3.0.0",
+  "repository": "https://github.com/AlphaGBM/skills",
+  "runtime": "Python 3.9+",
+  "compatibility": "Installer discovery is tested separately from authenticated model execution. No universal client compatibility claim.",
+  "workflows": [
+    {
+      "id": "alphagbm-stock-research",
+      "command": "stock",
+      "access": "account",
+      "name": {
+        "zh": "股票机会",
+        "en": "Stock Opportunities"
+      },
+      "description": {
+        "zh": "从基本面、情绪和风险出发，整理支持与反对的证据。",
+        "en": "Connect fundamentals, sentiment and risk to supporting and opposing evidence."
+      },
+      "prompt": {
+        "zh": "帮我调用 AlphaGBM 研究 NVDA，列出支持依据、反方证据，以及下一步要验证什么。",
+        "en": "Use AlphaGBM to research NVDA: supporting evidence, counterevidence and what to verify next."
+      },
+      "output": {
+        "zh": [
+          "研究结论",
+          "依据与风险",
+          "待验证问题"
+        ],
+        "en": [
+          "Research conclusion",
+          "Evidence and risks",
+          "Questions to verify"
+        ]
+      },
+      "example": "stock NVDA --style quality --confirm-usage --workflow --lang en",
+      "tools": [
+        "alphagbm-stock-analysis",
+        "alphagbm-compare",
+        "alphagbm-opportunity-radar"
+      ],
+      "status": "preview"
+    },
+    {
+      "id": "alphagbm-options-research",
+      "command": "options",
+      "access": "account",
+      "name": {
+        "zh": "期权策略",
+        "en": "Options Strategies"
+      },
+      "description": {
+        "zh": "查看期权候选与评分分项，说明现金要求、到期和指派风险。",
+        "en": "Compare option candidates and score components, with funding, expiry and assignment risks."
+      },
+      "prompt": {
+        "zh": "帮我调用 AlphaGBM 比较 NVDA 的期权方案，解释报价口径、评分依据和主要风险。",
+        "en": "Use AlphaGBM to compare NVDA option candidates, quote timing, score evidence and key risks."
+      },
+      "output": {
+        "zh": [
+          "期权候选",
+          "得分与报价时间",
+          "资金要求与风险"
+        ],
+        "en": [
+          "Option candidates",
+          "Scores and quote times",
+          "Funding and risks"
+        ]
+      },
+      "example": "options NVDA --strategy all --limit 3 --confirm-usage --workflow --lang en",
+      "tools": [
+        "alphagbm-options-score",
+        "alphagbm-iv-rank",
+        "alphagbm-greeks",
+        "alphagbm-pnl-simulator"
+      ],
+      "status": "preview"
+    },
+    {
+      "id": "alphagbm-news-impact",
+      "command": "news",
+      "access": "public",
+      "status": "preview",
+      "name": {
+        "zh": "新闻影响",
+        "en": "News Impact"
+      },
+      "description": {
+        "zh": "区分新闻事实与影响推断，找出涉及标的和后续验证节点。",
+        "en": "Separate reported claims from impact inferences, with related assets and next checkpoints."
+      },
+      "prompt": {
+        "zh": "帮我调用 AlphaGBM，分析一条已发布新闻涉及哪些标的，区分事实、影响推断和待验证的问题。",
+        "en": "Use AlphaGBM to analyze a published news item: related assets, reported claims, impact inferences and questions to verify."
+      },
+      "output": {
+        "zh": [
+          "事件与涉及标的",
+          "影响依据与局限",
+          "后续验证节点"
+        ],
+        "en": [
+          "Event and related assets",
+          "Impact evidence and limits",
+          "Next checkpoints"
+        ]
+      },
+      "example": "news --slug <published-news-slug> --revision <published-revision> --lang en",
+      "tools": [
+        "alphagbm-research-reader"
+      ]
+    },
+    {
+      "id": "alphagbm-report-breakdown",
+      "command": "report",
+      "access": "public",
+      "status": "preview",
+      "name": {
+        "zh": "研报拆解",
+        "en": "Research Report Breakdown"
+      },
+      "description": {
+        "zh": "提炼研报观点、评级、关键假设和风险，保留来源与日期。",
+        "en": "Extract report views, ratings, key assumptions and risks with sources and dates."
+      },
+      "prompt": {
+        "zh": "帮我调用 AlphaGBM 拆解一份已发布研报，说明机构观点、原始评级、关键假设、风险和后续验证节点。",
+        "en": "Use AlphaGBM to break down a published report: institutional views, original ratings, key assumptions, risks and checkpoints."
+      },
+      "output": {
+        "zh": [
+          "观点与原始评级",
+          "关键假设与风险",
+          "来源与验证节点"
+        ],
+        "en": [
+          "Views and original ratings",
+          "Assumptions and risks",
+          "Sources and checkpoints"
+        ]
+      },
+      "example": "report --slug <published-report-slug> --revision <published-revision> --lang en",
+      "tools": [
+        "alphagbm-research-reader"
+      ]
+    },
+    {
+      "id": "alphagbm-investment-review",
+      "command": "review",
+      "access": "local",
+      "status": "local",
+      "name": {
+        "zh": "投资复盘",
+        "en": "Investment Review"
+      },
+      "description": {
+        "zh": "对比你提供的前后研究记录，看清事实、评分与判断的变化。",
+        "en": "Compare research records you provide to see changes in facts, scores and judgments."
+      },
+      "prompt": {
+        "zh": "帮我用 AlphaGBM 对比我提供的前后两份研究记录，列出可比变化、数据缺口和需要重新核实的判断。仅在本地处理，不读取云端历史。",
+        "en": "Use AlphaGBM to compare the two research records I provide. Show comparable changes, data gaps and judgments needing review. Process locally without reading cloud history."
+      },
+      "output": {
+        "zh": [
+          "前后变化",
+          "可比范围与缺口",
+          "待复核判断"
+        ],
+        "en": [
+          "Changes since the baseline",
+          "Comparability and gaps",
+          "Judgments to revisit"
+        ]
+      },
+      "example": "review --baseline <authorized-baseline.json> --current <authorized-current.json> --lang en",
+      "tools": [
+        "alphagbm-thesis-check"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "id": "alphagbm-stock-analysis",
+      "group": "stocks",
+      "name": {
+        "zh": "股票分析",
+        "en": "Stock Analysis"
+      },
+      "access": "account",
+      "status": "api"
+    },
+    {
+      "id": "alphagbm-compare",
+      "group": "stocks",
+      "name": {
+        "zh": "标的对比",
+        "en": "Compare Assets"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-options-score",
+      "group": "options",
+      "name": {
+        "zh": "期权评分",
+        "en": "Options Score"
+      },
+      "access": "account",
+      "status": "api"
+    },
+    {
+      "id": "alphagbm-iv-rank",
+      "group": "options",
+      "name": {
+        "zh": "波动率快照",
+        "en": "Volatility Snapshot"
+      },
+      "access": "account",
+      "status": "api"
+    },
+    {
+      "id": "alphagbm-vol-surface",
+      "group": "options",
+      "name": {
+        "zh": "波动率曲面",
+        "en": "Volatility Surface"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-vol-smile",
+      "group": "options",
+      "name": {
+        "zh": "波动率微笑",
+        "en": "Volatility Smile"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-greeks",
+      "group": "options",
+      "name": {
+        "zh": "希腊值",
+        "en": "Greeks"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-options-strategy",
+      "group": "options",
+      "name": {
+        "zh": "策略构建",
+        "en": "Strategy Builder"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-pnl-simulator",
+      "group": "options",
+      "name": {
+        "zh": "损益模拟",
+        "en": "Payoff Simulation"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-earnings-crush",
+      "group": "options",
+      "name": {
+        "zh": "财报波动率回落",
+        "en": "Earnings IV Crush"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-unusual-activity",
+      "group": "market",
+      "name": {
+        "zh": "期权异动",
+        "en": "Unusual Options Activity"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-market-sentiment",
+      "group": "market",
+      "name": {
+        "zh": "市场情绪",
+        "en": "Market Sentiment"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-vix-status",
+      "group": "market",
+      "name": {
+        "zh": "VIX状态",
+        "en": "VIX Status"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-fear-score",
+      "group": "market",
+      "name": {
+        "zh": "恐慌指标",
+        "en": "Fear Score"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-polymarket",
+      "group": "market",
+      "name": {
+        "zh": "预测市场观察",
+        "en": "Prediction Markets"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-chokepoint",
+      "group": "market",
+      "name": {
+        "zh": "产业链瓶颈",
+        "en": "Supply-chain Bottlenecks"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-hedge-advisor",
+      "group": "risk",
+      "name": {
+        "zh": "对冲情景",
+        "en": "Hedging Scenarios"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-bps-backtest",
+      "group": "risk",
+      "name": {
+        "zh": "价差策略回测",
+        "en": "Put-spread Backtest"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-take-profit",
+      "group": "risk",
+      "name": {
+        "zh": "退出策略对照",
+        "en": "Exit Strategy Comparison"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-watchlist",
+      "group": "research",
+      "name": {
+        "zh": "关注列表",
+        "en": "Watchlist"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-alert",
+      "group": "research",
+      "name": {
+        "zh": "条件提醒",
+        "en": "Conditional Alerts"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-company-profile",
+      "group": "research",
+      "name": {
+        "zh": "公司研究档案",
+        "en": "Company Profile"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-investment-thesis",
+      "group": "research",
+      "name": {
+        "zh": "投资论据",
+        "en": "Investment Thesis"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-macro-view",
+      "group": "research",
+      "name": {
+        "zh": "宏观观察",
+        "en": "Macro View"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-theme-research",
+      "group": "research",
+      "name": {
+        "zh": "主题研究",
+        "en": "Theme Research"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-health-check",
+      "group": "research",
+      "name": {
+        "zh": "研究档案检查",
+        "en": "Research Health Check"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-research-insights",
+      "group": "research",
+      "name": {
+        "zh": "已发布研究阅读",
+        "en": "Published Research"
+      },
+      "access": "public",
+      "status": "api"
+    },
+    {
+      "id": "alphagbm-duan-analysis",
+      "group": "methods",
+      "name": {
+        "zh": "段永平框架",
+        "en": "Duan Yongping Framework"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-buffett-analysis",
+      "group": "methods",
+      "name": {
+        "zh": "巴菲特框架",
+        "en": "Buffett Framework"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-marks-cycle",
+      "group": "methods",
+      "name": {
+        "zh": "马克斯周期框架",
+        "en": "Marks Cycle Framework"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-tepper-signal",
+      "group": "methods",
+      "name": {
+        "zh": "泰珀框架",
+        "en": "Tepper Framework"
+      },
+      "access": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "alphagbm-opportunity-radar",
+      "command": "radar",
+      "access": "public",
+      "name": {
+        "zh": "发现机会",
+        "en": "Find Opportunities"
+      },
+      "description": {
+        "zh": "从已覆盖股票中筛选研究线索，查看机会分、依据与数据日期。",
+        "en": "Explore covered stocks with opportunity scores, evidence and data dates."
+      },
+      "prompt": {
+        "zh": "帮我调用 AlphaGBM，筛选美股研究线索，解释得分依据和主要风险。",
+        "en": "Use AlphaGBM to find US stock research candidates and explain their scores and risks."
+      },
+      "output": {
+        "zh": [
+          "候选与得分",
+          "评分依据",
+          "数据日期与缺口"
+        ],
+        "en": [
+          "Candidates and scores",
+          "Score evidence",
+          "Dates and data gaps"
+        ]
+      },
+      "example": "radar --market US --limit 5",
+      "tools": [
+        "alphagbm-stock-analysis",
+        "alphagbm-market-sentiment"
+      ],
+      "group": "stocks",
+      "status": "api"
+    },
+    {
+      "id": "alphagbm-research-reader",
+      "command": "research",
+      "access": "public",
+      "name": {
+        "zh": "读研报与新闻",
+        "en": "Read Research & News"
+      },
+      "description": {
+        "zh": "查找已发布研究和机构观点，保留来源、日期及涉及标的。",
+        "en": "Find published research and institutional views with sources, dates and related assets."
+      },
+      "prompt": {
+        "zh": "帮我调用 AlphaGBM，查找最近的半导体研报，区分机构观点和已披露事实。",
+        "en": "Use AlphaGBM to find recent semiconductor research and distinguish institutional views from disclosed facts."
+      },
+      "output": {
+        "zh": [
+          "核心摘要",
+          "机构与来源",
+          "标的与日期"
+        ],
+        "en": [
+          "Core summaries",
+          "Institutions and sources",
+          "Assets and dates"
+        ]
+      },
+      "example": "research --collection research --lang en --limit 3",
+      "tools": [
+        "alphagbm-research-insights"
+      ],
+      "group": "research",
+      "status": "api"
+    },
+    {
+      "id": "alphagbm-thesis-check",
+      "command": "verify",
+      "access": "account",
+      "name": {
+        "zh": "验证与复查判断",
+        "en": "Verify a Thesis"
+      },
+      "description": {
+        "zh": "核对一个美股或精确期权判断，保留证据版本，便于之后复查。",
+        "en": "Check a US stock or exact option thesis and retain versioned evidence for a later review."
+      },
+      "prompt": {
+        "zh": "帮我调用 AlphaGBM，核实 NVDA 的增长判断，列出反方证据和失效条件，保留这次结果的编号。",
+        "en": "Use AlphaGBM to verify a growth thesis for NVDA, identify counterevidence and invalidation conditions, and retain the result ID."
+      },
+      "output": {
+        "zh": [
+          "支持与反方证据",
+          "失效条件与下一节点",
+          "可复查的结果编号"
+        ],
+        "en": [
+          "Evidence and counterevidence",
+          "Invalidation and next checkpoint",
+          "Traceable result ID"
+        ]
+      },
+      "example": "verify NVDA --prompt \"What evidence supports or challenges durable growth?\" --idempotency-key thesis-nvda-review-001 --confirm-usage",
+      "tools": [
+        "alphagbm-investment-thesis",
+        "alphagbm-company-profile"
+      ],
+      "group": "risk",
+      "status": "api"
+    }
+  ]
+}
