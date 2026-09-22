@@ -105,6 +105,8 @@ def outputs(catalog):
         result[f"{directory}/references/access.md"] = GUIDE
         if item.get('command') == 'research':
             result[f"{directory}/references/news-impact.md"] = (ROOT / 'docs/NEWS_IMPACT.md').read_text()
+            result[f"{directory}/references/report-breakdown.md"] = (ROOT / 'docs/REPORT_BREAKDOWN.md').read_text()
+            result[f"{directory}/SKILL.md"] += '\n## Report breakdown\n\nFor report theses, original ratings, assumptions, risks and verification points, read [report breakdown](references/report-breakdown.md) and use `report --slug <published-slug> --revision <published-revision> --lang en` (or zh). This is a staged, public-evidence-only workflow, not private-archive access.\n'
         display = item["name"]["en"]
         prompt = item.get("prompt", {}).get("en", f"Use ${item['id']} for {display.lower()} with dated evidence.")
         if f"${item['id']}" not in prompt:
