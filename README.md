@@ -45,6 +45,8 @@ Then ask your AI:
 
 The installer lets you choose your AI tool. Callable packages contain a self-contained Python 3.9+ runner; no separate AlphaGBM CLI installation is required.
 
+[Installation, local-source upgrades and version checks](docs/INSTALLATION.md).
+
 ## Choose a focused tool
 
 **Stocks:** Stock Analysis · Dividend Strategy · Market Sentiment · Research Reports · Momentum Following · ETF Strategy · Grid Plan · Dollar-Cost Averaging · Smart Money Tracking.
