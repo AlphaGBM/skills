@@ -35,3 +35,7 @@ This example contains --confirm-usage. Use that flag only after the user has app
 Use AlphaGBM to summarize these disclosed transactions by asset and source, showing direction, net flow and limits.
 
 中文：帮我用 AlphaGBM 汇总这份已披露交易记录，按标的和来源说明买卖方向、净流量与局限。
+
+## Transaction input contract
+
+Before preparing the file, read [required fields and executable JSON example](references/transactions.md). Use `date`, `side`, `source` and `value`, not `disclosedAt` or `action`. Values must use one currency and represent traded amounts, not share counts or holdings.
