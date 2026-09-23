@@ -115,6 +115,9 @@ def outputs(catalog):
         result[f"{directory}/scripts/run.py"] = runner
         result[f"{directory}/scripts/review_engine.py"] = (ROOT / 'runtime/review_engine.py').read_text()
         result[f"{directory}/references/access.md"] = GUIDE
+        if item.get('command') == 'smart-money':
+            result[f"{directory}/references/transactions.md"] = (ROOT / 'docs/SMART_MONEY_INPUT.md').read_text()
+            result[f"{directory}/SKILL.md"] += '\n## Transaction input contract\n\nBefore preparing the file, read [required fields and executable JSON example](references/transactions.md). Use `date`, `side`, `source` and `value`, not `disclosedAt` or `action`. Values must use one currency and represent traded amounts, not share counts or holdings.\n'
         if item.get('command') == 'news':
             result[f"{directory}/references/news-impact.md"] = (ROOT / 'docs/NEWS_IMPACT.md').read_text()
         if item.get('command') == 'report':

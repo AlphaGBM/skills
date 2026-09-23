@@ -20,6 +20,32 @@ class Response(io.BytesIO):
 
 
 class RunnerChecks(unittest.TestCase):
+    def test_smart_money_document_example_and_invalid_fields(self):
+        import re
+        document = (source.parents[1] / 'docs/SMART_MONEY_INPUT.md').read_text()
+        example = re.search(r'```json\n(.*?)\n```', document, re.S).group(1)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'transactions.json'
+            path.write_text(example)
+            rows = workflow.read_transactions(path)
+            self.assertEqual(sum(row['value'] * (1 if row['side'] == 'buy' else -1) for row in rows), 750)
+            invalid = [
+                {'disclosedAt': '2026-09-01', 'action': 'buy', 'value': 100, 'source': 'Example'},
+                {**rows[0], 'date': '2026-02-30'},
+                {**rows[0], 'side': 'BUY'},
+                {**rows[0], 'source': ''},
+                {**rows[0], 'value': True},
+                {**rows[0], 'value': float('nan')},
+                {**rows[0], 'value': -1},
+            ]
+            for row in invalid:
+                with self.subTest(row=row):
+                    path.write_text(json.dumps([row]))
+                    with patch.object(workflow, 'fetch_json') as request, patch.dict(os.environ, {'ALPHAGBM_API_KEY': 'agbm_test'}):
+                        with self.assertRaises(workflow.WorkflowError):
+                            workflow.execute(workflow.parser().parse_args(['smart-money', '--ticker', 'NVDA', '--transactions-file', str(path), '--confirm-usage']))
+                        request.assert_not_called()
+
     def test_catalog_scripts_identical(self):
         root = source.parents[1]
         catalogue = json.loads((root / 'catalog/catalog.json').read_text())

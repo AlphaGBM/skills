@@ -1,6 +1,6 @@
 {
   "schemaVersion": "alphagbm-skills-catalog.v1",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "repository": "https://github.com/AlphaGBM/skills",
   "runtime": "Python 3.9+",
   "compatibility": "Installer discovery is tested separately from authenticated model execution. No universal client compatibility claim.",

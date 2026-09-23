@@ -181,6 +181,19 @@ def read_transactions(path):
         raise WorkflowError('INVALID_TRANSACTIONS_FILE', f'Could not read disclosed transactions: {error}') from None
     if not isinstance(payload, list) or not payload:
         raise WorkflowError('INVALID_TRANSACTIONS_FILE', 'The transactions file must contain a non-empty JSON array.')
+    for index, item in enumerate(payload):
+        if not isinstance(item, dict):
+            raise WorkflowError('INVALID_TRANSACTIONS_FILE', f'Entry {index + 1} must be an object.')
+        try:
+            disclosed = item.get('date')
+            if not isinstance(disclosed, str) or datetime.strptime(disclosed, '%Y-%m-%d').strftime('%Y-%m-%d') != disclosed:
+                raise ValueError()
+        except (TypeError, ValueError):
+            raise WorkflowError('INVALID_TRANSACTIONS_FILE', f'Entry {index + 1} requires date in YYYY-MM-DD format.') from None
+        amount = item.get('value')
+        source = item.get('source')
+        if item.get('side') not in ('buy', 'sell') or not isinstance(source, str) or not source.strip() or isinstance(amount, bool) or not isinstance(amount, (int, float)) or not math.isfinite(amount) or amount <= 0:
+            raise WorkflowError('INVALID_TRANSACTIONS_FILE', f'Entry {index + 1} requires side=buy/sell, source and a positive finite numeric value.')
     return payload
 
 
