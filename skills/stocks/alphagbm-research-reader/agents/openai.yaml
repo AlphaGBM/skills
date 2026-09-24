@@ -1,4 +1,4 @@
 interface:
   display_name: "Research Reports"
   short_description: "AlphaGBM research with dated evidence and clear access"
-  default_prompt: "Use $alphagbm-research-reader. Use AlphaGBM to find recent semiconductor research and distinguish institutional views from disclosed facts."
+  default_prompt: "Use $alphagbm-research-reader. Use AlphaGBM to find recent semiconductor research and distinguish institutional views from disclosed facts. Use research --collection news --view research for institutional views and research --collection research for original reports. Check workflow, language and revision before a report breakdown; collection=news is not a news-only list."

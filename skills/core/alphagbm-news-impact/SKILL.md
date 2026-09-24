@@ -13,7 +13,7 @@ Release preview: the matching backend has not been verified in production. Do no
 
 Read [access and evidence rules](references/access.md). Python 3.9+ is the only runtime dependency; no separate CLI or sibling Skill installation is required. Resolve `<skill-dir>` to the directory containing this file.
 
-Read references/news-impact.md. First list published news with `research --collection news --view news --lang en --limit 5` (or zh), then select the returned slug and revision. Replace the angle-bracket placeholders before running; never execute them literally. Separate reported claims, editorial inferences and verification gaps. This is not independent verification of an arbitrary web claim. The news-impact.v1 backend must be deployed; report unavailable without inventing an answer when unsupported.
+Read references/news-impact.md. First list published news with `research --collection news --view news --lang en --limit 5` (or zh), then select the returned slug and revision. Replace the angle-bracket placeholders before running; never execute them literally. Separate reported claims, editorial inferences and verification gaps. This is not independent verification of an arbitrary web claim. The news-impact.v1 backend must be deployed; report unavailable without inventing an answer when unsupported. Read references/editorial-routing.md before selecting the next command. Check the returned workflow, language and published revision. A type mismatch needs the declared workflow, not a retry; a changed revision must be re-read. Never silently switch to paid analysis.
 
 ## Run
 
@@ -32,6 +32,6 @@ This command reads published data without a key or analysis-credit charge. No pa
 
 ## Example request
 
-Use AlphaGBM to analyze a published news item: related assets, reported claims, impact inferences and questions to verify.
+Use AlphaGBM to analyze a published news item: related assets, reported claims, impact inferences and questions to verify. Discover it with research --collection news --view news; check its workflow, language and revision. Do not send reports to news impact; re-read changed revisions first.
 
-中文：帮我调用 AlphaGBM，分析一条已发布新闻涉及哪些标的，区分事实、影响推断和待验证的问题。
+中文：帮我调用 AlphaGBM，分析一条已发布新闻涉及哪些标的，区分事实、影响推断和待验证的问题。先用 research --collection news --view news 查找，核对条目的 workflow、语言和 revision；研报不当作新闻调用，版本变化先重新读取。
