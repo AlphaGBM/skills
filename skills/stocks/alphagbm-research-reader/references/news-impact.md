@@ -12,6 +12,11 @@ an unavailable route is not permission to fabricate analysis or switch to a paid
 endpoint. Reading this already-public material uses no API key or analysis charge.
 It does not unlock paid reports, private originals or subscription-only analysis.
 
+Read [editorial routing](editorial-routing.md) for the catalogue's `workflow`
+metadata and type/version errors. In an installed package this guide is
+`references/editorial-routing.md`. Research commentary belongs to `report`, not
+`news`, even when its collection is `news`.
+
 ## Deliver the result
 
 Respond in the user's language, keeping these distinctions clear:

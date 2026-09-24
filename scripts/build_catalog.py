@@ -45,6 +45,8 @@ def workflow_document(item):
         "dca": "Provide contribution amount, frequency and number of periods. An optional comma-separated price path is treated as supplied history only; the returned average cost is not a forecast. The result does not predict returns, choose a security or place recurring orders. Confirm the assumptions before using the shared allowance.",
         "smart-money": "Provide a local JSON array of disclosed transactions. The workflow aggregates the records by side and source; it does not decide who is smart, infer undisclosed positions, or copy a trade. Check the disclosure date, source quality and reporting lag. The transaction file is sent in the authenticated request and may consume the shared allowance; do not include secrets or private personal data.",
     }[item["command"]]
+    if item['command'] in ('news', 'report', 'research'):
+        extra += ' Read references/editorial-routing.md before selecting the next command. Check the returned workflow, language and published revision. A type mismatch needs the declared workflow, not a retry; a changed revision must be re-read. Never silently switch to paid analysis.'
     return f"""---
 name: {item['id']}
 description: {json.dumps(description)}
@@ -115,19 +117,21 @@ def outputs(catalog):
         result[f"{directory}/scripts/run.py"] = runner
         result[f"{directory}/scripts/review_engine.py"] = (ROOT / 'runtime/review_engine.py').read_text()
         result[f"{directory}/references/access.md"] = GUIDE
+        if item.get('command') in ('news', 'report', 'research'):
+            result[f"{directory}/references/editorial-routing.md"] = (ROOT / 'docs/EDITORIAL_ROUTING.md').read_text()
         if item.get('command') == 'smart-money':
             result[f"{directory}/references/transactions.md"] = (ROOT / 'docs/SMART_MONEY_INPUT.md').read_text()
             result[f"{directory}/SKILL.md"] += '\n## Transaction input contract\n\nBefore preparing the file, read [required fields and executable JSON example](references/transactions.md). Use `date`, `side`, `source` and `value`, not `disclosedAt` or `action`. Values must use one currency and represent traded amounts, not share counts or holdings.\n'
         if item.get('command') == 'news':
-            result[f"{directory}/references/news-impact.md"] = (ROOT / 'docs/NEWS_IMPACT.md').read_text()
+            result[f"{directory}/references/news-impact.md"] = (ROOT / 'docs/NEWS_IMPACT.md').read_text().replace('(EDITORIAL_ROUTING.md)', '(editorial-routing.md)')
         if item.get('command') == 'report':
-            result[f"{directory}/references/report-breakdown.md"] = (ROOT / 'docs/REPORT_BREAKDOWN.md').read_text()
+            result[f"{directory}/references/report-breakdown.md"] = (ROOT / 'docs/REPORT_BREAKDOWN.md').read_text().replace('(EDITORIAL_ROUTING.md)', '(editorial-routing.md)')
         if item.get('command') in ('stock', 'research', 'review'):
             result[f"{directory}/references/investment-review.md"] = (ROOT / 'docs/INVESTMENT_REVIEW.md').read_text()
             result[f"{directory}/SKILL.md"] += '\n## Investment review\n\nTo compare two previous workflow results, read [investment review](references/investment-review.md). Use `review --baseline <authorized-file> --current <authorized-file> --lang en` (or zh). This is local comparison, not account-history access, automatic monitoring or a new paid query.\n'
         if item.get('command') == 'research':
-            result[f"{directory}/references/news-impact.md"] = (ROOT / 'docs/NEWS_IMPACT.md').read_text()
-            result[f"{directory}/references/report-breakdown.md"] = (ROOT / 'docs/REPORT_BREAKDOWN.md').read_text()
+            result[f"{directory}/references/news-impact.md"] = (ROOT / 'docs/NEWS_IMPACT.md').read_text().replace('(EDITORIAL_ROUTING.md)', '(editorial-routing.md)')
+            result[f"{directory}/references/report-breakdown.md"] = (ROOT / 'docs/REPORT_BREAKDOWN.md').read_text().replace('(EDITORIAL_ROUTING.md)', '(editorial-routing.md)')
             result[f"{directory}/SKILL.md"] += '\n## Report breakdown\n\nFor report theses, original ratings, assumptions, risks and verification points, read [report breakdown](references/report-breakdown.md) and use `report --slug <published-slug> --revision <published-revision> --lang en` (or zh). This is a staged, public-evidence-only workflow, not private-archive access.\n'
         display = item["name"]["en"]
         prompt = item.get("prompt", {}).get("en", f"Use ${item['id']} for {display.lower()} with dated evidence.")

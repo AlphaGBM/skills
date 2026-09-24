@@ -13,7 +13,7 @@ Find published research and institutional views with sources, dates and related 
 
 Read [access and evidence rules](references/access.md). Python 3.9+ is the only runtime dependency; no separate CLI or sibling Skill installation is required. Resolve `<skill-dir>` to the directory containing this file.
 
-Start with a public catalogue list. `--collection research` lists original research; `--collection news --view research` selects institutional views; `--collection news --view news` selects news. Use `--query` for a title/ticker keyword and `--lang zh` for Chinese. Read a selected public article with `--slug <returned-slug>`. Attribute ratings and targets to the institution; a missing original rating stays missing. For news impact, read references/news-impact.md and run `news --slug <returned-news-slug> --revision <published-revision> --lang zh` (or en). This staged, key-free command reads existing public news only; it requires the news-impact.v1 backend and never starts paid analysis. On an unsupported server report unavailable rather than inventing a result.
+Start with a public catalogue list. `--collection research` lists original research; `--collection news --view research` selects institutional views; `--collection news --view news` selects news. Use `--query` for a title/ticker keyword and `--lang zh` for Chinese. Read a selected public article with `--slug <returned-slug>`. Attribute ratings and targets to the institution; a missing original rating stays missing. For news impact, read references/news-impact.md and run `news --slug <returned-news-slug> --revision <published-revision> --lang zh` (or en). This staged, key-free command reads existing public news only; it requires the news-impact.v1 backend and never starts paid analysis. On an unsupported server report unavailable rather than inventing a result. Read references/editorial-routing.md before selecting the next command. Check the returned workflow, language and published revision. A type mismatch needs the declared workflow, not a retry; a changed revision must be re-read. Never silently switch to paid analysis.
 
 ## Run
 
@@ -32,9 +32,9 @@ This command reads published data without a key or analysis-credit charge. No pa
 
 ## Example request
 
-Use AlphaGBM to find recent semiconductor research and distinguish institutional views from disclosed facts.
+Use AlphaGBM to find recent semiconductor research and distinguish institutional views from disclosed facts. Use research --collection news --view research for institutional views and research --collection research for original reports. Check workflow, language and revision before a report breakdown; collection=news is not a news-only list.
 
-中文：帮我调用 AlphaGBM，查找最近的半导体研报，区分机构观点和已披露事实。
+中文：帮我调用 AlphaGBM，查找最近的半导体研报，区分机构观点和已披露事实。机构观点用 research --collection news --view research，自有研报用 research --collection research；需要拆解时核对 workflow、语言和 revision 后调用 report，不把 collection=news 全部当作新闻。
 
 ## Investment review
 
