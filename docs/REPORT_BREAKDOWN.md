@@ -21,6 +21,11 @@ If a pinned version changes, stop and tell the user; get the updated article
 before interpreting it. Missing locale content is not permission to silently
 substitute another report or language. Surface errors, not demo results.
 
+Read [editorial routing](EDITORIAL_ROUTING.md) for `workflow` metadata and safe
+type/version handling. Installed packages include it as
+`references/editorial-routing.md`. A news-only article needs `news`, not `report`;
+the runner reports the mismatch without automatically changing the task.
+
 ## Deliver a concise, attributed result
 
 1. Identify the report, publisher, report date and assets. Do not substitute
