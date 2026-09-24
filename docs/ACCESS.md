@@ -39,6 +39,7 @@ The list is scoped to the runner interfaces reviewed in this release. Website ac
 - Network timeout: report incomplete execution. A paid request may already have been accepted; no automatic POST retry.
 - Validation still processing: retain taskId and resume it. Do not submit a new idempotency key just to poll.
 - Missing/invalid result: no sample fallback, no invented financial values, no assumed refund.
+- Public editorial type mismatch: use the validated workflow hint, not a blind retry or paid fallback. Revision changes require reading the current article again; missing-language evidence is not permission to switch languages silently.
 
 The runner accepts official HTTPS origins only, refuses redirects, caps response size and prints machine-readable errors without raw server responses or credentials. Stock and option synchronous endpoints do not supply a universal idempotency contract; do not invent one.
 

@@ -14,11 +14,12 @@ import stat
 import time
 from datetime import datetime, timezone
 from urllib.error import HTTPError, URLError
-from urllib.parse import quote, urlencode, urlparse
+from urllib.parse import parse_qs, quote, urlencode, urlparse
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 HOSTS = {"www.alphagbm.com", "alphagbm.com", "alphagbm.zeabur.app", "alphagbm-staging.zeabur.app", "dev.alphagbm.com"}
 MAX_BYTES = 12_000_000
+MAX_ERROR_BYTES = 16_384
 TICKER = re.compile(r"^[A-Z0-9][A-Z0-9.^=-]{0,23}$")
 REVISION = re.compile(r"^sha256:[0-9a-f]{64}$")
 
@@ -32,6 +33,70 @@ class WorkflowError(Exception):
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, request, file_pointer, code, message, headers, new_url):
         return None
+
+
+def declared_workflow(value, slug, language, revision=None):
+    if not isinstance(value, dict) or not isinstance(slug, str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug) or len(slug) > 255:
+        return None
+    identifier = value.get('id')
+    choices = {
+        'news-impact': ('news', {'news'}),
+        'report-breakdown': ('report', {'owned_research', 'institutional_summary', 'owned_research_summary'}),
+    }
+    if not isinstance(identifier, str) or identifier not in choices:
+        return None
+    command, kinds = choices[identifier]
+    parameters = value.get('parameters')
+    if (language not in ('en', 'zh') or not isinstance(parameters, dict)
+            or type(parameters.get('revision')) is not int or not 1 <= parameters['revision'] <= 2147483647
+            or parameters.get('lang') != language or not isinstance(value.get('kind'), str) or value['kind'] not in kinds
+            or (revision is not None and parameters['revision'] != revision)
+            or value.get('command') != command or value.get('contractVersion') != identifier + '.v1'
+            or value.get('endpoint') != f'/api/insights/catalogue/{slug}/{identifier}'
+            or value.get('access') != 'public_read'):
+        return None
+    return {'id': identifier, 'kind': value['kind'], 'command': command,
+            'contractVersion': identifier + '.v1', 'endpoint': value['endpoint'],
+            'parameters': {'lang': language, 'revision': parameters['revision']}, 'access': 'public_read'}
+
+
+def editorial_http_error(error, path):
+    parsed = urlparse(path)
+    match = re.fullmatch(r'/api/insights/catalogue/([a-z0-9]+(?:-[a-z0-9]+)*)/(news-impact|report-breakdown)', parsed.path)
+    if not match or error.code not in (400, 404, 409, 422):
+        return None
+    try:
+        raw = error.read(MAX_ERROR_BYTES + 1)
+        if len(raw) > MAX_ERROR_BYTES:
+            return None
+        payload = json.loads(raw, parse_constant=lambda value: (_ for _ in ()).throw(ValueError(value)))
+    except (ValueError, UnicodeError, OSError, TypeError):
+        return None
+    if not isinstance(payload, dict):
+        return None
+    prefix = 'news' if match[2] == 'news-impact' else 'report'
+    mappings = {
+        'article_workflow_mismatch': (422, 'WORKFLOW_MISMATCH', 'This public article needs a different workflow. Check the declared command; no automatic follow-up call was made.'),
+        prefix + '_revision_changed': (409, 'REVISION_CHANGED', 'The published revision changed. Read the current catalogue and confirm the new revision before continuing.'),
+        prefix + '_evidence_unavailable': (422, 'EVIDENCE_UNAVAILABLE', 'Published evidence in the requested language is unavailable. Do not invent a result or silently change languages.'),
+        'invalid_' + prefix + '_workflow_request': (400, 'INVALID_WORKFLOW_REQUEST', 'Check the published slug, language and positive revision number.'),
+        prefix + '_not_found': (404, 'NOT_FOUND', 'This article is not available in the public catalogue. No archive or paid lookup was attempted.'),
+    }
+    server_code = payload.get('code')
+    if not isinstance(server_code, str) or server_code not in mappings:
+        return None
+    status, code, message = mappings[server_code]
+    if status != error.code:
+        return None
+    details = {'httpStatus': status, 'serverCode': server_code}
+    if code == 'REVISION_CHANGED' and type(payload.get('currentRevision')) is int and 1 <= payload['currentRevision'] <= 2147483647:
+        details['currentRevision'] = payload['currentRevision']
+    if code == 'WORKFLOW_MISMATCH':
+        language = parse_qs(parsed.query).get('lang', ['en'])[0]
+        declared = declared_workflow(payload.get('workflow'), match[1], language)
+        if declared and declared['id'] != match[2] and payload.get('requestedWorkflow') == match[2]:
+            details['workflow'] = declared
+    return WorkflowError(code, message, details)
 
 
 def base_url():
@@ -66,9 +131,12 @@ def fetch_json(method, path, *, authenticated=False, body=None, idempotency_key=
             raise WorkflowError("RESPONSE_TOO_LARGE", "The response exceeded the safe size limit.")
         payload = json.loads(raw, parse_constant=lambda value: (_ for _ in ()).throw(ValueError(value)))
     except HTTPError as error:
+        editorial_error = editorial_http_error(error, path) if method == 'GET' else None
+        if editorial_error:
+            raise editorial_error from None
         codes = {401: "AUTH_REQUIRED", 402: "QUOTA_REQUIRED", 403: "ACCESS_DENIED", 404: "NOT_FOUND", 429: "RATE_LIMITED"}
         code = codes.get(error.code, "HTTP_ERROR")
-        details = {"httpStatus": error.code, "retryAfter": error.headers.get("Retry-After")}
+        details = {"httpStatus": error.code, "retryAfter": error.headers.get("Retry-After") if error.headers else None}
         raise WorkflowError(code, "AlphaGBM rejected the request. Check account access or retry later; no automatic retry was made.", details) from None
     except (URLError, TimeoutError, OSError):
         raise WorkflowError("NETWORK_ERROR", "Request did not complete. A submitted paid request may still run; do not submit it again blindly.") from None
@@ -238,6 +306,7 @@ def research(args):
         result = fetch_json("GET", f"/api/insights/catalogue/{quote(args.slug)}?lang={args.lang}")
         if result.get("slug") != args.slug:
             raise WorkflowError("INVALID_RESPONSE", "The article response does not match the requested identity.")
+        validate_catalogue_workflows([result], args.lang)
         return result
     params = {"collection": args.collection, "lang": args.lang, "limit": args.limit, "sort": "date"}
     if args.query:
@@ -249,7 +318,21 @@ def research(args):
     result = fetch_json("GET", "/api/insights/catalogue?" + urlencode(params))
     if not isinstance(result.get("articles"), list):
         raise WorkflowError("INVALID_RESPONSE", "Published research catalogue is unavailable.")
+    validate_catalogue_workflows(result['articles'], args.lang)
     return result
+
+
+def validate_catalogue_workflows(articles, language):
+    for article in articles:
+        if not isinstance(article, dict):
+            raise WorkflowError('INVALID_RESPONSE', 'The public catalogue contains an invalid article.')
+        if article.get('workflow') is None:
+            continue
+        revision = article.get('revision')
+        declared = declared_workflow(article['workflow'], article.get('slug'), language, revision)
+        if type(revision) is not int or not declared:
+            raise WorkflowError('INVALID_EDITORIAL_WORKFLOW', 'The declared workflow does not match this public article, language or revision.')
+        article['workflow'] = declared
 
 
 def checked_task(payload, expected_id=None):

@@ -1,6 +1,6 @@
 # AlphaGBM Skills catalogue
 
-Version 3.1.1: 5 workflows and 22 focused tools/reference packages.
+Version 3.1.2: 5 workflows and 22 focused tools/reference packages.
 
 Package counts are not a count of independently verified APIs. The workflow runners are self-contained. Account actions require explicit permission to use quota; installation itself is free.
 

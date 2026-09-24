@@ -1,6 +1,6 @@
 {
   "schemaVersion": "alphagbm-skills-catalog.v1",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "repository": "https://github.com/AlphaGBM/skills",
   "runtime": "Python 3.9+",
   "compatibility": "Installer discovery is tested separately from authenticated model execution. No universal client compatibility claim.",
@@ -94,8 +94,8 @@
         "en": "Separate reported claims from impact inferences, with related assets and next checkpoints."
       },
       "prompt": {
-        "zh": "帮我调用 AlphaGBM，分析一条已发布新闻涉及哪些标的，区分事实、影响推断和待验证的问题。",
-        "en": "Use AlphaGBM to analyze a published news item: related assets, reported claims, impact inferences and questions to verify."
+        "zh": "帮我调用 AlphaGBM，分析一条已发布新闻涉及哪些标的，区分事实、影响推断和待验证的问题。先用 research --collection news --view news 查找，核对条目的 workflow、语言和 revision；研报不当作新闻调用，版本变化先重新读取。",
+        "en": "Use AlphaGBM to analyze a published news item: related assets, reported claims, impact inferences and questions to verify. Discover it with research --collection news --view news; check its workflow, language and revision. Do not send reports to news impact; re-read changed revisions first."
       },
       "output": {
         "zh": [
@@ -130,8 +130,8 @@
         "en": "Extract report views, ratings, key assumptions and risks with sources and dates."
       },
       "prompt": {
-        "zh": "帮我调用 AlphaGBM 拆解一份已发布研报，说明机构观点、原始评级、关键假设、风险和后续验证节点。",
-        "en": "Use AlphaGBM to break down a published report: institutional views, original ratings, key assumptions, risks and checkpoints."
+        "zh": "帮我调用 AlphaGBM 拆解一份已发布研报，说明机构观点、原始评级、关键假设、风险和后续验证节点。机构观点用 research --collection news --view research 查找，自有研报用 research --collection research；核对 workflow、语言和 revision 后调用 report，版本变化先重新读取。",
+        "en": "Use AlphaGBM to break down a published report: institutional views, original ratings, key assumptions, risks and checkpoints. Find institutional views with research --collection news --view research, or original reports with research --collection research. Check workflow, language and revision before running report; re-read changed revisions first."
       },
       "output": {
         "zh": [
@@ -256,8 +256,8 @@
         "en": "Find published research and institutional views with sources, dates and related assets."
       },
       "prompt": {
-        "zh": "帮我调用 AlphaGBM，查找最近的半导体研报，区分机构观点和已披露事实。",
-        "en": "Use AlphaGBM to find recent semiconductor research and distinguish institutional views from disclosed facts."
+        "zh": "帮我调用 AlphaGBM，查找最近的半导体研报，区分机构观点和已披露事实。机构观点用 research --collection news --view research，自有研报用 research --collection research；需要拆解时核对 workflow、语言和 revision 后调用 report，不把 collection=news 全部当作新闻。",
+        "en": "Use AlphaGBM to find recent semiconductor research and distinguish institutional views from disclosed facts. Use research --collection news --view research for institutional views and research --collection research for original reports. Check workflow, language and revision before a report breakdown; collection=news is not a news-only list."
       },
       "output": {
         "zh": [
