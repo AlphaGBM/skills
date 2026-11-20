@@ -2,6 +2,7 @@
 
 | Skill | 中文 | Access | Status |
 |---|---|---|---|
+| [Causal Research](alphagbm-causal-research/SKILL.md) | 产业因果研究 | reference | reference |
 | [Stock Analysis](alphagbm-stock-analysis/SKILL.md) | 股票分析 | account | api |
 | [Dividend Strategy](alphagbm-dividend-strategy/SKILL.md) | 高息策略 | account | api |
 | [Market Sentiment](alphagbm-market-sentiment/SKILL.md) | 市场情绪 | reference | reference |

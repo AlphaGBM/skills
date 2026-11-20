@@ -9,6 +9,7 @@ Synthetic fixtures illustrate output shape; source-based case prompts are not ca
 | [News Impact](../skills/core/alphagbm-news-impact/SKILL.md) | Synthetic fixture | [alphagbm-news-impact](news-impact.json) |
 | [Research Report Breakdown](../skills/core/alphagbm-report-breakdown/SKILL.md) | Synthetic fixture | [alphagbm-report-breakdown](report-breakdown.json) |
 | [Investment Review](../skills/core/alphagbm-investment-review/SKILL.md) | Synthetic fixture | [alphagbm-investment-review](investment-review.json) |
+| [Causal Research](../skills/stocks/alphagbm-causal-research/SKILL.md) | Source-based request | [alphagbm-causal-research](package-cases.json) |
 | [Stock Analysis](../skills/stocks/alphagbm-stock-analysis/SKILL.md) | Source-based request | [alphagbm-stock-analysis](package-cases.json) |
 | [Dividend Strategy](../skills/stocks/alphagbm-dividend-strategy/SKILL.md) | Synthetic fixture | [alphagbm-dividend-strategy](strategies/dividend-strategy.json) |
 | [Market Sentiment](../skills/stocks/alphagbm-market-sentiment/SKILL.md) | Source-based request | [alphagbm-market-sentiment](package-cases.json) |

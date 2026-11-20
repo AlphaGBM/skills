@@ -4,6 +4,15 @@
   "dataPolicy": "Use the listed public source at run time. Do not copy a volatile quote into a timeless fixture.",
   "cases": [
     {
+      "package": "alphagbm-causal-research",
+      "kind": "reference",
+      "subject": "Storage deployment versus project cash generation",
+      "market": "US",
+      "request": "Use the user's cutoff and authorized public EIA/CAISO originals to test whether rising storage capacity necessarily improves unit revenue. Execute a dated compatible calculation and actively seek counterevidence; report access failures rather than inventing data.",
+      "sources": ["https://www.eia.gov/electricity/", "https://www.caiso.com/market-operations/market-monitoring"],
+      "expected": ["question path", "dated original evidence", "executed calculation", "scope limits", "counterevidence", "retracted conclusions"]
+    },
+    {
       "package": "alphagbm-stock-analysis",
       "kind": "api",
       "subject": "NVDA",

@@ -7,12 +7,12 @@
 股票机会、期权策略、新闻影响、研报拆解、投资复盘：按需要选择，不必一次安装全部。
 
 <!-- catalog:start -->
-**27 Skills · 5 核心技能 + 22 单项技能**
+**28 Skills · 5 核心技能 + 23 单项技能**
 
 | Category / 分类 | Count / 数量 |
 |---|---|
 | [核心技能](../skills/core/) | 5 |
-| [股票](../skills/stocks/) | 9 |
+| [股票](../skills/stocks/) | 10 |
 | [期权](../skills/options/) | 11 |
 | [商品](../skills/commodities/) | 1 |
 | [虚拟资产](../skills/digital-assets/) | 1 |

@@ -147,6 +147,10 @@ def outputs(catalog):
     result["docs/CATALOG.md"] = "\n".join(lines) + "\n"
     for item in [tool for tool in catalog["tools"] if tool["status"] == "reference"]:
         directory = item["path"]
+        if item.get('methodVersion'):
+            assert item['id'] == 'alphagbm-causal-research'
+            assert item['methodVersion'] in (ROOT / directory / 'SKILL.md').read_text()
+            continue
         legacy = ROOT / directory / "references/legacy.md"
         original = legacy.read_text() if legacy.exists() else (ROOT / directory / "SKILL.md").read_text()
         original = re.sub(r"(?m)^\*Powered by .*10K\+ users\..*\n?", "", original)
