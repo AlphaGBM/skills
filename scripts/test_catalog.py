@@ -21,15 +21,15 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual([item['command'] for item in self.catalog['workflows']],
                          ['stock', 'options', 'news', 'report', 'review'])
         self.assertEqual([item['name']['zh'] for item in self.catalog['tools'] if item['group'] == 'stocks'],
-                         ['股票分析', '高息策略', '市场情绪', '研报查阅', '趋势跟踪', 'ETF策略', '网格计划', '定投计划', '聪明钱跟踪'])
-        self.assertEqual(len(self.catalog['tools']), 22)
+                         ['产业因果研究', '股票分析', '高息策略', '市场情绪', '研报查阅', '趋势跟踪', 'ETF策略', '网格计划', '定投计划', '聪明钱跟踪'])
+        self.assertEqual(len(self.catalog['tools']), 23)
         builder.validate(self.catalog)
 
     def test_paths_frontmatter_and_category_counts_agree(self):
         from collections import Counter
         entries = self.catalog['workflows'] + self.catalog['tools']
         self.assertEqual(Counter(item['group'] for item in entries),
-                         {'core': 5, 'stocks': 9, 'options': 11, 'commodities': 1, 'digital-assets': 1})
+                         {'core': 5, 'stocks': 10, 'options': 11, 'commodities': 1, 'digital-assets': 1})
         for item in entries:
             self.assertEqual(item['path'], f"skills/{item['group']}/{item['id']}")
             self.assertIn(f"name: {item['id']}\n", (ROOT / item['path'] / 'SKILL.md').read_text())

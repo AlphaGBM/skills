@@ -1,6 +1,6 @@
 {
   "schemaVersion": "alphagbm-skills-catalog.v1",
-  "version": "3.1.2",
+  "version": "3.2.0",
   "repository": "https://github.com/AlphaGBM/skills",
   "runtime": "Python 3.9+",
   "compatibility": "Installer discovery is tested separately from authenticated model execution. No universal client compatibility claim.",
@@ -188,6 +188,17 @@
     }
   ],
   "tools": [
+    {
+      "id": "alphagbm-causal-research",
+      "group": "stocks",
+      "name": {"zh": "产业因果研究", "en": "Causal Research"},
+      "description": {"zh": "跨材料追问资金、需求与时间，核对原件、计算和反证。", "en": "Trace funding, demand and timing across sources with calculations and counterevidence."},
+      "prompt": {"zh": "请用产业因果研究方法研究我接下来提供的主题。先确认主题、截止日和工具权限，再展示实际追问、原件定位、已执行计算、反证和被推翻的结论。缺少原件或计算工具时标为部分验证，不自动消耗额度。", "en": "Use causal research for the topic I provide next. Confirm the topic, cutoff and tool access, then show actual questions, original evidence locations, executed calculations, counterevidence and retracted conclusions. Mark missing capabilities as partial; do not automatically spend allowance."},
+      "access": "reference",
+      "status": "reference",
+      "methodVersion": "causal-research.v1.0.0",
+      "path": "skills/stocks/alphagbm-causal-research"
+    },
     {
       "id": "alphagbm-stock-analysis",
       "group": "stocks",

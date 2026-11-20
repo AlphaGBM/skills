@@ -1,0 +1,4 @@
+interface:
+  display_name: "产业因果研究 / Causal Research"
+  short_description: "Trace evidence, calculations and counterevidence across sources"
+  default_prompt: "Use $alphagbm-causal-research to investigate my topic with a cutoff date, original evidence, executed calculations and counterevidence."

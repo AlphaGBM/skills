@@ -1,6 +1,6 @@
 # AlphaGBM Skills catalogue
 
-Version 3.1.2: 5 workflows and 22 focused tools/reference packages.
+Version 3.2.0: 5 workflows and 23 focused tools/reference packages.
 
 Package counts are not a count of independently verified APIs. The workflow runners are self-contained. Account actions require explicit permission to use quota; installation itself is free.
 
@@ -20,6 +20,7 @@ Package counts are not a count of independently verified APIs. The workflow runn
 
 | Function | 中文 | Category | Status |
 |---|---|---|---|
+| [Causal Research](../skills/stocks/alphagbm-causal-research/) | 产业因果研究 | stocks | reference |
 | [Stock Analysis](../skills/stocks/alphagbm-stock-analysis/) | 股票分析 | stocks | api |
 | [Dividend Strategy](../skills/stocks/alphagbm-dividend-strategy/) | 高息策略 | stocks | api |
 | [Market Sentiment](../skills/stocks/alphagbm-market-sentiment/) | 市场情绪 | stocks | reference |

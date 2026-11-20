@@ -9,12 +9,12 @@ Find stock opportunities. Compare options strategies. Understand news. Break dow
 [Website](https://www.alphagbm.com/skills) · [中文](docs/README.zh.md) · [Catalogue](docs/CATALOG.md) · [Demos](demo/CATALOG.md) · [Access & usage](docs/ACCESS.md)
 
 <!-- catalog:start -->
-**27 Skills · 5 core Skills + 22 focused Skills**
+**28 Skills · 5 core Skills + 23 focused Skills**
 
 | Category / 分类 | Count / 数量 |
 |---|---|
 | [Core Skills](skills/core/) | 5 |
-| [Stocks](skills/stocks/) | 9 |
+| [Stocks](skills/stocks/) | 10 |
 | [Options](skills/options/) | 11 |
 | [Commodities](skills/commodities/) | 1 |
 | [Digital Assets](skills/digital-assets/) | 1 |
