@@ -35,7 +35,9 @@ npx skills add AlphaGBM/skills --skill alphagbm-stock-research
 
 ## 单项技能
 
-**股票九项：**股票分析、高息策略、市场情绪、研报查阅、趋势跟踪、ETF策略、网格计划、定投计划、聪明钱跟踪。
+<!-- stock-tools:start -->
+**股票10项：**产业因果研究、股票分析、高息策略、市场情绪、研报查阅、趋势跟踪、ETF策略、网格计划、定投计划、聪明钱跟踪。
+<!-- stock-tools:end -->
 
 市场情绪统一涵盖 VIX 和恐慌指标，不再拆成重复卡片。聪明钱跟踪整理已披露记录，不自动跟单或下单。
 

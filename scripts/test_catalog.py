@@ -51,6 +51,17 @@ class CatalogTests(unittest.TestCase):
         for path, content in builder.outputs(self.catalog).items():
             self.assertEqual((ROOT / path).read_text(), content, path)
 
+    def test_chinese_stock_summary_tracks_catalog(self):
+        import copy
+        catalog = copy.deepcopy(self.catalog)
+        stock_tools = [item for item in catalog['tools'] if item['group'] == 'stocks']
+        stock_tools[0]['name']['zh'] = '目录名称变更验证'
+        summary = builder.outputs(catalog)['docs/README.zh.md'].split('<!-- stock-tools:start -->')[1].split('<!-- stock-tools:end -->')[0]
+        self.assertIn(f'股票{len(stock_tools)}项', summary)
+        for item in stock_tools:
+            self.assertIn(item['name']['zh'], summary)
+        self.assertNotIn('股票九项', summary)
+
     def test_new_packages_are_standalone_and_do_not_need_key_for_help(self):
         import os
         import shutil

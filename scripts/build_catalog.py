@@ -189,6 +189,10 @@ This is a focused **reference package**, not a live API integration. It does not
     result["README.md"] = re.sub(r"not \d+ independently verified APIs", f"not {workflow_count + tool_count} independently verified APIs", readme)
     chinese = (ROOT / "docs/README.zh.md").read_text()
     result["docs/README.zh.md"] = re.sub(r"目录包含\d+个完整工作流、\d+个单项工具与参考包", f"目录包含{workflow_count}个完整工作流、{tool_count}个单项工具与参考包", chinese)
+    stock_tools = [item['name']['zh'] for item in catalog['tools'] if item['group'] == 'stocks']
+    stock_summary = f"<!-- stock-tools:start -->\n**股票{len(stock_tools)}项：**{'、'.join(stock_tools)}。\n<!-- stock-tools:end -->"
+    assert '<!-- stock-tools:start -->' in chinese and '<!-- stock-tools:end -->' in chinese
+    result['docs/README.zh.md'] = re.sub(r'<!-- stock-tools:start -->.*?<!-- stock-tools:end -->', stock_summary, result['docs/README.zh.md'], flags=re.S)
     for filename, language, prefix in [("README.md", "en", ""), ("docs/README.zh.md", "zh", "../")]:
         rows = ["<!-- catalog:start -->", f"**{len(entries)} Skills · {workflow_count} {'核心技能' if language == 'zh' else 'core Skills'} + {tool_count} {'单项技能' if language == 'zh' else 'focused Skills'}**", "", "| Category / 分类 | Count / 数量 |", "|---|---|"]
         for group, labels in groups.items():
