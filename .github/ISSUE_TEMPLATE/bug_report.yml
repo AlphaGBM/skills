@@ -1,0 +1,31 @@
+name: "Bug report / 问题反馈"
+description: "Report a reproducible problem with a Skill or runner. 报告工具行为问题。"
+title: "[Bug] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues first. English and Chinese are welcome. For installation failures, use the installation form; how-to questions belong in [Q&A](https://github.com/AlphaGBM/skills/discussions/categories/q-a).
+        不要贴密钥、账户、持仓、完整私人日志或未经许可的研报。Do not post secrets or personal data. Do not retry a potentially charged request just to reproduce a bug; describe the original observation instead.
+  - type: input
+    id: environment
+    attributes:
+      label: "Package and environment / 技能与环境"
+      description: "Repository, Skill ID, client/version and installed commit if known. 请注明来源仓库；版本未知可写未知。"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Steps or original observation / 操作步骤或原始观察"
+      description: "Use synthetic inputs or public sources. If reproduction is unsafe, say so. 使用合成或可公开材料；不能安全复现就说明原因。"
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: "Expected and actual behavior / 预期与实际"
+      description: "What should happen, and what happened instead? Label fixtures versus actual results. 区分样例和真实观察。"
+    validations:
+      required: true

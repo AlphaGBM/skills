@@ -1,0 +1,30 @@
+name: "Documentation or example / 文档与示例"
+description: "Report an unclear instruction, missing example or broken link. 反馈文档问题。"
+title: "[Docs] "
+labels: ["documentation", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        English and Chinese are welcome. You do not need to know the fix to report a confusing instruction.
+        不必先想好改法。不要贴密钥、账户信息或未经许可的研报。Do not post secrets or personal data, or run paid research just to file a report.
+  - type: input
+    id: location
+    attributes:
+      label: "Where is it? / 文档位置"
+      description: "Public file link, heading or repository and file name. 公开链接、章节或仓库及文件名均可。"
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: "What is unclear or wrong? / 哪里不清楚或有误"
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: "Suggested change (optional) / 修改建议（选填）"
+      description: "Label example numbers as synthetic unless supported by dated public sources. 示例数字需标注合成或给出公开来源及日期。"
+    validations:
+      required: false

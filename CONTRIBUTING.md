@@ -6,23 +6,22 @@ Thanks for your interest in contributing! AlphaGBM Skills is open source and we 
 
 ### Report Bugs
 
-Found something broken? Check existing issues, then [open an issue](https://github.com/AlphaGBM/skills/issues/new?template=bug_report.md) with:
+Found something broken? Check existing issues, then [open an issue](https://github.com/AlphaGBM/skills/issues/new?template=bug_report.yml) with:
 
 - Which skill is affected
 - What you asked your AI agent to do
 - What happened vs. what you expected
 - Your environment (Claude Code / Cursor / other)
 
-Include the installed commit, installer/runtime versions and a minimal redacted reproduction. Do not retry a potentially charged request just to produce evidence. For installation questions rather than a reproducible bug, start in [Discussions](https://github.com/AlphaGBM/skills/discussions).
+Include the installed commit, installer/runtime versions and a minimal redacted reproduction. Unknown versions are fine. Do not retry a potentially charged request just to produce evidence. Use the [installation form](https://github.com/AlphaGBM/skills/issues/new?template=install.yml) if following the docs failed; use [Q&A](https://github.com/AlphaGBM/skills/discussions/categories/q-a) for how-to questions.
 
 ### Propose a New Skill
 
-Have an idea for a new skill? [Open a proposal](https://github.com/AlphaGBM/skills/issues/new?template=skill_proposal.md) with:
+Have a concrete improvement or new skill in mind? [Open a proposal](https://github.com/AlphaGBM/skills/issues/new?template=skill_proposal.yml) with:
 
 - **What it does** -- one sentence
-- **Example queries** -- 3-5 things a user might ask
-- **Data needed** -- what market data does it require?
-- **Example plan** -- can you provide explicitly synthetic output or permission-cleared public sources?
+- **Desired result** -- the behavior or an explicitly synthetic example
+- **Optional context** -- known data/access needs, safe tests or how you could help; unknowns are fine
 
 We'll discuss feasibility and design before you start coding.
 

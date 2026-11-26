@@ -6,7 +6,7 @@ Find stock opportunities. Compare options strategies. Understand news. Break dow
 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills)](https://github.com/AlphaGBM/skills)
 
-[Website](https://www.alphagbm.com/skills) · [中文](docs/README.zh.md) · [Catalogue](docs/CATALOG.md) · [Demos](demo/CATALOG.md) · [Access & usage](docs/ACCESS.md) · [Discussions](https://github.com/AlphaGBM/skills/discussions) · [Report an issue](https://github.com/AlphaGBM/skills/issues/new/choose)
+[Website](https://www.alphagbm.com/skills) · [中文](docs/README.zh.md) · [Catalogue](docs/CATALOG.md) · [Demos](demo/CATALOG.md) · [Access & usage](docs/ACCESS.md) · [Start here](https://github.com/AlphaGBM/skills/discussions/21) · [Discussions](https://github.com/AlphaGBM/skills/discussions) · [Report an issue](https://github.com/AlphaGBM/skills/issues/new/choose)
 
 **New here?** Inspect a [synthetic stock-research output](demo/stock-opportunities.json) without an account, then follow the [installation guide](docs/INSTALLATION.md). This example is not live market data. Installation is free; account-backed requests have separate access and usage limits.
 
