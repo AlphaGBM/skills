@@ -1,0 +1,31 @@
+name: "Installation failure / 安装失败"
+description: "Followed the installation docs but got stuck? 按安装文档操作后仍失败。"
+title: "[Install] "
+labels: ["install", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For how-to questions, use [Q&A](https://github.com/AlphaGBM/skills/discussions/categories/q-a). Read the [installation guide](https://github.com/AlphaGBM/skills/blob/main/docs/INSTALLATION.md) first.
+        不知道怎么用请到 Q&A；按说明安装仍失败请填写这里。中英文都可，不要贴密钥、账户信息、私人路径或完整日志。Do not post secrets or personal data, or retry paid research to collect evidence.
+  - type: input
+    id: environment
+    attributes:
+      label: "Package and environment / 技能与环境"
+      description: "Repository, Skill ID, client/version, OS and installer version if known. 请注明来源仓库；尚未选技能可写未选定，版本未知可写未知。"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "What did you try? / 操作步骤"
+      description: "Include the command with private values removed, and project/global install scope. 请脱敏，并注明项目级或全局安装。"
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: "Expected and actual result / 预期与实际"
+      description: "Include the error message without secrets. 不需要重复执行有风险的操作。"
+    validations:
+      required: true

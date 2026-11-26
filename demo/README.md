@@ -32,6 +32,15 @@ that an account-backed request has run.
 | Smart Money tracking | [`strategies/smart-money.json`](strategies/smart-money.json) | Disclosed-flow aggregation without copying trades |
 | Dividend strategy | [`strategies/dividend-strategy.json`](strategies/dividend-strategy.json) | Yield quality, durability, cash flow, valuation and momentum |
 
+## Compare prices on the same split basis
+
+[`STOCK_SPLIT_BASIS.md`](STOCK_SPLIT_BASIS.md) (English / 中文) and its
+**synthetic, offline fixture** [`stock-split-basis.json`](stock-split-basis.json)
+show a fictional 4-for-1 split: a 120 target per old share equals 30 per new
+share, so a later 27 target is a 10% reduction from 30, not from 120. Missing
+split information stays unknown. It is not a live quote, investment
+recommendation or evidence of a paid workflow.
+
 ## Try the real workflows
 
 Install the package you need and let your AI tool ask for the result:

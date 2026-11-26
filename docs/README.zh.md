@@ -2,9 +2,13 @@
 
 [安装、升级与版本核对](INSTALLATION.md)：本地源需要重新安装；确认所选客户端与安装范围。
 
-**在你自己的 AI 工具中，调用 AlphaGBM 的研究能力。**
+**用于股票分析、期权研究和金融研究的开源 AI Agent Skills，可在 Claude Code、Cursor 等兼容工具中使用。**
 
 股票机会、期权策略、新闻影响、研报拆解、投资复盘：按需要选择，不必一次安装全部。
+
+第一次来？可以先看[股票研究合成示例](../demo/stock-opportunities.json)，无需账户；它不是实时行情，也不是付费调用实录。再按[安装说明](INSTALLATION.md)选择一个技能。安装免费，账户型调用另有权限与额度限制。
+
+[社区入门](https://github.com/AlphaGBM/skills/discussions/21) · [提问与讨论](https://github.com/AlphaGBM/skills/discussions) · [报告问题](https://github.com/AlphaGBM/skills/issues/new/choose) · [参与贡献](COMMUNITY.md)
 
 <!-- catalog:start -->
 **28 Skills · 5 核心技能 + 23 单项技能**
@@ -50,5 +54,11 @@ npx skills add AlphaGBM/skills --skill alphagbm-stock-research
 官网卡片与 GitHub 共用[唯一清单](../catalog/catalog.json)，名称、分组、技能 ID 和复制路径保持一致。投资大师方法在 [investment-masters](https://github.com/AlphaGBM/investment-masters) 单独维护，不重复计数。
 
 旧版平铺目录已改为 `skills/<类别>/<技能ID>/`；保留的安装名称不变。请重新安装或使用新目录链接。研究管理等已移除项目不再出现在最新版清单，旧的固定版本仍可从 Git 历史读取。
+
+## 社区参与
+
+安装求助、使用方法和研究流程建议请到 Discussions；可复现的故障或范围明确的改动请提交 Issue。中英文均可。可从 [good first issue](https://github.com/AlphaGBM/skills/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22good%20first%20issue%22) 开始；不要求先 Star，不承诺投资收益或固定回复时间。
+
+请只提交合成或可公开使用的材料，不要发布 API Key、账户资料、私人报告或未经许可的研报原文。详见[社区指南](COMMUNITY.md)。
 
 [官网](https://www.alphagbm.com/skills) · [账户权益](https://www.alphagbm.com/pricing) · [权限说明](ACCESS.md) · [English](../README.md)
