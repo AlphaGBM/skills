@@ -8,6 +8,8 @@
 
 第一次来？可以先看[股票研究合成示例](../demo/stock-opportunities.json)，无需账户；它不是实时行情，也不是付费调用实录。再按[安装说明](INSTALLATION.md)选择一个技能。安装免费，账户型调用另有权限与额度限制。
 
+示例中的 74 分只是示意，不代表 74% 胜率。研究得分不是胜率或买卖信号；安装不会解锁 Alpha Agent，也不会增加研究额度。
+
 [社区入门](https://github.com/AlphaGBM/skills/discussions/21) · [提问与讨论](https://github.com/AlphaGBM/skills/discussions) · [报告问题](https://github.com/AlphaGBM/skills/issues/new/choose) · [参与贡献](COMMUNITY.md)
 
 <!-- catalog:start -->
@@ -39,7 +41,9 @@ npx skills add AlphaGBM/skills --skill alphagbm-stock-research
 
 ## 单项技能
 
-**股票九项：**股票分析、高息策略、市场情绪、研报查阅、趋势跟踪、ETF策略、网格计划、定投计划、聪明钱跟踪。
+<!-- stock-tools:start -->
+**股票10项：**产业因果研究、股票分析、高息策略、市场情绪、研报查阅、趋势跟踪、ETF策略、网格计划、定投计划、聪明钱跟踪。
+<!-- stock-tools:end -->
 
 市场情绪统一涵盖 VIX 和恐慌指标，不再拆成重复卡片。聪明钱跟踪整理已披露记录，不自动跟单或下单。
 
@@ -54,6 +58,8 @@ npx skills add AlphaGBM/skills --skill alphagbm-stock-research
 旧版平铺目录已改为 `skills/<类别>/<技能ID>/`；保留的安装名称不变。请重新安装或使用新目录链接。研究管理等已移除项目不再出现在最新版清单，旧的固定版本仍可从 Git 历史读取。
 
 ## 社区参与
+
+这里也统一接收 [Investment Masters](https://github.com/AlphaGBM/investment-masters) 和 [Trading Skills](https://github.com/AlphaGBM/alphagbm-trading-skills) 的使用反馈，请注明来源仓库。它们是独立的方法仓库，不代表本目录增加了实时接口。
 
 安装求助、使用方法和研究流程建议请到 Discussions；可复现的故障或范围明确的改动请提交 Issue。中英文均可。可从 [good first issue](https://github.com/AlphaGBM/skills/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22good%20first%20issue%22) 开始；不要求先 Star，不承诺投资收益或固定回复时间。
 

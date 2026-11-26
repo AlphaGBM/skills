@@ -42,9 +42,16 @@ class CommunityTests(unittest.TestCase):
             self.assertIn('demo/stock-opportunities.json', content)
         self.assertIn('not live market data', (ROOT / 'README.md').read_text())
         self.assertIn('不是实时行情', (ROOT / 'docs/README.zh.md').read_text())
+        self.assertIn('not a 74% win rate', (ROOT / 'README.md').read_text())
+        self.assertIn('不代表 74% 胜率', (ROOT / 'docs/README.zh.md').read_text())
+        for filename in ['README.md', 'docs/README.zh.md']:
+            content = (ROOT / filename).read_text()
+            for repository in ['investment-masters', 'alphagbm-trading-skills']:
+                self.assertIn(f'https://github.com/AlphaGBM/{repository}', content)
 
     def test_local_document_links_resolve(self):
-        for filename in ['README.md', 'docs/README.zh.md', 'docs/COMMUNITY.md', 'CONTRIBUTING.md']:
+        for filename in ['README.md', 'docs/README.zh.md', 'docs/COMMUNITY.md', 'CONTRIBUTING.md',
+                         'docs/INSTALLATION.md', 'docs/INSTALLATION-CHECK-2026-11-27.md']:
             document = ROOT / filename
             for target in re.findall(r'\]\(([^)]+)\)', document.read_text()):
                 if '://' in target or target.startswith('#'):

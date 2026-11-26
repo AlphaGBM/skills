@@ -2,13 +2,15 @@
 
 **Open-source AI agent skills for stock analysis, options research and financial research in Claude Code, Cursor and compatible tools.**
 
-Find stock opportunities. Compare options strategies. Understand news. Break down research. Review investment decisions.
+Research stocks. Compare options strategies. Understand news. Break down research. Review investment decisions.
 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills)](https://github.com/AlphaGBM/skills)
 
 [Website](https://www.alphagbm.com/skills) · [中文](docs/README.zh.md) · [Catalogue](docs/CATALOG.md) · [Demos](demo/CATALOG.md) · [Access & usage](docs/ACCESS.md) · [Start here](https://github.com/AlphaGBM/skills/discussions/21) · [Discussions](https://github.com/AlphaGBM/skills/discussions) · [Report an issue](https://github.com/AlphaGBM/skills/issues/new/choose)
 
 **New here?** Inspect a [synthetic stock-research output](demo/stock-opportunities.json) without an account, then follow the [installation guide](docs/INSTALLATION.md). This example is not live market data. Installation is free; account-backed requests have separate access and usage limits.
+
+The example score of 74 is illustrative, not a 74% win rate. Research scores are not win rates or buy/sell signals; installation does not unlock Alpha Agent or add research quota.
 
 <!-- catalog:start -->
 **28 Skills · 5 core Skills + 23 focused Skills**
@@ -51,7 +53,9 @@ The installer lets you choose your AI tool. Callable packages contain a self-con
 
 ## Choose a focused tool
 
-**Stocks:** Stock Analysis · Dividend Strategy · Market Sentiment · Research Reports · Momentum Following · ETF Strategy · Grid Plan · Dollar-Cost Averaging · Smart Money Tracking.
+<!-- stock-tools:start -->
+**Stocks (10):** Causal Research · Stock Analysis · Dividend Strategy · Market Sentiment · Research Reports · Momentum Following · ETF Strategy · Grid Plan · Dollar-Cost Averaging · Smart Money Tracking.
+<!-- stock-tools:end -->
 
 **Options:** Scoring, volatility, Greeks, strategy comparisons, payoff analysis and risk methods. See the [options directory](skills/options/) for the exact eleven packages and their access status.
 
@@ -91,6 +95,8 @@ Investor-inspired methods are maintained separately in [AlphaGBM/investment-mast
 Retained package IDs and `--skill` install names are unchanged, but file paths have moved. Reinstall using the commands above; replace old `skills/<id>/` bookmarks with catalogue paths. Research-management cards and retired standalone packages are removed from the latest catalogue, not silently mapped to unrelated functions. Existing pinned versions remain available in Git history. The shared runner's compatibility commands are not new catalogue entries.
 
 ## Community and contributions
+
+This is also the shared help entry for [Investment Masters](https://github.com/AlphaGBM/investment-masters) and [Trading Skills](https://github.com/AlphaGBM/alphagbm-trading-skills). Mention the source repository when asking a question; these separate method repositories do not add live APIs to this catalogue.
 
 Use [Discussions](https://github.com/AlphaGBM/skills/discussions) for setup questions, workflow ideas and reproducible examples; use [Issues](https://github.com/AlphaGBM/skills/issues/new/choose) for actionable bugs or scoped changes. English and Chinese are welcome. Do not post keys, account details or private research.
 

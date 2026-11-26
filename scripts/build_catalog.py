@@ -189,7 +189,16 @@ This is a focused **reference package**, not a live API integration. It does not
     result["README.md"] = re.sub(r"not \d+ independently verified APIs", f"not {workflow_count + tool_count} independently verified APIs", readme)
     chinese = (ROOT / "docs/README.zh.md").read_text()
     result["docs/README.zh.md"] = re.sub(r"目录包含\d+个完整工作流、\d+个单项工具与参考包", f"目录包含{workflow_count}个完整工作流、{tool_count}个单项工具与参考包", chinese)
+    stock_tools = [item for item in catalog['tools'] if item['group'] == 'stocks']
     for filename, language, prefix in [("README.md", "en", ""), ("docs/README.zh.md", "zh", "../")]:
+        names = [item['name'][language] for item in stock_tools]
+        summary = (f"**股票{len(names)}项：**{'、'.join(names)}。" if language == 'zh'
+                   else f"**Stocks ({len(names)}):** {' · '.join(names)}.")
+        stock_summary = f"<!-- stock-tools:start -->\n{summary}\n<!-- stock-tools:end -->"
+        for marker in ('<!-- stock-tools:start -->', '<!-- stock-tools:end -->'):
+            if result[filename].count(marker) != 1:
+                raise ValueError(f'{filename}: expected exactly one {marker}')
+        result[filename] = re.sub(r'<!-- stock-tools:start -->.*?<!-- stock-tools:end -->', stock_summary, result[filename], flags=re.S)
         rows = ["<!-- catalog:start -->", f"**{len(entries)} Skills · {workflow_count} {'核心技能' if language == 'zh' else 'core Skills'} + {tool_count} {'单项技能' if language == 'zh' else 'focused Skills'}**", "", "| Category / 分类 | Count / 数量 |", "|---|---|"]
         for group, labels in groups.items():
             rows.append(f"| [{labels[1 if language == 'zh' else 0]}]({prefix}skills/{group}/) | {sum(item['group'] == group for item in entries)} |")
