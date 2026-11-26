@@ -10,6 +10,10 @@ Choose the workspace/client in the installer. Repeat with another package ID
 from `catalog/catalog.json`. Installing the open-source package does not grant
 paid data access; use your own AlphaGBM account and its existing allowance.
 
+For a reproducible project-local example, see the [2026-11-27 installation check](INSTALLATION-CHECK-2026-11-27.md): `skills` 1.9.0 installed one pinned package and Codex CLI 0.147.0 discovered it without a model or research request. This is one tested client/version, not universal compatibility or live-backend validation.
+
+中文：这份[安装实测记录](INSTALLATION-CHECK-2026-11-27.md)包含隔离目录、固定版本、实际安装位置及客户端发现结果；没有使用研究额度，不代表所有客户端都已验收。
+
 ## Updating a local-source installation
 
 A local directory is a snapshot, not an upstream subscription. Do not assume

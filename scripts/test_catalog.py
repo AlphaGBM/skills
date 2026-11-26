@@ -51,16 +51,23 @@ class CatalogTests(unittest.TestCase):
         for path, content in builder.outputs(self.catalog).items():
             self.assertEqual((ROOT / path).read_text(), content, path)
 
-    def test_chinese_stock_summary_tracks_catalog(self):
+    def test_bilingual_stock_summaries_track_catalog(self):
         import copy
         catalog = copy.deepcopy(self.catalog)
         stock_tools = [item for item in catalog['tools'] if item['group'] == 'stocks']
         stock_tools[0]['name']['zh'] = '目录名称变更验证'
-        summary = builder.outputs(catalog)['docs/README.zh.md'].split('<!-- stock-tools:start -->')[1].split('<!-- stock-tools:end -->')[0]
-        self.assertIn(f'股票{len(stock_tools)}项', summary)
-        for item in stock_tools:
-            self.assertIn(item['name']['zh'], summary)
-        self.assertNotIn('股票九项', summary)
+        stock_tools[0]['name']['en'] = 'Renamed catalogue entry'
+        for remove_last in (False, True):
+            if remove_last:
+                catalog['tools'].remove(stock_tools.pop())
+            generated = builder.outputs(catalog)
+            for filename, language in [('README.md', 'en'), ('docs/README.zh.md', 'zh')]:
+                with self.subTest(filename=filename, remove_last=remove_last):
+                    summary = generated[filename].split('<!-- stock-tools:start -->')[1].split('<!-- stock-tools:end -->')[0]
+                    heading = f'股票{len(stock_tools)}项' if language == 'zh' else f'Stocks ({len(stock_tools)})'
+                    self.assertIn(heading, summary)
+                    for item in stock_tools:
+                        self.assertIn(item['name'][language], summary)
 
     def test_new_packages_are_standalone_and_do_not_need_key_for_help(self):
         import os
