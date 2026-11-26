@@ -8,7 +8,7 @@
 
 第一次来？可以先看[股票研究合成示例](../demo/stock-opportunities.json)，无需账户；它不是实时行情，也不是付费调用实录。再按[安装说明](INSTALLATION.md)选择一个技能。安装免费，账户型调用另有权限与额度限制。
 
-[提问与讨论](https://github.com/AlphaGBM/skills/discussions) · [报告问题](https://github.com/AlphaGBM/skills/issues/new/choose) · [参与贡献](COMMUNITY.md)
+[社区入门](https://github.com/AlphaGBM/skills/discussions/21) · [提问与讨论](https://github.com/AlphaGBM/skills/discussions) · [报告问题](https://github.com/AlphaGBM/skills/issues/new/choose) · [参与贡献](COMMUNITY.md)
 
 <!-- catalog:start -->
 **28 Skills · 5 核心技能 + 23 单项技能**

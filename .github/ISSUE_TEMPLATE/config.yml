@@ -1,7 +1,10 @@
 blank_issues_enabled: false
 contact_links:
+  - name: "Start here / 社区入门"
+    url: https://github.com/AlphaGBM/skills/discussions/21
+    about: "Installation, examples and where to ask. 安装、样例和提问入口。"
   - name: "Setup help and workflow questions / 安装与使用求助"
-    url: https://github.com/AlphaGBM/skills/discussions
+    url: https://github.com/AlphaGBM/skills/discussions/categories/q-a
     about: "Ask in English or Chinese; redact credentials and private account data."
   - name: "Access and usage limits / 权限与额度说明"
     url: https://github.com/AlphaGBM/skills/blob/main/docs/ACCESS.md

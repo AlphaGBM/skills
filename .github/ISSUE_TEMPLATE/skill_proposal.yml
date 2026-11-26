@@ -1,0 +1,31 @@
+name: "Scoped proposal / 功能建议"
+description: "Suggest a specific improvement. 提出一个明确改进；初步想法也欢迎到 Ideas。"
+title: "[Proposal] "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Early ideas can start in [Ideas](https://github.com/AlphaGBM/skills/discussions/categories/ideas). A proposal is not a promise of a release or new data access.
+        中英文都可；不提供个人买卖建议或收益承诺。不要贴密钥或私人交易记录。Do not post secrets or personal data. Public-source verification and reproducible calculations are welcome, not personal trade advice.
+  - type: textarea
+    id: problem
+    attributes:
+      label: "What problem should this solve? / 要解决什么问题"
+      description: "Name the repository or Skill if relevant. 如适用，请注明仓库或技能。"
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: "What result would help? / 希望得到什么结果"
+      description: "Describe the behavior or give an explicitly synthetic example. 描述预期行为，示例需明确标为合成。"
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: "Sources, limits or contribution (optional) / 来源、限制或参与方式（选填）"
+      description: "Known data/access requirements, a safe test, or how you could help. Unknowns are fine. 数据或权限要求未知也可以，不必先完成技术方案。"
+    validations:
+      required: false
