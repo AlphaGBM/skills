@@ -1,12 +1,14 @@
 # AlphaGBM Skills
 
-**Market research inside your AI workspace.**
+**Open-source AI agent skills for stock analysis, options research and financial research in Claude Code, Cursor and compatible tools.**
 
 Find stock opportunities. Compare options strategies. Understand news. Break down research. Review investment decisions.
 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/AlphaGBM/skills)](https://github.com/AlphaGBM/skills)
 
-[Website](https://www.alphagbm.com/skills) · [中文](docs/README.zh.md) · [Catalogue](docs/CATALOG.md) · [Demos](demo/CATALOG.md) · [Access & usage](docs/ACCESS.md)
+[Website](https://www.alphagbm.com/skills) · [中文](docs/README.zh.md) · [Catalogue](docs/CATALOG.md) · [Demos](demo/CATALOG.md) · [Access & usage](docs/ACCESS.md) · [Discussions](https://github.com/AlphaGBM/skills/discussions) · [Report an issue](https://github.com/AlphaGBM/skills/issues/new/choose)
+
+**New here?** Inspect a [synthetic stock-research output](demo/stock-opportunities.json) without an account, then follow the [installation guide](docs/INSTALLATION.md). This example is not live market data. Installation is free; account-backed requests have separate access and usage limits.
 
 <!-- catalog:start -->
 **28 Skills · 5 core Skills + 23 focused Skills**
@@ -87,6 +89,12 @@ Investor-inspired methods are maintained separately in [AlphaGBM/investment-mast
 ### Upgrading from the flat directory
 
 Retained package IDs and `--skill` install names are unchanged, but file paths have moved. Reinstall using the commands above; replace old `skills/<id>/` bookmarks with catalogue paths. Research-management cards and retired standalone packages are removed from the latest catalogue, not silently mapped to unrelated functions. Existing pinned versions remain available in Git history. The shared runner's compatibility commands are not new catalogue entries.
+
+## Community and contributions
+
+Use [Discussions](https://github.com/AlphaGBM/skills/discussions) for setup questions, workflow ideas and reproducible examples; use [Issues](https://github.com/AlphaGBM/skills/issues/new/choose) for actionable bugs or scoped changes. English and Chinese are welcome. Do not post keys, account details or private research.
+
+Want to help? Start with [good first issues](https://github.com/AlphaGBM/skills/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22good%20first%20issue%22) or [help wanted](https://github.com/AlphaGBM/skills/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22help%20wanted%22). See the [community guide](docs/COMMUNITY.md) and [contribution checklist](CONTRIBUTING.md). Stars are optional; useful feedback and verified examples are welcome without one.
 
 ## Development
 

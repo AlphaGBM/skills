@@ -6,12 +6,14 @@ Thanks for your interest in contributing! AlphaGBM Skills is open source and we 
 
 ### Report Bugs
 
-Found something broken? [Open an issue](https://github.com/AlphaGBM/skills/issues/new?template=bug_report.md) with:
+Found something broken? Check existing issues, then [open an issue](https://github.com/AlphaGBM/skills/issues/new?template=bug_report.md) with:
 
 - Which skill is affected
 - What you asked your AI agent to do
 - What happened vs. what you expected
 - Your environment (Claude Code / Cursor / other)
+
+Include the installed commit, installer/runtime versions and a minimal redacted reproduction. Do not retry a potentially charged request just to produce evidence. For installation questions rather than a reproducible bug, start in [Discussions](https://github.com/AlphaGBM/skills/discussions).
 
 ### Propose a New Skill
 
@@ -20,7 +22,7 @@ Have an idea for a new skill? [Open a proposal](https://github.com/AlphaGBM/skil
 - **What it does** -- one sentence
 - **Example queries** -- 3-5 things a user might ask
 - **Data needed** -- what market data does it require?
-- **Mock data plan** -- can you provide realistic sample output?
+- **Example plan** -- can you provide explicitly synthetic output or permission-cleared public sources?
 
 We'll discuss feasibility and design before you start coding.
 
@@ -55,7 +57,7 @@ To improve a skill:
 2. **Keep it focused** -- one skill or one fix per PR
 3. **Test it** -- verify the skill works in at least one AI agent
 4. **Describe it** -- explain what changed and why in the PR description
-5. **Be patient** -- we review PRs within a few days
+5. **Describe the verification boundary** -- state what was actually tested; review timing depends on maintainer availability
 
 ### PR Checklist
 
@@ -81,13 +83,12 @@ The catalogue and shared runner are the editable sources. Generated workflow doc
 
 ## Code of Conduct
 
-This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to uphold a welcoming, respectful environment for everyone.
+Be respectful, discuss evidence rather than people, and avoid spam, harassment and unsolicited promotion. Do not publish secrets, personal account information or restricted research. See the [community guide](docs/COMMUNITY.md) for routing and safe examples.
 
 ## Questions?
 
-- [Discord](https://discord.gg/alphagbm) -- fastest way to get help
-- [GitHub Discussions](https://github.com/AlphaGBM/skills/discussions) -- longer-form questions
-- [Twitter/X](https://x.com/alphagbm) -- announcements and updates
+- [GitHub Discussions](https://github.com/AlphaGBM/skills/discussions) -- setup questions and workflow ideas in English or Chinese
+- [Issue chooser](https://github.com/AlphaGBM/skills/issues/new/choose) -- reproducible bugs, documentation gaps and scoped proposals
 
 ---
 
