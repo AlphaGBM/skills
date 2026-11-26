@@ -1,0 +1,70 @@
+{
+  "demo": {
+    "status": "illustrative_fixture",
+    "synthetic": true,
+    "notForTrading": true,
+    "notLiveQuote": true,
+    "notInvestmentRecommendation": true,
+    "notPaidWorkflowEvidence": true
+  },
+  "purpose": "Show why two target prices must be compared on the same stock-split basis.",
+  "company": {"name": "Example Fictional Co.", "symbol": null, "fictional": true},
+  "currency": "USD",
+  "numberFormat": "Decimal strings; compute with exact decimal arithmetic.",
+  "split": {
+    "label": "4-for-1",
+    "newSharesPerOldShare": "4",
+    "beforeBasis": "pre_split",
+    "afterBasis": "post_split",
+    "beforeUnit": "USD per pre-split (old) share",
+    "afterUnit": "USD per post-split (new) share"
+  },
+  "targets": [
+    {"id": "T1", "label": "Earlier target, published before the split", "value": "120", "basis": "pre_split", "unit": "USD per pre-split (old) share"},
+    {"id": "T2", "label": "Later target, published after the split", "value": "27", "basis": "post_split", "unit": "USD per post-split (new) share"}
+  ],
+  "normalization": {
+    "toBasis": "post_split",
+    "formula": "post_split_value = pre_split_value / newSharesPerOldShare",
+    "results": [
+      {"id": "T1", "originalValue": "120", "originalBasis": "pre_split", "normalizedValue": "30", "arithmetic": "120 / 4 = 30", "unit": "USD per post-split (new) share"},
+      {"id": "T2", "originalValue": "27", "originalBasis": "post_split", "normalizedValue": "27", "arithmetic": "27 is already post-split", "unit": "USD per post-split (new) share"}
+    ]
+  },
+  "comparisons": [
+    {
+      "description": "Split adjustment alone",
+      "from": "T1 (pre-split)",
+      "to": "T1 (post-split equivalent)",
+      "fromValue": "120",
+      "toValue": "30",
+      "sameBasisChangePercent": "0",
+      "interpretation": "Equivalent target on a new basis; not a downgrade.",
+      "mistakenRawChangePercent": "-75",
+      "mistake": "Comparing 120 per old share with 30 per new share mixes bases."
+    },
+    {
+      "description": "Later post-split revision",
+      "from": "T1",
+      "to": "T2",
+      "fromValue": "30",
+      "toValue": "27",
+      "formula": "(27 - 30) / 30 * 100",
+      "sameBasisChangePercent": "-10",
+      "interpretation": "A 10% reduction relative to 30 per new share.",
+      "mistakenRawChangePercent": "-77.5",
+      "mistake": "(27 - 120) / 120 * 100 compares a post-split target with a pre-split target."
+    }
+  ],
+  "missingSplitInformation": {
+    "id": "T3",
+    "label": "Target with no recorded split basis or ratio",
+    "value": "25",
+    "basis": "unknown",
+    "newSharesPerOldShare": null,
+    "normalizedValue": null,
+    "sameBasisChangePercent": null,
+    "status": "unknown",
+    "reason": "The split basis is not recorded, so the target is not normalized or compared. Do not guess a ratio or assume a basis."
+  }
+}
