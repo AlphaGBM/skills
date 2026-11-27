@@ -75,10 +75,13 @@ cd skills
 
 python3 scripts/build_catalog.py
 python3 scripts/build_catalog.py --check
+python3 -m unittest discover -s scripts -p 'test_*.py' -v
 npx skills add . --list
 ```
 
 The catalogue and shared runner are the editable sources. Generated workflow documents, scripts and directory pages must match them. Reference-only packages must not claim live API access; adding an interface requires an access contract and failure/usage checks. Install a selected local package into an isolated test project before testing the client; never overwrite a contributor's global AI configuration.
+
+The [Offline quality workflow](https://github.com/AlphaGBM/skills/actions/workflows/quality.yml) runs the Python unit tests and generated-catalogue check on pull requests and pushes to `main`. These checks need no research credentials and do not verify live research, paid workflows or client installation.
 
 ## Code of Conduct
 

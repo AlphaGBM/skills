@@ -6,6 +6,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CommunityTests(unittest.TestCase):
+    def test_shared_guide_distinguishes_new_reports_from_existing_threads(self):
+        content = (ROOT / 'docs/COMMUNITY.md').read_text()
+        self.assertIn('Send all new questions and bug reports through the entries below', content)
+        self.assertIn('If an issue already exists, continue in its original thread', content)
+        self.assertIn('所有新问题与缺陷', content)
+        self.assertIn('若已有对应 Issue，请在原帖继续', content)
+        self.assertNotIn('属于某仓文件的具体缺陷可以留在该仓跟踪', content)
+
     def test_contribution_templates_exist(self):
         content = '\n'.join((ROOT / filename).read_text() for filename in
                             ['CONTRIBUTING.md', 'docs/COMMUNITY.md'])
