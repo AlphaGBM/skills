@@ -21,6 +21,8 @@ def decimal_text(value):
 
 def evaluate(payload, language='en'):
     markers = payload['demo']
+    if not isinstance(markers, dict):
+        raise ValueError('Expected explicit synthetic-data labels')
     for flag in ('synthetic', 'notForTrading', 'notLiveQuote',
                  'notInvestmentRecommendation', 'notPaidWorkflowEvidence'):
         if markers.get(flag) is not True:

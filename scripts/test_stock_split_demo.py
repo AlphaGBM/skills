@@ -82,6 +82,12 @@ class StockSplitDemoTests(unittest.TestCase):
             result = subprocess.run(command, cwd=directory, env=environment, text=True, capture_output=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(json.loads(result.stdout)['laterChangePercent'], '-10')
+            payload = deepcopy(self.fixture)
+            payload['demo'] = []
+            (installed / 'assets/stock-split-basis.json').write_text(json.dumps(payload))
+            result = subprocess.run(command, cwd=directory, env=environment, text=True, capture_output=True)
+            self.assertEqual(result.returncode, 1)
+            self.assertEqual(json.loads(result.stdout)['error'], 'DEMO_UNAVAILABLE')
             (installed / 'assets/stock-split-basis.json').unlink()
             result = subprocess.run(command, cwd=directory, env=environment, text=True, capture_output=True)
             self.assertEqual(result.returncode, 1)
