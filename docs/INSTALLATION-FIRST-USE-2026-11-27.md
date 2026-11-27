@@ -72,10 +72,11 @@ results:
 > 用 AlphaGBM 跑一次离线合成拆股演示，不联网、不消耗研究额度，并解释结果和未知项。
 
 The agent read the installed instructions, ran the bundled command, and explained
-its actual output, including the unknown-basis case. The local command was:
+its actual output, including the unknown-basis case. The local command, with the
+installation path shortened relative to the project directory, was:
 
 ```bash
-/usr/bin/sandbox-exec -p '(version 1) (allow default) (deny network*)' env -i PATH="$PATH" python3 -I -B .agents/skills/alphagbm-stock-research/scripts/demo.py --lang zh
+/usr/bin/sandbox-exec -p '(version 1) (allow default) (deny network*)' env -i PATH="$PATH" python3 -B .agents/skills/alphagbm-stock-research/scripts/demo.py --lang zh
 ```
 
 Exit code: **0**. Selected actual JSON fields:
