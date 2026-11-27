@@ -20,6 +20,9 @@ For a reproducible project-local example, see the [2026-11-27 installation check
 
 ## First use without an account or research allowance
 
+See the [installed-package and offline first-use check](INSTALLATION-FIRST-USE-2026-11-27.md)
+for the six targeted installations, actual Codex discovery, demo execution and limits.
+
 ```bash
 python3 .agents/skills/alphagbm-stock-research/scripts/demo.py --lang en
 ```
