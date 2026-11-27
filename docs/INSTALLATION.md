@@ -3,16 +3,42 @@
 ## Install from the repository
 
 ```bash
-npx skills add AlphaGBM/skills --skill alphagbm-stock-research
+npx skills@1.9.0 add AlphaGBM/skills --skill alphagbm-stock-research --agent codex --copy -y
 ```
 
-Choose the workspace/client in the installer. Repeat with another package ID
-from `catalog/catalog.json`. Installing the open-source package does not grant
+Use an already-installed AI client. This command selects project-local Codex;
+replace `codex` with `claude-code` or `cursor` for your intended client. Do not
+omit `--agent` in an unattended install: the installer may target many clients.
+Codex and Cursor use `.agents/skills`; Claude Code uses `.claude/skills` in
+installer 1.9.0. A missing `.codex` or `.cursor` project directory is not an error.
+Repeat with another package ID from `catalog/catalog.json`. Installing the open-source package does not grant
 paid data access; use your own AlphaGBM account and its existing allowance.
 
 For a reproducible project-local example, see the [2026-11-27 installation check](INSTALLATION-CHECK-2026-11-27.md): `skills` 1.9.0 installed one pinned package and Codex CLI 0.147.0 discovered it without a model or research request. This is one tested client/version, not universal compatibility or live-backend validation.
 
 中文：这份[安装实测记录](INSTALLATION-CHECK-2026-11-27.md)包含隔离目录、固定版本、实际安装位置及客户端发现结果；没有使用研究额度，不代表所有客户端都已验收。
+
+## First use without an account or research allowance
+
+```bash
+python3 .agents/skills/alphagbm-stock-research/scripts/demo.py --lang en
+```
+
+For Claude Code, change `.agents` to `.claude`. The script and synthetic fixture
+are both inside the installed package; no repository clone, extra download or API
+key is needed. Python 3.9+ is required. It computes the one-share-to-four-shares
+split example from decimal inputs, keeps unknown bases unknown, and labels the
+JSON as synthetic and not for trading. Missing or invalid assets fail with
+`DEMO_UNAVAILABLE`; the script never falls back to a live research request.
+
+In your AI client, explicitly ask: “Use AlphaGBM's offline synthetic stock-split
+demo; do not access the network or use research allowance.” The client should
+read the skill, run `scripts/demo.py`, and explain its actual output. Installer
+listing alone is not proof that the AI client discovered or executed the skill.
+
+中文：先用已安装的 AI 客户端运行包内离线合成演示，不需要 Key、联网或研究额度。
+它不是实时行情或收费研究的替代品；只有用户明确要求演示时才运行。真实研究仍需
+单独授权额度，而且结构化工作流的生产后端尚未核验，不能承诺配置 Key 就能跑通。
 
 ## Updating a local-source installation
 

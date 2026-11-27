@@ -30,8 +30,18 @@
 ## 开始使用
 
 ```bash
-npx skills add AlphaGBM/skills --skill alphagbm-stock-research
+npx skills@1.9.0 add AlphaGBM/skills --skill alphagbm-stock-research --agent codex --copy -y
 ```
+
+这条命令只安装到当前项目的 Codex 目录。使用 Claude Code 或 Cursor 时，将 `codex` 改为 `claude-code` 或 `cursor`，不要省略目标客户端。此安装器版本的 Codex/Cursor 项目目录为 `.agents/skills`，Claude Code 为 `.claude/skills`。
+
+安装后无需 Key、无需研究额度，先跑包内合成演示：
+
+```bash
+python3 .agents/skills/alphagbm-stock-research/scripts/demo.py --lang zh
+```
+
+也可在已安装的 AI 客户端中说：**“用 AlphaGBM 跑一次离线合成拆股演示，不联网、不消耗研究额度。”** Claude Code 的命令路径改为 `.claude/skills`。这是离线示例，不是真实研究；结构化在线工作流仍为发布预览。
 
 然后告诉你的 AI：
 
