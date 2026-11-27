@@ -6,7 +6,9 @@ This is the maintainer's entry point for genuine feedback and contributions, not
 
 Start with the [maintainer welcome / 入门公告](https://github.com/AlphaGBM/skills/discussions/21). This is also the shared help entry for `investment-masters` and `alphagbm-trading-skills`; mention the source repository when posting.
 
-另外两个仓也从这里提问，请注明来源仓库；属于某仓文件的具体缺陷可以留在该仓跟踪，不必重复开帖。
+Send all new questions and bug reports through the entries below, including bugs specific to either of the other repositories. Mention the source repository. If an issue already exists, continue in its original thread rather than opening a duplicate.
+
+所有新问题与缺陷（包括仅涉及另外某仓文件的问题）统一使用下面的 Skills 入口，并注明来源仓库。若已有对应 Issue，请在原帖继续，不必重复开帖。
 
 ## Where to post / 发到哪里
 
