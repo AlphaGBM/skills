@@ -1,6 +1,6 @@
 ---
 name: alphagbm-stock-research
-description: "Connect fundamentals, sentiment and risk to supporting and opposing evidence. Use when the user asks to stock opportunities with AlphaGBM. Use the bundled Python runner; never silently replace real results with demos."
+description: "Connect fundamentals, sentiment and risk to supporting and opposing evidence. Use when the user asks to stock opportunities with AlphaGBM. Use the bundled Python runner; never silently replace real results with demos. Also use for an explicitly requested offline synthetic stock-split demonstration (\u79bb\u7ebf\u5408\u6210\u62c6\u80a1\u6f14\u793a)."
 ---
 
 # Stock Opportunities
@@ -8,6 +8,15 @@ description: "Connect fundamentals, sentiment and risk to supporting and opposin
 Connect fundamentals, sentiment and risk to supporting and opposing evidence.
 
 Release preview: the matching backend has not been verified in production. Do not claim this structured workflow is live; unsupported servers must fail closed. Retained legacy runner commands remain compatible.
+## Try an offline synthetic example
+
+Only when the user asks for a demo, first run `python3 "<skill-dir>/scripts/demo.py" --lang en` (or `--lang zh`), resolving `<skill-dir>` to this file's directory. The script uses only the bundled [synthetic fixture](assets/stock-split-basis.json); no API key, model call, research quota or network access is required. Read the command's actual JSON output before explaining it. It compares targets on the same split basis and keeps unknown bases unknown. Label the result synthetic, not a live quote, investment recommendation or evidence of a working paid workflow.
+
+Example request: "Use AlphaGBM's offline synthetic stock-split demo; do not access the network or use research allowance."
+中文："用 AlphaGBM 跑一次离线合成拆股演示，不联网、不消耗研究额度。"
+
+Do not run `run.py stock` for this request. If the demo fails, report the error; never replace failed real research with this demo. For a real ticker or live research request, use the separate authorization and preview rules below.
+
 
 ## Before running
 

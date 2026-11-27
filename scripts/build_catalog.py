@@ -29,6 +29,8 @@ GUIDE = """# Access, evidence and safe execution
 def workflow_document(item):
     name = item["name"]["en"]
     description = f"{item['description']['en']} Use when the user asks to {name.lower()} with AlphaGBM. Use the bundled Python runner; never silently replace real results with demos."
+    if item['command'] == 'stock':
+        description += ' Also use for an explicitly requested offline synthetic stock-split demonstration (离线合成拆股演示).'
     extra = {
         "radar": "The feed covers a defined stock universe, not the whole market. The runner keeps profitability eligibility, sorts the published scores and preserves missing/stale flags. Do not infer sector membership from a ticker alone. If a requested thematic filter needs more evidence, say so rather than claiming the feed supplies it.",
         "stock": "Identify the ticker and market suffix, and agree the research style. One explicit user-authorized research request is the starting point. Use only returned fundamentals, report and risk fields; no invented peer comparisons. The legacy risk.score is not the homepage opportunity score. For the stock-opportunities.v1 rollout, add --workflow --lang zh (or en). The runner first checks the public workflow contract without a key; unsupported servers receive no analysis request. Preserve partial status, resultId, scoring version and missingData. Do not retry a charged request automatically or claim the result was saved to user history. This opt-in format needs the matching backend deployment; the default legacy command remains available.",
@@ -57,7 +59,7 @@ description: {json.dumps(description)}
 {item['description']['en']}
 
 {'Release preview: the matching backend has not been verified in production. Do not claim this structured workflow is live; unsupported servers must fail closed. Retained legacy runner commands remain compatible.' if item.get('status') == 'preview' else ''}
-
+{STOCK_DEMO_GUIDE + chr(10) if item['command'] == 'stock' else ''}
 ## Before running
 
 Read [access and evidence rules](references/access.md). Python 3.9+ is the only runtime dependency; no separate CLI or sibling Skill installation is required. Resolve `<skill-dir>` to the directory containing this file.
@@ -108,6 +110,17 @@ Return only the successful API response, with its original asset identity, dates
 """
 
 
+STOCK_DEMO_GUIDE = '''## Try an offline synthetic example
+
+Only when the user asks for a demo, first run `python3 "<skill-dir>/scripts/demo.py" --lang en` (or `--lang zh`), resolving `<skill-dir>` to this file's directory. The script uses only the bundled [synthetic fixture](assets/stock-split-basis.json); no API key, model call, research quota or network access is required. Read the command's actual JSON output before explaining it. It compares targets on the same split basis and keeps unknown bases unknown. Label the result synthetic, not a live quote, investment recommendation or evidence of a working paid workflow.
+
+Example request: "Use AlphaGBM's offline synthetic stock-split demo; do not access the network or use research allowance."
+中文："用 AlphaGBM 跑一次离线合成拆股演示，不联网、不消耗研究额度。"
+
+Do not run `run.py stock` for this request. If the demo fails, report the error; never replace failed real research with this demo. For a real ticker or live research request, use the separate authorization and preview rules below.
+'''
+
+
 def outputs(catalog):
     result = {}
     runner = (ROOT / "runtime/workflow.py").read_text()
@@ -117,6 +130,9 @@ def outputs(catalog):
         result[f"{directory}/scripts/run.py"] = runner
         result[f"{directory}/scripts/review_engine.py"] = (ROOT / 'runtime/review_engine.py').read_text()
         result[f"{directory}/references/access.md"] = GUIDE
+        if item.get('command') == 'stock':
+            result[f"{directory}/scripts/demo.py"] = (ROOT / 'runtime/stock_split_demo.py').read_text()
+            result[f"{directory}/assets/stock-split-basis.json"] = (ROOT / 'demo/stock-split-basis.json').read_text()
         if item.get('command') in ('news', 'report', 'research'):
             result[f"{directory}/references/editorial-routing.md"] = (ROOT / 'docs/EDITORIAL_ROUTING.md').read_text()
         if item.get('command') == 'smart-money':

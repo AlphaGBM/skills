@@ -40,8 +40,18 @@ Counts include method-reference packages, not just callable APIs. The catalogue 
 Install one Skill:
 
 ```bash
-npx skills add AlphaGBM/skills --skill alphagbm-stock-research
+npx skills@1.9.0 add AlphaGBM/skills --skill alphagbm-stock-research --agent codex --copy -y
 ```
+
+This project-local command targets Codex only. For Claude Code or Cursor, replace `codex` with `claude-code` or `cursor`; use your installed client, not every agent. Codex and Cursor use `.agents/skills`, while Claude Code uses `.claude/skills` with this installer version.
+
+Try the bundled synthetic example without a key or research allowance:
+
+```bash
+python3 .agents/skills/alphagbm-stock-research/scripts/demo.py --lang en
+```
+
+Or ask your AI client: **“Use AlphaGBM's offline synthetic stock-split demo; do not access the network or use research allowance.”** For Claude Code, the command path starts with `.claude/skills`. This is an offline example, not live research; the structured live workflow remains a release preview.
 
 Then ask your AI:
 
@@ -63,8 +73,8 @@ The installer lets you choose your AI tool. Callable packages contain a self-con
 
 ```bash
 npx skills add AlphaGBM/skills --list
-npx skills add AlphaGBM/skills --skill alphagbm-etf-strategy
-npx skills add AlphaGBM/skills --skill alphagbm-research-reader
+npx skills@1.9.0 add AlphaGBM/skills --skill alphagbm-etf-strategy --agent codex --copy -y
+npx skills@1.9.0 add AlphaGBM/skills --skill alphagbm-research-reader --agent codex --copy -y
 ```
 
 Market Sentiment includes VIX and fear indicators within one method; these are no longer separate cards. Smart Money Tracking summarizes disclosed records and never copies or places trades.
