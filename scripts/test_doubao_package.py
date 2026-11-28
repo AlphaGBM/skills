@@ -136,7 +136,7 @@ class DoubaoPackageTests(unittest.TestCase):
             self.assertIn(requirement, guide)
         release_tags = re.findall(r'releases/(?:download|tag)/([^/\s)]+)', guide)
         self.assertEqual(len(release_tags), 5)
-        self.assertEqual(set(release_tags), {'skills-onboarding-v1'})
+        self.assertEqual(set(release_tags), {'skills-onboarding-v2'})
 
     def test_cli_emits_manifest(self):
         with tempfile.TemporaryDirectory() as directory:

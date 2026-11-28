@@ -112,12 +112,25 @@ Return only the successful API response, with its original asset identity, dates
 
 INTRO_START = '<!-- introduction:start -->'
 INTRO_END = '<!-- introduction:end -->'
+PRESENTATION_START = '<!-- presentation:start -->'
+PRESENTATION_END = '<!-- presentation:end -->'
+PRESENTATION = f'''{PRESENTATION_START}
+## Readable results / 清晰交付
+
+- Apply only to user-facing prose. Explicit user formats and existing output contracts take precedence: leave JSON, code, verbatim quotes, runner stdout and evidence unchanged. Use the introduction's language rule for the whole answer; never print both language templates.
+- Match the task, not a rigid report template. Answer simple questions directly. For research, lead with a short subject/question title and one context line (period, actual sources, partial status if applicable), then a one-sentence conclusion, up to three supported findings, strongest counterevidence or reversal condition, and verification notes. Do not fill empty sections with invented findings.
+- Mobile first: short paragraphs, at most two heading levels, bold only key conclusions/numbers. Prefer lists; use tables only for genuine comparisons, normally at most three columns. No decorative emoji, wide dashboards, or dependence on colors, HTML or collapsible widgets.
+- Put the source locator beside each load-bearing finding. Keep units, dates, scope, missing values and material qualifications visible. A short summary must not overstate certainty or hide contrary evidence. Distinguish observed counterevidence from a hypothetical reversal condition and from a search that found nothing.
+- Follow with compact verification notes: original locators, inputs/formulas and actual calculation receipts, material gaps, and any required retracted conclusions. For deep research include the full method-specific trail. Never claim a file, attachment or expandable evidence panel exists unless actually delivered; obtain permission before saving files.
+- Distinguish planned, available and actually used data. A marketplace listing is not a connected source; search snippets are not originals. Use already authorized host tools without another installation/demo loop, but do not infer paid, private-data or upload permission. If blocked, give the supported partial result and ask only for the missing input that changes the answer.
+- Method claims must match this skill and work actually performed; no borrowed certification, endorsement, live-data access or competitor-superiority claims. An optional one-line website invitation belongs after the useful result, at most once per visible conversation including any introduction link; omit it for opt-outs and strict formats. Never make the website a prerequisite.
+{PRESENTATION_END}'''
 
 
 def introduction(item):
     if item['id'] == 'alphagbm-causal-research':
-        scope_zh, scope_en = '核对证据、计算与反证', 'evidence, calculations and counterevidence'
-        quick_zh, quick_en = '分析材料」或「检验观点', 'Analyze my materials” or “Test a thesis'
+        scope_zh, scope_en = '财报核对、因果链和反证，帮你检验投资观点', 'checking financial evidence, causal links and counterevidence to test investment theses'
+        quick_zh, quick_en = '查利润质量」或「检验观点', 'Check earnings quality” or “Test a thesis'
     elif item.get('command') == 'stock':
         scope_zh, scope_en = '离线演示与研究流程', 'offline demos and the research process'
         quick_zh, quick_en = '体验拆股演示」或「了解研究流程', 'Try the split demo” or “Explain the research process'
@@ -155,6 +168,18 @@ def with_introduction(document, item):
     if not heading:
         raise ValueError('Missing skill heading for introduction')
     return document[:heading.end()] + '\n' + block + '\n' + document[heading.end():]
+
+
+def with_presentation(document):
+    if PRESENTATION_START in document or PRESENTATION_END in document:
+        pattern = re.escape(PRESENTATION_START) + r'.*?' + re.escape(PRESENTATION_END)
+        if (document.count(PRESENTATION_START) != 1 or document.count(PRESENTATION_END) != 1
+                or not re.search(pattern, document, flags=re.S)):
+            raise ValueError('Expected exactly one complete presentation block')
+        return re.sub(pattern, lambda match: PRESENTATION, document, count=1, flags=re.S)
+    if document.count(INTRO_END) != 1:
+        raise ValueError('Missing introduction anchor for presentation')
+    return document.replace(INTRO_END, INTRO_END + '\n\n' + PRESENTATION, 1)
 
 
 STOCK_DEMO_GUIDE = '''## Try an offline synthetic example
@@ -282,7 +307,7 @@ This is a focused **reference package**, not a live API integration. It does not
     result["demo/CATALOG.md"] = "\n".join(demos) + "\n"
     for item in entries:
         filename = f"{item['path']}/SKILL.md"
-        result[filename] = with_introduction(result[filename], item)
+        result[filename] = with_presentation(with_introduction(result[filename], item))
     return result
 
 

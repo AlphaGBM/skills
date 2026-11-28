@@ -37,6 +37,8 @@ Counts include method-reference packages, not just callable APIs. The catalogue 
 
 New installs include a [brief first-use introduction](docs/INTRODUCTION.md), natural-language starting phrases and an optional website entry. It follows your language, avoids repeated promotion and preserves JSON-only or other strict output formats.
 
+[Readable results](docs/PRESENTATION.md) put the conclusion first, followed by up to three findings, counterevidence and verification notes. Try “Check earnings quality” with Causal Research and your authorized materials; simple questions still get a short direct answer.
+
 ## Start with the result you need
 
 | Core Skill | What you receive | Package |

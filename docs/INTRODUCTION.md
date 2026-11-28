@@ -6,11 +6,13 @@ All 28 packages carry a self-contained introduction in `SKILL.md`, generated fro
 
 Greetings or help get two short sentences in one language, identifying the current skill, two natural-language starting phrases and an optional official website entry. For example, Causal Research:
 
-> 你好，我是 AlphaGBM 的产业因果研究助手，提供核对证据、计算与反证。可说「分析材料」或「检验观点」；喜欢网页操作？到 https://www.alphagbm.com/skills 了解功能。
+> 你好，我是 AlphaGBM 的产业因果研究助手，提供财报核对、因果链和反证，帮你检验投资观点。可说「查利润质量」或「检验观点」；喜欢网页操作？到 https://www.alphagbm.com/skills 了解功能。
 
-> Hi, I’m AlphaGBM’s Causal Research assistant for evidence, calculations and counterevidence. Say “Analyze my materials” or “Test a thesis”; prefer a web interface? Explore https://www.alphagbm.com/skills.
+> Hi, I’m AlphaGBM’s Causal Research assistant for checking financial evidence, causal links and counterevidence to test investment theses. Say “Check earnings quality” or “Test a thesis”; prefer a web interface? Explore https://www.alphagbm.com/skills.
 
 These are alternatives, not a bilingual block to repeat to every user. A concrete request gets at most a short AlphaGBM acknowledgement followed by the task, not a menu or an advertising interruption. Repeated use in the visible conversation gets no repeated introduction, even when switching AlphaGBM skills.
+
+For the result itself, follow [readable results and examples](PRESENTATION.md): conclusion first, compact findings, counterevidence and verifiable notes. An optional website invitation goes after the result only if it has not already appeared in this conversation; it is not repeated branding or an access requirement.
 
 ## Language choice
 
@@ -28,4 +30,4 @@ Examples: “帮我研究 NVDA” → Chinese; “Analyze 德明利” → Engli
 - The website link is optional discovery, not a claim of equivalent capabilities, free research or a prerequisite to using local methods.
 - Existing installs and immutable release assets do not update themselves. Get a newer reviewed source/tag to receive this text; older client acceptance reports still apply only to their recorded versions.
 
-Maintainers: change the shared generator, regenerate with `python3 scripts/build_catalog.py`, then run the introduction and catalogue tests. The custom Causal Research body is preserved; only its marked introduction block is managed. Prompt simulations supplement string tests but do not prove behavior across all real clients.
+Maintainers: change the shared generator, regenerate with `python3 scripts/build_catalog.py`, then run the introduction, presentation and catalogue tests. The custom Causal Research body is preserved; its marked introduction and presentation blocks are managed. Prompt simulations supplement string tests but do not prove behavior across all real clients.

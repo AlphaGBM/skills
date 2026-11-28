@@ -61,7 +61,7 @@ class CommunityTests(unittest.TestCase):
         for filename in ['README.md', 'docs/README.zh.md', 'docs/COMMUNITY.md', 'CONTRIBUTING.md',
                          'docs/INSTALLATION.md', 'docs/INSTALLATION-CHECK-2026-11-27.md',
                          'docs/INSTALLATION-FIRST-USE-2026-11-27.md', 'docs/DOUBAO.md',
-                         'docs/WORKBUDDY.md', 'docs/INTRODUCTION.md']:
+                         'docs/WORKBUDDY.md', 'docs/INTRODUCTION.md', 'docs/PRESENTATION.md']:
             document = ROOT / filename
             for target in re.findall(r'\]\(([^)]+)\)', document.read_text()):
                 if '://' in target or target.startswith('#'):

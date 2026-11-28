@@ -1,6 +1,6 @@
 # Installation, updates and version checks
 
-Each current package includes a [short introduction and language policy](INTRODUCTION.md): follow the user's language, introduce AlphaGBM once per visible conversation, and preserve strict output formats. Existing installations and older release assets do not update automatically; reinstall from a reviewed newer version to get this text. No runtime tracking or automatic website navigation is added.
+Each current package includes a [short introduction and language policy](INTRODUCTION.md) and [readable results](PRESENTATION.md): follow the user's language, introduce AlphaGBM once per visible conversation, lead with useful findings and retain evidence. Strict output formats remain unchanged. Existing installations and older release assets do not update automatically; reinstall from a reviewed newer version to get this text. No runtime tracking or automatic website navigation is added.
 
 ## WorkBuddy: local skill directory and explicit invocation
 
