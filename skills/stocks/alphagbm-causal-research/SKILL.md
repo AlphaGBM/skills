@@ -42,7 +42,7 @@ Method version: `causal-research.v1.0.0`.
 保留输入、来源ID、公式、单位、执行回执和输出。可用本包离线计算器：
 
 ```sh
-python3 scripts/calculate.py < authorized-calculation.json
+python3 "<skill-dir>/scripts/calculate.py" < authorized-calculation.json
 ```
 
 输入格式和合成示例见执行边界；也可用宿主提供的确定性计算工具。生成代码不等于运行代码。未经核实的输入只能作为明确标记的假设，算术通过不等于数据或因果通过。

@@ -60,7 +60,7 @@ class CommunityTests(unittest.TestCase):
     def test_local_document_links_resolve(self):
         for filename in ['README.md', 'docs/README.zh.md', 'docs/COMMUNITY.md', 'CONTRIBUTING.md',
                          'docs/INSTALLATION.md', 'docs/INSTALLATION-CHECK-2026-11-27.md',
-                         'docs/INSTALLATION-FIRST-USE-2026-11-27.md']:
+                         'docs/INSTALLATION-FIRST-USE-2026-11-27.md', 'docs/DOUBAO.md']:
             document = ROOT / filename
             for target in re.findall(r'\]\(([^)]+)\)', document.read_text()):
                 if '://' in target or target.startswith('#'):
