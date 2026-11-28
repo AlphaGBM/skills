@@ -1,5 +1,9 @@
 # Installation, updates and version checks
 
+## Doubao Work: native import or a file workflow
+
+See the [Chinese Doubao guide and portable package](DOUBAO.md). This route uses the existing Causal Research method and the current host's own tools, not a nested Codex installation. Do not invent an installer `--agent` target or equate downloading files with registering a skill. Native import and cross-session discovery remain unverified; the file workflow is explicitly scoped to the current session. No AlphaGBM account access is included.
+
 ## Install from the repository
 
 ```bash

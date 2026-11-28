@@ -27,6 +27,10 @@ The example score of 74 is illustrative, not a 74% win rate. Research scores are
 
 Counts include method-reference packages, not just callable APIs. The catalogue preserves each package's access and release status; a preview is not a claim of verified production availability.
 
+## Doubao Work / 豆包工作
+
+[豆包中文上手指南](docs/DOUBAO.md) offers a portable **Causal Research** package for evidence, calculations and counterarguments using your own authorized materials. No separate Codex installation or AlphaGBM API key is required. Use native skill import where available, or the explicitly labelled current-session file workflow. Native Doubao import and cross-session discovery are **not yet verified**; this is not access to paid research or the private report library.
+
 ## Start with the result you need
 
 | Core Skill | What you receive | Package |
