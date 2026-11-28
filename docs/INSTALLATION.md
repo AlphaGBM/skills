@@ -1,5 +1,9 @@
 # Installation, updates and version checks
 
+## WorkBuddy: local skill directory and explicit invocation
+
+See the [WorkBuddy installation and first-use guide](WORKBUDDY.md). A user report records CodeBuddy CLI 2.184.0 in WorkBuddy loading `alphagbm-stock-research` from `~/.codebuddy/skills/` through its Skill tool, then executing the bundled offline demo. The guide pins the tested source commit and stops rather than overwriting an existing installation. Automatic activation, cross-session persistence, other packages and live/paid research remain unverified. This is a host-directory route, not a verified third-party installer target; no separate Codex installation is needed.
+
 ## Doubao Work: native import or a file workflow
 
 See the [Chinese Doubao guide and portable package](DOUBAO.md). This route uses the existing Causal Research method and the current host's own tools, not a nested Codex installation. Do not invent an installer `--agent` target or equate downloading files with registering a skill. Native import and cross-session discovery remain unverified; the file workflow is explicitly scoped to the current session. No AlphaGBM account access is included.

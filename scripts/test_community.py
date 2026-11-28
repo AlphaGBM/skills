@@ -60,13 +60,25 @@ class CommunityTests(unittest.TestCase):
     def test_local_document_links_resolve(self):
         for filename in ['README.md', 'docs/README.zh.md', 'docs/COMMUNITY.md', 'CONTRIBUTING.md',
                          'docs/INSTALLATION.md', 'docs/INSTALLATION-CHECK-2026-11-27.md',
-                         'docs/INSTALLATION-FIRST-USE-2026-11-27.md', 'docs/DOUBAO.md']:
+                         'docs/INSTALLATION-FIRST-USE-2026-11-27.md', 'docs/DOUBAO.md',
+                         'docs/WORKBUDDY.md']:
             document = ROOT / filename
             for target in re.findall(r'\]\(([^)]+)\)', document.read_text()):
                 if '://' in target or target.startswith('#'):
                     continue
                 self.assertTrue((document.parent / target.split('#', 1)[0]).exists(),
                                 f'{filename}: {target}')
+
+    def test_workbuddy_entry_points_and_reported_scope(self):
+        for filename in ['README.md', 'docs/README.zh.md', 'docs/INSTALLATION.md']:
+            self.assertIn('WORKBUDDY.md', (ROOT / filename).read_text())
+        guide = (ROOT / 'docs/WORKBUDDY.md').read_text()
+        for requirement in ('用户文字测试报告', '2.184.0',
+                            '2687f5dd37a0ff0a214801737aa2d4d1a2b38a8d',
+                            '~/.codebuddy/skills/', 'Skill 工具',
+                            '自动上下文触发', '真实行情或付费研究接口',
+                            '不关闭 TLS 校验', '不要猜测一个 `--agent` 参数'):
+            self.assertIn(requirement, guide)
 
 
 if __name__ == '__main__':
