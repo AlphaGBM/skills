@@ -23,13 +23,13 @@
 
 ## 1. 在 WorkBuddy 自己的云电脑安装
 
-下面是 Linux 云电脑的固定版本复现命令，需要 Git 和 Python 3.9+。先确认你当前客户端确实使用 `~/.codebuddy/skills/`；路径不同就按其实际机制处理，不创建猜测的目录冒充安装成功。
+下面是 Linux 云电脑的固定发布版本安装命令，需要 Git 和 Python 3.9+。`skills-onboarding-v1` 增加了[简短双语介绍](INTRODUCTION.md)，未改变演示脚本；表中的用户宿主实测仍以原commit为准，新版宿主行为未单独实测。先确认你当前客户端确实使用 `~/.codebuddy/skills/`；路径不同就按其实际机制处理，不创建猜测的目录冒充安装成功。
 
 命令只操作当前宿主用户的技能目录。目标已存在（包括符号链接）就停止，不覆盖你的旧技能或配置。下载目录通过 `mktemp` 新建并保留用于核对；失败时停止，不混用 tarball 和 clone 目录。
 
 ```bash
 set -eu
-commit=2687f5dd37a0ff0a214801737aa2d4d1a2b38a8d
+version=skills-onboarding-v1
 destination="$HOME/.codebuddy/skills/alphagbm-stock-research"
 if [ -e "$destination" ] || [ -L "$destination" ]; then
   printf '%s\n' '目标技能已存在；先核对版本，不覆盖。' >&2
@@ -37,7 +37,8 @@ if [ -e "$destination" ] || [ -L "$destination" ]; then
 fi
 workdir=$(mktemp -d)
 git clone https://github.com/AlphaGBM/skills.git "$workdir/skills"
-git -C "$workdir/skills" checkout --detach "$commit"
+git -C "$workdir/skills" checkout --detach "$version"
+commit=$(git -C "$workdir/skills" rev-parse "$version^{commit}")
 test "$(git -C "$workdir/skills" rev-parse HEAD)" = "$commit"
 source_dir="$workdir/skills/skills/core/alphagbm-stock-research"
 test -f "$source_dir/SKILL.md"
@@ -50,6 +51,8 @@ printf '源版本：%s\n安装目录：%s\n源副本：%s\n' "$commit" "$destina
 ```
 
 这里采用用户实测的目录安装方式。本仓库现有 `npx skills@1.9.0` 示例覆盖 Codex、Claude Code、Cursor，**未据此验证该第三方安装器的 WorkBuddy 路径**；不要把指南未列出某目标，推断成上游一定不支持，也不要猜测一个 `--agent` 参数。
+
+若要严格复现原用户报告，将命令中的`version`改为`2687f5dd37a0ff0a214801737aa2d4d1a2b38a8d`；那一版不含新的品牌介绍。安装新版不会自动替换现有技能，命令仍会先停止，请先核对并保留已有目录。
 
 ## 2. 让 WorkBuddy 显式调用技能
 

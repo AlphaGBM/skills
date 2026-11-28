@@ -4,11 +4,13 @@
 
 ## 获取入门包
 
-- [下载完整技能 ZIP](https://github.com/AlphaGBM/skills/releases/download/doubao-starter-v2/alphagbm-causal-research.zip)
-- [下载文件校验清单](https://github.com/AlphaGBM/skills/releases/download/doubao-starter-v2/alphagbm-causal-research.manifest.json)
-- [版本说明与源码](https://github.com/AlphaGBM/skills/releases/tag/doubao-starter-v2)
+- [下载完整技能 ZIP](https://github.com/AlphaGBM/skills/releases/download/skills-onboarding-v1/alphagbm-causal-research.zip)
+- [下载文件校验清单](https://github.com/AlphaGBM/skills/releases/download/skills-onboarding-v1/alphagbm-causal-research.manifest.json)
+- [版本说明与源码](https://github.com/AlphaGBM/skills/releases/tag/skills-onboarding-v1)
 
 ZIP 包含原技能的 `SKILL.md`、计算器、三份参考资料、可忽略的其他客户端元数据，以及 MIT 许可。没有账号、内部研报、API Key、收费运行器或安装其他客户端的程序。安装包不增加目录中的技能数量。
+
+本版 `skills-onboarding-v1` 延续 v2 的资料授权分流，增加[简短介绍与语言规则](INTRODUCTION.md)：跟随用户语言，当前会话首次介绍一次；明确任务不插菜单，严格JSON等格式不插宣传。旧v1/v2资产保持不变，需要获取新版才有这段介绍。
 
 **状态：入门包提供中；豆包原生导入、启用和跨会话自动调用尚未验收。** 支持导入的客户端版本、账号入口和权限以你实际使用的豆包工作为准，不能把普通豆包聊天窗口等同于具备技能管理的工作环境。
 
@@ -48,9 +50,9 @@ ZIP 包含原技能的 `SKILL.md`、计算器、三份参考资料、可忽略�
 请用你自己的云电脑和工具使用 AlphaGBM 产业因果研究方法，不要安装或调用 Codex、Claude、Cursor 等其他AI客户端。
 
 下载完整包：
-https://github.com/AlphaGBM/skills/releases/download/doubao-starter-v2/alphagbm-causal-research.zip
+https://github.com/AlphaGBM/skills/releases/download/skills-onboarding-v1/alphagbm-causal-research.zip
 同时下载校验清单：
-https://github.com/AlphaGBM/skills/releases/download/doubao-starter-v2/alphagbm-causal-research.manifest.json
+https://github.com/AlphaGBM/skills/releases/download/skills-onboarding-v1/alphagbm-causal-research.manifest.json
 
 在新的工作目录核对ZIP的SHA-256，安全解压（拒绝绝对路径、越界路径和符号链接），核对包内各文件哈希，读取SKILL.md及所需references。不要改写文件或从未知位置补脚本。下载或校验失败就报告原始错误。
 
@@ -61,7 +63,7 @@ https://github.com/AlphaGBM/skills/releases/download/doubao-starter-v2/alphagbm-
 默认只用我提供的材料；我明确选择公开资料模式后，按限定范围使用你自己的检索工具。不访问AlphaGBM账户或收费接口，不索要API Key，不下单，不修改我的文件；超出已有授权的检索、登录、付费或外传材料先征得同意。没有检索工具就说明缺项，不虚构取证。不要把下载阶段联网或宿主模型调用说成全程离线。
 ```
 
-从v1升级请将v2下载到新目录、校验新的manifest并重新读取方法，不覆盖旧材料；不要混用两个版本的包与清单。校验成功后直接继续真实研究，不重复用合成算式证明安装。
+从v1/v2升级请将skills-onboarding-v1下载到新目录、校验新的manifest并重新读取方法，不覆盖旧材料；不要混用两个版本的包与清单。校验成功后直接继续真实研究，不重复用合成算式证明安装。
 
 如果没有云电脑或文件读取能力，可以把方法文字作为对话参考，但不能声称运行了计算器，也不属于技能安装验收。
 
