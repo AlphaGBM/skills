@@ -31,6 +31,10 @@ Counts include method-reference packages, not just callable APIs. The catalogue 
 
 [豆包中文上手指南](docs/DOUBAO.md) offers a portable **Causal Research** package for evidence, calculations and counterarguments using your own authorized materials, or public primary sources with your explicit permission. No files? Choose upload or authorize public-source retrieval instead of preparing a full research dossier first. No separate Codex installation or AlphaGBM API key is required. Use native skill import where available, or the explicitly labelled current-session file workflow. Native Doubao import and cross-session discovery are **not yet verified**; this is not access to paid research or the private report library.
 
+## WorkBuddy users
+
+[WorkBuddy installation and first-use guide](docs/WORKBUDDY.md): user-tested local skill directory installation, explicit host Skill loading, and the Stock Research offline demo on CodeBuddy CLI 2.184.0 in WorkBuddy. No separate Codex installation or AlphaGBM API key is needed for the demo. Automatic activation, other packages and live/paid research are not covered by this test.
+
 ## Start with the result you need
 
 | Core Skill | What you receive | Package |
