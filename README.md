@@ -35,6 +35,8 @@ Counts include method-reference packages, not just callable APIs. The catalogue 
 
 [WorkBuddy installation and first-use guide](docs/WORKBUDDY.md): user-tested local skill directory installation, explicit host Skill loading, and the Stock Research offline demo on CodeBuddy CLI 2.184.0 in WorkBuddy. No separate Codex installation or AlphaGBM API key is needed for the demo. Automatic activation, other packages and live/paid research are not covered by this test.
 
+New installs include a [brief first-use introduction](docs/INTRODUCTION.md), natural-language starting phrases and an optional website entry. It follows your language, avoids repeated promotion and preserves JSON-only or other strict output formats.
+
 ## Start with the result you need
 
 | Core Skill | What you receive | Package |

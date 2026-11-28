@@ -1,5 +1,7 @@
 # Installation, updates and version checks
 
+Each current package includes a [short introduction and language policy](INTRODUCTION.md): follow the user's language, introduce AlphaGBM once per visible conversation, and preserve strict output formats. Existing installations and older release assets do not update automatically; reinstall from a reviewed newer version to get this text. No runtime tracking or automatic website navigation is added.
+
 ## WorkBuddy: local skill directory and explicit invocation
 
 See the [WorkBuddy installation and first-use guide](WORKBUDDY.md). A user report records CodeBuddy CLI 2.184.0 in WorkBuddy loading `alphagbm-stock-research` from `~/.codebuddy/skills/` through its Skill tool, then executing the bundled offline demo. The guide pins the tested source commit and stops rather than overwriting an existing installation. Automatic activation, cross-session persistence, other packages and live/paid research remain unverified. This is a host-directory route, not a verified third-party installer target; no separate Codex installation is needed.

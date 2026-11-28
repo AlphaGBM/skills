@@ -128,15 +128,15 @@ class DoubaoPackageTests(unittest.TestCase):
                             '不重复做安装和合成演示'):
             self.assertIn(requirement, execution)
 
-    def test_guide_has_explicit_public_mode_and_consistent_v2_downloads(self):
+    def test_guide_has_explicit_public_mode_and_consistent_onboarding_downloads(self):
         guide = (builder.ROOT / 'docs/DOUBAO.md').read_text()
         for requirement in ('允许你用当前宿主自己的工具', '尚未明确的事项',
                             '没有文件且未授权检索', '不登录、不付费、不外传我的材料',
                             '不要混用两个版本的包与清单'):
             self.assertIn(requirement, guide)
-        release_tags = re.findall(r'releases/(?:download|tag)/(doubao-starter-v\d+)', guide)
+        release_tags = re.findall(r'releases/(?:download|tag)/([^/\s)]+)', guide)
         self.assertEqual(len(release_tags), 5)
-        self.assertEqual(set(release_tags), {'doubao-starter-v2'})
+        self.assertEqual(set(release_tags), {'skills-onboarding-v1'})
 
     def test_cli_emits_manifest(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -35,6 +35,8 @@
 
 [WorkBuddy 安装与首次使用指南](WORKBUDDY.md)：用户已实测宿主技能目录安装、显式 Skill 加载和 Stock Research 随包离线演示，环境为 WorkBuddy 中的 CodeBuddy CLI 2.184.0。演示不需要另装 Codex 或配置 AlphaGBM API Key；自动触发、其他技能及真实付费研究不在本次验收范围内。
 
+新版每个技能自带[简短首次介绍](INTRODUCTION.md)、自然语言快捷用法和可选官网入口；跟随你的语言，不反复宣传，不打断明确任务，也不破坏JSON等严格输出。
+
 ## 开始使用
 
 ```bash
