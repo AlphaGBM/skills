@@ -109,6 +109,35 @@ class DoubaoPackageTests(unittest.TestCase):
         self.assertIn('不开放 AlphaGBM 内部研报库', guide)
         self.assertIn('本次会话的文件工作流', guide)
 
+    def test_packaged_method_routes_missing_materials_without_implied_consent(self):
+        contents = builder.package_contents()
+        skill = contents['SKILL.md'].decode()
+        execution = contents['references/execution.md'].decode()
+        self.assertIn('资料入口', skill)
+        for requirement in ('已有文件', '无文件且未授权检索', '已授权公开检索',
+                            '工具不可用或取证失败', '上传材料／授权公开原件检索',
+                            '不等于同意联网', '用户未选择前不检索',
+                            '不重复索要同一授权', '只有文件授权时，不额外联网'):
+            self.assertIn(requirement, execution)
+
+    def test_packaged_method_requires_small_real_research_with_boundaries(self):
+        execution = builder.package_contents()['references/execution.md'].decode()
+        for requirement in ('1—3份关键原件', '不晚于截止日发布', '不编造数字',
+                            '反证清单不是反证检索', '被推翻的结论', '实际尝试',
+                            '不借其他AI客户端', '额外付费、登录、私有来源',
+                            '不重复做安装和合成演示'):
+            self.assertIn(requirement, execution)
+
+    def test_guide_has_explicit_public_mode_and_consistent_v2_downloads(self):
+        guide = (builder.ROOT / 'docs/DOUBAO.md').read_text()
+        for requirement in ('允许你用当前宿主自己的工具', '尚未明确的事项',
+                            '没有文件且未授权检索', '不登录、不付费、不外传我的材料',
+                            '不要混用两个版本的包与清单'):
+            self.assertIn(requirement, guide)
+        release_tags = re.findall(r'releases/(?:download|tag)/(doubao-starter-v\d+)', guide)
+        self.assertEqual(len(release_tags), 5)
+        self.assertEqual(set(release_tags), {'doubao-starter-v2'})
+
     def test_cli_emits_manifest(self):
         with tempfile.TemporaryDirectory() as directory:
             result = subprocess.run([sys.executable, str(Path(builder.__file__)), '--output-dir', directory],
